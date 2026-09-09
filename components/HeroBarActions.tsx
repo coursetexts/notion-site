@@ -137,6 +137,9 @@ export function HeroSaveButton({
 export function HeroMoreMenu({
   reportTarget,
   shareHref,
+  pinned,
+  pinBusy,
+  onPinToggle,
   visibility,
   visibilityBusy,
   onVisibilityChange,
@@ -144,6 +147,9 @@ export function HeroMoreMenu({
 }: {
   reportTarget: ContentReportTarget
   shareHref?: string
+  pinned?: boolean
+  pinBusy?: boolean
+  onPinToggle?: () => void
   visibility?: LearningPathVisibility
   visibilityBusy?: boolean
   onVisibilityChange?: (next: LearningPathVisibility) => void
@@ -171,6 +177,7 @@ export function HeroMoreMenu({
   }, [open])
 
   const showVisibility = Boolean(onVisibilityChange && visibility)
+  const showPin = Boolean(onPinToggle)
 
   return (
     <div className={heroStyles.moreWrap} ref={wrapRef}>
@@ -190,6 +197,25 @@ export function HeroMoreMenu({
             href={shareHref}
             onShared={() => setOpen(false)}
           />
+          {showPin ? (
+            <button
+              type='button'
+              role='menuitem'
+              className={
+                pinned
+                  ? `${heroStyles.moreItem} ${heroStyles.moreItemActive}`
+                  : heroStyles.moreItem
+              }
+              disabled={pinBusy}
+              aria-checked={Boolean(pinned)}
+              onClick={() => {
+                onPinToggle?.()
+                setOpen(false)
+              }}
+            >
+              {pinned ? 'Unpin' : 'Pin'}
+            </button>
+          ) : null}
           <ReportButton
             target={reportTarget}
             variant='menuItem'

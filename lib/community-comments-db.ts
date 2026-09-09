@@ -97,7 +97,7 @@ async function getAuthorsByIds(
 }
 
 async function getVoteSummaries(
-  targetType: 'resource' | 'comment',
+  targetType: 'resource' | 'comment' | 'profile_update',
   targetIds: string[]
 ): Promise<Record<string, { score: number; user_vote: 1 | -1 | null }>> {
   const supabase = getSupabaseClient()
@@ -125,9 +125,12 @@ async function getVoteSummaries(
   return byId
 }
 
-/** Full comment thread for a resource, with authors, karma, and vote state. */
-export async function getResourceCommentThread(
-  resourceId: string
+export type PolymorphicCommentTarget = 'resource' | 'profile_update'
+
+/** Full comment thread for a polymorphic target, with authors and vote state. */
+export async function getPolymorphicCommentThread(
+  targetType: PolymorphicCommentTarget,
+  targetId: string
 ): Promise<ThreadedComment[]> {
   const supabase = getSupabaseClient()
   if (!supabase) return []
@@ -135,8 +138,8 @@ export async function getResourceCommentThread(
   const { data, error } = await supabase
     .from('comments')
     .select('id, user_id, parent_comment_id, body, created_at')
-    .eq('target_type', 'resource')
-    .eq('target_id', resourceId)
+    .eq('target_type', targetType)
+    .eq('target_id', targetId)
     .order('created_at', { ascending: true })
   if (error) throw error
   if (!data?.length) return []
@@ -153,9 +156,17 @@ export async function getResourceCommentThread(
   return buildThread(rows, authorByUser, voteMap)
 }
 
-/** Post a comment; pass parentCommentId to reply. Returns the new node. */
-export async function addResourceComment(
-  resourceId: string,
+/** Full comment thread for a resource, with authors, karma, and vote state. */
+export async function getResourceCommentThread(
+  resourceId: string
+): Promise<ThreadedComment[]> {
+  return getPolymorphicCommentThread('resource', resourceId)
+}
+
+/** Post a comment on a polymorphic target; pass parentCommentId to reply. */
+export async function addPolymorphicComment(
+  targetType: PolymorphicCommentTarget,
+  targetId: string,
   body: string,
   parentCommentId?: string | null
 ): Promise<ThreadedComment | null> {
@@ -170,8 +181,8 @@ export async function addResourceComment(
     .from('comments')
     .insert({
       user_id: user.id,
-      target_type: 'resource',
-      target_id: resourceId,
+      target_type: targetType,
+      target_id: targetId,
       body,
       parent_comment_id: parentCommentId ?? null
     })
@@ -189,16 +200,24 @@ export async function addResourceComment(
   }
 }
 
+/** Post a comment; pass parentCommentId to reply. Returns the new node. */
+export async function addResourceComment(
+  resourceId: string,
+  body: string,
+  parentCommentId?: string | null
+): Promise<ThreadedComment | null> {
+  return addPolymorphicComment('resource', resourceId, body, parentCommentId)
+}
+
 /**
  * Vote on a comment (value null clears the vote). Returns the new score.
  */
-export async function setResourceCommentVote(
+export async function setPolymorphicCommentVote(
   comment: { id: string; user_id: string; user_vote: 1 | -1 | null },
   value: 1 | -1 | null
 ): Promise<number | null> {
   const score = await setVote('comment', comment.id, value)
   if (score === null) return null
-  // Karma is display-only for now; this is a no-op stub (rules TBD).
   const supabase = getSupabaseClient()
   if (supabase) {
     const {
@@ -218,6 +237,16 @@ export async function setResourceCommentVote(
   return score
 }
 
+/**
+ * Vote on a comment (value null clears the vote). Returns the new score.
+ */
+export async function setResourceCommentVote(
+  comment: { id: string; user_id: string; user_vote: 1 | -1 | null },
+  value: 1 | -1 | null
+): Promise<number | null> {
+  return setPolymorphicCommentVote(comment, value)
+}
+
 /** Vote on a resource (value null clears). Returns the new score. */
 export async function setResourceVote(
   resourceId: string,
@@ -227,7 +256,7 @@ export async function setResourceVote(
 }
 
 async function setVote(
-  targetType: 'resource' | 'comment',
+  targetType: 'resource' | 'comment' | 'profile_update',
   targetId: string,
   value: 1 | -1 | null
 ): Promise<number | null> {

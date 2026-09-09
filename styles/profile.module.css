@@ -381,13 +381,44 @@
 
 .listItem {
   padding: 0.75rem 0.5rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #f8f8f8;
   border-radius: 6px;
   transition: background 0.15s ease;
 }
 
+.tabItemIcon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.375rem;
+  height: 1.375rem;
+  margin-top: 0.1rem;
+  border-radius: 50%;
+  background: #0089c4;
+  color: #fff;
+}
+
+.tabItemIcon svg {
+  display: block;
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.tabItemRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.activityFeedItemMain {
+  flex: 1;
+  min-width: 0;
+}
+
 .listItem:hover {
-  background: #f9f9f9;
+  background: #f9f9f98c;
 }
 
 .listItemUnread {
@@ -444,12 +475,15 @@
 }
 
 .listTitle {
-  font-weight: 500;
+  font-weight: 400;
+  font-size: 0.9375rem;
+  line-height: 1.35;
   flex: 1;
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: #25272b;
 }
 
 .knowledgeList .listTitle {
@@ -460,15 +494,17 @@
 }
 
 .listMeta {
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   color: #666;
   flex-shrink: 0;
+  margin-left: auto;
+  white-space: nowrap;
 }
 
 /* Activity → Feed: content-first subject, then actor thread */
 .feedCardSubjectRow {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: baseline;
   gap: 0.35rem 0.75rem;
   width: 100%;
@@ -478,14 +514,14 @@
   flex: 1 1 auto;
   min-width: 0;
   font-size: 0.9375rem;
-  font-weight: 500;
-  line-height: 1.45;
+  font-weight: 400;
+  line-height: 1.35;
   color: #25272b;
 }
 
 .feedCardSubject em {
   font-style: italic;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .feedCardHead {
@@ -506,10 +542,11 @@
 }
 
 .feedCardTime {
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   color: #666;
   flex-shrink: 0;
   margin-left: auto;
+  white-space: nowrap;
 }
 
 .feedCardActions {
@@ -539,8 +576,9 @@
   flex-direction: column;
   gap: 0.65rem;
   margin-top: 0.35rem;
+  margin-left: 11px;
   padding-top: 0.45rem;
-  padding-left: 0.75rem;
+  padding-left: 0;
   border-left: 2px solid #e8e6e1;
 }
 
@@ -557,6 +595,43 @@
   align-items: center;
   gap: 0.35rem 0.5rem;
   min-width: 0;
+  margin-left: -13px;
+}
+
+.feedThreadActor {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.feedThreadAvatar,
+.feedThreadAvatarPlaceholder {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  border: 2px solid #fff;
+  background: #fff;
+  z-index: 1;
+}
+
+.feedThreadAvatar {
+  display: block;
+  object-fit: cover;
+}
+
+.feedThreadAvatarPlaceholder {
+  color: #555;
+  font-size: 0.65rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e8e8e8;
+  font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
 }
 
 .feedThreadAuthorPlain {
@@ -585,11 +660,18 @@
   font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
 }
 
-/* Align last reply body with text inside the spine (padding + border width). */
+/* Align body with name text (past avatar on the spine). */
+.feedThreadTurn .feedThreadBody,
+.feedThreadTurn .feedThreadBodyMuted {
+  margin-left: -13px;
+  padding-left: calc(24px + 0.45rem);
+}
+
+/* Align last reply body with name text outside the spine. */
 .feedThreadSpine + .feedThreadBody,
 .feedThreadSpine + .feedThreadBodyMuted {
   margin-top: 0.2rem;
-  padding-left: calc(0.75rem + 2px);
+  padding-left: calc(24px + 0.45rem);
 }
 
 .feedThreadBody {
@@ -1270,6 +1352,14 @@
   gap: 0.5rem;
 }
 
+.userLinkRowMain {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+  flex: 1;
+}
+
 .userLinkTitleAndDomain {
   display: inline-flex;
   align-items: baseline;
@@ -1304,7 +1394,6 @@
   align-items: center;
   gap: 0.35rem;
   flex-shrink: 0;
-  margin-left: auto;
   opacity: 0;
   transition: opacity 0.15s ease;
 }
@@ -1336,7 +1425,7 @@
 .userLinkMeta {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 0.25rem;
   margin-top: 0.35rem;
 }
@@ -1346,7 +1435,6 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
- 
 }
 
 .userLinkDomain {
@@ -1430,6 +1518,20 @@
 .userLinkDate {
   font-size: 0.75rem;
   color: #666;
+  flex-shrink: 0;
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+.tabItemDate {
+  flex-shrink: 0;
+  margin-left: auto;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  color: #666;
+  white-space: nowrap;
+  align-self: flex-start;
+  padding-top: 0.1rem;
 }
 
 .userLinkEdit,
@@ -1823,13 +1925,6 @@
   font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
 }
 
-.sidebarBio .profilePersonalLinksWrap {
-  display: inline-flex;
-  vertical-align: middle;
-  position: relative;
-  margin-left: 0.15rem;
-}
-
 .sidebarBioMuted {
   font-size: 0.9375rem;
   line-height: 1.45;
@@ -1914,6 +2009,7 @@
   white-space: nowrap;
   font-size: 0.875rem;
   line-height: 1.35;
+  color: #9a9a9a;
 }
 
 .profileLearningMetadataTopicList {
@@ -1929,12 +2025,12 @@
 }
 
 .profileLearningMetadataTopic {
-  color: #555;
+  color: inherit;
 }
 
 .profileLearningMetadataSep {
   flex-shrink: 0;
-  color: #555;
+  color: inherit;
 }
 
 .profileLearningMetadataMore {
@@ -1943,6 +2039,12 @@
   font-weight: 400;
   line-height: 1.35;
   color: #9a9a9a;
+}
+
+.profileLearningMetadataLinks {
+  display: flex;
+  align-items: center;
+  margin-top: 0.15rem;
 }
 
 .profilePersonalLinksWrap {
@@ -1957,28 +2059,33 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.15rem;
-  padding: 0.35rem 0.4rem;
-  min-height: 1.75rem;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  min-height: 0;
   border: none;
-  border-radius: 999px;
-  background: #f7f7f6;
-  color: #6f6f6f;
-  font-size: 0.75rem;
-  font-weight: 500;
-  line-height: 1;
+  border-radius: 0;
+  background: none;
+  color: #9a9a9a;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.35;
   cursor: pointer;
   font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
-  transition:
-    background 0.15s ease,
-    color 0.15s ease;
+  transition: opacity 0.15s ease;
 }
 
 .profilePersonalLinksTrigger:hover,
 .profilePersonalLinksTrigger:focus-visible {
-  background: #f0efed;
-  color: #555;
+  background: none;
+  color: #9a9a9a;
+  opacity: 0.82;
   outline: none;
+}
+
+.profilePersonalLinksTrigger svg {
+  width: 0.8125rem;
+  height: 0.8125rem;
 }
 
 .profilePersonalLinksPopover {
@@ -2222,9 +2329,20 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1.75rem;
+  align-items: center;
   border-bottom: 1px solid #e8e8e8;
   margin-bottom: 1.25rem;
   font-weight: 400;
+}
+
+.primaryTabsDivider {
+  display: inline-block;
+  width: 1px;
+  height: 0.95rem;
+  margin: 0 -0.35rem;
+  background: #e4e4e4;
+  flex-shrink: 0;
+  align-self: center;
 }
 
 .primaryTabsRow {
@@ -2574,18 +2692,21 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  border: 1px solid #e4e4e4;
-  border-radius: 8px;
-  overflow: hidden;
 }
 
 .notebooksListItemWrap {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #f8f8f8;
+  border-radius: 6px;
   padding: 0;
+  transition: background 0.15s ease;
 }
 
 .notebooksListItemWrap:last-child {
   border-bottom: none;
+}
+
+.notebooksListItemWrap:hover {
+  background: #f9f9f98c;
 }
 
 .notebooksListRow {
@@ -2665,7 +2786,9 @@
   gap: 0.4rem;
   min-width: 0;
   flex: 1;
-  font-weight: 500;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.35;
   color: #25272b;
 }
 
@@ -2689,9 +2812,10 @@
 }
 
 .notebooksListMeta {
-  font-size: 0.8125rem;
-  color: #888;
+  font-size: 0.8rem;
+  color: #b2b2b2;
   flex-shrink: 0;
+  letter-spacing: -0.05px;
 }
 
 .notebooksKindTag {
@@ -2785,8 +2909,8 @@
 }
 
 .sidebarSaveProfileBtn {
-  align-self: flex-start;
-  margin-top: 0.15rem;
+  align-self: center;
+  margin-top: 0;
   font-size: 0.8125rem;
   font-weight: 500;
   padding: 0.5rem 0.85rem;
@@ -2796,6 +2920,7 @@
   color: #fff;
   cursor: pointer;
   font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
+  white-space: nowrap;
 }
 
 .sidebarSaveProfileBtn:hover:not(:disabled) {
@@ -3191,24 +3316,29 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+}
+
+.learningPathList > li:last-child .learningPathCard {
+  border-bottom: none;
 }
 
 .learningPathCard {
   box-sizing: border-box;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 0.75rem;
   margin: 0;
-  padding: 1.15rem 1.25rem;
-  border: 1px solid #e8e6e1;
-  border-radius: 10px;
-  background: #fff;
+  padding: 0.75rem 0.5rem;
+  border: none;
+  border-bottom: 1px solid #f8f8f8;
+  border-radius: 6px;
+  background: transparent;
   font-family: 'Hanken Grotesk', sans-serif;
-  font-size: 1rem;
-  line-height: 1.45;
+  font-size: 0.9375rem;
+  line-height: 1.35;
   color: #25272b;
+  transition: background 0.15s ease;
 }
 
 .learningPathCardWithByline {
@@ -3221,7 +3351,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.4rem;
+  gap: 0.15rem;
 }
 
 .learningPathCardLink {
@@ -3239,10 +3369,14 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.35;
+  color: #25272b;
 }
 
 .learningPathCard:hover {
-  border-color: #0089c4;
+  background: #f9f9f98c;
 }
 
 a.learningPathCard {
@@ -3252,11 +3386,14 @@ a.learningPathCard {
 }
 
 a.learningPathCard:hover {
-  color: #000;
+  color: #25272b;
+  background: #f9f9f98c;
 }
 
 .learningPathCardLink:hover {
-  color: #000;
+  color: #25272b;
+  text-decoration: underline;
+  text-decoration-color: #9b9b9b;
 }
 
 .learningPathCardByline {
@@ -3270,17 +3407,82 @@ a.learningPathCard:hover {
   color: #8a8a8a;
 }
 
-.learningPathCardTags {
+.learningPathCardResume {
+  display: none;
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 0.35rem;
+}
+
+.learningPathCard:hover .learningPathCardResume,
+.learningPathCard:focus-within .learningPathCardResume {
+  display: block;
+}
+
+@media (hover: none) {
+  .learningPathCardResume {
+    display: block;
+  }
+}
+
+.learningPathCardResumeDescription {
+  margin: 0;
+  padding-left: 0.65rem;
+  border-left: 2px solid #e8e6e1;
+  font-family: 'Hanken Grotesk', 'Inter', sans-serif;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: #555;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.learningPathCardResumeLine {
+  margin: 0.55rem 0 0;
+  min-width: 0;
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  align-items: baseline;
   flex-wrap: wrap;
   gap: 0.35rem;
+  font-family: 'Hanken Grotesk', 'Inter', sans-serif;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  color: #6b7280;
+}
+
+.learningPathCardResumeSep {
+  color: #c4c4c4;
   flex-shrink: 0;
 }
 
+.learningPathCardResumeNextLabel {
+  min-width: 0;
+  color: #25272b;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.learningPathCardTags {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 0.35rem;
+  margin-top: 0;
+  width: 100%;
+}
+
+.learningPathCardTags:has(:not(.learningPathCommitHover)),
+.learningPathCard:hover .learningPathCardTags,
+.learningPathCard:focus-within .learningPathCardTags {
+  margin-top: 0.2rem;
+}
+
 .learningPathCardWithByline .learningPathCardTags {
-  padding-top: 0.15rem;
+  padding-top: 0;
 }
 
 .learningPathTag {
@@ -3309,61 +3511,6 @@ a.learningPathCard:hover {
   display: block;
 }
 
-.learningPathSavedTag {
-  font: inherit;
-  font-size: 0.75rem;
-  line-height: 1.2;
-  padding: 0.15rem 0.35rem;
-  border: none;
-  border-radius: 4px;
-  color: #5c5c5c;
-  background: #e4e4e4;
-}
-
-button.learningPathSavedTag {
-  display: inline-grid;
-  justify-items: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-button.learningPathSavedTag:disabled {
-  opacity: 0.5;
-  cursor: default;
-}
-
-button.learningPathSavedTag:hover:not(:disabled),
-button.learningPathSavedTag:focus-visible:not(:disabled) {
-  color: #3d3d3d;
-  background: #d8d8d8;
-}
-
-button.learningPathSavedTag:focus-visible {
-  outline: 2px solid rgba(0, 0, 0, 0.15);
-  outline-offset: 1px;
-}
-
-.learningPathSavedLabel,
-.learningPathUnsaveLabel {
-  grid-area: 1 / 1;
-}
-
-.learningPathUnsaveLabel {
-  visibility: hidden;
-}
-
-button.learningPathSavedTag:hover:not(:disabled) .learningPathSavedLabel,
-button.learningPathSavedTag:focus-visible:not(:disabled)
-  .learningPathSavedLabel {
-  visibility: hidden;
-}
-
-button.learningPathSavedTag:hover:not(:disabled) .learningPathUnsaveLabel,
-button.learningPathSavedTag:focus-visible:not(:disabled)
-  .learningPathUnsaveLabel {
-  visibility: visible;
-}
-
 .learningPathCommitTag,
 .learningPathCommittedTag {
   font: inherit;
@@ -3371,6 +3518,18 @@ button.learningPathSavedTag:focus-visible:not(:disabled)
   line-height: 1.2;
   padding: 0.15rem 0.35rem;
   border-radius: 4px;
+}
+
+.learningPathCommitHover {
+  display: none;
+}
+
+.learningPathCard:hover .learningPathCommitHover,
+.learningPathCard:focus-within .learningPathCommitHover,
+.learningPathCommitHover:disabled,
+.learningPathCommitHover:focus-visible {
+  display: inline-flex;
+  align-items: center;
 }
 
 .learningPathCommitTag {
@@ -3384,6 +3543,26 @@ button.learningPathSavedTag:focus-visible:not(:disabled)
 .learningPathCommitTag:focus-visible:not(:disabled) {
   color: #3d3d3d;
   background: #f3f3f3;
+}
+
+a.learningPathContinueTag {
+  color: #0089c4;
+  background: transparent;
+  border: 1px solid #c5e0ee;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a.learningPathContinueTag:hover,
+a.learningPathContinueTag:focus-visible {
+  color: #0077ab;
+  background: #f2f9ff;
+  border-color: #0089c4;
+}
+
+a.learningPathContinueTag:focus-visible {
+  outline: 2px solid rgba(0, 137, 196, 0.35);
+  outline-offset: 1px;
 }
 
 .learningPathCommittedTag {
@@ -3598,11 +3777,11 @@ button.learningPathCommittedTag:focus-visible:not(:disabled)
 
 .noteListBtn {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
-  gap: 0.2rem;
+  gap: 0.75rem;
   width: 100%;
-  padding: 0.75rem 1rem;
+  padding: 0.75rem 0.5rem;
   border: none;
   background: none;
   text-align: left;
@@ -3612,8 +3791,21 @@ button.learningPathCommittedTag:focus-visible:not(:disabled)
   box-sizing: border-box;
 }
 
+.noteListBtnMain {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+}
+
+.noteListBtn .tabItemDate {
+  margin-left: auto;
+}
+
 .noteListBtn:hover {
-  background: #fafafa;
+  background: transparent;
 }
 
 .noteListBtn .notebooksListTitle {
@@ -3643,4 +3835,411 @@ button.learningPathCommittedTag:focus-visible:not(:disabled)
 .noteSaveStatus {
   font-size: 0.8125rem;
   color: #888;
+}
+
+.updatesFeed {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.updatesFeedItem {
+  margin: 0;
+  min-width: 0;
+}
+
+.updatesFeedItem:last-child .updatesCard {
+  border-bottom: none;
+}
+
+.updatesCard {
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0.75rem 0.5rem;
+  border: none;
+  border-bottom: 1px solid #f8f8f8;
+  border-radius: 6px;
+  background: transparent;
+  font-family: 'Hanken Grotesk', sans-serif;
+  transition: background 0.15s ease;
+}
+
+.updatesCardMain {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.updatesFeedItem:hover .updatesCard {
+  background: #f9f9f98c;
+}
+
+.updatesCardMeta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.updatesTypeLabel {
+  font-size: 0.75rem;
+  letter-spacing: 0.01em;
+  color: #8a8a8a;
+}
+
+.updatesExternalLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  color: #8a8a8a;
+  text-decoration: none;
+  border-radius: 6px;
+  padding: 0.15rem 0.35rem;
+}
+
+.updatesExternalLink:hover {
+  color: #25272b;
+  background: #f7f7f7;
+}
+
+.updatesCardTitleRow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.updatesCardTitle {
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.35;
+  color: #25272b;
+}
+
+.updatesCardTitleSpacer {
+  flex: 1;
+  min-width: 0;
+}
+
+.updatesCardTitleRow .tabItemDate {
+  padding-top: 0;
+  align-self: baseline;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.updatesCardBody {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: #7b7f89;
+  white-space: pre-wrap;
+}
+
+.updatesTagList {
+  list-style: none;
+  margin: 0.15rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.updatesTag {
+  font-size: 0.75rem;
+  line-height: 1.2;
+  padding: 0.2rem 0.45rem;
+  border-radius: 4px;
+  border: 1px solid #ebe8e2;
+  background: #f9f7f7;
+  color: #6b6f78;
+}
+
+.updatesActions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.35rem;
+}
+
+.updatesActionBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font: inherit;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  padding: 0.2rem 0.45rem;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #8a8a8a;
+  cursor: pointer;
+}
+
+.updatesActionBtn:hover:not(:disabled) {
+  color: #25272b;
+  background: #f3f3f3;
+}
+
+.updatesActionBtn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.updatesActionBtnLiked {
+  color: #b42318;
+}
+
+.updatesActionBtnLiked:hover:not(:disabled) {
+  color: #912018;
+  background: #fef3f2;
+}
+
+.updatesComments {
+  margin-top: 0.55rem;
+  padding-top: 0.45rem;
+  border-top: 1px solid #f0f0f0;
+  width: 100%;
+}
+
+.activityUpdateReplies {
+  margin-top: 0.45rem;
+}
+
+.activityUpdateReplyBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 0.75rem;
+  line-height: 1.3;
+  color: #5d534b;
+  cursor: pointer;
+}
+
+.activityUpdateReplyBtn:hover,
+.activityUpdateReplyBtn:focus-visible {
+  color: #25272b;
+  text-decoration: underline;
+}
+
+.activityUpdateReplyBtn:focus-visible {
+  outline: 2px solid rgba(0, 137, 196, 0.35);
+  outline-offset: 2px;
+}
+
+.activityUpdateReplyThread {
+  margin-top: 0.45rem;
+}
+
+.updatesComposerLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0 0 0.85rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.updatesNoteComposer {
+  box-sizing: border-box;
+  margin: 0 0 1rem;
+  padding: 0.75rem 0.5rem;
+  border-bottom: 1px solid #f8f8f8;
+}
+
+.updatesNoteComposerOpen {
+  padding-bottom: 0.85rem;
+}
+
+.updatesNoteInput {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.15rem 0;
+  border: none;
+  background: transparent;
+  resize: none;
+  overflow: hidden;
+  font: inherit;
+  font-family: 'Guyot Press', 'Georgia', serif;
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #25272b;
+  min-height: 4.5rem;
+}
+
+.updatesNoteInput::placeholder {
+  color: #9a9a9a;
+  font-style: italic;
+}
+
+.updatesNoteInput:focus,
+.updatesNoteInput:focus-visible {
+  outline: none;
+}
+
+.updatesNoteTags {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.55rem;
+}
+
+.updatesNoteTagInput {
+  font: inherit;
+  font-size: 0.8125rem;
+  line-height: 1.3;
+  padding: 0.25rem 0;
+  border: none;
+  border-bottom: 1px solid #ebe8e2;
+  background: transparent;
+  color: #25272b;
+  width: min(100%, 16rem);
+}
+
+.updatesNoteTagInput:focus,
+.updatesNoteTagInput:focus-visible {
+  outline: none;
+  border-bottom-color: #c8c8c8;
+}
+
+.updatesNoteFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.65rem;
+}
+
+.updatesNoteSecondary {
+  font: inherit;
+  font-size: 0.8125rem;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #8a8a8a;
+  cursor: pointer;
+}
+
+.updatesNoteSecondary:hover {
+  color: #25272b;
+}
+
+.updatesNotePost {
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 0.4rem 0.9rem;
+  border: none;
+  border-radius: 6px;
+  background: #25272b;
+  color: #fff;
+  cursor: pointer;
+}
+
+.updatesNotePost:hover:not(:disabled) {
+  background: #1a1a1a;
+}
+
+.updatesNotePost:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.updatesComposerLabelText {
+  font-size: 0.8125rem;
+  color: #666;
+}
+
+.updatesOptional {
+  color: #999;
+  font-weight: 400;
+}
+
+.updatesComposerTextarea {
+  font: inherit;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fff;
+  color: #25272b;
+  resize: vertical;
+  min-height: 6rem;
+}
+
+.updatesComposerTextarea:focus,
+.updatesComposerTextarea:focus-visible {
+  outline: none;
+  border-color: #c8c8c8;
+}
+
+.updatesComposerRow {
+  display: grid;
+  grid-template-columns: minmax(0, 8rem) minmax(0, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.updatesComposerRow .updatesComposerLabel {
+  margin-bottom: 0;
+}
+
+.updatesComposerTagList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.updatesComposerTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font: inherit;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ebe8e2;
+  background: #f9f7f7;
+  color: #6b6f78;
+  cursor: pointer;
+}
+
+.updatesComposerTag:hover {
+  background: #efeded;
+  color: #25272b;
+}
+
+@media (max-width: 640px) {
+  .updatesComposerRow {
+    grid-template-columns: 1fr;
+  }
 }

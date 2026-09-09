@@ -14,6 +14,7 @@ type FeedActor = {
   created_at: string
   actor_id: string
   actor_display_name: string | null
+  actor_avatar_url: string | null
 }
 
 export type ProfileFeedItem =
@@ -38,6 +39,7 @@ export type ProfileFeedItem =
       parent_body: string | null
       parent_author_name: string | null
       parent_author_id: string | null
+      parent_author_avatar_url: string | null
     })
   | (FeedActor & {
       kind: 'followed_annotation'
@@ -50,11 +52,20 @@ export type ProfileFeedItem =
       parent_body: string | null
       parent_author_name: string | null
       parent_author_id: string | null
+      parent_author_avatar_url: string | null
     })
   | (FeedActor & {
       kind: 'followed_learning_path'
       path_title: string
       path_href: string
+    })
+  | (FeedActor & {
+      kind: 'followed_profile_update'
+      update_id: string
+      title: string
+      body: string
+      url: string
+      profile_href: string
     })
   | (FeedActor & {
       kind: 'followed_path_progress'
@@ -78,24 +89,35 @@ export type ProfileFeedItem =
       decision: 'accepted' | 'declined'
     })
 
-async function displayNamesByUserId(
+type ProfileBrief = {
+  display_name: string | null
+  avatar_url: string | null
+}
+
+async function profilesByUserId(
   userIds: string[]
-): Promise<Record<string, string | null>> {
+): Promise<Record<string, ProfileBrief>> {
   const supabase = getSupabaseClient()
   if (!supabase || userIds.length === 0) return {}
   const unique = [...new Set(userIds)]
   const { data: profiles } = await supabase
     .from('profiles')
-    .select('user_id, display_name')
+    .select('user_id, display_name, avatar_url')
     .in('user_id', unique)
-  const out: Record<string, string | null> = {}
+  const out: Record<string, ProfileBrief> = {}
   unique.forEach((id) => {
-    out[id] = null
+    out[id] = { display_name: null, avatar_url: null }
   })
   for (const p of profiles || []) {
-    out[(p as { user_id: string }).user_id] = (
-      p as { display_name: string | null }
-    ).display_name
+    const row = p as {
+      user_id: string
+      display_name: string | null
+      avatar_url: string | null
+    }
+    out[row.user_id] = {
+      display_name: row.display_name,
+      avatar_url: row.avatar_url
+    }
   }
   return out
 }
@@ -260,9 +282,23 @@ export async function getProfileFeed(
             .in('user_id', followingIds)
             .eq('status', 'explored')
             .order('created_at', { ascending: false })
+            .limit(120),
+          supabase
+            .from('profile_updates')
+            .select('id, user_id, title, description, url, created_at')
+            .in('user_id', followingIds)
+            .order('created_at', { ascending: false })
             .limit(120)
         ])
-      : Promise.resolve([empty, empty, empty, empty, empty, empty])
+      : Promise.resolve([
+          empty,
+          empty,
+          empty,
+          empty,
+          empty,
+          empty,
+          empty
+        ])
 
   const incomingSuggestionsQuery =
     myPathIds.length > 0
@@ -296,7 +332,8 @@ export async function getProfileFeed(
     commentsRes,
     annotationsRes,
     newPathsRes,
-    progressRes
+    progressRes,
+    profileUpdatesRes
   ] = followedPack
 
   for (const raw of courseBmsRes.data || []) {
@@ -314,6 +351,7 @@ export async function getProfileFeed(
       created_at: b.created_at,
       actor_id: b.user_id,
       actor_display_name: null,
+      actor_avatar_url: null,
       course_id: b.course_id,
       course_name: '',
       course_url: null
@@ -339,6 +377,7 @@ export async function getProfileFeed(
       created_at: link.created_at,
       actor_id: link.user_id,
       actor_display_name: null,
+      actor_avatar_url: null,
       link_title: title,
       link_href: pathSlug ? learningPathHref(pathSlug) : link.url
     })
@@ -368,6 +407,7 @@ export async function getProfileFeed(
       created_at: c.created_at,
       actor_id: c.user_id,
       actor_display_name: null,
+      actor_avatar_url: null,
       course_id: c.course_id,
       target_title: '',
       target_href: '',
@@ -375,7 +415,8 @@ export async function getProfileFeed(
       is_reply: Boolean(c.parent_comment_id),
       parent_body: null,
       parent_author_name: null,
-      parent_author_id: null
+      parent_author_id: null,
+      parent_author_avatar_url: null
     })
   }
 
@@ -405,6 +446,7 @@ export async function getProfileFeed(
       created_at: a.created_at,
       actor_id: a.user_id,
       actor_display_name: null,
+      actor_avatar_url: null,
       course_id: a.course_id,
       target_title: '',
       target_href: '',
@@ -413,7 +455,8 @@ export async function getProfileFeed(
       is_reply: Boolean(a.parent_annotation_id),
       parent_body: null,
       parent_author_name: null,
-      parent_author_id: null
+      parent_author_id: null,
+      parent_author_avatar_url: null
     })
   }
 
@@ -433,6 +476,7 @@ export async function getProfileFeed(
       created_at: p.created_at,
       actor_id: p.owner_id,
       actor_display_name: null,
+      actor_avatar_url: null,
       path_title: p.title,
       path_href: learningPathHref(p.slug)
     })
@@ -455,10 +499,39 @@ export async function getProfileFeed(
       created_at: e.created_at,
       actor_id: e.user_id,
       actor_display_name: null,
+      actor_avatar_url: null,
       path_id: e.path_id,
       path_title: '',
       path_href: '',
       node_label: (e.node_label || e.node_id).trim() || 'a topic'
+    })
+  }
+
+  for (const raw of profileUpdatesRes.data || []) {
+    const u = raw as {
+      id: string
+      user_id: string
+      title: string | null
+      description: string | null
+      url: string | null
+      created_at: string
+    }
+    const title = (u.title ?? '').trim()
+    const body = (u.description ?? '').trim()
+    if (!title && !body) continue
+    needUserIds.add(u.user_id)
+    items.push({
+      kind: 'followed_profile_update',
+      id: `fpu-${u.id}`,
+      created_at: u.created_at,
+      actor_id: u.user_id,
+      actor_display_name: null,
+      actor_avatar_url: null,
+      update_id: u.id,
+      title,
+      body,
+      url: (u.url ?? '').trim(),
+      profile_href: `/profile/${u.user_id}`
     })
   }
 
@@ -489,6 +562,7 @@ export async function getProfileFeed(
       created_at: row.created_at,
       actor_id: row.user_id,
       actor_display_name: null,
+      actor_avatar_url: null,
       path_title: path.title,
       path_href: learningPathHref(path.slug),
       resource_title: row.title,
@@ -531,6 +605,7 @@ export async function getProfileFeed(
       created_at: row.responded_at || row.created_at,
       actor_id: path.owner_id,
       actor_display_name: null,
+      actor_avatar_url: null,
       path_title: path.title,
       path_href: learningPathHref(path.slug),
       resource_title: row.title,
@@ -587,7 +662,7 @@ export async function getProfileFeed(
     needUserIds.add(row.user_id)
   }
 
-  const nameByUser = await displayNamesByUserId([...needUserIds])
+  const profileByUser = await profilesByUserId([...needUserIds])
 
   const pathSlugsToCheck = [
     ...new Set(
@@ -610,7 +685,9 @@ export async function getProfileFeed(
 
   const hydrated: ProfileFeedItem[] = []
   for (const it of items) {
-    it.actor_display_name = nameByUser[it.actor_id] ?? null
+    const actorProfile = profileByUser[it.actor_id]
+    it.actor_display_name = actorProfile?.display_name ?? null
+    it.actor_avatar_url = actorProfile?.avatar_url ?? null
     if (it.kind === 'followed_course_bookmark') {
       const c = courseById[it.course_id]
       it.course_name = titleForCourse(c, it.course_id)
@@ -629,9 +706,12 @@ export async function getProfileFeed(
       const parent = parentId ? parentCommentById[parentId] : null
       it.parent_body = parent?.body?.trim() || null
       it.parent_author_name = parent
-        ? nameByUser[parent.user_id]?.trim() || 'Someone'
+        ? profileByUser[parent.user_id]?.display_name?.trim() || 'Someone'
         : null
       it.parent_author_id = parent?.user_id ?? null
+      it.parent_author_avatar_url = parent
+        ? profileByUser[parent.user_id]?.avatar_url ?? null
+        : null
       hydrated.push(it)
       continue
     }
@@ -646,9 +726,12 @@ export async function getProfileFeed(
       const parent = parentId ? parentAnnotationById[parentId] : null
       it.parent_body = parent?.body?.trim() || null
       it.parent_author_name = parent
-        ? nameByUser[parent.user_id]?.trim() || 'Someone'
+        ? profileByUser[parent.user_id]?.display_name?.trim() || 'Someone'
         : null
       it.parent_author_id = parent?.user_id ?? null
+      it.parent_author_avatar_url = parent
+        ? profileByUser[parent.user_id]?.avatar_url ?? null
+        : null
       hydrated.push(it)
       continue
     }

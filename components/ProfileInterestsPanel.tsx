@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import {
   getProfileInterestsByUserId,
@@ -16,7 +16,7 @@ type ProfileInterestsPanelProps = {
   /** Lighter wrapper when used under the sidebar meta divider. */
   nested?: boolean
   /**
-   * When true, renders the add/remove controls inline with the existing chips
+   * When true, renders remove controls inline with the existing chips
    * (meant for the sidebar preview “above the line”).
    */
   inline?: boolean
@@ -31,13 +31,7 @@ export function ProfileInterestsPanel({
   inline = false
 }: ProfileInterestsPanelProps) {
   const [tags, setTags] = useState<string[]>(initialTags)
-  const [draft, setDraft] = useState('')
   const [saving, setSaving] = useState(false)
-  const [showNewInterestInput, setShowNewInterestInput] = useState(false)
-  const savingRef = useRef(false)
-  useEffect(() => {
-    savingRef.current = saving
-  }, [saving])
 
   useEffect(() => {
     setTags(initialTags)
@@ -58,32 +52,16 @@ export function ProfileInterestsPanel({
     setSaving(false)
   }
 
-  const addTag = () => {
-    const t = draft.trim().replace(/,/g, '')
-    if (!t) return
-    const lower = t.toLowerCase()
-    if (tags.some((x) => x.toLowerCase() === lower)) {
-      setDraft('')
-      return
-    }
-    if (tags.length >= 20) return
-    const next = [...tags, t].sort((a, b) => a.localeCompare(b))
-    setTags(next)
-    setDraft('')
-    if (inline) void persist(next)
-  }
-
-  const cancelNewInterestInput = () => {
-    setShowNewInterestInput(false)
-    setDraft('')
-  }
-
   const save = async () => {
     if (!editable) return
     await persist(tags)
   }
 
   if (!editable && tags.length === 0) {
+    return null
+  }
+
+  if (editable && tags.length === 0) {
     return null
   }
 
@@ -121,47 +99,6 @@ export function ProfileInterestsPanel({
               ) : null}
             </span>
           ))}
-
-          {editable ? (
-            showNewInterestInput ? (
-              <input
-                type='text'
-                value={draft}
-                onChange={(e) => setDraft(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    e.preventDefault()
-                    addTag()
-                  }
-                  if (e.key === 'Escape') {
-                    e.preventDefault()
-                    cancelNewInterestInput()
-                  }
-                }}
-                onBlur={() => {
-                  window.setTimeout(() => {
-                    if (savingRef.current) return
-                    cancelNewInterestInput()
-                  }, 0)
-                }}
-                placeholder='New interest'
-                className={`${styles.linkFilterNewTagInput} ${styles.profileInterestNewTagInput}`}
-                aria-label='New interest tag'
-                autoComplete='off'
-                disabled={saving}
-                autoFocus
-              />
-            ) : (
-              <button
-                type='button'
-                className={styles.linkFilterBtnNew}
-                onClick={() => setShowNewInterestInput(true)}
-                disabled={saving}
-              >
-                + New interest
-              </button>
-            )
-          ) : null}
         </div>
       </div>
     )
@@ -171,45 +108,6 @@ export function ProfileInterestsPanel({
     <div className={wrapClass}>
       {editable ? (
         <div className={styles.sidebarPersonalLinkAdd}>
-          <div className={styles.profileInterestNewRow}>
-            {showNewInterestInput ? (
-              <input
-                type='text'
-                value={draft}
-                onChange={(e) => setDraft(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    e.preventDefault()
-                    addTag()
-                  }
-                  if (e.key === 'Escape') {
-                    e.preventDefault()
-                    cancelNewInterestInput()
-                  }
-                }}
-                onBlur={() => {
-                  window.setTimeout(() => {
-                    if (savingRef.current) return
-                    cancelNewInterestInput()
-                  }, 0)
-                }}
-                placeholder='e.g. machine learning'
-                className={`${styles.linkFilterNewTagInput} ${styles.profileInterestNewTagInput}`}
-                aria-label='New interest tag'
-                autoComplete='off'
-                disabled={saving}
-                autoFocus
-              />
-            ) : (
-              <button
-                type='button'
-                className={styles.linkFilterBtnNew}
-                onClick={() => setShowNewInterestInput(true)}
-              >
-                + New interest
-              </button>
-            )}
-          </div>
           <div className={styles.sidebarPersonalLinkEditActions}>
             <button
               type='button'

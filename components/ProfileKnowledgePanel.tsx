@@ -4,6 +4,7 @@ import {
   type UserKnowledgeTopic,
   addMyKnowledgeTopics
 } from '@/lib/user-knowledge-topics-db'
+import { ProfileLightbulbIcon } from '@/components/ProfileTabItemIcons'
 import styles from '@/styles/profile.module.css'
 
 export function formatKnowledgeExportText(topics: UserKnowledgeTopic[]): string {
@@ -164,7 +165,12 @@ export function ProfileKnowledgePanel({
         <ul className={`${styles.list} ${styles.knowledgeList}`}>
           {visible.map((topic) => (
             <li key={topic.id} className={styles.listItem}>
-              <span className={styles.listTitle}>{topic.label}</span>
+              <span className={styles.tabItemRow}>
+                <span className={styles.tabItemIcon} aria-hidden>
+                  <ProfileLightbulbIcon />
+                </span>
+                <span className={styles.listTitle}>{topic.label}</span>
+              </span>
             </li>
           ))}
         </ul>

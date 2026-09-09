@@ -6,10 +6,11 @@ import { VoteRow } from '@/components/CourseActivity'
 import { ReportButton, reportHoverTargetClass } from '@/components/ReportButton'
 import { currentAuthRedirectPath, signInPageHref } from '@/lib/auth-redirect'
 import {
+  type PolymorphicCommentTarget,
   type ThreadedComment,
-  addResourceComment,
-  getResourceCommentThread,
-  setResourceCommentVote
+  addPolymorphicComment,
+  getPolymorphicCommentThread,
+  setPolymorphicCommentVote
 } from '@/lib/community-comments-db'
 import { snippetFromText } from '@/lib/content-reports'
 
@@ -46,6 +47,23 @@ const CommentForm: React.FC<CommentFormProps> = ({
 }) => {
   const [body, setBody] = React.useState('')
   const [busy, setBusy] = React.useState(false)
+  const formRef = React.useRef<HTMLDivElement>(null)
+
+  React.useEffect(() => {
+    if (!onCancel) return
+    function onPointerDown(event: MouseEvent | TouchEvent) {
+      const target = event.target
+      if (!(target instanceof Node)) return
+      if (formRef.current?.contains(target)) return
+      onCancel?.()
+    }
+    document.addEventListener('mousedown', onPointerDown)
+    document.addEventListener('touchstart', onPointerDown)
+    return () => {
+      document.removeEventListener('mousedown', onPointerDown)
+      document.removeEventListener('touchstart', onPointerDown)
+    }
+  }, [onCancel])
 
   const submit = async () => {
     const text = body.trim()
@@ -60,7 +78,7 @@ const CommentForm: React.FC<CommentFormProps> = ({
   }
 
   return (
-    <div className={styles.form}>
+    <div className={styles.form} ref={formRef}>
       <textarea
         className={styles.formInput}
         placeholder={placeholder}
@@ -207,9 +225,14 @@ const CommentNode: React.FC<CommentNodeProps> = ({
 }
 
 interface CommunityCommentsProps {
-  resourceId: string
+  /** @deprecated Prefer targetId + targetType */
+  resourceId?: string
+  targetId?: string
+  targetType?: PolymorphicCommentTarget
   signedIn: boolean
   onCountChange?: (count: number) => void
+  /** Discussion-style nested replies (dotted blue guide). */
+  variant?: 'default' | 'discussion'
 }
 
 function countThread(nodes: ThreadedComment[]): number {
@@ -242,10 +265,15 @@ function appendReply(
 
 export const CommunityComments: React.FC<CommunityCommentsProps> = ({
   resourceId,
+  targetId,
+  targetType = 'resource',
   signedIn,
-  onCountChange
+  onCountChange,
+  variant = 'default'
 }) => {
   const auth = useAuthOptional()
+  const resolvedTargetId = (targetId || resourceId || '').trim()
+  const resolvedTargetType: PolymorphicCommentTarget = targetType
   const [thread, setThread] = React.useState<ThreadedComment[]>([])
   const [loading, setLoading] = React.useState(true)
   const [error, setError] = React.useState<string | null>(null)
@@ -268,9 +296,14 @@ export const CommunityComments: React.FC<CommunityCommentsProps> = ({
 
   React.useEffect(() => {
     let alive = true
+    if (!resolvedTargetId) {
+      setThread([])
+      setLoading(false)
+      return
+    }
     setLoading(true)
     setError(null)
-    getResourceCommentThread(resourceId)
+    getPolymorphicCommentThread(resolvedTargetType, resolvedTargetId)
       .then((t) => {
         if (!alive) return
         setThread(t)
@@ -288,10 +321,14 @@ export const CommunityComments: React.FC<CommunityCommentsProps> = ({
     return () => {
       alive = false
     }
-  }, [resourceId, report])
+  }, [resolvedTargetId, resolvedTargetType, report])
 
   const handleTopLevel = async (body: string): Promise<boolean> => {
-    const created = await addResourceComment(resourceId, body)
+    const created = await addPolymorphicComment(
+      resolvedTargetType,
+      resolvedTargetId,
+      body
+    )
     if (!created) return false
     setThread((prev) => {
       const next = [...prev, created]
@@ -305,7 +342,12 @@ export const CommunityComments: React.FC<CommunityCommentsProps> = ({
     parent: ThreadedComment,
     body: string
   ): Promise<boolean> => {
-    const created = await addResourceComment(resourceId, body, parent.id)
+    const created = await addPolymorphicComment(
+      resolvedTargetType,
+      resolvedTargetId,
+      body,
+      parent.id
+    )
     if (!created) return false
     setThread((prev) => {
       const next = appendReply(prev, parent.id, created)
@@ -332,7 +374,7 @@ export const CommunityComments: React.FC<CommunityCommentsProps> = ({
       updateNode(prev, comment.id, { score: optimistic, user_vote: value })
     )
     try {
-      const score = await setResourceCommentVote(comment, value)
+      const score = await setPolymorphicCommentVote(comment, value)
       if (voteRequestSequence.current[comment.id] !== sequence) return
       if (score === null) {
         setThread((prev) => updateNode(prev, comment.id, previous))
@@ -357,7 +399,14 @@ export const CommunityComments: React.FC<CommunityCommentsProps> = ({
   }
 
   return (
-    <div className={styles.thread} data-testid='comment-thread'>
+    <div
+      className={
+        variant === 'discussion'
+          ? `${styles.thread} ${styles.threadDiscussion}`
+          : styles.thread
+      }
+      data-testid='comment-thread'
+    >
       {error && (
         <p className={styles.threadNote} role='alert'>
           {error}
@@ -379,13 +428,17 @@ export const CommunityComments: React.FC<CommunityCommentsProps> = ({
           ))}
           {thread.length === 0 && (
             <p className={styles.threadNote}>
-              No comments yet. Start the discussion.
+              {variant === 'discussion'
+                ? 'No replies yet. Start the discussion.'
+                : 'No comments yet. Start the discussion.'}
             </p>
           )}
           {signedIn ? (
             <CommentForm
-              placeholder='Add a comment…'
-              submitLabel='Comment'
+              placeholder={
+                variant === 'discussion' ? 'Write a reply…' : 'Add a comment…'
+              }
+              submitLabel={variant === 'discussion' ? 'Reply' : 'Comment'}
               testId='comment'
               onSubmit={handleTopLevel}
             />

@@ -12,11 +12,13 @@ export interface ReplyNotification {
   course_url: string | null
   author_id: string
   author_name: string
+  author_avatar_url: string | null
   body: string
   /** Body of the comment/annotation being replied to (viewer’s). */
   parent_body: string | null
   parent_author_name: string | null
   parent_author_id: string | null
+  parent_author_avatar_url: string | null
   section_id?: string | null
   created_at: string
   is_unread: boolean
@@ -175,7 +177,7 @@ export async function getReplyNotifications(
       allAuthorIds.length
         ? supabase
             .from('profiles')
-            .select('user_id, display_name')
+            .select('user_id, display_name, avatar_url')
             .in('user_id', allAuthorIds)
         : Promise.resolve({ data: [] as any[] } as any),
       parentCommentIds.length
@@ -206,7 +208,7 @@ export async function getReplyNotifications(
     parentAuthorIds.length > 0
       ? await supabase
           .from('profiles')
-          .select('user_id, display_name')
+          .select('user_id, display_name, avatar_url')
           .in('user_id', parentAuthorIds)
       : { data: [] as any[] }
 
@@ -259,12 +261,16 @@ export async function getReplyNotifications(
       course_url: course?.url || null,
       author_id: r.user_id,
       author_name: authorById[r.user_id]?.display_name || 'Someone',
+      author_avatar_url: authorById[r.user_id]?.avatar_url ?? null,
       body: r.body,
       parent_body: parent?.body ?? null,
       parent_author_name: parent
         ? authorById[parent.user_id]?.display_name || 'Someone'
         : null,
       parent_author_id: parent?.user_id ?? null,
+      parent_author_avatar_url: parent
+        ? authorById[parent.user_id]?.avatar_url ?? null
+        : null,
       created_at: r.created_at,
       is_unread: toIsUnread(r.created_at)
     }
@@ -284,12 +290,16 @@ export async function getReplyNotifications(
         course_url: course?.url || null,
         author_id: r.user_id,
         author_name: authorById[r.user_id]?.display_name || 'Someone',
+        author_avatar_url: authorById[r.user_id]?.avatar_url ?? null,
         body: r.body,
         parent_body: parent?.body ?? null,
         parent_author_name: parent
           ? authorById[parent.user_id]?.display_name || 'Someone'
           : null,
         parent_author_id: parent?.user_id ?? null,
+        parent_author_avatar_url: parent
+          ? authorById[parent.user_id]?.avatar_url ?? null
+          : null,
         section_id: r.section_id,
         created_at: r.created_at,
         is_unread: toIsUnread(r.created_at)

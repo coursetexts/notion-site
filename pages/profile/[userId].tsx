@@ -19,6 +19,8 @@ import {
   ProfileCommunityLearningPathCard
 } from '@/components/ProfileLearningPathCard'
 import { ProfileKnowledgePanel } from '@/components/ProfileKnowledgePanel'
+import { ProfileUpdatesTab } from '@/components/ProfileUpdatesTab'
+import { ProfileBookmarkIcon } from '@/components/ProfileTabItemIcons'
 import { BookmarkNotePreview } from '@/components/SiteNotesEditor'
 import { name as siteName } from '@/lib/config'
 import type { Annotation, Comment, Course } from '@/lib/course-activity-db'
@@ -68,7 +70,6 @@ import {
   type LinkTag,
   type UserLinkWithTag,
   addLink,
-  deleteLink,
   getLinkTagsByUserId,
   getLinksByUserId,
   getMyLinks
@@ -174,7 +175,6 @@ export default function PublicProfilePage() {
   const [communityLearningPaths, setCommunityLearningPaths] = useState<
     StoredLearningPath[]
   >([])
-  const [unsavePathBusyId, setUnsavePathBusyId] = useState<string | null>(null)
   const [profileLinkTags, setProfileLinkTags] = useState<LinkTag[]>([])
   const [bookmarkTagFilter, setBookmarkTagFilter] = useState<BookmarkTagFilter>(
     EMPTY_BOOKMARK_TAG_FILTER
@@ -257,7 +257,7 @@ export default function PublicProfilePage() {
 
   const [profileInterestTags, setProfileInterestTags] = useState<string[]>([])
   const [mainTab, setMainTab] = useState<
-    'learning-path' | 'knowledge' | 'bookmarks' | 'activity'
+    'learning-path' | 'updates' | 'knowledge' | 'bookmarks' | 'activity'
   >('learning-path')
   const [knowledgeTopics, setKnowledgeTopics] = useState<UserKnowledgeTopic[]>(
     []
@@ -354,24 +354,6 @@ export default function PublicProfilePage() {
       viewerSavedLinkUrls,
       loadViewerBookmarkCopyState
     ]
-  )
-
-  const handleUnsaveLearningPath = useCallback(
-    async (linkId: string) => {
-      if (!currentUserId || unsavePathBusyId) return
-      setUnsavePathBusyId(linkId)
-      const ok = await deleteLink(linkId)
-      if (ok) {
-        setCommunityLearningPaths((prev) =>
-          prev.filter((item) => item.savedLinkId !== linkId)
-        )
-        setUserLinks((prev) => prev.filter((l) => l.id !== linkId))
-      } else {
-        window.alert('Could not unsave this path.')
-      }
-      setUnsavePathBusyId(null)
-    },
-    [currentUserId, unsavePathBusyId]
   )
 
   const loadProfile = useCallback(
@@ -640,7 +622,6 @@ export default function PublicProfilePage() {
             <ProfilePublicSummary
               bio={profile.bio}
               bioOnly
-              personalLinks={personalLinks}
             />
             <ProfileInterestsPanel
               userId={profile.user_id}
@@ -670,6 +651,7 @@ export default function PublicProfilePage() {
               learningLearned={profile.learning_learned}
               learningOnly
               metadataStyle
+              personalLinks={personalLinks}
             />
           </aside>
 
@@ -886,6 +868,20 @@ export default function PublicProfilePage() {
                   >
                     Knowledge
                   </button>
+                  <span className={styles.primaryTabsDivider} aria-hidden />
+                  <button
+                    type='button'
+                    role='tab'
+                    aria-selected={mainTab === 'activity'}
+                    className={
+                      mainTab === 'activity'
+                        ? styles.primaryTabActive
+                        : styles.primaryTab
+                    }
+                    onClick={() => setMainTab('activity')}
+                  >
+                    Activity
+                  </button>
                   <button
                     type='button'
                     role='tab'
@@ -902,17 +898,21 @@ export default function PublicProfilePage() {
                   <button
                     type='button'
                     role='tab'
-                    aria-selected={mainTab === 'activity'}
+                    aria-selected={mainTab === 'updates'}
                     className={
-                      mainTab === 'activity'
+                      mainTab === 'updates'
                         ? styles.primaryTabActive
                         : styles.primaryTab
                     }
-                    onClick={() => setMainTab('activity')}
+                    onClick={() => setMainTab('updates')}
                   >
-                    Activity
+                    Updates
                   </button>
                 </nav>
+
+                {mainTab === 'updates' && (
+                  <ProfileUpdatesTab userId={userId} />
+                )}
 
                 {mainTab === 'knowledge' && (
                   <ProfileKnowledgePanel
@@ -985,142 +985,94 @@ export default function PublicProfilePage() {
                             return (
                               <li key={l.id} className={styles.userLinkItem}>
                                 <div className={styles.userLinkItemInner}>
-                                  <span className={styles.userLinkIconWrap}>
-                                    {/*
-                                      Previous favicon / default icon logic kept for future use:
-
-                                      {faviconDomain ? (
-                                        <img
-                                          src={getFaviconUrl(faviconDomain)}
-                                          alt=''
-                                          className={styles.userLinkIcon}
-                                          width={20}
-                                          height={20}
-                                        />
-                                      ) : (
-                                        <span
-                                          className={styles.userLinkIconDefault}
-                                          aria-hidden
-                                        >
-                                          <svg
-                                            width='20'
-                                            height='20'
-                                            viewBox='0 0 24 24'
-                                            fill='none'
-                                            stroke='currentColor'
-                                            strokeWidth='2'
-                                            strokeLinecap='round'
-                                            strokeLinejoin='round'
-                                          >
-                                            <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71' />
-                                            <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71' />
-                                          </svg>
-                                        </span>
-                                      )}
-                                    */}
-                                    <span className={styles.userLinkIconBlue} aria-hidden>
-                                      <svg
-                                        xmlns='http://www.w3.org/2000/svg'
-                                        width='8'
-                                        height='8'
-                                        viewBox='0 0 8 8'
-                                        fill='none'
-                                      >
-                                        <path
-                                          d='M4.14058 1.91562L4.44058 1.61249C4.70255 1.37372 5.04645 1.24506 5.40081 1.25327C5.75518 1.26147 6.09276 1.4059 6.3434 1.65654C6.59404 1.90718 6.73847 2.24476 6.74667 2.59913C6.75488 2.95349 6.62622 3.29739 6.38745 3.55937L5.44058 4.50312C5.31312 4.63105 5.16166 4.73256 4.99488 4.80183C4.8281 4.87109 4.64929 4.90674 4.4687 4.90674C4.28811 4.90674 4.1093 4.87109 3.94252 4.80183C3.77574 4.73256 3.62428 4.63105 3.49683 4.50312'
-                                          stroke='#FDFDFD'
-                                          strokeWidth='0.75'
-                                          strokeLinecap='round'
-                                          strokeLinejoin='round'
-                                        />
-                                        <path
-                                          d='M3.8594 6.08436L3.5594 6.38749C3.29742 6.62626 2.95352 6.75491 2.59916 6.74671C2.24479 6.7385 1.90721 6.59407 1.65657 6.34343C1.40593 6.09279 1.2615 5.75521 1.2533 5.40085C1.2451 5.04648 1.37375 4.70258 1.61252 4.44061L2.5594 3.49686C2.68685 3.36893 2.83831 3.26742 3.00509 3.19815C3.17187 3.12889 3.35068 3.09323 3.53127 3.09323C3.71186 3.09323 3.89067 3.12889 4.05745 3.19815C4.22423 3.26742 4.37569 3.36893 4.50315 3.49686'
-                                          stroke='#FDFDFD'
-                                          strokeWidth='0.75'
-                                          strokeLinecap='round'
-                                          strokeLinejoin='round'
-                                        />
-                                      </svg>
-                                    </span>
+                                  <span className={styles.tabItemIcon} aria-hidden>
+                                    <ProfileBookmarkIcon />
                                   </span>
                                   <div className={styles.userLinkContent}>
                                     <div className={styles.userLinkRow}>
-                                      <span className={styles.userLinkTitleAndDomain}>
-                                        <a
-                                          href={l.url}
-                                          target='_blank'
-                                          rel='noopener noreferrer'
-                                          className={styles.userLinkUrl}
-                                        >
-                                          {l.title || l.url}
-                                        </a>
-                                        {(() => {
-                                          try {
-                                            return (
-                                              <span className={styles.userLinkDomain}>
-                                                {new URL(l.url).hostname}
-                                              </span>
-                                            )
-                                          } catch {
-                                            return null
-                                          }
-                                        })()}
-                                      </span>
-                                      {currentUserId ? (
-                                        <div
-                                          className={styles.userLinkActions}
-                                        >
-                                          <button
-                                            type='button'
-                                            className={
-                                              styles.notebooksListIconBtn
-                                            }
-                                            disabled={
-                                              !viewerCopyTargetsLoaded ||
-                                              copyBookmarkBusyKey !== null ||
-                                              viewerSavedLinkUrls.has(
-                                                l.url.trim()
-                                              )
-                                            }
-                                            onClick={() =>
-                                              void handleCopyProfileLinkBookmark(
-                                                l
-                                              )
-                                            }
-                                            title={
-                                              viewerSavedLinkUrls.has(
-                                                l.url.trim()
-                                              )
-                                                ? 'Saved to your bookmarks'
-                                                : 'Save to your bookmarks'
-                                            }
-                                            aria-label={
-                                              viewerSavedLinkUrls.has(
-                                                l.url.trim()
-                                              )
-                                                ? 'Saved to your bookmarks'
-                                                : 'Save to your bookmarks'
-                                            }
+                                      <div className={styles.userLinkRowMain}>
+                                        <span className={styles.userLinkTitleAndDomain}>
+                                          <a
+                                            href={l.url}
+                                            target='_blank'
+                                            rel='noopener noreferrer'
+                                            className={styles.userLinkUrl}
                                           >
-                                            <span
+                                            {l.title || l.url}
+                                          </a>
+                                          {(() => {
+                                            try {
+                                              return (
+                                                <span className={styles.userLinkDomain}>
+                                                  {new URL(l.url).hostname}
+                                                </span>
+                                              )
+                                            } catch {
+                                              return null
+                                            }
+                                          })()}
+                                        </span>
+                                        {currentUserId ? (
+                                          <div
+                                            className={styles.userLinkActions}
+                                          >
+                                            <button
+                                              type='button'
                                               className={
-                                                copyBookmarkBusyKey ===
-                                                  `link-${l.id}` &&
-                                                !viewerSavedLinkUrls.has(
+                                                styles.notebooksListIconBtn
+                                              }
+                                              disabled={
+                                                !viewerCopyTargetsLoaded ||
+                                                copyBookmarkBusyKey !== null ||
+                                                viewerSavedLinkUrls.has(
                                                   l.url.trim()
                                                 )
-                                                  ? styles.notebooksListIconBtnInnerBusy
-                                                  : undefined
+                                              }
+                                              onClick={() =>
+                                                void handleCopyProfileLinkBookmark(
+                                                  l
+                                                )
+                                              }
+                                              title={
+                                                viewerSavedLinkUrls.has(
+                                                  l.url.trim()
+                                                )
+                                                  ? 'Saved to your bookmarks'
+                                                  : 'Save to your bookmarks'
+                                              }
+                                              aria-label={
+                                                viewerSavedLinkUrls.has(
+                                                  l.url.trim()
+                                                )
+                                                  ? 'Saved to your bookmarks'
+                                                  : 'Save to your bookmarks'
                                               }
                                             >
-                                              <ProfileSaveBookmarkIcon
-                                                filled={viewerSavedLinkUrls.has(
-                                                  l.url.trim()
-                                                )}
-                                              />
-                                            </span>
-                                          </button>
-                                        </div>
+                                              <span
+                                                className={
+                                                  copyBookmarkBusyKey ===
+                                                    `link-${l.id}` &&
+                                                  !viewerSavedLinkUrls.has(
+                                                    l.url.trim()
+                                                  )
+                                                    ? styles.notebooksListIconBtnInnerBusy
+                                                    : undefined
+                                                }
+                                              >
+                                                <ProfileSaveBookmarkIcon
+                                                  filled={viewerSavedLinkUrls.has(
+                                                    l.url.trim()
+                                                  )}
+                                                />
+                                              </span>
+                                            </button>
+                                          </div>
+                                        ) : null}
+                                      </div>
+                                      {l.created_at ? (
+                                        <span className={styles.userLinkDate}>
+                                          {formatDate(l.created_at)}
+                                        </span>
                                       ) : null}
                                     </div>
                                     <div className={styles.userLinkMeta}>
@@ -1148,9 +1100,6 @@ export default function PublicProfilePage() {
                                             </span>
                                           ))}
                                       </div>
-                                      <span className={styles.userLinkDate}>
-                                        {formatDate(l.created_at)}
-                                      </span>
                                       {storedNotebookNoteHasContent(l.note) &&
                                       showNoteForLinkId === l.id ? (
                                         <div
@@ -1327,14 +1276,6 @@ export default function PublicProfilePage() {
                                       ? 'you'
                                       : displayName
                                   }
-                                  onUnsave={
-                                    currentUserId && userId === currentUserId
-                                      ? handleUnsaveLearningPath
-                                      : undefined
-                                  }
-                                  unsaveBusy={
-                                    unsavePathBusyId === item.savedLinkId
-                                  }
                                 />
                               </li>
                             ))
@@ -1349,14 +1290,6 @@ export default function PublicProfilePage() {
                                       ? 'you'
                                       : displayName
                                   }
-                                  onUnsave={
-                                    currentUserId && userId === currentUserId
-                                      ? handleUnsaveLearningPath
-                                      : undefined
-                                  }
-                                  unsaveBusy={
-                                    unsavePathBusyId === item.savedLinkId
-                                  }
                                 />
                               </li>
                             ))
@@ -1370,14 +1303,6 @@ export default function PublicProfilePage() {
                                     currentUserId && userId === currentUserId
                                       ? 'you'
                                       : displayName
-                                  }
-                                  onUnsave={
-                                    currentUserId && userId === currentUserId
-                                      ? handleUnsaveLearningPath
-                                      : undefined
-                                  }
-                                  unsaveBusy={
-                                    unsavePathBusyId === item.savedLinkId
                                   }
                                 />
                               </li>

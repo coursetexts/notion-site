@@ -41,8 +41,9 @@ function TurnBody({ turn }: { turn: ActivityFeedTurn }) {
 }
 
 /**
- * Substack-style thread: subject first, then a left rule from the title
- * through earlier turns up to the last author’s name — not beside the last body.
+ * Substack-style thread: subject first, then a left rule through earlier
+ * turns that meets each author’s avatar, with the name to the right —
+ * not beside the last body.
  */
 export function ActivityFeedThread({
   subject,

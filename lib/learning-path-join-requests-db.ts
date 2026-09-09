@@ -14,6 +14,7 @@ export type LearningPathJoinRequest = {
   email: string
   userId: string
   displayName: string | null
+  avatarUrl: string | null
   createdAt: string
 }
 
@@ -70,7 +71,7 @@ async function withPathAndNames(
       .in('id', pathIds),
     supabase
       .from('profiles')
-      .select('user_id, display_name')
+      .select('user_id, display_name, avatar_url')
       .in('user_id', userIds)
   ])
 
@@ -96,14 +97,17 @@ async function withPathAndNames(
   }
 
   const names: Record<string, string> = {}
+  const avatars: Record<string, string | null> = {}
   if (!profilesRes.error && Array.isArray(profilesRes.data)) {
     for (const row of profilesRes.data as Array<{
       user_id?: string
       display_name?: string | null
+      avatar_url?: string | null
     }>) {
       if (!row.user_id) continue
       const name = row.display_name?.trim()
       if (name) names[row.user_id] = name
+      avatars[row.user_id] = row.avatar_url ?? null
     }
   }
 
@@ -118,6 +122,7 @@ async function withPathAndNames(
       email: row.requester_email,
       userId: row.requester_user_id,
       displayName: names[row.requester_user_id] ?? null,
+      avatarUrl: avatars[row.requester_user_id] ?? null,
       createdAt: row.created_at
     }
   })

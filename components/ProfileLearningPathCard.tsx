@@ -8,8 +8,10 @@ import type {
 import { isCourseKindPath } from '@/lib/learning-path-kind-ui'
 import { COURSETEXTS_BYLINE_AUTHOR } from '@/lib/course-byline'
 import type { LearningPathReminder } from '@/lib/learning-path-commitments-db'
+import type { NavPinResume } from '@/lib/nav-pin-resume'
 import { formatLearningStreakLabel } from '@/lib/profile-learning-streaks'
 import styles from '@/styles/profile.module.css'
+import { ProfilePathIcon } from './ProfileTabItemIcons'
 import { ProfileCommitmentReminder } from './ProfileCommitmentReminder'
 
 function formatLearningPathByline(
@@ -66,14 +68,50 @@ function GrowingPlantIcon() {
   )
 }
 
+function LearningPathResumePreview({
+  description,
+  resume
+}: {
+  description?: string | null
+  resume?: NavPinResume | null
+}) {
+  const blurb = (description ?? resume?.description ?? '').trim()
+  const progressLabel = resume
+    ? `${resume.explored} of ${resume.total} ${resume.unit} explored`
+    : 'Pick up where you left off'
+  const nextLabel = resume?.nextLabel
+    ? `Next: ${resume.nextLabel}`
+    : resume && resume.explored >= resume.total
+      ? 'All caught up'
+      : null
+
+  return (
+    <div className={styles.learningPathCardResume}>
+      {blurb ? (
+        <p className={styles.learningPathCardResumeDescription}>{blurb}</p>
+      ) : null}
+      <p className={styles.learningPathCardResumeLine}>
+        <span>{progressLabel}</span>
+        {nextLabel ? (
+          <>
+            <span className={styles.learningPathCardResumeSep} aria-hidden>
+              |
+            </span>
+            <span className={styles.learningPathCardResumeNextLabel}>
+              {nextLabel}
+            </span>
+          </>
+        ) : null}
+      </p>
+    </div>
+  )
+}
+
 export function ProfileLearningPathCard({
   href,
   title,
   privacy,
   bylineAuthor,
-  onUnsave,
-  unsaveBusy = false,
-  showSavedTag = false,
   committed = false,
   onToggleCommit,
   commitBusy = false,
@@ -82,15 +120,14 @@ export function ProfileLearningPathCard({
   reminder = null,
   onSaveReminder,
   onRemoveReminder,
-  reminderBusy = false
+  reminderBusy = false,
+  resume = null,
+  description = null
 }: {
   href: string
   title: string
   privacy?: LearningPathVisibility | null
   bylineAuthor?: string | null
-  onUnsave?: () => void
-  unsaveBusy?: boolean
-  showSavedTag?: boolean
   committed?: boolean
   onToggleCommit?: () => void
   commitBusy?: boolean
@@ -100,31 +137,11 @@ export function ProfileLearningPathCard({
   onSaveReminder?: (reminder: LearningPathReminder) => void
   onRemoveReminder?: () => void
   reminderBusy?: boolean
+  resume?: NavPinResume | null
+  description?: string | null
 }) {
-  const savedControl = onUnsave ? (
-    <button
-      type='button'
-      className={`${styles.learningPathTag} ${styles.learningPathSavedTag}${
-        unsaveBusy ? ` ${styles.notebooksListIconBtnInnerBusy}` : ''
-      }`}
-      onClick={onUnsave}
-      disabled={unsaveBusy}
-      aria-label='Unsave'
-    >
-      <span className={styles.learningPathSavedLabel}>Saved</span>
-      <span className={styles.learningPathUnsaveLabel}>Unsave</span>
-    </button>
-  ) : showSavedTag ? (
-    <span
-      className={`${styles.learningPathTag} ${styles.learningPathSavedTag}`}
-      aria-label='Saved learning path'
-    >
-      Saved
-    </span>
-  ) : null
-
-  const commitControl = onToggleCommit ? (
-    committed ? (
+  const committedTag = committed ? (
+    onToggleCommit ? (
       <button
         type='button'
         className={`${styles.learningPathTag} ${styles.learningPathCommittedTag}${
@@ -138,9 +155,20 @@ export function ProfileLearningPathCard({
         <span className={styles.learningPathUncommitLabel}>Uncommit</span>
       </button>
     ) : (
+      <span
+        className={`${styles.learningPathTag} ${styles.learningPathCommittedTag}`}
+        aria-label='Committed learning path'
+      >
+        Committed
+      </span>
+    )
+  ) : null
+
+  const commitHoverControl =
+    !committed && onToggleCommit ? (
       <button
         type='button'
-        className={`${styles.learningPathTag} ${styles.learningPathCommitTag}${
+        className={`${styles.learningPathTag} ${styles.learningPathCommitTag} ${styles.learningPathCommitHover}${
           commitBusy ? ` ${styles.notebooksListIconBtnInnerBusy}` : ''
         }`}
         onClick={onToggleCommit}
@@ -149,15 +177,18 @@ export function ProfileLearningPathCard({
       >
         Commit
       </button>
-    )
-  ) : committed ? (
-    <span
-      className={`${styles.learningPathTag} ${styles.learningPathCommittedTag}`}
-      aria-label='Committed learning path'
-    >
-      Committed
-    </span>
-  ) : null
+    ) : null
+
+  const continueHref = resume?.continueHref ?? href
+  const continueControl = (
+    <Link href={continueHref}>
+      <a
+        className={`${styles.learningPathTag} ${styles.learningPathContinueTag} ${styles.learningPathCommitHover}`}
+      >
+        Continue →
+      </a>
+    </Link>
+  )
 
   const reminderControl =
     committed && onSaveReminder && onRemoveReminder ? (
@@ -201,8 +232,13 @@ export function ProfileLearningPathCard({
 
   const byline = formatLearningPathByline(bylineAuthor, privacy ?? null)
 
-  const hasActionTags = Boolean(
-    savedControl || streakTag || completeTag || commitControl || reminderControl
+  const hasTags = Boolean(
+    streakTag ||
+      completeTag ||
+      committedTag ||
+      reminderControl ||
+      commitHoverControl ||
+      continueControl
   )
 
   return (
@@ -211,6 +247,9 @@ export function ProfileLearningPathCard({
         byline ? ` ${styles.learningPathCardWithByline}` : ''
       }`}
     >
+      <span className={styles.tabItemIcon} aria-hidden>
+        <ProfilePathIcon />
+      </span>
       <div className={styles.learningPathCardMain}>
         <Link href={href}>
           <a className={styles.learningPathCardLink}>
@@ -224,16 +263,21 @@ export function ProfileLearningPathCard({
             {byline}
           </span>
         ) : null}
+        <LearningPathResumePreview
+          description={description}
+          resume={resume}
+        />
+        {hasTags ? (
+          <span className={styles.learningPathCardTags}>
+            {streakTag}
+            {completeTag}
+            {committedTag}
+            {reminderControl}
+            {commitHoverControl}
+            {continueControl}
+          </span>
+        ) : null}
       </div>
-      {hasActionTags ? (
-        <span className={styles.learningPathCardTags}>
-          {savedControl}
-          {streakTag}
-          {completeTag}
-          {commitControl}
-          {reminderControl}
-        </span>
-      ) : null}
     </div>
   )
 }
@@ -241,8 +285,6 @@ export function ProfileLearningPathCard({
 export function ProfileCommunityLearningPathCard({
   item,
   ownAuthorLabel = 'you',
-  onUnsave,
-  unsaveBusy = false,
   committed = false,
   onToggleCommit,
   commitBusy = false,
@@ -251,12 +293,11 @@ export function ProfileCommunityLearningPathCard({
   reminder = null,
   onSaveReminder,
   onRemoveReminder,
-  reminderBusy = false
+  reminderBusy = false,
+  resume = null
 }: {
   item: StoredLearningPath
   ownAuthorLabel?: string
-  onUnsave?: (linkId: string) => void
-  unsaveBusy?: boolean
   committed?: boolean
   onToggleCommit?: (slug: string) => void
   commitBusy?: boolean
@@ -266,9 +307,9 @@ export function ProfileCommunityLearningPathCard({
   onSaveReminder?: (reminder: LearningPathReminder) => void
   onRemoveReminder?: () => void
   reminderBusy?: boolean
+  resume?: NavPinResume | null
 }) {
   const savedLinkId = item.savedLinkId
-  const canUnsave = Boolean(savedLinkId && onUnsave)
   const isCreated = !savedLinkId && !item.invited
   const isCourse = isCourseKindPath(item.kind)
   const bylineAuthor = isCreated
@@ -278,17 +319,13 @@ export function ProfileCommunityLearningPathCard({
   const privacy: LearningPathVisibility =
     item.visibility ??
     (item.isPrivate === false || isCourse ? 'public' : 'private')
+  const description = item.data?.summary?.trim() || null
   return (
     <ProfileLearningPathCard
       href={`/learning-path/${item.slug}`}
       title={item.goal}
       bylineAuthor={bylineAuthor}
       privacy={privacy}
-      onUnsave={
-        canUnsave ? () => onUnsave?.(savedLinkId as string) : undefined
-      }
-      unsaveBusy={unsaveBusy}
-      showSavedTag={Boolean(savedLinkId && !canUnsave)}
       committed={committed}
       onToggleCommit={
         onToggleCommit ? () => onToggleCommit(item.slug) : undefined
@@ -300,6 +337,8 @@ export function ProfileCommunityLearningPathCard({
       onSaveReminder={onSaveReminder}
       onRemoveReminder={onRemoveReminder}
       reminderBusy={reminderBusy}
+      resume={resume}
+      description={description}
     />
   )
 }

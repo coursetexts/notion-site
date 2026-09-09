@@ -140,15 +140,10 @@ export function ProfilePublicSummary({
   const nowText = (learningNow ?? '').trim()
   const learnedText = (learningLearned ?? '').trim()
   const showBio = !learningOnly && bioText
-  const showBioRow = bioOnly && (bioText || personalLinks.length > 0)
 
-  if (showBioRow) {
-    return (
-      <p className={styles.sidebarBio}>
-        {bioText ? <>{bioText} </> : null}
-        <ProfilePersonalLinksPopover links={personalLinks} />
-      </p>
-    )
+  if (bioOnly) {
+    if (!bioText) return null
+    return <p className={styles.sidebarBio}>{bioText}</p>
   }
 
   if (showBio) {
@@ -158,7 +153,10 @@ export function ProfilePublicSummary({
   if (learningOnly && metadataStyle) {
     const nowItems = parseLearningItems(nowText)
     const learnedItems = parseLearningItems(learnedText)
-    if (nowItems.length === 0 && learnedItems.length === 0) return null
+    const hasLinks = personalLinks.length > 0
+    if (nowItems.length === 0 && learnedItems.length === 0 && !hasLinks) {
+      return null
+    }
 
     return (
       <div className={styles.profileLearningMetadata}>
@@ -173,6 +171,11 @@ export function ProfilePublicSummary({
             label='Previously learned'
             items={learnedItems}
           />
+        ) : null}
+        {hasLinks ? (
+          <div className={styles.profileLearningMetadataLinks}>
+            <ProfilePersonalLinksPopover links={personalLinks} />
+          </div>
         ) : null}
       </div>
     )

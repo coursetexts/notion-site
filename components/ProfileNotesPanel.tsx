@@ -2,6 +2,7 @@ import * as React from 'react'
 import Link from 'next/link'
 
 import { ProfileBackArrow } from '@/components/ProfileBackArrow'
+import { ProfileNoteIcon } from '@/components/ProfileTabItemIcons'
 import { SiteNotesEditor } from '@/components/SiteNotesEditor'
 import type { NotebookDocJson } from '@/lib/notebook-editor-default'
 import {
@@ -15,6 +16,18 @@ import styles from '@/styles/profile.module.css'
 const SAVE_MS = 700
 
 const PROFILE_MOBILE_MQ = '(max-width: 860px)'
+
+function formatNoteDate(iso: string): string {
+  const trimmed = iso.trim()
+  if (!trimmed) return ''
+  const date = new Date(trimmed)
+  if (Number.isNaN(date.getTime())) return ''
+  return date.toLocaleDateString(undefined, {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  })
+}
 
 function useProfileMobileLayout() {
   const [isMobile, setIsMobile] = React.useState(false)
@@ -219,24 +232,35 @@ export function ProfileNotesPanel({
         <p className={styles.placeholder}>No matching notes.</p>
       ) : (
         <ul className={styles.notebooksList}>
-          {visible.map((note) => (
-            <li key={note.id} className={styles.notebooksListItemWrap}>
-              <button
-                type='button'
-                className={styles.noteListBtn}
-                onClick={() => setSelectedId(note.id)}
-              >
-                <span className={styles.notebooksListTitle}>
-                  <span className={styles.notebooksListTitleText}>
-                    {note.topicLabel}
+          {visible.map((note) => {
+            const updatedLabel = formatNoteDate(note.updatedAt)
+            return (
+              <li key={note.id} className={styles.notebooksListItemWrap}>
+                <button
+                  type='button'
+                  className={styles.noteListBtn}
+                  onClick={() => setSelectedId(note.id)}
+                >
+                  <span className={styles.tabItemIcon} aria-hidden>
+                    <ProfileNoteIcon />
                   </span>
-                </span>
-                <span className={styles.notebooksListMeta}>
-                  {note.sourceTitle}
-                </span>
-              </button>
-            </li>
-          ))}
+                  <span className={styles.noteListBtnMain}>
+                    <span className={styles.notebooksListTitle}>
+                      <span className={styles.notebooksListTitleText}>
+                        {note.topicLabel}
+                      </span>
+                    </span>
+                    <span className={styles.notebooksListMeta}>
+                      {note.sourceTitle}
+                    </span>
+                  </span>
+                  {updatedLabel ? (
+                    <span className={styles.tabItemDate}>{updatedLabel}</span>
+                  ) : null}
+                </button>
+              </li>
+            )
+          })}
         </ul>
       )}
     </div>

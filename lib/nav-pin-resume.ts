@@ -28,6 +28,8 @@ export type NavPinResume = {
   unit: NavPinResumeUnit
   nextLabel: string | null
   continueHref: string
+  /** Short path/course blurb shown under the title on hover. */
+  description?: string | null
 }
 
 function uniqueSlugs(slugs: string[]) {
@@ -111,17 +113,20 @@ function resumeFromNodes(
   items: Array<{ id: string; label: string }>,
   isExplored: (id: string) => boolean,
   unit: NavPinResumeUnit,
-  hrefFor: (nextId: string | null) => string
+  hrefFor: (nextId: string | null) => string,
+  description?: string | null
 ): NavPinResume | null {
   if (items.length === 0) return null
   const explored = items.filter((item) => isExplored(item.id)).length
   const next = items.find((item) => !isExplored(item.id)) ?? null
+  const blurb = (description ?? '').trim()
   return {
     explored,
     total: items.length,
     unit,
     nextLabel: next?.label ?? null,
-    continueHref: hrefFor(next?.id ?? null)
+    continueHref: hrefFor(next?.id ?? null),
+    description: blurb || null
   }
 }
 
@@ -131,12 +136,17 @@ function coursePayloadFromData(
 ): CourseLearningPathData | null {
   if (isCourseLearningPathPayload(data)) return data
   if (!hasCourseTopics(data)) return null
+  const row = data as {
+    title?: unknown
+    description?: unknown
+    topics: CourseLearningPathData['topics']
+  }
   return {
     id: slug,
     slug,
-    title: '',
-    description: '',
-    topics: data.topics
+    title: typeof row.title === 'string' ? row.title : '',
+    description: typeof row.description === 'string' ? row.description : '',
+    topics: row.topics
   }
 }
 
@@ -159,7 +169,8 @@ function resumeFromPathData(
       nodes.map((node) => ({ id: node.id, label: node.title })),
       (id) => exploredStatus(id, nodeStatus, extraExploredIds),
       'concepts',
-      hrefFor
+      hrefFor,
+      course.description
     )
   }
 
@@ -171,7 +182,8 @@ function resumeFromPathData(
     })),
     (id) => exploredStatus(id, nodeStatus, extraExploredIds),
     'concepts',
-    hrefFor
+    hrefFor,
+    data.summary || data.goal
   )
 }
 
@@ -214,15 +226,35 @@ function resumeFromOfficialCourse(
 
 function outlineDataFromRow(row: {
   slug: string
+  title?: string | null
+  summary?: string | null
   topics?: unknown
   nodes?: unknown
+  description?: unknown
   data?: unknown
 }): unknown {
+  const summary =
+    typeof row.summary === 'string' ? row.summary.trim() : ''
+  const descriptionFromData =
+    typeof row.description === 'string' ? row.description.trim() : ''
   if (Array.isArray(row.topics) && row.topics.length > 0) {
-    return { slug: row.slug, topics: row.topics }
+    return {
+      slug: row.slug,
+      title: (row.title ?? '').trim(),
+      description: descriptionFromData || summary,
+      topics: row.topics
+    }
   }
   if (Array.isArray(row.nodes) && row.nodes.length > 0) {
-    return { nodes: row.nodes }
+    return {
+      slug: row.slug,
+      title: (row.title ?? '').trim(),
+      goal: (row.title ?? '').trim(),
+      summary,
+      nodes: row.nodes,
+      edges: [],
+      circle: { name: '', description: '', members: [] }
+    }
   }
   return row.data
 }
@@ -238,15 +270,20 @@ async function listLearningPathOutlinesBySlugs(
   for (const group of chunk(unique, 20)) {
     const slim = await supabase
       .from('learning_paths')
-      .select('id, slug, topics:data->topics, nodes:data->nodes')
+      .select(
+        'id, slug, title, summary, topics:data->topics, nodes:data->nodes, description:data->description'
+      )
       .in('slug', group)
     const rows = !slim.error && Array.isArray(slim.data) ? slim.data : null
     if (rows) {
       for (const row of rows as Array<{
         id: string
         slug: string
+        title?: string | null
+        summary?: string | null
         topics?: unknown
         nodes?: unknown
+        description?: unknown
       }>) {
         if (!row.slug) continue
         const data = outlineDataFromRow(row)

@@ -100,10 +100,11 @@ For a named migration history instead of ad‑hoc snippets, use the Supabase CLI
 | `047_revert_official_course_content.sql` | **Only if you applied the removed `046`:** drops abandoned course-mirror columns from `courses`. See [gaps.md](../../docs/gaps.md). |
 | `048_drop_community_wall_and_notebooks.sql` | Drops legacy Community Wall (`course_resources*`, `community_wall_subscriptions`) and standalone `notebooks` / `notebook_tabs`. |
 | `049_profile_learning_summary.sql` | Public profile bio + learning summary fields on `profiles`. |
+| `050_profile_updates.sql` | Profile Updates posts + `votes.target_type = 'profile_update'` likes; comments use polymorphic `comments`. |
 
 **Fresh project:** paste `000_complete_schema.sql` once (includes `001`–`014`, `017`–`030`, `034`–`038`, `040`, and commitment reminder columns). Skip `015`/`016` unless you already had old table names.
 
-Existing projects that already ran through `037` should apply `038` (do not re-run `000`). If `038` already ran with a 1–5 rating check, apply `039`. Apply `040` so collaborative paths cannot rewrite the outline. Apply `041` for Learn-tab commitments + reminder cadence (`041` creates the table if `030` was never applied). Apply `042` for private collaborator invites. Apply `043` so private/unknown path URLs show an access/missing state. Apply `044` so signed-in visitors can request to join a private path. Apply `045` for `/knowledge-graph` topic–path occurrences. If you applied the removed `046_official_course_content`, run `047_revert_official_course_content.sql`. Run `048_drop_community_wall_and_notebooks.sql` to remove legacy wall + notebook tables. Apply `049_profile_learning_summary.sql` for public bio and learning summary on profiles.
+Existing projects that already ran through `037` should apply `038` (do not re-run `000`). If `038` already ran with a 1–5 rating check, apply `039`. Apply `040` so collaborative paths cannot rewrite the outline. Apply `041` for Learn-tab commitments + reminder cadence (`041` creates the table if `030` was never applied). Apply `042` for private collaborator invites. Apply `043` so private/unknown path URLs show an access/missing state. Apply `044` so signed-in visitors can request to join a private path. Apply `045` for `/knowledge-graph` topic–path occurrences. If you applied the removed `046_official_course_content`, run `047_revert_official_course_content.sql`. Run `048_drop_community_wall_and_notebooks.sql` to remove legacy wall + notebook tables. Apply `049_profile_learning_summary.sql` for public bio and learning summary on profiles. Apply `050_profile_updates.sql` for profile Updates posts, likes, and comments.
 
 ## 4. Optional seeds
 
@@ -143,7 +144,7 @@ Community paths: [docs/learning-paths.md](../../docs/learning-paths.md).
 - [ ] Google sign-in → row appears in `profiles`
 - [ ] Open a Notion course page → row in `courses`; comment / bookmark / discussion (`annotations`) / notes work
 - [ ] `/community-resources` search + resource comments/votes
-- [ ] Profile: interests, personal links, bookmarked links, feed
+- [ ] Profile: bio + learning summary (`049`); personal links under Previously learned; interests chips; bookmarked links; Activity feed (incl. followed Updates replies); Updates tab (`050`)
 - [ ] `/users` directory loads
 - [ ] `/learning-path/fluid-mechanics` loads the syllabus UI from `learning_paths`
 - [ ] `/learning-paths` and home community grid show catalog paths (not empty course placeholders)
@@ -160,8 +161,9 @@ Community paths: [docs/learning-paths.md](../../docs/learning-paths.md).
 - [ ] `/all-courses` default Discover: `?q=transformers` ranks **Implement a transformer** as Best match, then grouped paths / university courses / degrees / research, and a **Create your own path →** card at the bottom even when there are matches. **University Courses** (`?view=courses`) second grid lists only `kind=course` rows with `is_filled`; degrees promo → `/degrees`
 - [ ] `/all-courses?view=learning-paths`: public community + research only (`listNonCourseLearningPaths`); no `kind=course`; browse shows create-path promo in the grid; any search shows the create-path card at the bottom
 - [ ] `/community`: two explainers (path schema + vote/order diagram); collab CTA → `/community-resources`
-- [ ] Profile Learning tab: filters **Courses** (official Notion or `kind=course`), **Learning paths** (`community`+`research`), **Committed**; Commit tag writes `learning_path_commitments`; **Notify** stores a reminder cadence (`041`, which also creates the table if `030` never ran); muted **% complete** tag sits left of Commit
+- [ ] Profile Learning tab: filters **Courses** (official Notion or `kind=course`), **Learning paths** (`community`+`research`), **Committed**; Commit tag writes `learning_path_commitments`; **Notify** stores a reminder cadence (`041`, which also creates the table if `030` never ran); muted **% complete** tag sits left of Commit; hover resume + Continue
 - [ ] Profile Knowledge tab: topic list (graph view hidden); finishing a public path upserts catalog topics/structural edges. Daily Gemini cron is **off** ([docs/knowledge.md](../../docs/knowledge.md))
+- [ ] Profile Updates: compose / like / reply after `050_profile_updates.sql`
 - [ ] `/reports` loads (open while testing). Hover a discussion/comment/resource and send a reason; flag next to the date on a learning-path hero. Row appears on `/reports`. Apply `037_content_reports.sql` first.
 - [ ] Mark a topic explored → enter duration + enjoyment %. Finish the path/course → same for the whole map. Apply `038_learning_path_ratings.sql` (and `039` if `038` already ran with 1–5 stars).
 

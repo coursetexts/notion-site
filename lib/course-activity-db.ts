@@ -55,6 +55,7 @@ export interface Comment {
   parent_body?: string | null
   parent_author_name?: string | null
   parent_author_id?: string | null
+  parent_author_avatar_url?: string | null
 }
 
 export interface Annotation {
@@ -73,6 +74,7 @@ export interface Annotation {
   parent_body?: string | null
   parent_author_name?: string | null
   parent_author_id?: string | null
+  parent_author_avatar_url?: string | null
 }
 
 export interface Bookmark {
@@ -600,14 +602,20 @@ export async function getMyComments(): Promise<
   const parentAuthorIds = [
     ...new Set(Object.values(parentById).map((p) => p.user_id))
   ]
-  const parentNameById: Record<string, string | null> = {}
+  const parentProfileById: Record<
+    string,
+    { display_name: string | null; avatar_url: string | null }
+  > = {}
   if (parentAuthorIds.length > 0) {
     const { data: profiles } = await supabase
       .from('profiles')
-      .select('user_id, display_name')
+      .select('user_id, display_name, avatar_url')
       .in('user_id', parentAuthorIds)
     for (const p of profiles || []) {
-      parentNameById[p.user_id] = p.display_name
+      parentProfileById[p.user_id] = {
+        display_name: p.display_name,
+        avatar_url: p.avatar_url
+      }
     }
   }
   return commentRows
@@ -615,14 +623,16 @@ export async function getMyComments(): Promise<
       const parent = c.parent_comment_id
         ? parentById[c.parent_comment_id]
         : null
+      const parentProfile = parent ? parentProfileById[parent.user_id] : null
       return {
         comment: {
           ...(c as Comment),
           parent_body: parent?.body ?? null,
           parent_author_name: parent
-            ? parentNameById[parent.user_id]?.trim() || 'Someone'
+            ? parentProfile?.display_name?.trim() || 'Someone'
             : null,
-          parent_author_id: parent?.user_id ?? null
+          parent_author_id: parent?.user_id ?? null,
+          parent_author_avatar_url: parentProfile?.avatar_url ?? null
         },
         course: courseById[c.course_id]
       }
@@ -694,14 +704,20 @@ export async function getMyAnnotations(): Promise<
   const parentAuthorIds = [
     ...new Set(Object.values(parentById).map((p) => p.user_id))
   ]
-  const parentNameById: Record<string, string | null> = {}
+  const parentProfileById: Record<
+    string,
+    { display_name: string | null; avatar_url: string | null }
+  > = {}
   if (parentAuthorIds.length > 0) {
     const { data: profiles } = await supabase
       .from('profiles')
-      .select('user_id, display_name')
+      .select('user_id, display_name, avatar_url')
       .in('user_id', parentAuthorIds)
     for (const p of profiles || []) {
-      parentNameById[p.user_id] = p.display_name
+      parentProfileById[p.user_id] = {
+        display_name: p.display_name,
+        avatar_url: p.avatar_url
+      }
     }
   }
 
@@ -710,14 +726,16 @@ export async function getMyAnnotations(): Promise<
       const parent = a.parent_annotation_id
         ? parentById[a.parent_annotation_id]
         : null
+      const parentProfile = parent ? parentProfileById[parent.user_id] : null
       return {
         annotation: {
           ...(a as Annotation),
           parent_body: parent?.body ?? null,
           parent_author_name: parent
-            ? parentNameById[parent.user_id]?.trim() || 'Someone'
+            ? parentProfile?.display_name?.trim() || 'Someone'
             : null,
-          parent_author_id: parent?.user_id ?? null
+          parent_author_id: parent?.user_id ?? null,
+          parent_author_avatar_url: parentProfile?.avatar_url ?? null
         },
         course: courseById[a.course_id]
       }

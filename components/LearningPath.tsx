@@ -43,6 +43,12 @@ import {
   normalizeUserLinkUrl,
   userLinkMatchesLearningPathSlug
 } from '@/lib/learning-path-bookmark-link'
+import {
+  learningPathNavPinKey,
+  listMyNavPins,
+  setNavPinned,
+  subscribeNavPins
+} from '@/lib/nav-pins-db'
 import { learningPathCommitmentKey } from '@/lib/learning-path-commitments-db'
 import { formatLearningPathExportContext } from '@/lib/learning-path-export-context'
 import {
@@ -1130,6 +1136,8 @@ function CommunityLearningPath({
     null
   )
   const [bookmarkBusy, setBookmarkBusy] = React.useState(false)
+  const [navPinned, setNavPinnedState] = React.useState(false)
+  const [navPinBusy, setNavPinBusy] = React.useState(false)
   const [savedLinkByUrl, setSavedLinkByUrl] = React.useState<
     Record<string, string>
   >({})
@@ -1504,6 +1512,27 @@ function CommunityLearningPath({
     })
     return () => {
       cancelled = true
+    }
+  }, [slug, currentUserId])
+
+  React.useEffect(() => {
+    const pinKey = learningPathNavPinKey(slug)
+    if (!currentUserId) {
+      setNavPinnedState(false)
+      return
+    }
+    let alive = true
+    void listMyNavPins().then((keys) => {
+      if (alive) setNavPinnedState(keys.includes(pinKey))
+    })
+    const unsub = subscribeNavPins(() => {
+      void listMyNavPins().then((keys) => {
+        if (alive) setNavPinnedState(keys.includes(pinKey))
+      })
+    })
+    return () => {
+      alive = false
+      unsub()
     }
   }, [slug, currentUserId])
 
@@ -1986,6 +2015,39 @@ function CommunityLearningPath({
         )
     } finally {
       setBookmarkBusy(false)
+    }
+  }
+
+  async function toggleNavPin() {
+    if (navPinBusy) return
+    if (!currentUserId) {
+      requestSignIn()
+      return
+    }
+    setNavPinBusy(true)
+    const pinKey = learningPathNavPinKey(path.slug)
+    const next = !navPinned
+    try {
+      if (next && !isOwnPath && !bookmarkLinkId) {
+        const row = await addLink(
+          learningPathAbsoluteUrl(path.slug, window.location.origin),
+          { title: path.title || path.goal }
+        )
+        if (!row) {
+          window.alert('Could not save this path before pinning.')
+          return
+        }
+        setBookmarkLinkId(row.id)
+        setSavedLinkByUrl((prev) => ({
+          ...prev,
+          [normalizeUserLinkUrl(row.url)]: row.id
+        }))
+      }
+      setNavPinnedState(next)
+      const ok = await setNavPinned(pinKey, next)
+      if (!ok) setNavPinnedState(!next)
+    } finally {
+      setNavPinBusy(false)
     }
   }
 
@@ -2753,6 +2815,9 @@ function CommunityLearningPath({
                   url: learningPathHref(path.slug),
                   title: path.title
                 }}
+                pinned={navPinned}
+                pinBusy={navPinBusy}
+                onPinToggle={() => void toggleNavPin()}
                 visibility={isOwnPath ? pathVisibility : undefined}
                 visibilityBusy={privacyBusy}
                 onVisibilityChange={

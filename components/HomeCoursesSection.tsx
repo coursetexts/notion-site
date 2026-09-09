@@ -237,7 +237,7 @@ export function HomeCoursesSection({
 
         <div className={styles.viewAllRow}>
           <p className={styles.headingSub}>
-            We work directly with professors to bring niche, hard-to-find
+            We host common university curriculum learning paths as well as niche graduate courses. We work directly with professors to bring niche, hard-to-find
             graduate courses online through our{' '}
             <a
               href='https://blog.coursetexts.org/automating-copyright-compliance-for-open-courseware'

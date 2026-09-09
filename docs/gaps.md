@@ -15,6 +15,7 @@ What is **live** vs **partial**, **404**, or **orphaned API** in the current cod
 | Feature | Where | Gap |
 | ------- | ----- | --- |
 | **Learning streaks** | Profile Learning cards | `lib/profile-learning-streaks.ts` mocks a few titles; real streak tracking not built. |
+| **Profile Updates** | Profile **Updates** tab | Needs migration `050_profile_updates.sql` applied in Supabase for posts, likes, and comments. |
 | **Commitment reminders** | Profile **Notify** tag, `learning_path_commitments` | Cadence saves to DB; **no notification delivery** (email/push). |
 | **Karma score** | `profiles.karma_score` | `lib/karma.ts` is a deliberate no-op; votes work but score never updates. |
 | **Knowledge graph daily cron** | `pages/api/cron/rebuild-knowledge-graph.ts` | Disabled unless `KNOWLEDGE_GRAPH_CRON_ENABLED=true`; `vercel.json` has no cron schedule. |

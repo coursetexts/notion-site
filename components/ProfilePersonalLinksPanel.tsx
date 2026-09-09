@@ -106,6 +106,8 @@ type ProfilePersonalLinksPanelProps = {
    * (meant for the sidebar preview “above the line”).
    */
   inline?: boolean
+  /** Extra controls on the same row as “+ New link” (inline editable). */
+  endActions?: React.ReactNode
 }
 
 export function ProfilePersonalLinksPanel({
@@ -113,7 +115,8 @@ export function ProfilePersonalLinksPanel({
   editable,
   onRefresh,
   nested = false,
-  inline = false
+  inline = false,
+  endActions
 }: ProfilePersonalLinksPanelProps) {
   const [urlDraft, setUrlDraft] = React.useState('')
   const [titleDraft, setTitleDraft] = React.useState('')
@@ -220,46 +223,50 @@ export function ProfilePersonalLinksPanel({
             </ul>
           ) : null}
 
-          {editable && links.length < MAX_PROFILE_PERSONAL_LINKS ? (
+          {editable &&
+          (links.length < MAX_PROFILE_PERSONAL_LINKS || endActions) ? (
             <div className={styles.sidebarPersonalLinksInlineAddRow}>
-              {showNewLinkInput ? (
-                <input
-                  type='url'
-                  value={urlDraft}
-                  onChange={(e) => setUrlDraft(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                      e.preventDefault()
-                      void handleAdd()
-                    }
-                    if (e.key === 'Escape') {
-                      e.preventDefault()
-                      cancelNewLinkInput()
-                    }
-                  }}
-                  onBlur={() => {
-                    window.setTimeout(() => {
-                      if (adding) return
-                      cancelNewLinkInput()
-                    }, 0)
-                  }}
-                  placeholder='https://…'
-                  className={`${styles.linkFilterNewTagInput} ${styles.sidebarPersonalLinksInlineInput}`}
-                  aria-label='Add personal link URL'
-                  autoComplete='off'
-                  disabled={adding}
-                  autoFocus
-                />
-              ) : (
-                <button
-                  type='button'
-                  className={styles.linkFilterBtnNew}
-                  onClick={() => setShowNewLinkInput(true)}
-                  disabled={adding}
-                >
-                  + New link
-                </button>
-              )}
+              {links.length < MAX_PROFILE_PERSONAL_LINKS ? (
+                showNewLinkInput ? (
+                  <input
+                    type='url'
+                    value={urlDraft}
+                    onChange={(e) => setUrlDraft(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault()
+                        void handleAdd()
+                      }
+                      if (e.key === 'Escape') {
+                        e.preventDefault()
+                        cancelNewLinkInput()
+                      }
+                    }}
+                    onBlur={() => {
+                      window.setTimeout(() => {
+                        if (adding) return
+                        cancelNewLinkInput()
+                      }, 0)
+                    }}
+                    placeholder='https://…'
+                    className={`${styles.linkFilterNewTagInput} ${styles.sidebarPersonalLinksInlineInput}`}
+                    aria-label='Add personal link URL'
+                    autoComplete='off'
+                    disabled={adding}
+                    autoFocus
+                  />
+                ) : (
+                  <button
+                    type='button'
+                    className={styles.linkFilterBtnNew}
+                    onClick={() => setShowNewLinkInput(true)}
+                    disabled={adding}
+                  >
+                    + New link
+                  </button>
+                )
+              ) : null}
+              {endActions}
             </div>
           ) : null}
         </div>

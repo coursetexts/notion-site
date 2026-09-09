@@ -17,6 +17,11 @@ import {
   ActivityFeedThread,
   type ActivityFeedTurn
 } from '@/components/ActivityFeedQuoteBody'
+import {
+  ActivityFeedRowShell,
+  activityIconKindForFeedItem
+} from '@/components/ActivityFeedTypeIcon'
+import { ActivityFeedUpdateReplies } from '@/components/ActivityFeedUpdateReplies'
 import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
 import { ProfileBackArrow } from '@/components/ProfileBackArrow'
@@ -27,6 +32,8 @@ import { ProfilePublicSummary } from '@/components/ProfilePublicSummary'
 import { ProfileKnowledgePanel } from '@/components/ProfileKnowledgePanel'
 import { ProfileNotesPanel } from '@/components/ProfileNotesPanel'
 import { ProfilePersonalLinksPanel } from '@/components/ProfilePersonalLinksPanel'
+import { ProfileUpdatesTab } from '@/components/ProfileUpdatesTab'
+import { ProfileBookmarkIcon } from '@/components/ProfileTabItemIcons'
 import {
   ProfileCommunityLearningPathCard,
   ProfileLearningPathCard
@@ -45,8 +52,7 @@ import {
   type Comment as DbComment,
   getMyAnnotations,
   getMyBookmarks,
-  getMyComments,
-  removeBookmark
+  getMyComments
 } from '@/lib/course-activity-db'
 import {
   type ProfileListItem,
@@ -104,7 +110,12 @@ import {
   type LearningPathReminder
 } from '@/lib/learning-path-commitments-db'
 import { isCourseKindPath } from '@/lib/learning-path-kind-ui'
-import { loadProfileLearningProgress } from '@/lib/profile-learning-progress'
+import {
+  enrichOfficialNavPinResume,
+  loadNavPinResume,
+  type NavPinResume
+} from '@/lib/nav-pin-resume'
+import { completionPercent } from '@/lib/profile-learning-progress'
 import { mockLearningStreakDays } from '@/lib/profile-learning-streaks'
 import {
   COURSETEXTS_BYLINE_AUTHOR,
@@ -119,7 +130,6 @@ import {
 } from '@/lib/reply-notifications'
 import {
   listMyCourseLearningPathPins,
-  setCourseLearningPathPinned,
   subscribeCourseLearningPathPins,
   type PinnedCourseLearningPath
 } from '@/lib/course-learning-path-pins-db'
@@ -244,6 +254,11 @@ function FeedItemSubject({ item }: { item: ProfileFeedItem }) {
       return (
         <FeedTargetLink href={item.path_href}>{item.path_title}</FeedTargetLink>
       )
+    case 'followed_profile_update': {
+      const label = item.title.trim() || 'Update'
+      const href = item.url.trim() || item.profile_href
+      return <FeedTargetLink href={href}>{label}</FeedTargetLink>
+    }
     case 'followed_path_progress':
       return (
         <>
@@ -282,6 +297,8 @@ function feedItemVerb(item: ProfileFeedItem): string | null {
       return item.is_reply ? 'replied' : 'posted'
     case 'followed_learning_path':
       return 'started a learning path'
+    case 'followed_profile_update':
+      return 'posted an update'
     case 'followed_path_progress':
       return 'explored'
     case 'suggestion_for_you':
@@ -295,19 +312,51 @@ function feedItemVerb(item: ProfileFeedItem): string | null {
   }
 }
 
+function feedActorAvatar(displayName: string, avatarUrl?: string | null) {
+  if (avatarUrl) {
+    return (
+      <img
+        src={avatarUrl}
+        alt=''
+        className={styles.feedThreadAvatar}
+        width={24}
+        height={24}
+      />
+    )
+  }
+  return (
+    <span className={styles.feedThreadAvatarPlaceholder} aria-hidden>
+      {(displayName || 'U').charAt(0).toUpperCase()}
+    </span>
+  )
+}
+
 function feedActorNode(
   userId: string,
   displayName: string,
   followingIds: Set<string>,
-  followerIds: Set<string>
+  followerIds: Set<string>,
+  avatarUrl?: string | null
 ) {
   return (
-    <UserLink
-      userId={userId}
-      displayName={displayName}
-      showFollowingTag={followingIds.has(userId)}
-      showFollowsYouTag={followerIds.has(userId)}
-    />
+    <span className={styles.feedThreadActor}>
+      {feedActorAvatar(displayName, avatarUrl)}
+      <UserLink
+        userId={userId}
+        displayName={displayName}
+        showFollowingTag={followingIds.has(userId)}
+        showFollowsYouTag={followerIds.has(userId)}
+      />
+    </span>
+  )
+}
+
+function feedActorPlain(displayName: string, avatarUrl?: string | null) {
+  return (
+    <span className={styles.feedThreadActor}>
+      {feedActorAvatar(displayName, avatarUrl)}
+      <span className={styles.feedThreadAuthorPlain}>{displayName}</span>
+    </span>
   )
 }
 
@@ -321,7 +370,8 @@ function feedItemTurns(
     item.actor_id,
     actorLabel,
     followingIds,
-    followerIds
+    followerIds,
+    item.actor_avatar_url
   )
   const verb = feedItemVerb(item)
   const excerpt = feedItemExcerpt(item)
@@ -340,11 +390,10 @@ function feedItemTurns(
               item.parent_author_id,
               parentName,
               followingIds,
-              followerIds
+              followerIds,
+              item.parent_author_avatar_url
             )
-          : (
-              <span className={styles.feedThreadAuthorPlain}>{parentName}</span>
-            ),
+          : feedActorPlain(parentName, item.parent_author_avatar_url),
         body: parentBody,
         muted: true
       })
@@ -374,6 +423,18 @@ function feedItemExcerpt(item: ProfileFeedItem): string | null {
   ) {
     const body = item.body.trim()
     return body || null
+  }
+  if (item.kind === 'followed_profile_update') {
+    const title = item.title.trim()
+    const body = item.body.trim()
+    if (!body) return null
+    if (
+      title &&
+      (title === body || body.startsWith(title) || title === body.slice(0, 72))
+    ) {
+      return null
+    }
+    return body
   }
   return null
 }
@@ -469,6 +530,9 @@ function feedItemMatchesQuery(item: ProfileFeedItem, query: string) {
       break
     case 'followed_learning_path':
       fields.push(item.path_title, 'learning path')
+      break
+    case 'followed_profile_update':
+      fields.push(item.title, item.body, item.url, 'update', 'posted')
       break
     case 'followed_path_progress':
       fields.push(item.path_title, item.node_label)
@@ -605,17 +669,15 @@ export default function ProfilePage() {
   const [topicNotes, setTopicNotes] = useState<ProfileTopicNote[]>([])
   const [notesLoading, setNotesLoading] = useState(true)
   const [mainTab, setMainTab] = useState<
-    'learning-path' | 'knowledge' | 'notes' | 'bookmarks' | 'activity'
+    | 'learning-path'
+    | 'updates'
+    | 'knowledge'
+    | 'notes'
+    | 'bookmarks'
+    | 'activity'
   >('learning-path')
   const [activitySubTab, setActivitySubTab] = useState<ActivityFilter>('feed')
   const [learningPaths, setLearningPaths] = useState<LearningPathItem[]>([])
-  const [unsavePathBusyId, setUnsavePathBusyId] = useState<string | null>(null)
-  const [unpinCourseBusyId, setUnpinCourseBusyId] = useState<string | null>(
-    null
-  )
-  const [unsaveOfficialBusyId, setUnsaveOfficialBusyId] = useState<
-    string | null
-  >(null)
   const [committedKeys, setCommittedKeys] = useState<Set<string>>(
     () => new Set()
   )
@@ -638,6 +700,12 @@ export default function ProfilePage() {
   >({})
   const [progressByOfficialPageId, setProgressByOfficialPageId] = useState<
     Record<string, number>
+  >({})
+  const [resumeByPathSlug, setResumeByPathSlug] = useState<
+    Record<string, NavPinResume>
+  >({})
+  const [resumeByOfficialPageId, setResumeByOfficialPageId] = useState<
+    Record<string, NavPinResume>
   >({})
   const [pathsCoursesFilter, setPathsCoursesFilter] =
     useState<PathsCoursesFilter | null>(null)
@@ -1276,6 +1344,8 @@ export default function ProfilePage() {
     if (!effectiveUser?.id) {
       setProgressByPathSlug({})
       setProgressByOfficialPageId({})
+      setResumeByPathSlug({})
+      setResumeByOfficialPageId({})
       return
     }
     let cancelled = false
@@ -1283,16 +1353,40 @@ export default function ProfilePage() {
       ...learningPaths.map((item) => item.slug),
       ...courseLearningPaths.map((item) => item.slug)
     ]
-    const officialPageIds = officialCourses.map(
-      ({ course }) => course.notion_page_id
-    )
-    void loadProfileLearningProgress({ pathSlugs, officialPageIds }).then(
-      (result) => {
+    const official = officialCourses.map(({ course }) => ({
+      pageId: course.notion_page_id,
+      href: course.url ?? `/course/${course.notion_page_id}`
+    }))
+    void loadNavPinResume({ pathSlugs, official }).then(async (result) => {
+      if (cancelled) return
+      let byOfficial = result.byOfficialPageId
+      const missingOfficial = official.filter(
+        (item) => !byOfficial[item.pageId]
+      )
+      if (missingOfficial.length > 0) {
+        const extra = await enrichOfficialNavPinResume({
+          official: missingOfficial
+        })
         if (cancelled) return
-        setProgressByPathSlug(result.byPathSlug)
-        setProgressByOfficialPageId(result.byOfficialPageId)
+        if (Object.keys(extra).length > 0) {
+          byOfficial = { ...byOfficial, ...extra }
+        }
       }
-    )
+      const pathPercents: Record<string, number> = {}
+      for (const [slug, resume] of Object.entries(result.byPathSlug)) {
+        const percent = completionPercent(resume.explored, resume.total)
+        if (percent != null) pathPercents[slug] = percent
+      }
+      const officialPercents: Record<string, number> = {}
+      for (const [pageId, resume] of Object.entries(byOfficial)) {
+        const percent = completionPercent(resume.explored, resume.total)
+        if (percent != null) officialPercents[pageId] = percent
+      }
+      setResumeByPathSlug(result.byPathSlug)
+      setResumeByOfficialPageId(byOfficial)
+      setProgressByPathSlug(pathPercents)
+      setProgressByOfficialPageId(officialPercents)
+    })
     return () => {
       cancelled = true
     }
@@ -1449,51 +1543,6 @@ export default function ProfilePage() {
       )
       setLinkActionOverlay(null)
     }
-  }
-
-  const handleUnsaveLearningPath = async (linkId: string) => {
-    if (unsavePathBusyId) return
-    setUnsavePathBusyId(linkId)
-    const ok = await deleteLink(linkId)
-    if (ok) {
-      setLearningPaths((prev) =>
-        prev.filter((item) => item.savedLinkId !== linkId)
-      )
-      setUserLinks((prev) => prev.filter((l) => l.id !== linkId))
-    } else {
-      window.alert('Could not unsave this path.')
-    }
-    setUnsavePathBusyId(null)
-  }
-
-  const handleUnpinCourseLearningPath = async (courseId: string) => {
-    if (unpinCourseBusyId) return
-    setUnpinCourseBusyId(courseId)
-    const previous = courseLearningPaths
-    setCourseLearningPaths((prev) =>
-      prev.filter((item) => item.courseId !== courseId)
-    )
-    const result = await setCourseLearningPathPinned(courseId, false)
-    if (result === null) {
-      setCourseLearningPaths(previous)
-      window.alert('Could not unsave this path.')
-    }
-    setUnpinCourseBusyId(null)
-  }
-
-  const handleUnsaveOfficialCourse = async (courseId: string) => {
-    if (unsaveOfficialBusyId) return
-    setUnsaveOfficialBusyId(courseId)
-    const previous = officialCourses
-    setOfficialCourses((prev) =>
-      prev.filter((row) => row.course.notion_page_id !== courseId)
-    )
-    const ok = await removeBookmark(courseId)
-    if (!ok) {
-      setOfficialCourses(previous)
-      window.alert('Could not unsave this course.')
-    }
-    setUnsaveOfficialBusyId(null)
   }
 
   const handleToggleCommit = async (targetKey: string) => {
@@ -1854,7 +1903,6 @@ export default function ProfilePage() {
                     <ProfilePublicSummary
                       bio={bioText}
                       bioOnly
-                      personalLinks={personalLinks}
                     />
                   )}
                   {isEditingProfile ? (
@@ -1885,17 +1933,17 @@ export default function ProfilePage() {
                       editable
                       onRefresh={() => void loadPersonalLinks()}
                       inline
+                      endActions={
+                        <button
+                          type='button'
+                          className={styles.sidebarSaveProfileBtn}
+                          onClick={() => void saveProfile()}
+                          disabled={bioSaving}
+                        >
+                          {bioSaving ? 'Saving…' : 'Save profile'}
+                        </button>
+                      }
                     />
-                  ) : null}
-                  {isEditingProfile ? (
-                    <button
-                      type='button'
-                      className={styles.sidebarSaveProfileBtn}
-                      onClick={() => void saveProfile()}
-                      disabled={bioSaving}
-                    >
-                      {bioSaving ? 'Saving…' : 'Save profile'}
-                    </button>
                   ) : null}
                   {!bioText &&
                   !profileSummary.learning_now &&
@@ -1915,6 +1963,7 @@ export default function ProfilePage() {
                     learningLearned={profileSummary.learning_learned}
                     learningOnly
                     metadataStyle
+                    personalLinks={personalLinks}
                   />
                 ) : null}
               </div>
@@ -2203,6 +2252,20 @@ export default function ProfilePage() {
                     >
                       Notes
                     </button>
+                    <span className={styles.primaryTabsDivider} aria-hidden />
+                    <button
+                      type='button'
+                      role='tab'
+                      aria-selected={mainTab === 'activity'}
+                      className={
+                        mainTab === 'activity'
+                          ? styles.primaryTabActive
+                          : styles.primaryTab
+                      }
+                      onClick={() => setMainTab('activity')}
+                    >
+                      Activity
+                    </button>
                     <button
                       type='button'
                       role='tab'
@@ -2219,20 +2282,24 @@ export default function ProfilePage() {
                     <button
                       type='button'
                       role='tab'
-                      aria-selected={mainTab === 'activity'}
+                      aria-selected={mainTab === 'updates'}
                       className={
-                        mainTab === 'activity'
+                        mainTab === 'updates'
                           ? styles.primaryTabActive
                           : styles.primaryTab
                       }
-                      onClick={() => setMainTab('activity')}
+                      onClick={() => setMainTab('updates')}
                     >
-                      Activity
+                      Updates
                     </button>
                   </nav>
 
                   <div className={styles.primaryTabsRightActions} />
                 </div>
+
+                {mainTab === 'updates' && (
+                  <ProfileUpdatesTab userId={effectiveUser.id} canAdd />
+                )}
 
                 {mainTab === 'knowledge' && (
                   <ProfileKnowledgePanel
@@ -2517,122 +2584,74 @@ export default function ProfilePage() {
                             return (
                               <li key={l.id} className={styles.userLinkItem}>
                                 <div className={styles.userLinkItemInner}>
-                                  <span className={styles.userLinkIconWrap}>
-                                    {/*
-                                      Previous favicon / default icon logic kept for future use:
-
-                                      {faviconDomain ? (
-                                        <img
-                                          src={getFaviconUrl(faviconDomain)}
-                                          alt=''
-                                          className={styles.userLinkIcon}
-                                          width={20}
-                                          height={20}
-                                        />
-                                      ) : (
-                                        <span
-                                          className={styles.userLinkIconDefault}
-                                          aria-hidden
-                                        >
-                                          <svg
-                                            width='20'
-                                            height='20'
-                                            viewBox='0 0 24 24'
-                                            fill='none'
-                                            stroke='currentColor'
-                                            strokeWidth='2'
-                                            strokeLinecap='round'
-                                            strokeLinejoin='round'
-                                          >
-                                            <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71' />
-                                            <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71' />
-                                          </svg>
-                                        </span>
-                                      )}
-                                    */}
-                                    <span className={styles.userLinkIconBlue} aria-hidden>
-                                      <svg
-                                        xmlns='http://www.w3.org/2000/svg'
-                                        width='8'
-                                        height='8'
-                                        viewBox='0 0 8 8'
-                                        fill='none'
-                                      >
-                                        <path
-                                          d='M4.14058 1.91562L4.44058 1.61249C4.70255 1.37372 5.04645 1.24506 5.40081 1.25327C5.75518 1.26147 6.09276 1.4059 6.3434 1.65654C6.59404 1.90718 6.73847 2.24476 6.74667 2.59913C6.75488 2.95349 6.62622 3.29739 6.38745 3.55937L5.44058 4.50312C5.31312 4.63105 5.16166 4.73256 4.99488 4.80183C4.8281 4.87109 4.64929 4.90674 4.4687 4.90674C4.28811 4.90674 4.1093 4.87109 3.94252 4.80183C3.77574 4.73256 3.62428 4.63105 3.49683 4.50312'
-                                          stroke='#FDFDFD'
-                                          strokeWidth='0.75'
-                                          strokeLinecap='round'
-                                          strokeLinejoin='round'
-                                        />
-                                        <path
-                                          d='M3.8594 6.08436L3.5594 6.38749C3.29742 6.62626 2.95352 6.75491 2.59916 6.74671C2.24479 6.7385 1.90721 6.59407 1.65657 6.34343C1.40593 6.09279 1.2615 5.75521 1.2533 5.40085C1.2451 5.04648 1.37375 4.70258 1.61252 4.44061L2.5594 3.49686C2.68685 3.36893 2.83831 3.26742 3.00509 3.19815C3.17187 3.12889 3.35068 3.09323 3.53127 3.09323C3.71186 3.09323 3.89067 3.12889 4.05745 3.19815C4.22423 3.26742 4.37569 3.36893 4.50315 3.49686'
-                                          stroke='#FDFDFD'
-                                          strokeWidth='0.75'
-                                          strokeLinecap='round'
-                                          strokeLinejoin='round'
-                                        />
-                                      </svg>
-                                    </span>
+                                  <span className={styles.tabItemIcon} aria-hidden>
+                                    <ProfileBookmarkIcon />
                                   </span>
                                   <div className={styles.userLinkContent}>
                                     <div className={styles.userLinkRow}>
-                                      <span className={styles.userLinkTitleAndDomain}>
-                                        <a
-                                          href={l.url}
-                                          target='_blank'
-                                          rel='noopener noreferrer'
-                                          className={styles.userLinkUrl}
-                                        >
-                                          {l.title || l.url}
-                                        </a>
-                                        {(() => {
-                                          try {
-                                            return (
-                                              <span className={styles.userLinkDomain}>
-                                                {new URL(l.url).hostname}
-                                              </span>
-                                            )
-                                          } catch {
-                                            return null
-                                          }
-                                        })()}
-                                      </span>
-                                      <div className={styles.userLinkActions}>
-                                        <button
-                                          type='button'
-                                          className={styles.userLinkActionBtn}
-                                          onClick={() =>
-                                            openLinkAction('edit-note', l)
-                                          }
-                                          aria-label='Edit note'
-                                          title='Edit note'
-                                        >
-                                          Note
-                                        </button>
-                                        <button
-                                          type='button'
-                                          className={styles.userLinkActionBtn}
-                                          onClick={() =>
-                                            openLinkAction('add-tag', l)
-                                          }
-                                          aria-label='Add tag'
-                                          title='Tag page'
-                                        >
-                                          Tag
-                                        </button>
-                                        <button
-                                          type='button'
-                                          className={styles.userLinkActionBtn}
-                                          onClick={() =>
-                                            openLinkAction('delete', l)
-                                          }
-                                          aria-label='Delete link'
-                                          title='Delete'
-                                        >
-                                          Delete
-                                        </button>
+                                      <div className={styles.userLinkRowMain}>
+                                        <span className={styles.userLinkTitleAndDomain}>
+                                          <a
+                                            href={l.url}
+                                            target='_blank'
+                                            rel='noopener noreferrer'
+                                            className={styles.userLinkUrl}
+                                          >
+                                            {l.title || l.url}
+                                          </a>
+                                          {(() => {
+                                            try {
+                                              return (
+                                                <span className={styles.userLinkDomain}>
+                                                  {new URL(l.url).hostname}
+                                                </span>
+                                              )
+                                            } catch {
+                                              return null
+                                            }
+                                          })()}
+                                        </span>
+                                        <div className={styles.userLinkActions}>
+                                          <button
+                                            type='button'
+                                            className={styles.userLinkActionBtn}
+                                            onClick={() =>
+                                              openLinkAction('edit-note', l)
+                                            }
+                                            aria-label='Edit note'
+                                            title='Edit note'
+                                          >
+                                            Note
+                                          </button>
+                                          <button
+                                            type='button'
+                                            className={styles.userLinkActionBtn}
+                                            onClick={() =>
+                                              openLinkAction('add-tag', l)
+                                            }
+                                            aria-label='Add tag'
+                                            title='Tag page'
+                                          >
+                                            Tag
+                                          </button>
+                                          <button
+                                            type='button'
+                                            className={styles.userLinkActionBtn}
+                                            onClick={() =>
+                                              openLinkAction('delete', l)
+                                            }
+                                            aria-label='Delete link'
+                                            title='Delete'
+                                          >
+                                            Delete
+                                          </button>
+                                        </div>
                                       </div>
+                                      {l.created_at ? (
+                                        <span className={styles.userLinkDate}>
+                                          {formatDate(l.created_at)}
+                                        </span>
+                                      ) : null}
                                     </div>
                                     <div className={styles.userLinkMeta}>
                                       <div className={styles.userLinkMetaTags}>
@@ -2674,9 +2693,6 @@ export default function ProfilePage() {
                                             </span>
                                           ))}
                                       </div>
-                                      <span className={styles.userLinkDate}>
-                                        {formatDate(l.created_at)}
-                                      </span>
                                       {storedNotebookNoteHasContent(l.note) &&
                                       showNoteForLinkId === l.id ? (
                                         <div
@@ -2902,11 +2918,11 @@ export default function ProfilePage() {
                       (activityFeedRows.length === 0 ? (
                         <p className={styles.placeholder}>
                           Nothing in your feed yet. Follow people to see their
-                          comments, discussions, bookmarks, new learning paths,
-                          and progress. Replies to your comments and
-                          discussions, plus suggestions on your resource lists
-                          and requests to join your private paths, show up here
-                          as well.
+                          updates, comments, discussions, bookmarks, new
+                          learning paths, and progress. Replies to your comments
+                          and discussions, plus suggestions on your resource
+                          lists and requests to join your private paths, show up
+                          here as well.
                         </p>
                       ) : visibleActivityFeedRows.length === 0 ? (
                         <p className={styles.placeholder}>
@@ -2920,8 +2936,9 @@ export default function ProfilePage() {
                               const actorLabel =
                                 request.displayName?.trim() || request.email
                               return (
-                                <li
+                                <ActivityFeedRowShell
                                   key={`join-${request.id}`}
+                                  iconKind='join'
                                   className={`${styles.listItem} ${styles.listItemUnread}`}
                                 >
                                   <ActivityFeedThread
@@ -2945,7 +2962,8 @@ export default function ProfilePage() {
                                           request.userId,
                                           actorLabel,
                                           followingIds,
-                                          followerIds
+                                          followerIds,
+                                          request.avatarUrl
                                         ),
                                         verb: 'asked to join',
                                         body: request.email
@@ -2982,7 +3000,7 @@ export default function ProfilePage() {
                                       Dismiss
                                     </button>
                                   </div>
-                                </li>
+                                </ActivityFeedRowShell>
                               )
                             }
                             if (row.kind === 'reply') {
@@ -2998,16 +3016,12 @@ export default function ProfilePage() {
                                         n.parent_author_id,
                                         parentName,
                                         followingIds,
-                                        followerIds
+                                        followerIds,
+                                        n.parent_author_avatar_url
                                       )
-                                    : (
-                                        <span
-                                          className={
-                                            styles.feedThreadAuthorPlain
-                                          }
-                                        >
-                                          {parentName}
-                                        </span>
+                                    : feedActorPlain(
+                                        parentName,
+                                        n.parent_author_avatar_url
                                       ),
                                   body: parentBody,
                                   muted: true
@@ -3018,14 +3032,20 @@ export default function ProfilePage() {
                                   n.author_id,
                                   n.author_name,
                                   followingIds,
-                                  followerIds
+                                  followerIds,
+                                  n.author_avatar_url
                                 ),
                                 verb: parentBody ? null : 'replied',
                                 body: n.body
                               })
                               return (
-                                <li
+                                <ActivityFeedRowShell
                                   key={`reply-${n.id}`}
+                                  iconKind={
+                                    n.type === 'annotation'
+                                      ? 'discussion'
+                                      : 'comment'
+                                  }
                                   className={
                                     n.is_unread
                                       ? `${styles.listItem} ${styles.listItemUnread}`
@@ -3073,14 +3093,17 @@ export default function ProfilePage() {
                                     time={formatDate(n.created_at)}
                                     turns={turns}
                                   />
-                                </li>
+                                </ActivityFeedRowShell>
                               )
                             }
                             const item = row.item
                             const actorLabel =
                               item.actor_display_name?.trim() || 'Someone'
                             return (
-                              <li key={item.id} className={styles.listItem}>
+                              <ActivityFeedRowShell
+                                key={item.id}
+                                iconKind={activityIconKindForFeedItem(item)}
+                              >
                                 <ActivityFeedThread
                                   subject={<FeedItemSubject item={item} />}
                                   time={formatDate(item.created_at)}
@@ -3091,7 +3114,12 @@ export default function ProfilePage() {
                                     followerIds
                                   )}
                                 />
-                              </li>
+                                {item.kind === 'followed_profile_update' ? (
+                                  <ActivityFeedUpdateReplies
+                                    updateId={item.update_id}
+                                  />
+                                ) : null}
+                              </ActivityFeedRowShell>
                             )
                           })}
                         </ul>
@@ -3128,16 +3156,12 @@ export default function ProfilePage() {
                                         comment.parent_author_id,
                                         parentName,
                                         followingIds,
-                                        followerIds
+                                        followerIds,
+                                        comment.parent_author_avatar_url
                                       )
-                                    : (
-                                        <span
-                                          className={
-                                            styles.feedThreadAuthorPlain
-                                          }
-                                        >
-                                          {parentName}
-                                        </span>
+                                    : feedActorPlain(
+                                        parentName,
+                                        comment.parent_author_avatar_url
                                       ),
                                   body: parentBody,
                                   muted: true
@@ -3148,15 +3172,16 @@ export default function ProfilePage() {
                                   comment.user_id,
                                   displayName,
                                   followingIds,
-                                  followerIds
+                                  followerIds,
+                                  avatarUrl
                                 ),
                                 verb: parentBody ? null : 'commented',
                                 body: comment.body
                               })
                               return (
-                                <li
+                                <ActivityFeedRowShell
                                   key={`comment-${comment.id}`}
-                                  className={styles.listItem}
+                                  iconKind='comment'
                                 >
                                   <ActivityFeedThread
                                     subject={
@@ -3172,7 +3197,7 @@ export default function ProfilePage() {
                                     time={formatDate(comment.created_at)}
                                     turns={turns}
                                   />
-                                </li>
+                                </ActivityFeedRowShell>
                               )
                             }
                             const { annotation, course } = row
@@ -3190,14 +3215,12 @@ export default function ProfilePage() {
                                       annotation.parent_author_id,
                                       parentName,
                                       followingIds,
-                                      followerIds
+                                      followerIds,
+                                      annotation.parent_author_avatar_url
                                     )
-                                  : (
-                                      <span
-                                        className={styles.feedThreadAuthorPlain}
-                                      >
-                                        {parentName}
-                                      </span>
+                                  : feedActorPlain(
+                                      parentName,
+                                      annotation.parent_author_avatar_url
                                     ),
                                 body: parentBody,
                                 muted: true
@@ -3208,15 +3231,16 @@ export default function ProfilePage() {
                                 annotation.user_id,
                                 displayName,
                                 followingIds,
-                                followerIds
+                                followerIds,
+                                avatarUrl
                               ),
                               verb: parentBody ? null : 'posted',
                               body: annotation.body
                             })
                             return (
-                              <li
+                              <ActivityFeedRowShell
                                 key={`annotation-${annotation.id}`}
-                                className={styles.listItem}
+                                iconKind='discussion'
                               >
                                 <ActivityFeedThread
                                   subject={
@@ -3244,7 +3268,7 @@ export default function ProfilePage() {
                                   time={formatDate(annotation.created_at)}
                                   turns={turns}
                                 />
-                              </li>
+                              </ActivityFeedRowShell>
                             )
                           })}
                         </ul>
@@ -3352,14 +3376,6 @@ export default function ProfilePage() {
                                   title={item.title}
                                   bylineAuthor={COURSETEXTS_BYLINE_AUTHOR}
                                   privacy='public'
-                                  onUnsave={() =>
-                                    void handleUnpinCourseLearningPath(
-                                      item.courseId
-                                    )
-                                  }
-                                  unsaveBusy={
-                                    unpinCourseBusyId === item.courseId
-                                  }
                                   committed={committedKeys.has(
                                     learningPathCommitmentKey(item.slug)
                                   )}
@@ -3375,6 +3391,7 @@ export default function ProfilePage() {
                                   completedPercent={
                                     progressByPathSlug[item.slug] ?? null
                                   }
+                                  resume={resumeByPathSlug[item.slug] ?? null}
                                   streakDays={mockLearningStreakDays(item.title)}
                                   reminder={
                                     commitmentReminders[
@@ -3405,10 +3422,6 @@ export default function ProfilePage() {
                               <li key={item.id}>
                                 <ProfileCommunityLearningPathCard
                                   item={item}
-                                  onUnsave={handleUnsaveLearningPath}
-                                  unsaveBusy={
-                                    unsavePathBusyId === item.savedLinkId
-                                  }
                                   committed={committedKeys.has(
                                     learningPathCommitmentKey(item.slug)
                                   )}
@@ -3424,6 +3437,7 @@ export default function ProfilePage() {
                                   completedPercent={
                                     progressByPathSlug[item.slug] ?? null
                                   }
+                                  resume={resumeByPathSlug[item.slug] ?? null}
                                   streakDays={mockLearningStreakDays(item.goal)}
                                   reminder={
                                     commitmentReminders[
@@ -3454,10 +3468,6 @@ export default function ProfilePage() {
                               <li key={item.id}>
                                 <ProfileCommunityLearningPathCard
                                   item={item}
-                                  onUnsave={handleUnsaveLearningPath}
-                                  unsaveBusy={
-                                    unsavePathBusyId === item.savedLinkId
-                                  }
                                   committed={committedKeys.has(
                                     learningPathCommitmentKey(item.slug)
                                   )}
@@ -3473,6 +3483,7 @@ export default function ProfilePage() {
                                   completedPercent={
                                     progressByPathSlug[item.slug] ?? null
                                   }
+                                  resume={resumeByPathSlug[item.slug] ?? null}
                                   streakDays={mockLearningStreakDays(item.goal)}
                                   reminder={
                                     commitmentReminders[
@@ -3503,10 +3514,6 @@ export default function ProfilePage() {
                               <li key={item.id}>
                                 <ProfileCommunityLearningPathCard
                                   item={item}
-                                  onUnsave={handleUnsaveLearningPath}
-                                  unsaveBusy={
-                                    unsavePathBusyId === item.savedLinkId
-                                  }
                                   committed={committedKeys.has(
                                     learningPathCommitmentKey(item.slug)
                                   )}
@@ -3522,6 +3529,7 @@ export default function ProfilePage() {
                                   completedPercent={
                                     progressByPathSlug[item.slug] ?? null
                                   }
+                                  resume={resumeByPathSlug[item.slug] ?? null}
                                   streakDays={mockLearningStreakDays(item.goal)}
                                   reminder={
                                     commitmentReminders[
@@ -3561,15 +3569,6 @@ export default function ProfilePage() {
                                     officialBylineMeta
                                   )}
                                   privacy='public'
-                                  onUnsave={() =>
-                                    void handleUnsaveOfficialCourse(
-                                      course.notion_page_id
-                                    )
-                                  }
-                                  unsaveBusy={
-                                    unsaveOfficialBusyId ===
-                                    course.notion_page_id
-                                  }
                                   committed={committedKeys.has(
                                     officialCourseCommitmentKey(
                                       course.notion_page_id
@@ -3590,6 +3589,11 @@ export default function ProfilePage() {
                                   }
                                   completedPercent={
                                     progressByOfficialPageId[
+                                      course.notion_page_id
+                                    ] ?? null
+                                  }
+                                  resume={
+                                    resumeByOfficialPageId[
                                       course.notion_page_id
                                     ] ?? null
                                   }
