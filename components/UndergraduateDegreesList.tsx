@@ -71,60 +71,15 @@ function ChevronIcon({ open }: { open: boolean }) {
   )
 }
 
-function DocumentIcon() {
-  return (
-    <svg
-      className={styles.courseDocumentIconSvg}
-      width='14'
-      height='14'
-      viewBox='0 0 24 24'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'
-      aria-hidden='true'
-    >
-      <path
-        d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'
-        stroke='currentColor'
-        strokeWidth='2'
-        strokeLinecap='round'
-        strokeLinejoin='round'
-      />
-      <polyline
-        points='14 2 14 8 20 8'
-        stroke='currentColor'
-        strokeWidth='2'
-        strokeLinecap='round'
-        strokeLinejoin='round'
-      />
-    </svg>
-  )
-}
-
-function CourseDocumentLink({
-  url,
-  courseName,
-  href
-}: {
-  url?: string
-  courseName: string
-  href?: string
-}) {
-  const destination = href ?? getCoursePageUrl(url)
-  const isInternal = destination.startsWith('/')
-  const label = isInternal
-    ? `Full Course Learning Path for ${courseName}`
-    : `Course document for ${courseName}`
-
+function StartCourseLearningPathLink({ courseName }: { courseName: string }) {
   return (
     <a
-      href={destination}
-      target={isInternal ? undefined : '_blank'}
-      rel={isInternal ? undefined : 'noreferrer'}
-      className={styles.courseDocumentLink}
-      aria-label={label}
+      href={getCourseLearningPathHref(courseName)}
+      className={styles.startLearningPathBtn}
+      aria-label={`Start course learning path for ${courseName}`}
       onClick={(event) => event.stopPropagation()}
     >
-      <DocumentIcon />
+      Start course learning path
     </a>
   )
 }
@@ -349,36 +304,32 @@ function NestedSection({
 }
 
 function SchoolsOfferingSection({
-  schools,
-  defaultOpen
+  schools
 }: {
   schools: DegreeSchoolOffering[]
-  defaultOpen: boolean
 }) {
   if (schools.length === 0) return null
 
   return (
     <div className={styles.degreeSubsection}>
-      <NestedSection
-        label='Schools offering this degree — program requirements'
-        countLabel={`${schools.length} ${schools.length === 1 ? 'school' : 'schools'}`}
-        defaultOpen={defaultOpen}
-      >
-        <ul className={styles.schoolsList}>
-          {schools.map((school) => (
-            <li key={school.name} className={styles.schoolItem}>
-              <a
-                href={school.requirementsUrl}
-                target='_blank'
-                rel='noreferrer'
-                className={styles.schoolLink}
-              >
-                {school.name}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </NestedSection>
+      <p className={styles.schoolsOfferingBlock}>
+        <span className={styles.schoolsOfferingLabel}>
+          Schools offering this degree — program requirements:{' '}
+        </span>
+        {schools.map((school, index) => (
+          <React.Fragment key={school.name}>
+            {index > 0 ? ', ' : null}
+            <a
+              href={school.requirementsUrl}
+              target='_blank'
+              rel='noreferrer'
+              className={styles.schoolLink}
+            >
+              {school.name}
+            </a>
+          </React.Fragment>
+        ))}
+      </p>
     </div>
   )
 }
@@ -427,15 +378,7 @@ function CourseRow({
         <span className={styles.courseHeaderRight}>
           {course.isNew ? <span className={styles.newTag}>New</span> : null}
           <span className={styles.courseYearGroup}>
-            <CourseDocumentLink
-              url={course.documentUrl}
-              courseName={course.name}
-              href={
-                hideResources
-                  ? getCourseLearningPathHref(course.name)
-                  : undefined
-              }
-            />
+            <StartCourseLearningPathLink courseName={course.name} />
             <YearTag year={course.year} />
           </span>
           {canExpand ? <ChevronIcon open={courseOpen} /> : null}
@@ -533,10 +476,7 @@ function DegreeCard({
 
       {coursesOpen ? (
         <div className={styles.coursesPanel}>
-          <SchoolsOfferingSection
-            schools={schools}
-            defaultOpen={queryActive}
-          />
+          <SchoolsOfferingSection schools={schools} />
           {degree.courses.map((course) => (
             <CourseRow
               key={`${degree.id}-${course.number}-${course.name}`}

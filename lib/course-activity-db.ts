@@ -51,6 +51,10 @@ export interface Comment {
   score?: number
   /** Current user's vote: 1, -1, or undefined if none. */
   user_vote?: number | null
+  /** Parent comment body when this is a reply (activity feed). */
+  parent_body?: string | null
+  parent_author_name?: string | null
+  parent_author_id?: string | null
 }
 
 export interface Annotation {
@@ -65,6 +69,10 @@ export interface Annotation {
   author?: { display_name: string | null; avatar_url: string | null }
   score?: number
   user_vote?: number | null
+  /** Parent annotation body when this is a reply (activity feed). */
+  parent_body?: string | null
+  parent_author_name?: string | null
+  parent_author_id?: string | null
 }
 
 export interface Bookmark {
@@ -550,23 +558,75 @@ export async function getMyComments(): Promise<
 
   if (err1 || !commentRows?.length) return []
 
+  const parentIds = [
+    ...new Set(
+      commentRows
+        .map((c) => c.parent_comment_id)
+        .filter((id): id is string => Boolean(id))
+    )
+  ]
   const courseIds = [...new Set(commentRows.map((c) => c.course_id))]
-  const { data: courses, error: err2 } = await supabase
-    .from('courses')
-    .select('notion_page_id, name, url, created_at')
-    .in('notion_page_id', courseIds)
+  const [coursesRes, parentsRes] = await Promise.all([
+    supabase
+      .from('courses')
+      .select('notion_page_id, name, url, created_at')
+      .in('notion_page_id', courseIds),
+    parentIds.length
+      ? supabase
+          .from('comments')
+          .select('id, user_id, body')
+          .in('id', parentIds)
+      : Promise.resolve({
+          data: [] as { id: string; user_id: string; body: string }[]
+        })
+  ])
 
-  if (err2 || !courses?.length) return []
+  if (coursesRes.error || !coursesRes.data?.length) return []
 
-  const courseById = (courses as Course[]).reduce((acc, c) => {
+  const courseById = (coursesRes.data as Course[]).reduce((acc, c) => {
     acc[c.notion_page_id] = c
     return acc
   }, {} as Record<string, Course>)
+  const parentById = (parentsRes.data || []).reduce(
+    (
+      acc: Record<string, { body: string; user_id: string }>,
+      row: { id: string; user_id: string; body: string }
+    ) => {
+      acc[row.id] = { body: row.body, user_id: row.user_id }
+      return acc
+    },
+    {}
+  )
+  const parentAuthorIds = [
+    ...new Set(Object.values(parentById).map((p) => p.user_id))
+  ]
+  const parentNameById: Record<string, string | null> = {}
+  if (parentAuthorIds.length > 0) {
+    const { data: profiles } = await supabase
+      .from('profiles')
+      .select('user_id, display_name')
+      .in('user_id', parentAuthorIds)
+    for (const p of profiles || []) {
+      parentNameById[p.user_id] = p.display_name
+    }
+  }
   return commentRows
-    .map((c) => ({
-      comment: c as Comment,
-      course: courseById[c.course_id]
-    }))
+    .map((c) => {
+      const parent = c.parent_comment_id
+        ? parentById[c.parent_comment_id]
+        : null
+      return {
+        comment: {
+          ...(c as Comment),
+          parent_body: parent?.body ?? null,
+          parent_author_name: parent
+            ? parentNameById[parent.user_id]?.trim() || 'Someone'
+            : null,
+          parent_author_id: parent?.user_id ?? null
+        },
+        course: courseById[c.course_id]
+      }
+    })
     .filter((x) => x.course) as { comment: Comment; course: Course }[]
 }
 
@@ -592,23 +652,75 @@ export async function getMyAnnotations(): Promise<
 
   if (err1 || !annotationRows?.length) return []
 
+  const parentIds = [
+    ...new Set(
+      annotationRows
+        .map((a) => a.parent_annotation_id)
+        .filter((id): id is string => Boolean(id))
+    )
+  ]
   const courseIds = [...new Set(annotationRows.map((a) => a.course_id))]
-  const { data: courses, error: err2 } = await supabase
-    .from('courses')
-    .select('notion_page_id, name, url, created_at')
-    .in('notion_page_id', courseIds)
+  const [coursesRes, parentsRes] = await Promise.all([
+    supabase
+      .from('courses')
+      .select('notion_page_id, name, url, created_at')
+      .in('notion_page_id', courseIds),
+    parentIds.length
+      ? supabase
+          .from('annotations')
+          .select('id, user_id, body')
+          .in('id', parentIds)
+      : Promise.resolve({
+          data: [] as { id: string; user_id: string; body: string }[]
+        })
+  ])
 
-  if (err2 || !courses?.length) return []
+  if (coursesRes.error || !coursesRes.data?.length) return []
 
-  const courseById = (courses as Course[]).reduce((acc, c) => {
+  const courseById = (coursesRes.data as Course[]).reduce((acc, c) => {
     acc[c.notion_page_id] = c
     return acc
   }, {} as Record<string, Course>)
+  const parentById = (parentsRes.data || []).reduce(
+    (
+      acc: Record<string, { body: string; user_id: string }>,
+      row: { id: string; user_id: string; body: string }
+    ) => {
+      acc[row.id] = { body: row.body, user_id: row.user_id }
+      return acc
+    },
+    {}
+  )
+  const parentAuthorIds = [
+    ...new Set(Object.values(parentById).map((p) => p.user_id))
+  ]
+  const parentNameById: Record<string, string | null> = {}
+  if (parentAuthorIds.length > 0) {
+    const { data: profiles } = await supabase
+      .from('profiles')
+      .select('user_id, display_name')
+      .in('user_id', parentAuthorIds)
+    for (const p of profiles || []) {
+      parentNameById[p.user_id] = p.display_name
+    }
+  }
 
   return annotationRows
-    .map((a) => ({
-      annotation: a as Annotation,
-      course: courseById[a.course_id]
-    }))
+    .map((a) => {
+      const parent = a.parent_annotation_id
+        ? parentById[a.parent_annotation_id]
+        : null
+      return {
+        annotation: {
+          ...(a as Annotation),
+          parent_body: parent?.body ?? null,
+          parent_author_name: parent
+            ? parentNameById[parent.user_id]?.trim() || 'Someone'
+            : null,
+          parent_author_id: parent?.user_id ?? null
+        },
+        course: courseById[a.course_id]
+      }
+    })
     .filter((x) => x.course) as { annotation: Annotation; course: Course }[]
 }

@@ -1,10 +1,16 @@
-.layout {
+.layout,
+.diagramWrap {
   grid-column: 2;
   grid-row: 2;
   display: block;
   width: 100%;
   max-width: none;
   margin: 0;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  overflow: visible;
 }
 
 .pathBox {
@@ -232,6 +238,7 @@
 
 @media (max-width: 768px) {
   .layout,
+  .diagramWrap,
   .startPathWrap {
     grid-column: 1;
     grid-row: auto;

@@ -18,26 +18,10 @@ type FeedActor = {
 
 export type ProfileFeedItem =
   | (FeedActor & {
-      kind: 'wall_resource'
-      course_id: string
-      course_name: string
-      course_url: string | null
-      resource_id: string
-      resource_title: string
-    })
-  | (FeedActor & {
       kind: 'followed_course_bookmark'
       course_id: string
       course_name: string
       course_url: string | null
-    })
-  | (FeedActor & {
-      kind: 'followed_resource_bookmark'
-      course_id: string
-      course_name: string
-      course_url: string | null
-      resource_id: string
-      resource_title: string
     })
   | (FeedActor & {
       kind: 'followed_link_bookmark'
@@ -51,6 +35,9 @@ export type ProfileFeedItem =
       target_href: string
       body: string
       is_reply: boolean
+      parent_body: string | null
+      parent_author_name: string | null
+      parent_author_id: string | null
     })
   | (FeedActor & {
       kind: 'followed_annotation'
@@ -59,6 +46,10 @@ export type ProfileFeedItem =
       target_href: string
       section_id: string
       body: string
+      is_reply: boolean
+      parent_body: string | null
+      parent_author_name: string | null
+      parent_author_id: string | null
     })
   | (FeedActor & {
       kind: 'followed_learning_path'
@@ -176,17 +167,8 @@ export async function getProfileFeed(
   const supabase = getSupabaseClient()
   if (!supabase || !viewerUserId) return []
 
-  const [
-    subsRes,
-    followRowsRes,
-    myCommentIdsRes,
-    myAnnotationIdsRes,
-    myPathsRes
-  ] = await Promise.all([
-    supabase
-      .from('community_wall_subscriptions')
-      .select('course_id, created_at')
-      .eq('subscriber_id', viewerUserId),
+  const [followRowsRes, myCommentIdsRes, myAnnotationIdsRes, myPathsRes] =
+    await Promise.all([
     supabase
       .from('follows')
       .select('following_id')
@@ -199,12 +181,6 @@ export async function getProfileFeed(
       .eq('owner_id', viewerUserId)
       .eq('is_catalog', false)
   ])
-
-  const subSinceByCourse = new Map<string, string>()
-  for (const row of subsRes.data || []) {
-    const r = row as { course_id: string; created_at: string }
-    subSinceByCourse.set(r.course_id, r.created_at)
-  }
 
   const followingIds = [
     ...new Set(
@@ -229,43 +205,10 @@ export async function getProfileFeed(
   const needUserIds = new Set<string>()
   const needCourseIds = new Set<string>()
   const needPathIds = new Set<string>()
-
-  if (subSinceByCourse.size > 0) {
-    const courseIds = [...subSinceByCourse.keys()]
-    const { data: resources } = await supabase
-      .from('course_resources')
-      .select('id, course_id, user_id, title, created_at')
-      .in('course_id', courseIds)
-      .order('created_at', { ascending: false })
-      .limit(200)
-
-    for (const raw of resources || []) {
-      const r = raw as {
-        id: string
-        course_id: string
-        user_id: string
-        title: string
-        created_at: string
-      }
-      const since = subSinceByCourse.get(r.course_id)
-      if (!since) continue
-      if (new Date(r.created_at) < new Date(since)) continue
-      needUserIds.add(r.user_id)
-      needCourseIds.add(r.course_id)
-      items.push({
-        kind: 'wall_resource',
-        id: `wr-${r.id}`,
-        created_at: r.created_at,
-        actor_id: r.user_id,
-        actor_display_name: null,
-        course_id: r.course_id,
-        course_name: '',
-        course_url: null,
-        resource_id: r.id,
-        resource_title: r.title
-      })
-    }
-  }
+  const needParentCommentIds = new Set<string>()
+  const needParentAnnotationIds = new Set<string>()
+  const commentParentByItemId = new Map<string, string>()
+  const annotationParentByItemId = new Map<string, string>()
 
   const empty = { data: [] as unknown[] }
   const followedQueries =
@@ -274,12 +217,6 @@ export async function getProfileFeed(
           supabase
             .from('bookmarks')
             .select('id, user_id, course_id, created_at')
-            .in('user_id', followingIds)
-            .order('created_at', { ascending: false })
-            .limit(120),
-          supabase
-            .from('course_resource_bookmarks')
-            .select('id, user_id, resource_id, created_at')
             .in('user_id', followingIds)
             .order('created_at', { ascending: false })
             .limit(120),
@@ -325,7 +262,7 @@ export async function getProfileFeed(
             .order('created_at', { ascending: false })
             .limit(120)
         ])
-      : Promise.resolve([empty, empty, empty, empty, empty, empty, empty])
+      : Promise.resolve([empty, empty, empty, empty, empty, empty])
 
   const incomingSuggestionsQuery =
     myPathIds.length > 0
@@ -355,7 +292,6 @@ export async function getProfileFeed(
 
   const [
     courseBmsRes,
-    resBmsRes,
     userLinksRes,
     commentsRes,
     annotationsRes,
@@ -381,52 +317,6 @@ export async function getProfileFeed(
       course_id: b.course_id,
       course_name: '',
       course_url: null
-    })
-  }
-
-  const resourceIds = [
-    ...new Set(
-      (resBmsRes.data || []).map(
-        (x: { resource_id: string }) => x.resource_id
-      ) as string[]
-    )
-  ]
-  const resourceRows: Record<
-    string,
-    { id: string; course_id: string; title: string }
-  > = {}
-  if (resourceIds.length > 0) {
-    const { data: resList } = await supabase
-      .from('course_resources')
-      .select('id, course_id, title')
-      .in('id', resourceIds)
-    for (const row of resList || []) {
-      const rr = row as { id: string; course_id: string; title: string }
-      resourceRows[rr.id] = rr
-      needCourseIds.add(rr.course_id)
-    }
-  }
-  for (const raw of resBmsRes.data || []) {
-    const b = raw as {
-      id: string
-      user_id: string
-      resource_id: string
-      created_at: string
-    }
-    const res = resourceRows[b.resource_id]
-    if (!res) continue
-    needUserIds.add(b.user_id)
-    items.push({
-      kind: 'followed_resource_bookmark',
-      id: `frb-${b.id}`,
-      created_at: b.created_at,
-      actor_id: b.user_id,
-      actor_display_name: null,
-      course_id: res.course_id,
-      course_name: '',
-      course_url: null,
-      resource_id: res.id,
-      resource_title: res.title
     })
   }
 
@@ -467,9 +357,14 @@ export async function getProfileFeed(
     if (c.parent_comment_id && myCommentIds.has(c.parent_comment_id)) continue
     needUserIds.add(c.user_id)
     needCourseIds.add(c.course_id)
+    const itemId = `fcmt-${c.id}`
+    if (c.parent_comment_id) {
+      needParentCommentIds.add(c.parent_comment_id)
+      commentParentByItemId.set(itemId, c.parent_comment_id)
+    }
     items.push({
       kind: 'followed_comment',
-      id: `fcmt-${c.id}`,
+      id: itemId,
       created_at: c.created_at,
       actor_id: c.user_id,
       actor_display_name: null,
@@ -477,7 +372,10 @@ export async function getProfileFeed(
       target_title: '',
       target_href: '',
       body: c.body,
-      is_reply: Boolean(c.parent_comment_id)
+      is_reply: Boolean(c.parent_comment_id),
+      parent_body: null,
+      parent_author_name: null,
+      parent_author_id: null
     })
   }
 
@@ -496,9 +394,14 @@ export async function getProfileFeed(
     }
     needUserIds.add(a.user_id)
     needCourseIds.add(a.course_id)
+    const itemId = `fann-${a.id}`
+    if (a.parent_annotation_id) {
+      needParentAnnotationIds.add(a.parent_annotation_id)
+      annotationParentByItemId.set(itemId, a.parent_annotation_id)
+    }
     items.push({
       kind: 'followed_annotation',
-      id: `fann-${a.id}`,
+      id: itemId,
       created_at: a.created_at,
       actor_id: a.user_id,
       actor_display_name: null,
@@ -506,7 +409,11 @@ export async function getProfileFeed(
       target_title: '',
       target_href: '',
       section_id: a.section_id,
-      body: a.body
+      body: a.body,
+      is_reply: Boolean(a.parent_annotation_id),
+      parent_body: null,
+      parent_author_name: null,
+      parent_author_id: null
     })
   }
 
@@ -633,8 +540,6 @@ export async function getProfileFeed(
 
   if (items.length === 0) return []
 
-  const nameByUser = await displayNamesByUserId([...needUserIds])
-
   const courseIdList = [...needCourseIds]
   const courseById: Record<string, Course> = {}
   if (courseIdList.length > 0) {
@@ -646,6 +551,43 @@ export async function getProfileFeed(
       courseById[c.notion_page_id] = c
     }
   }
+
+  const parentCommentById: Record<
+    string,
+    { body: string; user_id: string }
+  > = {}
+  const parentAnnotationById: Record<
+    string,
+    { body: string; user_id: string }
+  > = {}
+  const [parentCommentsRes, parentAnnotationsRes] = await Promise.all([
+    needParentCommentIds.size
+      ? supabase
+          .from('comments')
+          .select('id, user_id, body')
+          .in('id', [...needParentCommentIds])
+      : Promise.resolve({
+          data: [] as { id: string; user_id: string; body: string }[]
+        }),
+    needParentAnnotationIds.size
+      ? supabase
+          .from('annotations')
+          .select('id, user_id, body')
+          .in('id', [...needParentAnnotationIds])
+      : Promise.resolve({
+          data: [] as { id: string; user_id: string; body: string }[]
+        })
+  ])
+  for (const row of parentCommentsRes.data || []) {
+    parentCommentById[row.id] = { body: row.body, user_id: row.user_id }
+    needUserIds.add(row.user_id)
+  }
+  for (const row of parentAnnotationsRes.data || []) {
+    parentAnnotationById[row.id] = { body: row.body, user_id: row.user_id }
+    needUserIds.add(row.user_id)
+  }
+
+  const nameByUser = await displayNamesByUserId([...needUserIds])
 
   const pathSlugsToCheck = [
     ...new Set(
@@ -669,24 +611,44 @@ export async function getProfileFeed(
   const hydrated: ProfileFeedItem[] = []
   for (const it of items) {
     it.actor_display_name = nameByUser[it.actor_id] ?? null
-    if (
-      it.kind === 'wall_resource' ||
-      it.kind === 'followed_course_bookmark' ||
-      it.kind === 'followed_resource_bookmark'
-    ) {
+    if (it.kind === 'followed_course_bookmark') {
       const c = courseById[it.course_id]
       it.course_name = titleForCourse(c, it.course_id)
       it.course_url = c?.url ?? hrefForCourse(c, it.course_id)
       hydrated.push(it)
       continue
     }
-    if (it.kind === 'followed_comment' || it.kind === 'followed_annotation') {
+    if (it.kind === 'followed_comment') {
       if (!isPublicPath(pathSlugFromCourseId(it.course_id), publicPathSlugs)) {
         continue
       }
       const c = courseById[it.course_id]
       it.target_title = titleForCourse(c, it.course_id)
       it.target_href = hrefForCourse(c, it.course_id)
+      const parentId = commentParentByItemId.get(it.id)
+      const parent = parentId ? parentCommentById[parentId] : null
+      it.parent_body = parent?.body?.trim() || null
+      it.parent_author_name = parent
+        ? nameByUser[parent.user_id]?.trim() || 'Someone'
+        : null
+      it.parent_author_id = parent?.user_id ?? null
+      hydrated.push(it)
+      continue
+    }
+    if (it.kind === 'followed_annotation') {
+      if (!isPublicPath(pathSlugFromCourseId(it.course_id), publicPathSlugs)) {
+        continue
+      }
+      const c = courseById[it.course_id]
+      it.target_title = titleForCourse(c, it.course_id)
+      it.target_href = hrefForCourse(c, it.course_id)
+      const parentId = annotationParentByItemId.get(it.id)
+      const parent = parentId ? parentAnnotationById[parentId] : null
+      it.parent_body = parent?.body?.trim() || null
+      it.parent_author_name = parent
+        ? nameByUser[parent.user_id]?.trim() || 'Someone'
+        : null
+      it.parent_author_id = parent?.user_id ?? null
       hydrated.push(it)
       continue
     }

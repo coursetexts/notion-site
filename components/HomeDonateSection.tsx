@@ -15,7 +15,7 @@ export function HomeDonateSection() {
             software.
             <br />
             <br />
-            Proceeds go fully towards the cost of open-sourcing courses.
+            Proceeds go entirely toward the cost of open-sourcing courses.
           </p>
 
           <a

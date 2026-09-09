@@ -278,29 +278,22 @@
 }
 
 .degreeSubsection {
-  padding: 14px 20px 0 28px;
+  padding: 14px 20px 12px 28px;
   background: #fbfbfa;
   border-bottom: 1px solid #f1edea;
 }
 
-.degreeSubsection .nestedSectionHeader {
-  padding: 0 0 12px;
-}
-
-.schoolsList {
+.schoolsOfferingBlock {
   margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.schoolItem {
   font-family: 'Hanken Grotesk', sans-serif;
   font-weight: 400;
   font-size: 13px;
   line-height: 20px;
+  color: #25272b;
+}
+
+.schoolsOfferingLabel {
+  color: var(--midGrey, #37352f);
 }
 
 .schoolLink {
@@ -379,25 +372,59 @@
   gap: 4px;
 }
 
-.courseDocumentLink {
+.startLearningPathBtn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  color: var(--midGrey, #b9b4a7);
-  border-radius: 2px;
+  max-width: 0;
+  padding: 4px 0;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: #ffffff;
+  color: #25272b;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 16px;
+  white-space: nowrap;
   text-decoration: none;
   cursor: pointer;
-  transition: color 180ms ease;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  box-sizing: border-box;
+  transition:
+    max-width 200ms ease,
+    padding 200ms ease,
+    opacity 180ms ease,
+    visibility 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
 }
 
-.courseDocumentLink:hover,
-.courseDocumentLink:focus-visible {
-  color: #25272b;
+.courseBlock:hover .startLearningPathBtn,
+.courseBlock:focus-within .startLearningPathBtn {
+  max-width: 220px;
+  padding-inline: 10px;
+  border-color: #e6e6e6;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
-.courseDocumentIconSvg {
-  display: block;
+.startLearningPathBtn:hover,
+.startLearningPathBtn:focus-visible {
+  background: #faf9f7;
+  border-color: #d5d5d5;
+  color: #0089c4;
+}
+
+.startLearningPathBtn:focus-visible {
+  outline: 2px solid rgba(0, 137, 196, 0.35);
+  outline-offset: 2px;
 }
 
 .yearTag {

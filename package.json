@@ -56,7 +56,6 @@
     "expiry-map": "^2.0.0",
     "fathom-client": "^3.4.1",
     "framer-motion": "^12.35.2",
-    "googleapis": "^148.0.0",
     "got": "^12.0.3",
     "html2canvas": "^1.4.1",
     "iron-session": "^8.0.4",

@@ -65,7 +65,7 @@ export default function CommunityPage() {
                   University professors are remarkably good at turning a field
                   of knowledge into a course - deciding what matters, what
                   comes first, and what someone needs to understand next. We
-                  belive that this kind of structure
+                  believe that this kind of structure
                   should not be limited to universities. Anyone who has worked
                   their way through a subject, question, or goal should be able
                   to publish the path they took. We call these learning paths.

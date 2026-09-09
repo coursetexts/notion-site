@@ -19,7 +19,9 @@ function isRootNotionPath(canonicalId: string): boolean {
 }
 
 /** Public path for a Notion page: `/course/{id}` except root overrides. */
-export function notionPageHref(canonicalId: string | null | undefined): string {
+export function notionPageHref(
+  canonicalId: string | null | undefined
+): string {
   const path = (canonicalId ?? '').replace(/^\//, '').trim()
   if (!path) return '/'
   if (isRootNotionPath(path)) return `/${path}`

@@ -25,16 +25,19 @@
 }
 
 .tagFollowing {
-  color: #166534;
-  background: #dcfce7;
+  color: #6b7c6e;
+  background: #f1f4f1;
+  font-weight: 500;
 }
 
 .tagFollowsYou {
-  color: #1e40af;
-  background: #dbeafe;
+  color: #6b7380;
+  background: #f1f3f6;
+  font-weight: 500;
 }
 
 .tagEachOther {
-  color: #0f766e;
-  background: #ccfbf1;
+  color: #7a8583;
+  background: #f2f4f4;
+  font-weight: 500;
 }

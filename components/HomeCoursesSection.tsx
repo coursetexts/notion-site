@@ -247,8 +247,8 @@ export function HomeCoursesSection({
             >
               publishing pipeline
             </a>
-            . We want to open source courses across every major unverisity.
-            It&apos;s opensource, compliant and really fast!
+            . We want to open source courses across every major university.
+            It&apos;s open source, compliant, and really fast!
           </p>
           <div className={styles.viewAllBar}>
             <Link href='/all-courses?view=courses' legacyBehavior>

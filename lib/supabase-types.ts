@@ -11,6 +11,11 @@ export interface Profile {
   email?: string | null
   /** Optional; display-only until karma rules land (see lib/karma.ts). */
   karma_score?: number
+  /** Optional; public bio (migration 049). */
+  bio?: string | null
+  /** Optional; public learning summary (migration 049). */
+  learning_now?: string | null
+  learning_learned?: string | null
   created_at: string
   updated_at: string
 }

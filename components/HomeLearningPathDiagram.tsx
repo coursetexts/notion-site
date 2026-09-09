@@ -512,7 +512,7 @@ function ResourceStack({
   )
 }
 
-export function HomeLearningPathDiagram() {
+export function HomeLearningPathDiagram({ holdMs = HOLD_MS }: { holdMs?: number } = {}) {
   const reduceMotion = usePrefersReducedMotion()
   const rootRef = React.useRef<HTMLElement>(null)
   const [inView, setInView] = React.useState(false)
@@ -673,17 +673,17 @@ export function HomeLearningPathDiagram() {
 
     const fadeId = window.setTimeout(() => {
       setFading(true)
-    }, HOLD_MS)
+    }, holdMs)
     const restartId = window.setTimeout(() => {
       setHolding(false)
       setCycle((current) => current + 1)
-    }, HOLD_MS + FADE_MS)
+    }, holdMs + FADE_MS)
 
     return () => {
       window.clearTimeout(fadeId)
       window.clearTimeout(restartId)
     }
-  }, [holding, reduceMotion, inView])
+  }, [holding, holdMs, reduceMotion, inView])
 
   const showConcepts = reduceMotion || conceptStep >= 1
   const showResourceSpace =

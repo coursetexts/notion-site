@@ -1,4 +1,5 @@
 import type { Block, ExtendedRecordMap } from 'notion-types'
+import { parsePageId, uuidToId } from 'notion-utils'
 
 /**
  * Notion's loadPageChunk response often nests the real block as
@@ -34,6 +35,49 @@ export function getRecordBlockValue(
     return node as Block
   }
   return undefined
+}
+
+/** Match a Notion page id to the key used in recordMap.block (often dashed UUID). */
+export function resolvePageBlockId(
+  recordMap: ExtendedRecordMap,
+  rawPageId: string
+): string | null {
+  if (!recordMap?.block) return null
+
+  if (getRecordBlockValue(recordMap, rawPageId)?.type === 'page') {
+    return rawPageId
+  }
+
+  const targetUuid = parsePageId(rawPageId, { uuid: true })
+  const targetCompact =
+    parsePageId(rawPageId, { uuid: false }) ?? uuidToId(rawPageId)
+
+  for (const blockId of Object.keys(recordMap.block)) {
+    const block = getRecordBlockValue(recordMap, blockId)
+    if (block?.type !== 'page') continue
+
+    const blockUuid = parsePageId(blockId, { uuid: true })
+    const blockCompact = parsePageId(blockId, { uuid: false }) ?? uuidToId(blockId)
+    const blockIdFromValue = block.id
+      ? parsePageId(block.id, { uuid: true })
+      : null
+    const blockCompactFromValue = block.id
+      ? parsePageId(block.id, { uuid: false }) ?? uuidToId(block.id)
+      : null
+
+    if (
+      blockId === rawPageId ||
+      blockCompact === targetCompact ||
+      (targetUuid &&
+        (blockUuid === targetUuid ||
+          blockIdFromValue === targetUuid ||
+          blockCompactFromValue === targetCompact))
+    ) {
+      return blockId
+    }
+  }
+
+  return null
 }
 
 type BlockEntry = { value?: unknown; role?: string; [key: string]: unknown }

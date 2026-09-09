@@ -4,8 +4,7 @@ Degree syllabi with a topic tree and sequenced resources. They live on the same 
 
 **Official Notion courses stay on `/course/{pageId}`.** They are not `kind = course` rows. A later pass will migrate those professor courses onto `learning_paths` too so every Coursetexts course is a learning path. That work is not started — see [architecture — Future](./architecture.md#future-official-notion-courses).
 
-**Canonical route:** `/learning-path/{slug}`  
-**Legacy:** `/course-learning-path/{slug}` and `/curated-course/{slug}` redirect here. `/course-videos?slug=` client-redirects to the same URL.
+**Canonical route:** `/learning-path/{slug}`
 
 Migrated rows: `kind = 'course'`, `visibility = 'public'`, `is_catalog = true`, `owner_id = null`. `curated_*` tables are **not dropped**; they remain a backup. The app reads/writes `learning_paths.data` after cutover.
 

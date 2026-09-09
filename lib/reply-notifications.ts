@@ -13,6 +13,10 @@ export interface ReplyNotification {
   author_id: string
   author_name: string
   body: string
+  /** Body of the comment/annotation being replied to (viewer’s). */
+  parent_body: string | null
+  parent_author_name: string | null
+  parent_author_id: string | null
   section_id?: string | null
   created_at: string
   is_unread: boolean
@@ -116,7 +120,7 @@ export async function getReplyNotifications(
     commentIds.length
       ? supabase
           .from('comments')
-          .select('id, user_id, course_id, body, created_at')
+          .select('id, user_id, course_id, parent_comment_id, body, created_at')
           .in('parent_comment_id', commentIds)
           .neq('user_id', userId)
           .order('created_at', { ascending: false })
@@ -124,7 +128,9 @@ export async function getReplyNotifications(
     annotationIds.length
       ? supabase
           .from('annotations')
-          .select('id, user_id, course_id, section_id, body, created_at')
+          .select(
+            'id, user_id, course_id, section_id, parent_annotation_id, body, created_at'
+          )
           .in('parent_annotation_id', annotationIds)
           .neq('user_id', userId)
           .order('created_at', { ascending: false })
@@ -133,6 +139,20 @@ export async function getReplyNotifications(
 
   const commentReplies = commentRepliesRes.data || []
   const annotationReplies = annotationRepliesRes.data || []
+  const parentCommentIds = [
+    ...new Set(
+      commentReplies
+        .map((r: any) => r.parent_comment_id as string | null)
+        .filter(Boolean)
+    )
+  ] as string[]
+  const parentAnnotationIds = [
+    ...new Set(
+      annotationReplies
+        .map((r: any) => r.parent_annotation_id as string | null)
+        .filter(Boolean)
+    )
+  ] as string[]
   const allCourseIds = [
     ...new Set(
       [...commentReplies, ...annotationReplies].map((r: any) => r.course_id)
@@ -144,20 +164,51 @@ export async function getReplyNotifications(
     )
   ]
 
-  const [coursesRes, profilesRes] = await Promise.all([
-    allCourseIds.length
-      ? supabase
-          .from('courses')
-          .select('notion_page_id, name, url')
-          .in('notion_page_id', allCourseIds)
-      : Promise.resolve({ data: [] as any[] } as any),
-    allAuthorIds.length
-      ? supabase
+  const [coursesRes, profilesRes, parentCommentsRes, parentAnnotationsRes] =
+    await Promise.all([
+      allCourseIds.length
+        ? supabase
+            .from('courses')
+            .select('notion_page_id, name, url')
+            .in('notion_page_id', allCourseIds)
+        : Promise.resolve({ data: [] as any[] } as any),
+      allAuthorIds.length
+        ? supabase
+            .from('profiles')
+            .select('user_id, display_name')
+            .in('user_id', allAuthorIds)
+        : Promise.resolve({ data: [] as any[] } as any),
+      parentCommentIds.length
+        ? supabase
+            .from('comments')
+            .select('id, user_id, body')
+            .in('id', parentCommentIds)
+        : Promise.resolve({ data: [] as any[] } as any),
+      parentAnnotationIds.length
+        ? supabase
+            .from('annotations')
+            .select('id, user_id, body')
+            .in('id', parentAnnotationIds)
+        : Promise.resolve({ data: [] as any[] } as any)
+    ])
+
+  const parentAuthorIds = [
+    ...new Set(
+      [
+        ...(parentCommentsRes.data || []).map((r: any) => r.user_id as string),
+        ...(parentAnnotationsRes.data || []).map(
+          (r: any) => r.user_id as string
+        )
+      ].filter(Boolean)
+    )
+  ]
+  const parentProfilesRes =
+    parentAuthorIds.length > 0
+      ? await supabase
           .from('profiles')
           .select('user_id, display_name')
-          .in('user_id', allAuthorIds)
-      : Promise.resolve({ data: [] as any[] } as any)
-  ])
+          .in('user_id', parentAuthorIds)
+      : { data: [] as any[] }
 
   const courseById = (coursesRes.data || []).reduce(
     (acc: Record<string, any>, c: any) => {
@@ -173,6 +224,23 @@ export async function getReplyNotifications(
     },
     {}
   )
+  for (const p of parentProfilesRes.data || []) {
+    if (!authorById[p.user_id]) authorById[p.user_id] = p
+  }
+  const parentCommentById = (parentCommentsRes.data || []).reduce(
+    (acc: Record<string, { body: string; user_id: string }>, row: any) => {
+      acc[row.id] = { body: row.body, user_id: row.user_id }
+      return acc
+    },
+    {}
+  )
+  const parentAnnotationById = (parentAnnotationsRes.data || []).reduce(
+    (acc: Record<string, { body: string; user_id: string }>, row: any) => {
+      acc[row.id] = { body: row.body, user_id: row.user_id }
+      return acc
+    },
+    {}
+  )
 
   const toIsUnread = (createdAt: string) =>
     !lastReadAt ||
@@ -180,6 +248,9 @@ export async function getReplyNotifications(
 
   const commentNotifs: ReplyNotification[] = commentReplies.map((r: any) => {
     const course = courseById[r.course_id]
+    const parent = r.parent_comment_id
+      ? parentCommentById[r.parent_comment_id]
+      : null
     return {
       id: `comment-${r.id}`,
       type: 'comment',
@@ -189,6 +260,11 @@ export async function getReplyNotifications(
       author_id: r.user_id,
       author_name: authorById[r.user_id]?.display_name || 'Someone',
       body: r.body,
+      parent_body: parent?.body ?? null,
+      parent_author_name: parent
+        ? authorById[parent.user_id]?.display_name || 'Someone'
+        : null,
+      parent_author_id: parent?.user_id ?? null,
       created_at: r.created_at,
       is_unread: toIsUnread(r.created_at)
     }
@@ -197,6 +273,9 @@ export async function getReplyNotifications(
   const annotationNotifs: ReplyNotification[] = annotationReplies.map(
     (r: any) => {
       const course = courseById[r.course_id]
+      const parent = r.parent_annotation_id
+        ? parentAnnotationById[r.parent_annotation_id]
+        : null
       return {
         id: `annotation-${r.id}`,
         type: 'annotation',
@@ -206,6 +285,11 @@ export async function getReplyNotifications(
         author_id: r.user_id,
         author_name: authorById[r.user_id]?.display_name || 'Someone',
         body: r.body,
+        parent_body: parent?.body ?? null,
+        parent_author_name: parent
+          ? authorById[parent.user_id]?.display_name || 'Someone'
+          : null,
+        parent_author_id: parent?.user_id ?? null,
         section_id: r.section_id,
         created_at: r.created_at,
         is_unread: toIsUnread(r.created_at)

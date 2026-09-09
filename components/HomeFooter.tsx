@@ -86,7 +86,7 @@ export function HomeFooter({ variant = 'default' }: HomeFooterProps) {
     },
     {
       number: '3.',
-      text: 'Coursetexts has neither sought nor received permission from any university to open-source courses that were taught at that university. It is not affiliated with, sponsored by, or endorsed by any university'
+      text: 'Coursetexts has neither sought nor received permission from any university to open-source courses that were taught at that university. It is not affiliated with, sponsored by, or endorsed by any university.'
     }
   ]
 

@@ -1,6 +1,6 @@
 # Database
 
-Fresh installs: apply SQL in [`supabase/migrations/`](../supabase/migrations/README.md). Prefer `000_complete_schema.sql` (includes `001`–`030`, `034`–`038`, and `040`, with `rating` already 0–100, plus commitment reminder columns). Existing DBs that already ran an older 1–5 `038` should also apply `039`. Apply `040` so collaborative paths cannot rewrite the outline. Apply `041` for Learn-tab commitments and optional reminder cadence (`041` creates `learning_path_commitments` if `030` was never applied). Apply `042` for private-path collaborator invites by email. Apply `043` so private or unknown learning-path URLs do not render an empty Coursetexts shell. Apply `045` so `/knowledge-graph` can persist topic–path occurrences.
+Fresh installs: apply SQL in [`supabase/migrations/`](../supabase/migrations/README.md). Prefer `000_complete_schema.sql` (includes `001`–`030`, `034`–`038`, and `040`, with `rating` already 0–100, plus commitment reminder columns). Existing DBs that already ran an older 1–5 `038` should also apply `039`. Apply `040` so collaborative paths cannot rewrite the outline. Apply `041` for Learn-tab commitments and optional reminder cadence (`041` creates `learning_path_commitments` if `030` was never applied). Apply `042` for private-path collaborator invites by email. Apply `043` so private or unknown learning-path URLs do not render an empty Coursetexts shell. Apply `045` so `/knowledge-graph` can persist topic–path occurrences. If you previously applied `046_official_course_content`, apply `047_revert_official_course_content` to drop those columns. Run `048_drop_community_wall_and_notebooks.sql` to drop legacy Community Wall and standalone notebook tables.
 
 ## Table groups
 
@@ -20,11 +20,6 @@ flowchart TB
     courseNotes["course_notes"]
   end
 
-  subgraph Wall["Legacy Community Wall"]
-    wall["course_resources<br/>+ votes/comments/bookmarks"]
-    wall_sub["community_wall_subscriptions"]
-  end
-
   subgraph Polymorphic
     votes["votes<br/>comment · annotation · resource · course_video"]
   end
@@ -34,11 +29,6 @@ flowchart TB
     links["user_links · link_tags"]
     interests["profile_interests"]
     personal["profile_personal_links"]
-  end
-
-  subgraph Notebooks
-    notebooks["notebooks"]
-    tabs["notebook_tabs"]
   end
 
   subgraph CommunityPage["/community-resources"]
@@ -82,15 +72,12 @@ flowchart TB
   auth_users --> bookmarks
   auth_users --> annotations
   auth_users --> votes
-  auth_users --> notebooks
   auth_users --> courseNotes
   auth_users --> cnotes
   auth_users --> lp
   courses --> comments
   courses --> bookmarks
   courses --> annotations
-  courses --> wall
-  courses --> wall_sub
   courses --> courseNotes
   courses -.-> cvc
   cvc --> nodes
@@ -110,7 +97,6 @@ flowchart TB
   kt --> ke
   kt --> ko
   lp --> ko
-  notebooks --> tabs
 ```
 
 ## Core ERD (identity + activity)
@@ -133,8 +119,6 @@ erDiagram
   courses ||--o{ comments : "course_id"
   courses ||--o{ bookmarks : ""
   courses ||--o{ annotations : ""
-  courses ||--o{ course_resources : ""
-  courses ||--o{ community_wall_subscriptions : ""
   courses ||--o{ course_notes : "course_id"
 
   comments ||--o{ comments : "parent_comment_id"
@@ -150,6 +134,9 @@ erDiagram
     text display_name
     text avatar_url
     text email
+    text bio
+    text learning_now
+    text learning_learned
     int karma_score
     timestamptz replies_last_read_at
   }
@@ -206,22 +193,16 @@ The product UI calls `annotations` **Discussions**. Vote `target_type` and repor
 
 `course_notes` is one TipTap document per `(user_id, course_id, topic_id)`. `topic_id` is the TOC tab key (or `parent::child` for a sub-tab). Empty `topic_id` is a read fallback from the earlier one-doc-per-course shape. The signed-in owner's notes appear on `/profile` → **Notes**, where they can be edited. **Export PDF** on the notes toolbar downloads the current document as a PDF. **Open** sends you to that topic (`?node=` on a learning path, `?topic=` on a Notion course) with the notes side panel open (`?notes=1`). The same notes also live in `learning_path_user_state`.
 
-## Three “resource” concepts
+## Resource tables
 
 | Tables                                              | Used by                                                   | Meaning                                                       |
 | --------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------------------- |
-| `course_resources` (+ votes / comments / bookmarks) | **Legacy** Community Wall; profile feed still reads these | Per-course wall posts. Not shown on the course TOC anymore.   |
 | `resources` + `knowledge_components`                | `/community-resources`                                    | Site-wide library + FTS (`search_community`)                  |
 | `learning_paths.data` (`kind=course`)               | Course learning path syllabus + Resources nav             | Topic tree and sequenced resources                            |
 | `curated_course_*`                                  | Backup / migrate source                                   | Previous syllabus tables (not written by the app after `027`) |
 
 ```mermaid
 erDiagram
-  courses ||--o{ course_resources : "legacy wall"
-  course_resources ||--o{ course_resource_votes : ""
-  course_resources ||--o{ course_resource_comments : ""
-  course_resources ||--o{ course_resource_bookmarks : ""
-
   resources ||--o{ comments : "target_type=resource"
   resources ||--o{ votes : "target_type=resource"
 
@@ -232,7 +213,7 @@ erDiagram
 
 ## Course learning path ERD
 
-Live identity is `learning_paths` (`kind = course`). Route: `/learning-path/{slug}`. Legacy `/course-learning-path/{slug}` and `/curated-course/{slug}` redirect here. `curated_*` tables stay as backup.
+Live identity is `learning_paths` (`kind = course`). Route: `/learning-path/{slug}`. `curated_*` tables stay as backup.
 
 ```mermaid
 erDiagram
@@ -418,12 +399,10 @@ Saving someone else’s community path is a `user_links` row whose URL is `/lear
 
 Index `learning_paths_public_research_goal_idx` (`026`/`027`) speeds Field Atlas lookup of a public research path by `goal` (`visibility = 'public'`).
 
-## Social + notebooks
+## Social
 
 ```mermaid
 erDiagram
-  auth_users ||--o{ notebooks : ""
-  notebooks ||--o{ notebook_tabs : ""
   auth_users ||--o{ follows : ""
   auth_users ||--o{ user_links : ""
   auth_users ||--o{ link_tags : ""
@@ -431,22 +410,6 @@ erDiagram
   link_tags ||--o{ user_link_tags : ""
   auth_users ||--o{ profile_interests : ""
   auth_users ||--o{ profile_personal_links : ""
-
-  notebooks {
-    uuid id PK
-    uuid user_id FK
-    text title
-    text description
-    boolean published
-  }
-
-  notebook_tabs {
-    uuid id PK
-    uuid notebook_id FK
-    text title
-    jsonb content
-    int sort_order
-  }
 ```
 
 ## Knowledge
@@ -552,7 +515,7 @@ erDiagram
 
 ## RLS pattern (summary)
 
-- **Public read** for social content (profiles, comments, catalog/public learning paths, curated courses, published notebooks).
+- **Public read** for social content (profiles, comments, catalog/public learning paths, curated courses).
 - **Owner write** (`auth.uid() = user_id` / `owner_id`).
 - **Courses** (Notion / synthetic refs): anyone can insert/update (no PII; created on first visit).
 - **Curated syllabus tree + node resources**: public read; any authenticated user can mutate (curation left open).

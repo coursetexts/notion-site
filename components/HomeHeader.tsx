@@ -43,19 +43,9 @@ type NavItem =
 const aboutChildren: AboutNavChild[] = [
   {
     label: 'Why Coursetexts',
-    description: 'Mission, problem and manifesto.',
-    href: '/manifesto'
-  },
-  {
-    label: 'Our Story & Team',
-    description: 'Origins, current team, advisors and nonprofit status.',
-    href: '/about'
-  },
-  {
-    label: 'How We Publish',
     description:
-      'Professor partnerships, permissions, licensing and content provenance.',
-    href: '/process'
+      'Mission, manifesto, origins, team, advisors, and nonprofit status.',
+    href: '/manifesto'
   },
   {
     label: 'For Professors',

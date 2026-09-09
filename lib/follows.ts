@@ -9,7 +9,12 @@ import type { Profile } from './supabase-types'
 
 export type PublicProfile = Pick<
   Profile,
-  'user_id' | 'display_name' | 'avatar_url'
+  | 'user_id'
+  | 'display_name'
+  | 'avatar_url'
+  | 'bio'
+  | 'learning_now'
+  | 'learning_learned'
 >
 
 /** Get profile by user_id (for public profile page). */
@@ -20,7 +25,9 @@ export async function getProfileByUserId(
   if (!supabase) return null
   const { data, error } = await supabase
     .from('profiles')
-    .select('user_id, display_name, avatar_url')
+    .select(
+      'user_id, display_name, avatar_url, bio, learning_now, learning_learned'
+    )
     .eq('user_id', userId)
     .maybeSingle()
   if (error || !data) return null

@@ -3,7 +3,6 @@ import { GetServerSideProps } from 'next'
 
 import { NotionPage } from '@/components/NotionPage'
 import { domain, pageUrlAdditions, pageUrlOverrides } from '@/lib/config'
-import { notionPageHref } from '@/lib/map-page-url'
 import { resolveNotionPage } from '@/lib/resolve-notion-page'
 import { PageProps, Params } from '@/lib/types'
 
@@ -20,12 +19,7 @@ export const getServerSideProps: GetServerSideProps<PageProps, Params> = async (
   }
 
   if (!isRootNotionOverride(rawPageId)) {
-    return {
-      redirect: {
-        destination: notionPageHref(rawPageId),
-        permanent: true
-      }
-    }
+    return { notFound: true }
   }
 
   try {

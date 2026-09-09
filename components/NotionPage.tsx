@@ -2045,7 +2045,7 @@ export const NotionPage: React.FC<NotionPageProps> = ({
         // Inner span for text, so the text itself is centered in the flex container
         const innerSpan = document.createElement('span')
         innerSpan.innerHTML =
-          'We are updating the site this week. <a href="mailto:admin@coursetexs.org" style="text-decoration: underline;">Email us</a> with any questions till then!'
+          'We are updating the site this week. <a href="mailto:admin@coursetexts.org" style="text-decoration: underline;">Email us</a> with any questions until then!'
         innerSpan.style.textAlign = 'center'
         messageContainer.appendChild(innerSpan)
 
@@ -2146,7 +2146,8 @@ export const NotionPage: React.FC<NotionPageProps> = ({
   }
 
   const canonicalPageUrl =
-    !config.isDev && getCanonicalPageUrl(site, recordMap)(pageId)
+    !config.isDev &&
+    getCanonicalPageUrl(site, recordMap)(pageId)
 
   const socialImage = null
 

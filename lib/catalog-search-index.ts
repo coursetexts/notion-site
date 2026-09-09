@@ -2,7 +2,6 @@
  * Server-only catalog records for unified /all-courses search.
  * Slim on purpose: the full degree JSON stays out of the client bundle.
  */
-import { EXPLORE_QUESTIONS_SEED } from '@/lib/explore-questions-seed'
 import { graduateDegrees } from '@/lib/graduate-degrees'
 import { ATLAS_QUESTIONS } from '@/lib/human-knowledge-atlas-seed'
 import {
@@ -103,18 +102,5 @@ export function listResearchCatalogItems(): CatalogSearchItem[] {
     })
   )
 
-  const explore: CatalogSearchItem[] = EXPLORE_QUESTIONS_SEED.map(
-    (question) => ({
-      id: `explore:${question.id}`,
-      kind: 'research',
-      href: '/explore-questions',
-      title: question.title,
-      description: question.body,
-      meta: 'Research question',
-      extra: question.body,
-      communityMark: true
-    })
-  )
-
-  return [...atlas, ...explore]
+  return atlas
 }

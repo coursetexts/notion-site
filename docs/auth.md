@@ -67,7 +67,7 @@ Needs a session (or local-only until sign-in):
 | Bookmark a learning-path resource | `user_links` (resource URL or path + `node`/`resource` query) | n/a                                      |
 | Pin a course learning path        | `learning_path_pins`                                          | n/a                                      |
 | Upvote a learning-path resource   | `learning_path_resource_votes` (does not change list order)   | click → sign in                          |
-| Notebooks, follows, profile       | Supabase                                                      | n/a                                      |
+| Follows, profile       | Supabase                                                      | n/a                                      |
 
 ## Dashboard setup (new project)
 

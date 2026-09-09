@@ -6,9 +6,9 @@ Topics you pick up by finishing learning paths, plus a Coursetexts-wide graph of
 
 `/knowledge-graph` is a public map of **knowledge components** harvested from filled course syllabi and public community/research learning paths. Matching titles collapse onto one node. Click a topic to see every learning path it appears on. The default view is recurring syllabus **topics** (and community path nodes). **Include matching concepts** adds leaf labels that also recur. Exact wording matches today; an LLM pass can later cluster similar names (`KNOWLEDGE_GRAPH_LLM_CLUSTER_SCHEMA` in `lib/knowledge-graph-llm.ts` — not wired yet).
 
-The page reads a frozen snapshot (`data/knowledge-graph.json`). It does **not** call `GET /api/knowledge-graph` and does not harvest on load. To rebuild the snapshot on purpose: `npx tsx scripts/snapshot-knowledge-graph.ts`.
+The page reads a frozen snapshot (`data/knowledge-graph.json`). It does **not** call `GET /api/knowledge-graph` (that route returns **410 Gone**) and does not harvest on load. To rebuild the snapshot on purpose: `npx tsx scripts/snapshot-knowledge-graph.ts`.
 
-On `/profile` and `/profile/{userId}`, the primary tabs are **Learning | Knowledge | Notes | Bookmarks | Activity**. **Notes** is owner-only (`/profile`). Search fields on those tabs share one width.
+On `/profile` and `/profile/{userId}`, the primary tabs are **Learning | Knowledge | Notes | Bookmarks | Activity**. **Notes** is owner-only (`/profile`). Search fields on those tabs share one width. Learning streak tags on some cards are **mocked** only — see [gaps.md](./gaps.md).
 
 The Knowledge tab is a **list** of unique topics for that user (`user_knowledge_topics`), A–Z, with search. On your own profile you can add a topic and export the list. The profile graph view is hidden.
 

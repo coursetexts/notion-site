@@ -62,10 +62,10 @@ For a named migration history instead of ad‑hoc snippets, use the Supabase CLI
 | `005_follows.sql` | follows + public profile/bookmark reads |
 | `006_user_links.sql` | link tags, user links, M2M |
 | `007_course_section_progress.sql` | section completion / bookmarks |
-| `008_course_community_wall.sql` | per-course wall resources (legacy UI; tables still used by profile feed) |
-| `009_notebooks.sql` | notebooks + tabs |
+| `008_course_community_wall.sql` | **Removed from app.** Legacy per-course wall; drop with `048` if present. |
+| `009_notebooks.sql` | **Removed from app.** Standalone notebooks; drop with `048` if present. |
 | `010_profile_interests_and_links.sql` | interests, personal links, `list_users_directory` |
-| `011_community_wall_subscriptions.sql` | wall feed subscriptions |
+| `011_community_wall_subscriptions.sql` | **Removed from app.** Wall feed subscriptions; drop with `048` if present. |
 | `012_community_resources_and_search.sql` | `/community-resources` + `search_community` |
 | `013_curated_courses.sql` | `curated_courses` + nodes + videos + notes |
 | `014_curated_course_resources.sql` | `curated_course_resources` |
@@ -97,10 +97,13 @@ For a named migration history instead of ad‑hoc snippets, use the Supabase CLI
 | `043_learning_path_public_access.sql` | RPC `learning_path_public_access(slug)` so a private or unknown path URL does not render an empty Coursetexts shell. Requires `042`. |
 | `044_learning_path_join_requests.sql` | Request-to-join a private path. Stores requester email. Owner sees requests on the path and profile. Accepting creates a `learning_path_invites` row. Replaces `learning_path_public_access` to add `join_requested`. Requires `042`/`043`. |
 | `045_knowledge_topic_path_occurrences.sql` | Topic ↔ learning-path occurrences for `/knowledge-graph`. Public read; writes via service role. Requires `036`. |
+| `047_revert_official_course_content.sql` | **Only if you applied the removed `046`:** drops abandoned course-mirror columns from `courses`. See [gaps.md](../../docs/gaps.md). |
+| `048_drop_community_wall_and_notebooks.sql` | Drops legacy Community Wall (`course_resources*`, `community_wall_subscriptions`) and standalone `notebooks` / `notebook_tabs`. |
+| `049_profile_learning_summary.sql` | Public profile bio + learning summary fields on `profiles`. |
 
 **Fresh project:** paste `000_complete_schema.sql` once (includes `001`–`014`, `017`–`030`, `034`–`038`, `040`, and commitment reminder columns). Skip `015`/`016` unless you already had old table names.
 
-Existing projects that already ran through `037` should apply `038` (do not re-run `000`). If `038` already ran with a 1–5 rating check, apply `039`. Apply `040` so collaborative paths cannot rewrite the outline. Apply `041` for Learn-tab commitments + reminder cadence (`041` creates the table if `030` was never applied). Apply `042` for private collaborator invites. Apply `043` so private/unknown path URLs show an access/missing state. Apply `044` so signed-in visitors can request to join a private path. Apply `045` for `/knowledge-graph` topic–path occurrences.
+Existing projects that already ran through `037` should apply `038` (do not re-run `000`). If `038` already ran with a 1–5 rating check, apply `039`. Apply `040` so collaborative paths cannot rewrite the outline. Apply `041` for Learn-tab commitments + reminder cadence (`041` creates the table if `030` was never applied). Apply `042` for private collaborator invites. Apply `043` so private/unknown path URLs show an access/missing state. Apply `044` so signed-in visitors can request to join a private path. Apply `045` for `/knowledge-graph` topic–path occurrences. If you applied the removed `046_official_course_content`, run `047_revert_official_course_content.sql`. Run `048_drop_community_wall_and_notebooks.sql` to remove legacy wall + notebook tables. Apply `049_profile_learning_summary.sql` for public bio and learning summary on profiles.
 
 ## 4. Optional seeds
 
@@ -140,7 +143,7 @@ Community paths: [docs/learning-paths.md](../../docs/learning-paths.md).
 - [ ] Google sign-in → row appears in `profiles`
 - [ ] Open a Notion course page → row in `courses`; comment / bookmark / discussion (`annotations`) / notes work
 - [ ] `/community-resources` search + resource comments/votes
-- [ ] Profile: notebooks, interests, personal links, bookmarked links, feed
+- [ ] Profile: interests, personal links, bookmarked links, feed
 - [ ] `/users` directory loads
 - [ ] `/learning-path/fluid-mechanics` loads the syllabus UI from `learning_paths`
 - [ ] `/learning-paths` and home community grid show catalog paths (not empty course placeholders)
@@ -169,4 +172,3 @@ Community paths: [docs/learning-paths.md](../../docs/learning-paths.md).
 - `profiles.user_id` is the auth uid everywhere (not `profiles.id`).
 - Privacy for `user_links.is_private` is enforced in the app, not RLS (public SELECT remains, matching production).
 - Votes for curated clips still use `votes.target_type = 'course_video'` (polymorphic label, not a table name).
-- The in-course Community Wall TOC tab was removed; `course_resources*` tables remain for older posts and the profile feed.

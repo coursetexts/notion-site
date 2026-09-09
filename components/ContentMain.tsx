@@ -46,9 +46,9 @@ export interface ContentMainProps {
   onNextSection?: () => void
   /** When false, hide the Next button (e.g. on last section) */
   hasNextSection?: boolean
-  /** Hide the Discussions / Your Notes buttons; bar strip remains (e.g. Community Wall). */
+  /** Hide the Discussions / Your Notes buttons; bar strip remains. */
   hideAnnotationsChatButtons?: boolean
-  /** Hide Mark as explored in the step bar (e.g. Community Wall tab). */
+  /** Hide Mark as explored in the step bar. */
   hideCompleteBookmark?: boolean
   /** Slot before Next (e.g. Commit & Remind Me on General). */
   beforeNext?: React.ReactNode

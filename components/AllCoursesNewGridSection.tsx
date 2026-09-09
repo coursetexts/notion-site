@@ -115,7 +115,7 @@ function DegreesPromoCard() {
     <PromoCard
       className={styles.degreesPromo}
       title='Check out our degrees page'
-      body='to see full course tracklists of the top  50 most popular undergrad & grad degrees'
+      body='See full course track lists for the top 50 undergraduate and graduate degrees.'
       href='/degrees'
       buttonLabel='View degrees'
     />

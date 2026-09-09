@@ -7,24 +7,19 @@ import { useAuthOptional } from '@/contexts/AuthContext'
 import { useFollowerIds } from '@/hooks/useFollowerIds'
 import { useFollowingIds } from '@/hooks/useFollowingIds'
 
+import { ActivityFeedQuoteBody } from '@/components/ActivityFeedQuoteBody'
 import { FollowCountDividerDot } from '@/components/FollowCountDividerDot'
 import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
 import { ProfileBackArrow } from '@/components/ProfileBackArrow'
 import { ProfileSidebarBackHome } from '@/components/ProfileSidebarBackHome'
 import { ProfileInterestsPanel } from '@/components/ProfileInterestsPanel'
+import { ProfilePublicSummary } from '@/components/ProfilePublicSummary'
 import {
   ProfileCommunityLearningPathCard
 } from '@/components/ProfileLearningPathCard'
 import { ProfileKnowledgePanel } from '@/components/ProfileKnowledgePanel'
-import { ProfilePersonalLinksPanel } from '@/components/ProfilePersonalLinksPanel'
 import { BookmarkNotePreview } from '@/components/SiteNotesEditor'
-import {
-  type CommunityResourceBookmarkWithCourse,
-  ensureCommunityResourceBookmark,
-  getCommunityResourceBookmarksByUser,
-  getMyCommunityResourceBookmarks
-} from '@/lib/community-wall-db'
 import { name as siteName } from '@/lib/config'
 import type { Annotation, Comment, Course } from '@/lib/course-activity-db'
 import {
@@ -54,7 +49,6 @@ import {
   notebookNoteWithAttribution,
   storedNotebookNoteHasContent
 } from '@/lib/notebook-editor-default'
-import { parseNotebookIdFromUserLinkUrl } from '@/lib/notebook-bookmark-link'
 import {
   learningPathsFromUserLinks,
   mergeOwnedAndSavedLearningPaths
@@ -85,7 +79,6 @@ import {
   EMPTY_BOOKMARK_TAG_FILTER,
   isBookmarkTagFilterActive,
   linkMatchesBookmarkTagFilter,
-  shouldIncludeCommunityBookmarks,
   toggleBookmarkTagFilter,
   type BookmarkTagFilter
 } from '@/lib/bookmark-tag-filter'
@@ -177,9 +170,6 @@ export default function PublicProfilePage() {
   const [followersCount, setFollowersCount] = useState(0)
   const [followingList, setFollowingList] = useState<ProfileListItem[]>([])
   const [followersList, setFollowersList] = useState<ProfileListItem[]>([])
-  const [resourceBookmarks, setResourceBookmarks] = useState<
-    CommunityResourceBookmarkWithCourse[]
-  >([])
   const [userLinks, setUserLinks] = useState<UserLinkWithTag[]>([])
   const [communityLearningPaths, setCommunityLearningPaths] = useState<
     StoredLearningPath[]
@@ -192,11 +182,7 @@ export default function PublicProfilePage() {
   const [showNoteForLinkId, setShowNoteForLinkId] = useState<string | null>(
     null
   )
-  const savedProfileLinks = useMemo(
-    () =>
-      userLinks.filter((l) => parseNotebookIdFromUserLinkUrl(l.url) == null),
-    [userLinks]
-  )
+  const savedProfileLinks = userLinks
 
   const profileBookmarkTagsInUse = useMemo(() => {
     const used = new Set<string>()
@@ -206,45 +192,22 @@ export default function PublicProfilePage() {
     return profileLinkTags.filter((t) => used.has(t.id))
   }, [profileLinkTags, savedProfileLinks])
 
-  const filteredPublicSavedLinks = useMemo(() => {
-    if (bookmarkTagFilter.communityOnly) return []
-    return savedProfileLinks.filter((l) =>
-      linkMatchesBookmarkTagFilter(l, bookmarkTagFilter)
-    )
-  }, [savedProfileLinks, bookmarkTagFilter])
+  const filteredPublicSavedLinks = useMemo(
+    () =>
+      savedProfileLinks.filter((l) =>
+        linkMatchesBookmarkTagFilter(l, bookmarkTagFilter)
+      ),
+    [savedProfileLinks, bookmarkTagFilter]
+  )
 
   const publicSavedBookmarkRows = useMemo(() => {
-    type Row =
-      | { kind: 'link'; link: UserLinkWithTag }
-      | { kind: 'community'; data: CommunityResourceBookmarkWithCourse }
-    const rows: Row[] = []
-    for (const link of filteredPublicSavedLinks) {
-      rows.push({ kind: 'link', link })
-    }
-    const includeCommunity = shouldIncludeCommunityBookmarks(bookmarkTagFilter)
-    if (includeCommunity) {
-      for (const data of resourceBookmarks) {
-        rows.push({ kind: 'community', data })
-      }
-    }
-    rows.sort((a, b) => {
-      const ta =
-        a.kind === 'link'
-          ? a.link.created_at
-          : a.data.bookmark.created_at
-      const tb =
-        b.kind === 'link'
-          ? b.link.created_at
-          : b.data.bookmark.created_at
-      return tb.localeCompare(ta)
-    })
+    const rows = [...filteredPublicSavedLinks]
+    rows.sort((a, b) => b.created_at.localeCompare(a.created_at))
     return rows
-  }, [filteredPublicSavedLinks, resourceBookmarks, bookmarkTagFilter])
+  }, [filteredPublicSavedLinks])
 
   const showPublicBookmarkTagFilters =
-    profileBookmarkTagsInUse.length > 0 ||
-    resourceBookmarks.length > 0 ||
-    savedProfileLinks.length > 0
+    profileBookmarkTagsInUse.length > 0 || savedProfileLinks.length > 0
 
   const [personalLinks, setPersonalLinks] = useState<ProfilePersonalLink[]>([])
   const [comments, setComments] = useState<
@@ -326,9 +289,6 @@ export default function PublicProfilePage() {
   const { followingIds, refresh: refreshFollowingIds } = useFollowingIds()
   const { followerIds } = useFollowerIds()
 
-  const [viewerResourceBookmarkIds, setViewerResourceBookmarkIds] = useState<
-    Set<string>
-  >(() => new Set())
   const [viewerSavedLinkUrls, setViewerSavedLinkUrls] = useState<Set<string>>(
     () => new Set()
   )
@@ -340,25 +300,15 @@ export default function PublicProfilePage() {
 
   const loadViewerBookmarkCopyState = useCallback(async () => {
     if (!currentUserId) {
-      setViewerResourceBookmarkIds(new Set())
       setViewerSavedLinkUrls(new Set())
       setViewerCopyTargetsLoaded(false)
       return
     }
-    const [resBookmarks, allLinks] = await Promise.all([
-      getMyCommunityResourceBookmarks(),
-      getMyLinks(null)
-    ])
-    const rIds = new Set<string>()
-    for (const x of resBookmarks) {
-      rIds.add(x.resource.id)
-    }
+    const allLinks = await getMyLinks(null)
     const urls = new Set<string>()
     for (const link of allLinks) {
-      if (parseNotebookIdFromUserLinkUrl(link.url) != null) continue
       urls.add(link.url.trim())
     }
-    setViewerResourceBookmarkIds(rIds)
     setViewerSavedLinkUrls(urls)
     setViewerCopyTargetsLoaded(true)
   }, [currentUserId])
@@ -366,30 +316,6 @@ export default function PublicProfilePage() {
   useEffect(() => {
     void loadViewerBookmarkCopyState()
   }, [loadViewerBookmarkCopyState])
-
-  const handleCopyCommunityBookmark = useCallback(
-    async (resourceId: string) => {
-      if (!currentUserId) return
-      const key = `cr-${resourceId}`
-      if (copyBookmarkBusyKey) return
-      setCopyBookmarkBusyKey(key)
-      try {
-        const result = await ensureCommunityResourceBookmark(resourceId)
-        if (result === null) {
-          window.alert('Could not save bookmark. Try signing in again.')
-          return
-        }
-        setViewerResourceBookmarkIds((prev) => {
-          const next = new Set(prev)
-          next.add(resourceId)
-          return next
-        })
-      } finally {
-        setCopyBookmarkBusyKey(null)
-      }
-    },
-    [currentUserId, copyBookmarkBusyKey]
-  )
 
   const handleCopyProfileLinkBookmark = useCallback(
     async (l: UserLinkWithTag) => {
@@ -461,7 +387,6 @@ export default function PublicProfilePage() {
         fersCount,
         fList,
         fersList,
-        resourceB,
         links,
         linkTags,
         personal,
@@ -477,7 +402,6 @@ export default function PublicProfilePage() {
         getFollowersCount(uid),
         getFollowingList(uid),
         getFollowersList(uid),
-        getCommunityResourceBookmarksByUser(uid),
         getLinksByUserId(uid),
         getLinkTagsByUserId(uid),
         listPersonalLinksByUserId(uid),
@@ -503,7 +427,6 @@ export default function PublicProfilePage() {
       setFollowersCount(fersCount)
       setFollowingList(fList)
       setFollowersList(fersList)
-      setResourceBookmarks(resourceB)
       setUserLinks(links)
       setProfileLinkTags(linkTags)
       setPersonalLinks(personal)
@@ -688,7 +611,9 @@ export default function PublicProfilePage() {
                 </div>
               )}
             </div>
-            <h1 className={styles.sidebarName}>{displayName}</h1>
+            <div className={styles.sidebarNameRow}>
+              <h1 className={styles.sidebarName}>{displayName}</h1>
+            </div>
             <div className={styles.sidebarFollowLine}>
               <button
                 type='button'
@@ -712,15 +637,15 @@ export default function PublicProfilePage() {
                 {followersCount} followers
               </button>
             </div>
+            <ProfilePublicSummary
+              bio={profile.bio}
+              bioOnly
+              personalLinks={personalLinks}
+            />
             <ProfileInterestsPanel
               userId={profile.user_id}
               editable={false}
               initialTags={profileInterestTags}
-            />
-            <ProfilePersonalLinksPanel
-              links={personalLinks}
-              editable={false}
-              onRefresh={() => undefined}
             />
             {currentUserId && currentUserId !== userId && (
               <button
@@ -740,6 +665,12 @@ export default function PublicProfilePage() {
                 )}
               </button>
             )}
+            <ProfilePublicSummary
+              learningNow={profile.learning_now}
+              learningLearned={profile.learning_learned}
+              learningOnly
+              metadataStyle
+            />
           </aside>
 
           <div className={styles.profileMain}>
@@ -1035,25 +966,6 @@ export default function PublicProfilePage() {
                                 {t.name}
                               </button>
                             ))}
-                            {resourceBookmarks.length > 0 ? (
-                              <button
-                                type='button'
-                                aria-pressed={bookmarkTagFilter.communityOnly}
-                                className={
-                                  bookmarkTagFilter.communityOnly
-                                    ? styles.linkFilterBtnActive
-                                    : styles.linkFilterBtn
-                                }
-                                onClick={() =>
-                                  setBookmarkTagFilter({
-                                    tagIds: [],
-                                    communityOnly: true
-                                  })
-                                }
-                              >
-                                Community resource
-                              </button>
-                            ) : null}
                           </div>
                         </div>
                       ) : null}
@@ -1069,195 +981,7 @@ export default function PublicProfilePage() {
                             currentUserId ? styles.userLinksListWithCopy : ''
                           }`}
                         >
-                          {publicSavedBookmarkRows.map((row) => {
-                            if (row.kind === 'community') {
-                              const { bookmark, resource, course } = row.data
-                              const rowNoteId = `cr-${bookmark.id}`
-                              const courseHref =
-                                course.url ?? `/course/${course.notion_page_id}`
-                              const raw = resource.link?.trim() ?? ''
-                              const primaryHref =
-                                raw && /^https?:\/\//i.test(raw)
-                                  ? raw
-                                  : courseHref
-                              const openInNewTab =
-                                /^https?:\/\//i.test(primaryHref)
-                              let domainLabel: string | null = null
-                              try {
-                                domainLabel = new URL(
-                                  primaryHref,
-                                  typeof window !== 'undefined'
-                                    ? window.location.origin
-                                    : 'https://placeholder.local'
-                                ).hostname
-                              } catch {
-                                domainLabel = null
-                              }
-                              return (
-                                <li
-                                  key={rowNoteId}
-                                  className={styles.userLinkItem}
-                                >
-                                  <div className={styles.userLinkItemInner}>
-                                    <span
-                                      className={styles.userLinkIconWrap}
-                                    >
-                                      <span
-                                        className={styles.userLinkIconBlue}
-                                        aria-hidden
-                                      >
-                                        <svg
-                                          xmlns='http://www.w3.org/2000/svg'
-                                          width='8'
-                                          height='8'
-                                          viewBox='0 0 8 8'
-                                          fill='none'
-                                        >
-                                          <path
-                                            d='M4.14058 1.91562L4.44058 1.61249C4.70255 1.37372 5.04645 1.24506 5.40081 1.25327C5.75518 1.26147 6.09276 1.4059 6.3434 1.65654C6.59404 1.90718 6.73847 2.24476 6.74667 2.59913C6.75488 2.95349 6.62622 3.29739 6.38745 3.55937L5.44058 4.50312C5.31312 4.63105 5.16166 4.73256 4.99488 4.80183C4.8281 4.87109 4.64929 4.90674 4.4687 4.90674C4.28811 4.90674 4.1093 4.87109 3.94252 4.80183C3.77574 4.73256 3.62428 4.63105 3.49683 4.50312'
-                                            stroke='#FDFDFD'
-                                            strokeWidth='0.75'
-                                            strokeLinecap='round'
-                                            strokeLinejoin='round'
-                                          />
-                                          <path
-                                            d='M3.8594 6.08436L3.5594 6.38749C3.29742 6.62626 2.95352 6.75491 2.59916 6.74671C2.24479 6.7385 1.90721 6.59407 1.65657 6.34343C1.40593 6.09279 1.2615 5.75521 1.2533 5.40085C1.2451 5.04648 1.37375 4.70258 1.61252 4.44061L2.5594 3.49686C2.68685 3.36893 2.83831 3.26742 3.00509 3.19815C3.17187 3.12889 3.35068 3.09323 3.53127 3.09323C3.71186 3.09323 3.89067 3.12889 4.05745 3.19815C4.22423 3.26742 4.37569 3.36893 4.50315 3.49686'
-                                            stroke='#FDFDFD'
-                                            strokeWidth='0.75'
-                                            strokeLinecap='round'
-                                            strokeLinejoin='round'
-                                          />
-                                        </svg>
-                                      </span>
-                                    </span>
-                                    <div className={styles.userLinkContent}>
-                                      <div className={styles.userLinkRow}>
-                                        <span
-                                          className={styles.userLinkTitleAndDomain}
-                                        >
-                                          <a
-                                            href={primaryHref}
-                                            {...(openInNewTab
-                                              ? {
-                                                  target: '_blank',
-                                                  rel: 'noopener noreferrer'
-                                                }
-                                              : {})}
-                                            className={styles.userLinkUrl}
-                                          >
-                                            {resource.title}
-                                          </a>
-                                          {domainLabel ? (
-                                            <span
-                                              className={styles.userLinkDomain}
-                                            >
-                                              {domainLabel}
-                                            </span>
-                                          ) : null}
-                                        </span>
-                                        {currentUserId ? (
-                                          <div
-                                            className={styles.userLinkActions}
-                                          >
-                                            <button
-                                              type='button'
-                                              className={
-                                                styles.notebooksListIconBtn
-                                              }
-                                              disabled={
-                                                !viewerCopyTargetsLoaded ||
-                                                copyBookmarkBusyKey !==
-                                                  null ||
-                                                viewerResourceBookmarkIds.has(
-                                                  resource.id
-                                                )
-                                              }
-                                              onClick={() =>
-                                                void handleCopyCommunityBookmark(
-                                                  resource.id
-                                                )
-                                              }
-                                              title={
-                                                viewerResourceBookmarkIds.has(
-                                                  resource.id
-                                                )
-                                                  ? 'Saved to your bookmarks'
-                                                  : 'Save to your bookmarks'
-                                              }
-                                              aria-label={
-                                                viewerResourceBookmarkIds.has(
-                                                  resource.id
-                                                )
-                                                  ? 'Saved to your bookmarks'
-                                                  : 'Save to your bookmarks'
-                                              }
-                                            >
-                                              <span
-                                                className={
-                                                  copyBookmarkBusyKey ===
-                                                    `cr-${resource.id}` &&
-                                                  !viewerResourceBookmarkIds.has(
-                                                    resource.id
-                                                  )
-                                                    ? styles.notebooksListIconBtnInnerBusy
-                                                    : undefined
-                                                }
-                                              >
-                                                <ProfileSaveBookmarkIcon
-                                                  filled={viewerResourceBookmarkIds.has(
-                                                    resource.id
-                                                  )}
-                                                />
-                                              </span>
-                                            </button>
-                                          </div>
-                                        ) : null}
-                                      </div>
-                                      <div className={styles.userLinkMeta}>
-                                        <div
-                                          className={styles.userLinkMetaTags}
-                                        >
-                                          <span
-                                            className={styles.userLinkTag}
-                                          >
-                                            Community resource
-                                          </span>
-                                          {resource.description ? (
-                                            <button
-                                              type='button'
-                                              className={
-                                                styles.userLinkNoteToggle
-                                              }
-                                              onClick={() =>
-                                                setShowNoteForLinkId((cur) =>
-                                                  cur === rowNoteId
-                                                    ? null
-                                                    : rowNoteId
-                                                )
-                                              }
-                                            >
-                                              Note
-                                            </button>
-                                          ) : null}
-                                        </div>
-                                        <span
-                                          className={styles.userLinkDate}
-                                        >
-                                          {formatDate(bookmark.created_at)}
-                                        </span>
-                                        {resource.description &&
-                                        showNoteForLinkId === rowNoteId ? (
-                                          <p className={styles.userLinkNote}>
-                                            {resource.description}
-                                          </p>
-                                        ) : null}
-                                      </div>
-                                    </div>
-                                  </div>
-                                </li>
-                              )
-                            }
-                            const l = row.link
+                          {publicSavedBookmarkRows.map((l) => {
                             return (
                               <li key={l.id} className={styles.userLinkItem}>
                                 <div className={styles.userLinkItemInner}>
@@ -1484,9 +1208,9 @@ export default function PublicProfilePage() {
                                     </span>
                                   </a>
                                 </Link>
-                                <p className={styles.listBody}>
+                                <ActivityFeedQuoteBody>
                                   {comment.body}
-                                </p>
+                                </ActivityFeedQuoteBody>
                               </li>
                             )
                           }
@@ -1510,18 +1234,29 @@ export default function PublicProfilePage() {
                                       Discussion
                                     </span>{' '}
                                     {course.name}
+                                    {annotation.section_id ? (
+                                      <>
+                                        {' '}
+                                        in section:{' '}
+                                        <span
+                                          className={styles.feedSectionUnderline}
+                                        >
+                                          {annotation.section_id.replace(
+                                            /-/g,
+                                            ' '
+                                          )}
+                                        </span>
+                                      </>
+                                    ) : null}
                                   </span>
                                   <span className={styles.listMeta}>
                                     {formatDate(annotation.created_at)}
                                   </span>
                                 </a>
                               </Link>
-                              <p className={styles.notificationMeta}>
-                                Section: {annotation.section_id}
-                              </p>
-                              <p className={styles.listBody}>
+                              <ActivityFeedQuoteBody>
                                 {annotation.body}
-                              </p>
+                              </ActivityFeedQuoteBody>
                             </li>
                           )
                         })}

@@ -77,40 +77,6 @@ module.exports = withBundleAnalyzer({
 
     return config
   },
-  async redirects() {
-    return [
-      {
-        source: '/undergraduate-degrees',
-        destination: '/degrees',
-        permanent: true
-      },
-      {
-        source: '/curated-course/:courseSlug',
-        destination: '/learning-path/:courseSlug',
-        permanent: true
-      },
-      {
-        source: '/curated-course/:courseSlug/videos',
-        destination: '/learning-path/:courseSlug',
-        permanent: true
-      },
-      {
-        source: '/course-learning-path/:courseSlug',
-        destination: '/learning-path/:courseSlug',
-        permanent: true
-      },
-      {
-        source: '/course-learning-path/:courseSlug/videos',
-        destination: '/learning-path/:courseSlug',
-        permanent: true
-      },
-      {
-        source: '/human-knowledge-atlas',
-        destination: '/field-atlas',
-        permanent: true
-      }
-    ]
-  },
   staticPageGenerationTimeout: 600,
   images: {
     domains: [

@@ -128,7 +128,7 @@ export function HomeLearningPathsSection({
           experience.{' '}
           <Link href='/community' legacyBehavior>
             <a className={courseStyles.headingSubLink}>
-              More on our community here
+              Learn more about our community
             </a>
           </Link>
           .

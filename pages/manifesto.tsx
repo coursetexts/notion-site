@@ -19,14 +19,14 @@ const principles = [
   },
   {
     title: 'Self-directed doesn’t mean solitary.',
-    body: 'Many of the most curious people are learning outside of the status quo. The communities that shaped the Coursetexts team, (like Socratica, Hacklodge, Interact, didn’t just provide resources. They showed us what was possible. We want Coursetexts to carry a wondrous and encouraging feeling via shared materials, shared questions, and visible traces of other minds.'
+    body: 'Many of the most curious people are learning outside of the status quo. The communities that shaped the Coursetexts team (like Socratica, Hacklodge, and Interact) didn’t just provide resources. They showed us what was possible. We want Coursetexts to carry a wondrous and encouraging feeling via shared materials, shared questions, and visible traces of other minds.'
   },
   {
     title: 'Universities are partners.',
     body: "We respect professors' rights immensely, and work within their constraints. The goal is to give their best work a longer, wider life, with consent, credit, and context."
   },
   {
-    title: 'Learning software should be evergreen',
+    title: 'Learning software should be evergreen.',
     body: 'When education companies optimize for growth and revenue, experience quality usually collapses. Coursetexts is “forever green”: we are fully volunteer run, our north star is better learning, and we will never monetize.'
   },
   {
@@ -55,7 +55,7 @@ const lookingForwardCards = [
 ] as const
 
 const gratitudeCopy =
-  "Coursetexts is 100% volunteer-run and nonprofit, by student volunteers from MIT, harvard, waterloo, laurier, and purdue. we're grateful to michael nielsen and the institute for their grant support, and to lawrence lessig and peter suber for their advisorship. if you want to collaborate, we'd love to hear from you."
+  "Coursetexts is 100% volunteer-run and nonprofit, led by student volunteers from MIT, Harvard, Waterloo, Laurier, and Purdue. We're grateful to Michael Nielsen and the Institute for their grant support, and to Lawrence Lessig and Peter Suber for their advisorship. If you want to collaborate, we'd love to hear from you."
 
 const manifestoNotes = [
   '[1] MIT OpenCourseWare annual operating cost (~$2.7M for 2,300+ courses) from MIT OCW fundraising pages. Cited figure is total operational cost including infrastructure, publishing, and rights clearance staffing, not a per-image clearance rate. Source: ocw.mit.edu/give. The $1,170/course/year figure is a simple division; actual per-course clearance labor varies significantly by discipline (art history >> computer science).',
@@ -358,9 +358,9 @@ export default function ManifestoPage() {
                     <p>
                       Curated knowledge exists in extraordinary abundance, at
                       universities across the world. The problem is that the
-                      best of it stays locked inside canvas exports, private
-                      lecture notes, and course videos that expire when semester
-                      ends.
+                      best of it stays locked inside Canvas exports, private
+                      lecture notes, and course videos that expire when the
+                      semester ends.
                     </p>
                     <p>
                       Only a small fraction of courses at universities are
@@ -381,7 +381,7 @@ export default function ManifestoPage() {
                     <p className={styles.bodyText}>
                       Access to their life&apos;s work ends for students when a
                       login expires. Coursecrane is the infrastructure for
-                      bridging the gap between lifetime learners and the heavy
+                      bridging the gap between lifelong learners and the heavy
                       gates that must be pushed past to acquire institutional
                       knowledge.
                     </p>
@@ -435,7 +435,7 @@ export default function ManifestoPage() {
             <div className={styles.legacyTop}>
               <Reveal className={styles.legacyTopInner}>
                 <h2 className={styles.legacyHeadline}>
-                  <em>Cranetexts</em> began as Coursetexts; a free, open
+                  <em>Cranetexts</em> began as Coursetexts, a free, open
                   library of Harvard lecture notes.
                 </h2>
               </Reveal>
@@ -464,10 +464,10 @@ export default function ManifestoPage() {
                     Their initial dream continues with us, in 2026.
                   </h2>
                   <p className={styles.bottomSmall}>
-                    Our goal is not to replace edX, Canvas or other learning
-                    initiatives. Coursetexts should be complementary to them,
-                    but to lower the global barrier to publishing online, and
-                    thus to raise the collective ceiling of online learning.
+                    Our goal is not to replace edX, Canvas, or other learning
+                    initiatives. Coursetexts should complement them by lowering
+                    the global barrier to publishing online and raising the
+                    collective ceiling of online learning.
                   </p>
                 </div>
               </Reveal>
@@ -527,8 +527,8 @@ export default function ManifestoPage() {
                   </h2>
                   <p className={styles.bodyText}>
                     Our tools aim to lower this cost by converting an existing
-                    canvas site to a public page in minutes, licensed under
-                    creative commons BY-NC-SA 4.0. Professors keep control by
+                    Canvas site to a public page in minutes, licensed under
+                    Creative Commons BY-NC-SA 4.0. Professors keep control by
                     reviewing, approving, and retaining credit with a fraction
                     of the projected time commitment.
                   </p>
@@ -579,7 +579,7 @@ export default function ManifestoPage() {
                   className={styles.lookingForwardTitle}
                   id='looking-forward-title'
                 >
-                  Looking forwards
+                  Looking forward
                 </h2>
 
                 <img
@@ -593,7 +593,7 @@ export default function ManifestoPage() {
 
               <Reveal className={styles.lookingForwardCopy} delay={0.05}>
                 <p>
-                  The Internet and the age of LLMs has made knowledge
+                  The internet and the age of LLMs have made knowledge
                   plentiful. Why hasn&apos;t genuine learning followed the
                   Cambrian explosion in information? Our earlier theory of
                   change assumed that{' '}

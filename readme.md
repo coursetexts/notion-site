@@ -9,7 +9,8 @@ This Next.js app renders **Notion** professor courses at `/course/{pageId}` and 
 | Doc                                                  | What’s inside                                                                                          |
 | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | [docs/README.md](./docs/README.md)                   | Index                                                                                                  |
-| [Architecture](./docs/architecture.md)               | Routes, home, how pages talk to Notion + Supabase                                                      |
+| [Architecture](./docs/architecture.md)               | Routes, user flows, how pages talk to Notion + Supabase |
+| [Routes & gaps](./docs/gaps.md)                      | Unbuilt routes, partial features, orphaned APIs |
 | [Database](./docs/database.md)                       | Schema groups, ERDs, RLS                                                                               |
 | [Auth](./docs/auth.md)                               | Google OAuth → profiles. Return to the gated page after sign-in.                                       |
 | [Community learning paths](./docs/learning-paths.md) | `/learning-path/{slug}`. Publish only with 2 resources + why per topic. Visitors see public vs collab; outline edits are owner-only. **Export Context** copies an LLM prompt of the path. |

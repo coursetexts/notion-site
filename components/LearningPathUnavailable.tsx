@@ -84,7 +84,7 @@ export function LearningPathUnavailable({
         {reason === 'private' ? (
           <>
             <p className={styles.body}>
-              This learning path is <b> private</b>. Request to join and the owner will
+              This learning path is <b>private</b>. Request to join and the owner will
               see your email. If they already invited you, sign in with that
               address.
             </p>

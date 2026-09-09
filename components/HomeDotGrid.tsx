@@ -83,9 +83,9 @@ export function HomeDotGrid({ courses = [] }: HomeDotGridProps) {
         </div>
 
         <p className={styles.disclaimer}>
-        Coursetexts is a registered 501©
-non-profit doing open research on self-learning,
-educational interfaces, and scaling open source software.
+          Coursetexts is a registered 501(c)(3) non-profit doing open research
+          on self-learning, educational interfaces, and scaling open source
+          software.
         </p>
       </div>
     </section>

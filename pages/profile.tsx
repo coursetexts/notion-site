@@ -13,18 +13,20 @@ import { useFollowerIds } from '@/hooks/useFollowerIds'
 import { useFollowingIds } from '@/hooks/useFollowingIds'
 import type { User } from '@supabase/supabase-js'
 
+import {
+  ActivityFeedThread,
+  type ActivityFeedTurn
+} from '@/components/ActivityFeedQuoteBody'
 import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
 import { ProfileBackArrow } from '@/components/ProfileBackArrow'
 import { ProfileSidebarBackHome } from '@/components/ProfileSidebarBackHome'
 import { FollowCountDividerDot } from '@/components/FollowCountDividerDot'
 import { ProfileInterestsPanel } from '@/components/ProfileInterestsPanel'
+import { ProfilePublicSummary } from '@/components/ProfilePublicSummary'
 import { ProfileKnowledgePanel } from '@/components/ProfileKnowledgePanel'
 import { ProfileNotesPanel } from '@/components/ProfileNotesPanel'
-import {
-  ProfilePersonalLinkAnchorRow,
-  ProfilePersonalLinksPanel
-} from '@/components/ProfilePersonalLinksPanel'
+import { ProfilePersonalLinksPanel } from '@/components/ProfilePersonalLinksPanel'
 import {
   ProfileCommunityLearningPathCard,
   ProfileLearningPathCard
@@ -36,10 +38,6 @@ import {
 } from '@/components/SiteNotesEditor'
 import { getCachedAuth, setCachedAuth } from '@/lib/auth-cache'
 import { authDebug } from '@/lib/auth-debug'
-import {
-  type CommunityResourceBookmarkWithCourse,
-  getMyCommunityResourceBookmarks
-} from '@/lib/community-wall-db'
 import { name as siteName } from '@/lib/config'
 import {
   type Course as CourseType,
@@ -64,6 +62,11 @@ import {
   followRelationship
 } from '@/lib/follow-relationship'
 import { getProfileInterestsByUserId } from '@/lib/profile-interests-db'
+import {
+  type ProfileSummary,
+  getProfileSummaryByUserId,
+  updateOwnProfileSummary
+} from '@/lib/profile-summary-db'
 import {
   type ProfilePersonalLink,
   listMyPersonalLinks
@@ -155,7 +158,6 @@ import {
   isBookmarkTagFilterActive,
   linkMatchesBookmarkTagFilter,
   newLinkVisibleInBookmarkFilter,
-  shouldIncludeCommunityBookmarks,
   toggleBookmarkTagFilter,
   type BookmarkTagFilter
 } from '@/lib/bookmark-tag-filter'
@@ -198,88 +200,170 @@ function FeedTargetLink({
   )
 }
 
-function FeedItemNarrative({ item }: { item: ProfileFeedItem }) {
+function formatSectionLabel(sectionId: string) {
+  return sectionId.replace(/-/g, ' ').trim()
+}
+
+function FeedSectionUnderline({ sectionId }: { sectionId: string }) {
+  const label = formatSectionLabel(sectionId)
+  if (!label) return null
+  return <span className={styles.feedSectionUnderline}>{label}</span>
+}
+
+function FeedItemSubject({ item }: { item: ProfileFeedItem }) {
   switch (item.kind) {
-    case 'wall_resource':
-      return (
-        <>
-          added <em>{item.resource_title}</em> to the Community Wall on{' '}
-          <FeedTargetLink href={item.course_url ?? `/course/${item.course_id}`}>
-            {item.course_name}
-          </FeedTargetLink>
-        </>
-      )
     case 'followed_course_bookmark':
       return (
-        <>
-          saved course{' '}
-          <FeedTargetLink href={item.course_url ?? `/course/${item.course_id}`}>
-            {item.course_name}
-          </FeedTargetLink>
-        </>
-      )
-    case 'followed_resource_bookmark':
-      return (
-        <>
-          bookmarked <em>{item.resource_title}</em> on{' '}
-          <FeedTargetLink href={item.course_url ?? `/course/${item.course_id}`}>
-            {item.course_name}
-          </FeedTargetLink>
-        </>
+        <FeedTargetLink href={item.course_url ?? `/course/${item.course_id}`}>
+          {item.course_name}
+        </FeedTargetLink>
       )
     case 'followed_link_bookmark':
       return (
-        <>
-          bookmarked{' '}
-          <FeedTargetLink href={item.link_href}>{item.link_title}</FeedTargetLink>
-        </>
+        <FeedTargetLink href={item.link_href}>{item.link_title}</FeedTargetLink>
       )
     case 'followed_comment':
       return (
-        <>
-          {item.is_reply ? 'replied on ' : 'commented on '}
-          <FeedTargetLink href={item.target_href}>{item.target_title}</FeedTargetLink>
-        </>
+        <FeedTargetLink href={item.target_href}>{item.target_title}</FeedTargetLink>
       )
     case 'followed_annotation':
       return (
         <>
-          posted in Discussions on{' '}
+          Discussions on{' '}
           <FeedTargetLink href={item.target_href}>{item.target_title}</FeedTargetLink>
+          {item.section_id ? (
+            <>
+              {' '}
+              in section:{' '}
+              <FeedSectionUnderline sectionId={item.section_id} />
+            </>
+          ) : null}
         </>
       )
     case 'followed_learning_path':
       return (
-        <>
-          started a new learning path{' '}
-          <FeedTargetLink href={item.path_href}>{item.path_title}</FeedTargetLink>
-        </>
+        <FeedTargetLink href={item.path_href}>{item.path_title}</FeedTargetLink>
       )
     case 'followed_path_progress':
       return (
         <>
-          explored <em>{item.node_label}</em> on{' '}
+          <em>{item.node_label}</em> on{' '}
           <FeedTargetLink href={item.path_href}>{item.path_title}</FeedTargetLink>
         </>
       )
     case 'suggestion_for_you':
       return (
         <>
-          suggested <em>{item.resource_title}</em> for your resource list on{' '}
+          <em>{item.resource_title}</em> on{' '}
           <FeedTargetLink href={item.path_href}>{item.path_title}</FeedTargetLink>
         </>
       )
     case 'suggestion_response':
       return (
         <>
-          {item.decision === 'accepted' ? 'accepted' : 'declined'} your
-          suggestion <em>{item.resource_title}</em> on{' '}
+          <em>{item.resource_title}</em> on{' '}
           <FeedTargetLink href={item.path_href}>{item.path_title}</FeedTargetLink>
         </>
       )
     default:
       return null
   }
+}
+
+function feedItemVerb(item: ProfileFeedItem): string | null {
+  switch (item.kind) {
+    case 'followed_course_bookmark':
+      return 'saved'
+    case 'followed_link_bookmark':
+      return 'bookmarked'
+    case 'followed_comment':
+      return item.is_reply ? 'replied' : 'commented'
+    case 'followed_annotation':
+      return item.is_reply ? 'replied' : 'posted'
+    case 'followed_learning_path':
+      return 'started a learning path'
+    case 'followed_path_progress':
+      return 'explored'
+    case 'suggestion_for_you':
+      return 'suggested for your resource list'
+    case 'suggestion_response':
+      return item.decision === 'accepted'
+        ? 'accepted your suggestion'
+        : 'declined your suggestion'
+    default:
+      return null
+  }
+}
+
+function feedActorNode(
+  userId: string,
+  displayName: string,
+  followingIds: Set<string>,
+  followerIds: Set<string>
+) {
+  return (
+    <UserLink
+      userId={userId}
+      displayName={displayName}
+      showFollowingTag={followingIds.has(userId)}
+      showFollowsYouTag={followerIds.has(userId)}
+    />
+  )
+}
+
+function feedItemTurns(
+  item: ProfileFeedItem,
+  actorLabel: string,
+  followingIds: Set<string>,
+  followerIds: Set<string>
+): ActivityFeedTurn[] {
+  const actor = feedActorNode(
+    item.actor_id,
+    actorLabel,
+    followingIds,
+    followerIds
+  )
+  const verb = feedItemVerb(item)
+  const excerpt = feedItemExcerpt(item)
+
+  if (
+    item.kind === 'followed_comment' ||
+    item.kind === 'followed_annotation'
+  ) {
+    const turns: ActivityFeedTurn[] = []
+    const parentBody = (item.parent_body ?? '').trim()
+    if (parentBody) {
+      const parentName = (item.parent_author_name ?? '').trim() || 'Someone'
+      turns.push({
+        author: item.parent_author_id
+          ? feedActorNode(
+              item.parent_author_id,
+              parentName,
+              followingIds,
+              followerIds
+            )
+          : (
+              <span className={styles.feedThreadAuthorPlain}>{parentName}</span>
+            ),
+        body: parentBody,
+        muted: true
+      })
+    }
+    turns.push({
+      author: actor,
+      verb: parentBody ? null : verb,
+      body: excerpt
+    })
+    return turns
+  }
+
+  return [
+    {
+      author: actor,
+      verb,
+      body: excerpt
+    }
+  ]
 }
 
 function feedItemExcerpt(item: ProfileFeedItem): string | null {
@@ -290,13 +374,6 @@ function feedItemExcerpt(item: ProfileFeedItem): string | null {
   ) {
     const body = item.body.trim()
     return body || null
-  }
-  return null
-}
-
-function feedItemMeta(item: ProfileFeedItem): string | null {
-  if (item.kind === 'followed_annotation' && item.section_id) {
-    return `Section: ${item.section_id}`
   }
   return null
 }
@@ -348,29 +425,13 @@ function storedPathMatchesQuery(item: StoredLearningPath, query: string) {
   )
 }
 
-function bookmarkRowMatchesQuery(
-  row:
-    | { kind: 'link'; link: UserLinkWithTag }
-    | { kind: 'community'; data: CommunityResourceBookmarkWithCourse },
-  query: string
-) {
+function bookmarkRowMatchesQuery(link: UserLinkWithTag, query: string) {
   if (!query) return true
-  if (row.kind === 'link') {
-    const link = row.link
-    return (
-      matchesSearch(link.title ?? '', query) ||
-      matchesSearch(link.url, query) ||
-      matchesSearch(link.note ?? '', query) ||
-      link.tag_names.some((name) => matchesSearch(name, query))
-    )
-  }
-  const { resource, course } = row.data
   return (
-    matchesSearch(resource.title, query) ||
-    matchesSearch(resource.description ?? '', query) ||
-    matchesSearch(resource.link ?? '', query) ||
-    matchesSearch(course.name, query) ||
-    matchesSearch('community resource', query)
+    matchesSearch(link.title ?? '', query) ||
+    matchesSearch(link.url, query) ||
+    matchesSearch(link.note ?? '', query) ||
+    link.tag_names.some((name) => matchesSearch(name, query))
   )
 }
 
@@ -381,14 +442,8 @@ function feedItemMatchesQuery(item: ProfileFeedItem, query: string) {
     item.kind.replace(/_/g, ' ')
   ]
   switch (item.kind) {
-    case 'wall_resource':
-      fields.push(item.course_name, item.resource_title, 'community wall')
-      break
     case 'followed_course_bookmark':
       fields.push(item.course_name, 'saved course')
-      break
-    case 'followed_resource_bookmark':
-      fields.push(item.course_name, item.resource_title, 'bookmarked')
       break
     case 'followed_link_bookmark':
       fields.push(item.link_title, item.link_href, 'bookmarked')
@@ -397,11 +452,20 @@ function feedItemMatchesQuery(item: ProfileFeedItem, query: string) {
       fields.push(
         item.target_title,
         item.body,
+        item.parent_body ?? '',
+        item.parent_author_name ?? '',
         item.is_reply ? 'replied' : 'commented'
       )
       break
     case 'followed_annotation':
-      fields.push(item.target_title, item.body, item.section_id, 'discussion')
+      fields.push(
+        item.target_title,
+        item.body,
+        item.parent_body ?? '',
+        item.parent_author_name ?? '',
+        item.section_id,
+        'discussion'
+      )
       break
     case 'followed_learning_path':
       fields.push(item.path_title, 'learning path')
@@ -432,6 +496,8 @@ function activityFeedRowMatchesQuery(row: ActivityFeedRow, query: string) {
       matchesSearch(notification.author_name, query) ||
       matchesSearch(notification.course_name, query) ||
       matchesSearch(notification.body, query) ||
+      matchesSearch(notification.parent_body ?? '', query) ||
+      matchesSearch(notification.parent_author_name ?? '', query) ||
       matchesSearch(notification.section_id ?? '', query) ||
       matchesSearch('replied', query) ||
       matchesSearch(notification.type, query)
@@ -463,7 +529,9 @@ function myActivityRowMatchesQuery(
     return (
       matchesSearch('comment', query) ||
       matchesSearch(row.course.name, query) ||
-      matchesSearch(row.comment.body, query)
+      matchesSearch(row.comment.body, query) ||
+      matchesSearch(row.comment.parent_body ?? '', query) ||
+      matchesSearch(row.comment.parent_author_name ?? '', query)
     )
   }
   return (
@@ -471,6 +539,8 @@ function myActivityRowMatchesQuery(
     matchesSearch('discussion', query) ||
     matchesSearch(row.course.name, query) ||
     matchesSearch(row.annotation.body, query) ||
+    matchesSearch(row.annotation.parent_body ?? '', query) ||
+    matchesSearch(row.annotation.parent_author_name ?? '', query) ||
     matchesSearch(row.annotation.section_id ?? '', query)
   )
 }
@@ -517,9 +587,6 @@ export default function ProfilePage() {
   >([])
   const [annotations, setAnnotations] = useState<
     { annotation: DbAnnotation; course: CourseType }[]
-  >([])
-  const [resourceBookmarks, setResourceBookmarks] = useState<
-    CommunityResourceBookmarkWithCourse[]
   >([])
   const [notifications, setNotifications] = useState<ReplyNotification[]>([])
   const [joinRequests, setJoinRequests] = useState<LearningPathJoinRequest[]>(
@@ -630,9 +697,16 @@ export default function ProfilePage() {
     null
   )
   const [profileInterests, setProfileInterests] = useState<string[]>([])
+  const [profileSummary, setProfileSummary] = useState<ProfileSummary>({
+    bio: null,
+    learning_now: null,
+    learning_learned: null
+  })
   const [personalLinks, setPersonalLinks] = useState<ProfilePersonalLink[]>([])
   const [isEditingProfile, setIsEditingProfile] = useState(false)
   const [bioDraft, setBioDraft] = useState('')
+  const [learningNowDraft, setLearningNowDraft] = useState('')
+  const [learningLearnedDraft, setLearningLearnedDraft] = useState('')
   const [bioSaving, setBioSaving] = useState(false)
   const bioSavingRef = useRef(false)
   useEffect(() => {
@@ -641,19 +715,18 @@ export default function ProfilePage() {
 
   const effectiveUser = user ?? resolvedUser
 
-  const bioText = useMemo(
-    () =>
-      (
-        (effectiveUser?.user_metadata?.bio as string | undefined) ?? ''
-      ).trim(),
-    [effectiveUser?.user_metadata?.bio]
-  )
+  const bioText = useMemo(() => {
+    const fromProfile = (profileSummary.bio ?? '').trim()
+    const fromMeta = (
+      (effectiveUser?.user_metadata?.bio as string | undefined) ?? ''
+    ).trim()
+    return fromProfile || fromMeta
+  }, [profileSummary.bio, effectiveUser?.user_metadata?.bio])
 
   const loadActivity = useCallback(async (userId: string) => {
     const [
       commentsRes,
       annotationsRes,
-      resourceBookmarksRes,
       notificationRes,
       feedRes,
       joinRequestsRes,
@@ -664,7 +737,6 @@ export default function ProfilePage() {
     ] = await Promise.all([
       getMyComments(),
       getMyAnnotations(),
-      getMyCommunityResourceBookmarks(),
       getReplyNotifications(userId),
       getProfileFeed(userId),
       listOwnedLearningPathJoinRequests(),
@@ -675,7 +747,6 @@ export default function ProfilePage() {
     ])
     setComments(commentsRes)
     setAnnotations(annotationsRes)
-    setResourceBookmarks(resourceBookmarksRes)
     setNotifications(notificationRes)
     setFeedItems(feedRes)
     setJoinRequests(joinRequestsRes)
@@ -781,41 +852,18 @@ export default function ProfilePage() {
   }, [])
 
   const savedBookmarkRows = useMemo(() => {
-    type Row =
-      | { kind: 'link'; link: UserLinkWithTag }
-      | { kind: 'community'; data: CommunityResourceBookmarkWithCourse }
-    const rows: Row[] = []
-    if (!bookmarkTagFilter.communityOnly) {
-      for (const link of userLinks) {
-        if (linkMatchesBookmarkTagFilter(link, bookmarkTagFilter)) {
-          rows.push({ kind: 'link', link })
-        }
-      }
-    }
-    if (shouldIncludeCommunityBookmarks(bookmarkTagFilter)) {
-      for (const data of resourceBookmarks) {
-        rows.push({ kind: 'community', data })
-      }
-    }
-    rows.sort((a, b) => {
-      const ta =
-        a.kind === 'link'
-          ? a.link.created_at
-          : a.data.bookmark.created_at
-      const tb =
-        b.kind === 'link'
-          ? b.link.created_at
-          : b.data.bookmark.created_at
-      return tb.localeCompare(ta)
-    })
+    const rows = userLinks.filter((link) =>
+      linkMatchesBookmarkTagFilter(link, bookmarkTagFilter)
+    )
+    rows.sort((a, b) => b.created_at.localeCompare(a.created_at))
     return rows
-  }, [userLinks, resourceBookmarks, bookmarkTagFilter])
+  }, [userLinks, bookmarkTagFilter])
 
   const bookmarkQuery = normalizeSearch(bookmarkSearch)
   const visibleBookmarkRows = useMemo(
     () =>
-      savedBookmarkRows.filter((row) =>
-        bookmarkRowMatchesQuery(row, bookmarkQuery)
+      savedBookmarkRows.filter((link) =>
+        bookmarkRowMatchesQuery(link, bookmarkQuery)
       ),
     [savedBookmarkRows, bookmarkQuery]
   )
@@ -1093,6 +1141,30 @@ export default function ProfilePage() {
   }, [effectiveUser?.id])
 
   useEffect(() => {
+    if (!effectiveUser?.id) return
+    let cancelled = false
+    void getProfileSummaryByUserId(effectiveUser.id).then(async (summary) => {
+      if (cancelled) return
+      const metaBio = (
+        (effectiveUser.user_metadata?.bio as string | undefined) ?? ''
+      ).trim()
+      if (!summary.bio && metaBio) {
+        const ok = await updateOwnProfileSummary(effectiveUser.id, {
+          bio: metaBio
+        })
+        if (ok && !cancelled) {
+          setProfileSummary({ ...summary, bio: metaBio })
+          return
+        }
+      }
+      setProfileSummary(summary)
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [effectiveUser?.id, effectiveUser?.user_metadata?.bio])
+
+  useEffect(() => {
     if (!effectiveUser?.id) {
       setKnowledgeTopics([])
       setKnowledgeLoading(false)
@@ -1227,38 +1299,59 @@ export default function ProfilePage() {
   }, [effectiveUser?.id, learningPaths, courseLearningPaths, officialCourses])
 
   useEffect(() => {
-    if (isEditingProfile) setBioDraft(bioText)
-  }, [isEditingProfile, bioText])
+    if (!isEditingProfile) return
+    setBioDraft(bioText)
+    setLearningNowDraft(profileSummary.learning_now ?? '')
+    setLearningLearnedDraft(profileSummary.learning_learned ?? '')
+  }, [
+    isEditingProfile,
+    bioText,
+    profileSummary.learning_now,
+    profileSummary.learning_learned
+  ])
 
-  const saveBio = async () => {
+  const saveProfile = async () => {
     const supabase = getSupabaseClient()
     if (!supabase || !effectiveUser) return
     setBioSaving(true)
-    const trimmed = bioDraft.trim()
-    const { data, error } = await supabase.auth.updateUser({
-      data: {
-        ...effectiveUser.user_metadata,
-        bio: trimmed
+    const nextBio = bioDraft.trim()
+    const nextLearningNow = learningNowDraft.trim()
+    const nextLearningLearned = learningLearnedDraft.trim()
+    try {
+      if (nextBio !== bioText) {
+        const { data, error } = await supabase.auth.updateUser({
+          data: {
+            ...effectiveUser.user_metadata,
+            bio: nextBio
+          }
+        })
+        if (error) {
+          window.alert(error.message)
+          return
+        }
+        if (data.user) {
+          setCachedAuth(data.user, getCachedAuth().profile)
+          if (!user) setResolvedUser(data.user)
+        }
       }
-    })
-    setBioSaving(false)
-    if (error) {
-      window.alert(error.message)
-      return
+      const ok = await updateOwnProfileSummary(effectiveUser.id, {
+        bio: nextBio,
+        learning_now: nextLearningNow,
+        learning_learned: nextLearningLearned
+      })
+      if (!ok) {
+        window.alert('Could not save profile.')
+        return
+      }
+      setProfileSummary({
+        bio: nextBio || null,
+        learning_now: nextLearningNow || null,
+        learning_learned: nextLearningLearned || null
+      })
+      setIsEditingProfile(false)
+    } finally {
+      setBioSaving(false)
     }
-    if (data.user) {
-      setCachedAuth(data.user, getCachedAuth().profile)
-      if (!user) setResolvedUser(data.user)
-      setBioDraft('')
-    }
-  }
-
-  const saveProfile = async () => {
-    const next = bioDraft.trim()
-    if (next !== bioText) {
-      await saveBio()
-    }
-    setIsEditingProfile(false)
   }
 
   function PencilIcon() {
@@ -1275,27 +1368,6 @@ export default function ProfilePage() {
           d='M8.6 2.2l3.2 3.2M3 11.2l2.9-.6 6.1-6.1a.9.9 0 0 0 0-1.3L10.8 2a.9.9 0 0 0-1.3 0L3.4 8.1 3 11.2Z'
           stroke='currentColor'
           strokeWidth='1.2'
-          strokeLinecap='round'
-          strokeLinejoin='round'
-        />
-      </svg>
-    )
-  }
-
-  function CheckIcon() {
-    return (
-      <svg
-        xmlns='http://www.w3.org/2000/svg'
-        width='14'
-        height='14'
-        viewBox='0 0 14 14'
-        fill='none'
-        aria-hidden
-      >
-        <path
-          d='M11.5 4L6 10l-2.5-2.6'
-          stroke='currentColor'
-          strokeWidth='1.6'
           strokeLinecap='round'
           strokeLinejoin='round'
         />
@@ -1672,26 +1744,15 @@ export default function ProfilePage() {
             </div>
             <div className={styles.sidebarNameRow}>
               <h1 className={styles.sidebarName}>{displayName}</h1>
-              {effectiveUser?.id ? (
+              {effectiveUser?.id && !isEditingProfile ? (
                 <button
                   type='button'
-                  className={
-                    isEditingProfile
-                      ? `${styles.sidebarEditProfileBtn} ${styles.sidebarEditProfileBtnActive}`
-                      : styles.sidebarEditProfileBtn
-                  }
-                  onClick={() => {
-                    if (isEditingProfile) {
-                      void saveProfile()
-                    } else {
-                      setIsEditingProfile(true)
-                    }
-                  }}
-                  aria-label={isEditingProfile ? 'Save profile' : 'Edit profile'}
-                  title={isEditingProfile ? 'Save profile' : 'Edit profile'}
-                  disabled={bioSaving}
+                  className={styles.sidebarEditProfileBtn}
+                  onClick={() => setIsEditingProfile(true)}
+                  aria-label='Edit profile'
+                  title='Edit profile'
                 >
-                  {isEditingProfile ? <CheckIcon /> : <PencilIcon />}
+                  <PencilIcon />
                 </button>
               ) : null}
             </div>
@@ -1722,34 +1783,80 @@ export default function ProfilePage() {
               <div className={styles.sidebarProfileMeta}>
                 <div className={styles.sidebarProfileMetaPreview}>
                   {isEditingProfile ? (
-                    <textarea
-                      value={bioDraft}
-                      onChange={(e) => setBioDraft(e.target.value)}
-                      placeholder='A short line about you…'
-                      className={styles.sidebarPersonalBioTextarea}
-                      rows={4}
-                      maxLength={500}
-                      aria-label='Personal bio'
-                      autoFocus
-                      disabled={bioSaving}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Escape') {
-                          e.preventDefault()
-                          setIsEditingProfile(false)
-                        }
-                        if (
-                          e.key === 'Enter' &&
-                          (e.metaKey || e.ctrlKey)
-                        ) {
-                          e.preventDefault()
-                          void saveProfile()
-                        }
-                      }}
-                      title='⌘/Ctrl+Enter to save'
+                    <>
+                      <textarea
+                        value={bioDraft}
+                        onChange={(e) => setBioDraft(e.target.value)}
+                        placeholder='A short line about you…'
+                        className={styles.sidebarPersonalBioTextarea}
+                        rows={4}
+                        maxLength={500}
+                        aria-label='Personal bio'
+                        autoFocus
+                        disabled={bioSaving}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Escape') {
+                            e.preventDefault()
+                            setIsEditingProfile(false)
+                          }
+                          if (
+                            e.key === 'Enter' &&
+                            (e.metaKey || e.ctrlKey)
+                          ) {
+                            e.preventDefault()
+                            void saveProfile()
+                          }
+                        }}
+                        title='⌘/Ctrl+Enter to save'
+                      />
+                      <div className={styles.profileLearningEditBlock}>
+                        <label
+                          className={styles.profileLearningLabel}
+                          htmlFor='profile-learning-now'
+                        >
+                          Currently learning
+                        </label>
+                        <textarea
+                          id='profile-learning-now'
+                          value={learningNowDraft}
+                          onChange={(e) => setLearningNowDraft(e.target.value)}
+                          placeholder='Topics, courses, or skills you are working on…'
+                          className={styles.sidebarPersonalBioTextarea}
+                          rows={3}
+                          maxLength={500}
+                          aria-label='Currently learning'
+                          disabled={bioSaving}
+                        />
+                      </div>
+                      <div className={styles.profileLearningEditBlock}>
+                        <label
+                          className={styles.profileLearningLabel}
+                          htmlFor='profile-learning-learned'
+                        >
+                          Previously learned
+                        </label>
+                        <textarea
+                          id='profile-learning-learned'
+                          value={learningLearnedDraft}
+                          onChange={(e) =>
+                            setLearningLearnedDraft(e.target.value)
+                          }
+                          placeholder='Highlights from what you have studied so far…'
+                          className={styles.sidebarPersonalBioTextarea}
+                          rows={3}
+                          maxLength={500}
+                          aria-label='Previously learned'
+                          disabled={bioSaving}
+                        />
+                      </div>
+                    </>
+                  ) : (
+                    <ProfilePublicSummary
+                      bio={bioText}
+                      bioOnly
+                      personalLinks={personalLinks}
                     />
-                  ) : bioText ? (
-                    <p className={styles.sidebarBio}>{bioText}</p>
-                  ) : null}
+                  )}
                   {isEditingProfile ? (
                     <ProfileInterestsPanel
                       userId={effectiveUser.id}
@@ -1779,29 +1886,37 @@ export default function ProfilePage() {
                       onRefresh={() => void loadPersonalLinks()}
                       inline
                     />
-                  ) : personalLinks.length > 0 ? (
-                    <ul className={styles.sidebarPersonalLinksList}>
-                      {personalLinks.map((l) => (
-                        <li
-                          key={l.id}
-                          className={styles.sidebarPersonalLinkItem}
-                        >
-                          <div className={styles.sidebarPersonalLinkCard}>
-                            <ProfilePersonalLinkAnchorRow link={l} />
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
+                  ) : null}
+                  {isEditingProfile ? (
+                    <button
+                      type='button'
+                      className={styles.sidebarSaveProfileBtn}
+                      onClick={() => void saveProfile()}
+                      disabled={bioSaving}
+                    >
+                      {bioSaving ? 'Saving…' : 'Save profile'}
+                    </button>
                   ) : null}
                   {!bioText &&
+                  !profileSummary.learning_now &&
+                  !profileSummary.learning_learned &&
                   profileInterests.length === 0 &&
                   personalLinks.length === 0 &&
                   !isEditingProfile ? (
                     <p className={styles.sidebarMetaPreviewEmpty}>
-                      Your bio, interests, and links will appear here.
+                      Your bio, what you are learning, interests, and links will
+                      appear here.
                     </p>
                   ) : null}
                 </div>
+                {!isEditingProfile ? (
+                  <ProfilePublicSummary
+                    learningNow={profileSummary.learning_now}
+                    learningLearned={profileSummary.learning_learned}
+                    learningOnly
+                    metadataStyle
+                  />
+                ) : null}
               </div>
             ) : null}
           </aside>
@@ -2211,23 +2326,6 @@ export default function ProfilePage() {
                               {t.name}
                             </button>
                           ))}
-                          <button
-                            type='button'
-                            aria-pressed={bookmarkTagFilter.communityOnly}
-                            className={
-                              bookmarkTagFilter.communityOnly
-                                ? styles.linkFilterBtnActive
-                                : styles.linkFilterBtn
-                            }
-                            onClick={() =>
-                              setBookmarkTagFilter({
-                                tagIds: [],
-                                communityOnly: true
-                              })
-                            }
-                          >
-                            Community resource
-                          </button>
                           {showNewTagInput ? (
                             <input
                               type='text'
@@ -2407,8 +2505,7 @@ export default function ProfilePage() {
                         <p className={styles.placeholder}>Loading links…</p>
                       ) : savedBookmarkRows.length === 0 ? (
                         <p className={styles.placeholder}>
-                          No saved links yet. Add a bookmark or save a resource
-                          from a course Community Wall.
+                          No saved links yet. Add a bookmark with + New Link.
                         </p>
                       ) : visibleBookmarkRows.length === 0 ? (
                         <p className={styles.placeholder}>
@@ -2416,138 +2513,7 @@ export default function ProfilePage() {
                         </p>
                       ) : (
                         <ul className={styles.userLinksList}>
-                          {visibleBookmarkRows.map((row) => {
-                            if (row.kind === 'community') {
-                              const { bookmark, resource, course } = row.data
-                              const rowNoteId = `cr-${bookmark.id}`
-                              const courseHref =
-                                course.url ?? `/course/${course.notion_page_id}`
-                              const raw = resource.link?.trim() ?? ''
-                              const primaryHref =
-                                raw && /^https?:\/\//i.test(raw)
-                                  ? raw
-                                  : courseHref
-                              const openInNewTab =
-                                /^https?:\/\//i.test(primaryHref)
-                              let domainLabel: string | null = null
-                              try {
-                                domainLabel = new URL(
-                                  primaryHref,
-                                  typeof window !== 'undefined'
-                                    ? window.location.origin
-                                    : 'https://placeholder.local'
-                                ).hostname
-                              } catch {
-                                domainLabel = null
-                              }
-                              return (
-                                <li
-                                  key={rowNoteId}
-                                  className={styles.userLinkItem}
-                                >
-                                  <div className={styles.userLinkItemInner}>
-                                    <span
-                                      className={styles.userLinkIconWrap}
-                                    >
-                                      <span
-                                        className={styles.userLinkIconBlue}
-                                        aria-hidden
-                                      >
-                                        <svg
-                                          xmlns='http://www.w3.org/2000/svg'
-                                          width='8'
-                                          height='8'
-                                          viewBox='0 0 8 8'
-                                          fill='none'
-                                        >
-                                          <path
-                                            d='M4.14058 1.91562L4.44058 1.61249C4.70255 1.37372 5.04645 1.24506 5.40081 1.25327C5.75518 1.26147 6.09276 1.4059 6.3434 1.65654C6.59404 1.90718 6.73847 2.24476 6.74667 2.59913C6.75488 2.95349 6.62622 3.29739 6.38745 3.55937L5.44058 4.50312C5.31312 4.63105 5.16166 4.73256 4.99488 4.80183C4.8281 4.87109 4.64929 4.90674 4.4687 4.90674C4.28811 4.90674 4.1093 4.87109 3.94252 4.80183C3.77574 4.73256 3.62428 4.63105 3.49683 4.50312'
-                                            stroke='#FDFDFD'
-                                            strokeWidth='0.75'
-                                            strokeLinecap='round'
-                                            strokeLinejoin='round'
-                                          />
-                                          <path
-                                            d='M3.8594 6.08436L3.5594 6.38749C3.29742 6.62626 2.95352 6.75491 2.59916 6.74671C2.24479 6.7385 1.90721 6.59407 1.65657 6.34343C1.40593 6.09279 1.2615 5.75521 1.2533 5.40085C1.2451 5.04648 1.37375 4.70258 1.61252 4.44061L2.5594 3.49686C2.68685 3.36893 2.83831 3.26742 3.00509 3.19815C3.17187 3.12889 3.35068 3.09323 3.53127 3.09323C3.71186 3.09323 3.89067 3.12889 4.05745 3.19815C4.22423 3.26742 4.37569 3.36893 4.50315 3.49686'
-                                            stroke='#FDFDFD'
-                                            strokeWidth='0.75'
-                                            strokeLinecap='round'
-                                            strokeLinejoin='round'
-                                          />
-                                        </svg>
-                                      </span>
-                                    </span>
-                                    <div className={styles.userLinkContent}>
-                                      <div className={styles.userLinkRow}>
-                                        <span
-                                          className={styles.userLinkTitleAndDomain}
-                                        >
-                                          <a
-                                            href={primaryHref}
-                                            {...(openInNewTab
-                                              ? {
-                                                  target: '_blank',
-                                                  rel: 'noopener noreferrer'
-                                                }
-                                              : {})}
-                                            className={styles.userLinkUrl}
-                                          >
-                                            {resource.title}
-                                          </a>
-                                          {domainLabel ? (
-                                            <span
-                                              className={styles.userLinkDomain}
-                                            >
-                                              {domainLabel}
-                                            </span>
-                                          ) : null}
-                                        </span>
-                                      </div>
-                                      <div className={styles.userLinkMeta}>
-                                        <div
-                                          className={styles.userLinkMetaTags}
-                                        >
-                                          <span
-                                            className={styles.userLinkTag}
-                                          >
-                                            Community resource
-                                          </span>
-                                          {resource.description ? (
-                                            <button
-                                              type='button'
-                                              className={
-                                                styles.userLinkNoteToggle
-                                              }
-                                              onClick={() =>
-                                                setShowNoteForLinkId((cur) =>
-                                                  cur === rowNoteId
-                                                    ? null
-                                                    : rowNoteId
-                                                )
-                                              }
-                                            >
-                                              Note
-                                            </button>
-                                          ) : null}
-                                        </div>
-                                        <span
-                                          className={styles.userLinkDate}
-                                        >
-                                          {formatDate(bookmark.created_at)}
-                                        </span>
-                                        {resource.description &&
-                                        showNoteForLinkId === rowNoteId ? (
-                                          <p className={styles.userLinkNote}>
-                                            {resource.description}
-                                          </p>
-                                        ) : null}
-                                      </div>
-                                    </div>
-                                  </div>
-                                </li>
-                              )
-                            }
-                            const l = row.link
+                          {visibleBookmarkRows.map((l) => {
                             return (
                               <li key={l.id} className={styles.userLinkItem}>
                                 <div className={styles.userLinkItemInner}>
@@ -2958,40 +2924,34 @@ export default function ProfilePage() {
                                   key={`join-${request.id}`}
                                   className={`${styles.listItem} ${styles.listItemUnread}`}
                                 >
-                                  <div className={styles.feedCardHead}>
-                                    <div className={styles.feedCardActor}>
-                                      <UserLink
-                                        userId={request.userId}
-                                        displayName={actorLabel}
-                                        showFollowingTag={followingIds.has(
-                                          request.userId
-                                        )}
-                                        showFollowsYouTag={followerIds.has(
-                                          request.userId
-                                        )}
-                                      />
-                                    </div>
-                                    <span className={styles.feedCardTime}>
-                                      {formatDate(request.createdAt)}
-                                    </span>
-                                  </div>
-                                  <div className={styles.feedCardActions}>
-                                    <span>asked to join </span>
-                                    {request.pathSlug ? (
-                                      <Link
-                                        href={`/learning-path/${request.pathSlug}`}
-                                      >
-                                        <a className={styles.inlineLink}>
-                                          {request.pathTitle}
-                                        </a>
-                                      </Link>
-                                    ) : (
-                                      <span>{request.pathTitle}</span>
-                                    )}
-                                  </div>
-                                  <p className={styles.notificationMeta}>
-                                    {request.email}
-                                  </p>
+                                  <ActivityFeedThread
+                                    subject={
+                                      request.pathSlug ? (
+                                        <Link
+                                          href={`/learning-path/${request.pathSlug}`}
+                                        >
+                                          <a className={styles.inlineLink}>
+                                            {request.pathTitle}
+                                          </a>
+                                        </Link>
+                                      ) : (
+                                        request.pathTitle
+                                      )
+                                    }
+                                    time={formatDate(request.createdAt)}
+                                    turns={[
+                                      {
+                                        author: feedActorNode(
+                                          request.userId,
+                                          actorLabel,
+                                          followingIds,
+                                          followerIds
+                                        ),
+                                        verb: 'asked to join',
+                                        body: request.email
+                                      }
+                                    ]}
+                                  />
                                   <div className={styles.feedCardJoinActions}>
                                     <button
                                       type='button'
@@ -3027,6 +2987,42 @@ export default function ProfilePage() {
                             }
                             if (row.kind === 'reply') {
                               const n = row.notification
+                              const turns: ActivityFeedTurn[] = []
+                              const parentBody = (n.parent_body ?? '').trim()
+                              if (parentBody) {
+                                const parentName =
+                                  (n.parent_author_name ?? '').trim() || 'You'
+                                turns.push({
+                                  author: n.parent_author_id
+                                    ? feedActorNode(
+                                        n.parent_author_id,
+                                        parentName,
+                                        followingIds,
+                                        followerIds
+                                      )
+                                    : (
+                                        <span
+                                          className={
+                                            styles.feedThreadAuthorPlain
+                                          }
+                                        >
+                                          {parentName}
+                                        </span>
+                                      ),
+                                  body: parentBody,
+                                  muted: true
+                                })
+                              }
+                              turns.push({
+                                author: feedActorNode(
+                                  n.author_id,
+                                  n.author_name,
+                                  followingIds,
+                                  followerIds
+                                ),
+                                verb: parentBody ? null : 'replied',
+                                body: n.body
+                              })
                               return (
                                 <li
                                   key={`reply-${n.id}`}
@@ -3036,77 +3032,65 @@ export default function ProfilePage() {
                                       : styles.listItem
                                   }
                                 >
-                                  <div className={styles.feedCardHead}>
-                                    <div className={styles.feedCardActor}>
-                                      <UserLink
-                                        userId={n.author_id}
-                                        displayName={n.author_name}
-                                        showFollowingTag={followingIds.has(
-                                          n.author_id
-                                        )}
-                                        showFollowsYouTag={followerIds.has(
-                                          n.author_id
-                                        )}
-                                      />
-                                    </div>
-                                    <span className={styles.feedCardTime}>
-                                      {formatDate(n.created_at)}
-                                    </span>
-                                  </div>
-                                  <div className={styles.feedCardActions}>
-                                    <span>replied on </span>
-                                    <Link
-                                      href={n.course_url ?? `/course/${n.course_id}`}
-                                    >
-                                      <a className={styles.inlineLink}>
-                                        {n.course_name}
-                                      </a>
-                                    </Link>
-                                  </div>
-                                  {n.type === 'annotation' && n.section_id ? (
-                                    <p className={styles.notificationMeta}>
-                                      Section: {n.section_id}
-                                    </p>
-                                  ) : null}
-                                  <p className={styles.listBody}>{n.body}</p>
+                                  <ActivityFeedThread
+                                    subject={
+                                      n.type === 'annotation' ? (
+                                        <>
+                                          Discussions on{' '}
+                                          <Link
+                                            href={
+                                              n.course_url ??
+                                              `/course/${n.course_id}`
+                                            }
+                                          >
+                                            <a className={styles.inlineLink}>
+                                              {n.course_name}
+                                            </a>
+                                          </Link>
+                                          {n.section_id ? (
+                                            <>
+                                              {' '}
+                                              in section:{' '}
+                                              <FeedSectionUnderline
+                                                sectionId={n.section_id}
+                                              />
+                                            </>
+                                          ) : null}
+                                        </>
+                                      ) : (
+                                        <Link
+                                          href={
+                                            n.course_url ??
+                                            `/course/${n.course_id}`
+                                          }
+                                        >
+                                          <a className={styles.inlineLink}>
+                                            {n.course_name}
+                                          </a>
+                                        </Link>
+                                      )
+                                    }
+                                    time={formatDate(n.created_at)}
+                                    turns={turns}
+                                  />
                                 </li>
                               )
                             }
                             const item = row.item
                             const actorLabel =
                               item.actor_display_name?.trim() || 'Someone'
-                            const excerpt = feedItemExcerpt(item)
-                            const meta = feedItemMeta(item)
                             return (
                               <li key={item.id} className={styles.listItem}>
-                                <div className={styles.feedCardHead}>
-                                  <div className={styles.feedCardActor}>
-                                    <UserLink
-                                      userId={item.actor_id}
-                                      displayName={actorLabel}
-                                      showFollowingTag={followingIds.has(
-                                        item.actor_id
-                                      )}
-                                      showFollowsYouTag={followerIds.has(
-                                        item.actor_id
-                                      )}
-                                    />
-                                  </div>
-                                  <span className={styles.feedCardTime}>
-                                    {formatDate(item.created_at)}
-                                  </span>
-                                </div>
-                                <div className={styles.feedCardActions}>
-                                  <FeedItemNarrative item={item} />
-                                </div>
-                                {meta ? (
-                                  <p className={styles.notificationMeta}>
-                                    {meta}
-                                  </p>
-                                ) : null}
-                                {excerpt ? (
-                                  <p className={styles.listBody}>{excerpt}</p>
-                                ) : null}
+                                <ActivityFeedThread
+                                  subject={<FeedItemSubject item={item} />}
+                                  time={formatDate(item.created_at)}
+                                  turns={feedItemTurns(
+                                    item,
+                                    actorLabel,
+                                    followingIds,
+                                    followerIds
+                                  )}
+                                />
                               </li>
                             )
                           })}
@@ -3130,69 +3114,136 @@ export default function ProfilePage() {
                           {visibleMyActivityRows.map((row) => {
                             if (row.kind === 'comment') {
                               const { comment, course } = row
+                              const turns: ActivityFeedTurn[] = []
+                              const parentBody = (
+                                comment.parent_body ?? ''
+                              ).trim()
+                              if (parentBody) {
+                                const parentName =
+                                  (comment.parent_author_name ?? '').trim() ||
+                                  'Someone'
+                                turns.push({
+                                  author: comment.parent_author_id
+                                    ? feedActorNode(
+                                        comment.parent_author_id,
+                                        parentName,
+                                        followingIds,
+                                        followerIds
+                                      )
+                                    : (
+                                        <span
+                                          className={
+                                            styles.feedThreadAuthorPlain
+                                          }
+                                        >
+                                          {parentName}
+                                        </span>
+                                      ),
+                                  body: parentBody,
+                                  muted: true
+                                })
+                              }
+                              turns.push({
+                                author: feedActorNode(
+                                  comment.user_id,
+                                  displayName,
+                                  followingIds,
+                                  followerIds
+                                ),
+                                verb: parentBody ? null : 'commented',
+                                body: comment.body
+                              })
                               return (
                                 <li
                                   key={`comment-${comment.id}`}
                                   className={styles.listItem}
                                 >
-                                  <Link
-                                    href={
-                                      course.url ?? `/course/${course.notion_page_id}`
-                                    }
-                                  >
-                                    <a className={styles.listLink}>
-                                      <span className={styles.listTitle}>
-                                        <span
-                                          className={styles.userLinkTag}
-                                          aria-label='Comment'
-                                        >
-                                          Comment
-                                        </span>{' '}
+                                  <ActivityFeedThread
+                                    subject={
+                                      <FeedTargetLink
+                                        href={
+                                          course.url ??
+                                          `/course/${course.notion_page_id}`
+                                        }
+                                      >
                                         {course.name}
-                                      </span>
-                                      <span className={styles.listMeta}>
-                                        {formatDate(comment.created_at)}
-                                      </span>
-                                    </a>
-                                  </Link>
-                                  <p className={styles.listBody}>
-                                    {comment.body}
-                                  </p>
+                                      </FeedTargetLink>
+                                    }
+                                    time={formatDate(comment.created_at)}
+                                    turns={turns}
+                                  />
                                 </li>
                               )
                             }
                             const { annotation, course } = row
+                            const turns: ActivityFeedTurn[] = []
+                            const parentBody = (
+                              annotation.parent_body ?? ''
+                            ).trim()
+                            if (parentBody) {
+                              const parentName =
+                                (annotation.parent_author_name ?? '').trim() ||
+                                'Someone'
+                              turns.push({
+                                author: annotation.parent_author_id
+                                  ? feedActorNode(
+                                      annotation.parent_author_id,
+                                      parentName,
+                                      followingIds,
+                                      followerIds
+                                    )
+                                  : (
+                                      <span
+                                        className={styles.feedThreadAuthorPlain}
+                                      >
+                                        {parentName}
+                                      </span>
+                                    ),
+                                body: parentBody,
+                                muted: true
+                              })
+                            }
+                            turns.push({
+                              author: feedActorNode(
+                                annotation.user_id,
+                                displayName,
+                                followingIds,
+                                followerIds
+                              ),
+                              verb: parentBody ? null : 'posted',
+                              body: annotation.body
+                            })
                             return (
                               <li
                                 key={`annotation-${annotation.id}`}
                                 className={styles.listItem}
                               >
-                                <Link
-                                  href={
-                                    course.url ?? `/course/${course.notion_page_id}`
-                                  }
-                                >
-                                  <a className={styles.listLink}>
-                                    <span className={styles.listTitle}>
-                                      <span
-                                        className={styles.userLinkTag}
-                                        aria-label='Discussion'
+                                <ActivityFeedThread
+                                  subject={
+                                    <>
+                                      Discussions on{' '}
+                                      <FeedTargetLink
+                                        href={
+                                          course.url ??
+                                          `/course/${course.notion_page_id}`
+                                        }
                                       >
-                                        Discussion
-                                      </span>{' '}
-                                      {course.name}
-                                    </span>
-                                    <span className={styles.listMeta}>
-                                      {formatDate(annotation.created_at)}
-                                    </span>
-                                  </a>
-                                </Link>
-                                <p className={styles.notificationMeta}>
-                                  Section: {annotation.section_id}
-                                </p>
-                                <p className={styles.listBody}>
-                                  {annotation.body}
-                                </p>
+                                        {course.name}
+                                      </FeedTargetLink>
+                                      {annotation.section_id ? (
+                                        <>
+                                          {' '}
+                                          in section:{' '}
+                                          <FeedSectionUnderline
+                                            sectionId={annotation.section_id}
+                                          />
+                                        </>
+                                      ) : null}
+                                    </>
+                                  }
+                                  time={formatDate(annotation.created_at)}
+                                  turns={turns}
+                                />
                               </li>
                             )
                           })}

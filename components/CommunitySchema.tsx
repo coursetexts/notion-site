@@ -1,6 +1,7 @@
 import * as React from 'react'
 import Link from 'next/link'
 
+import { HomeLearningPathDiagram } from './HomeLearningPathDiagram'
 import styles from './CommunitySchema.module.css'
 
 function ArrowDown() {
@@ -212,7 +213,9 @@ export function ResourceVoteSchemaDiagram() {
 export function CommunitySchema() {
   return (
     <>
-      <LearningPathSchemaDiagram />
+      <div className={styles.diagramWrap}>
+        <HomeLearningPathDiagram holdMs={6000} />
+      </div>
       <div className={styles.startPathWrap}>
         <Link href='/learning-path/new' legacyBehavior>
           <a className={styles.startPathBtn}>

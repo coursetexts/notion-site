@@ -14,7 +14,7 @@ export default siteConfig({
   author: 'Coursetexts',
 
   // open graph metadata (optional)
-  description: 'Coursetexts is open library of advanced course notes.',
+  description: 'Coursetexts is an open library of advanced course notes.',
 
   // social accounts
   github: 'https://github.com/coursetexts',
