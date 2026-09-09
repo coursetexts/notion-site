@@ -26,6 +26,8 @@ jobs:
         run: yarn test:lint
       - name: typecheck
         run: npx tsc --noEmit
+      - name: Notion request regression test
+        run: yarn test:notion-client
 
   Build:
     runs-on: ubuntu-latest

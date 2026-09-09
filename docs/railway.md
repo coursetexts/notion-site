@@ -36,6 +36,20 @@ These are optional, but currently used in this repo:
 
 ## Why Railway Was Failing
 
+### September 2026: Notion fetch returns HTTP 403
+
+The preview rebuild compiled successfully, then failed during static generation
+because Notion rejected the server-side client's default User-Agent. The same
+public root-page request succeeded with a descriptive Coursetexts User-Agent.
+`lib/notion-api.ts` now supplies that header through `kyOptions` for all Notion
+requests. No Notion credentials or password changes are needed for this fix.
+
+Run `npm run test:notion-client` to check the page/block request headers against
+a local HTTP server. A successful local test does not establish Railway rollout
+success: verify the preview build and live content after deployment.
+
+### Earlier deployment issues
+
 Two separate issues blocked deploys:
 
 1. Railway was resolving Node 16 from the repo's old engine range, but the current Notion dependency graph requires Node 18.
