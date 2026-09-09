@@ -9,7 +9,7 @@ export const UpdateNotice: React.FC = () => {
           <span className={styles.cursive}>🌱 We are always updating Coursetexts.</span>
         </h1>
         <p>
-          These notes are drafts and meant to be more up-to-date than they are polished. If you spot a typo, please let us know at coursetexts@mit.edu!
+          These notes are drafts and meant to be more up-to-date than they are polished. Please use the site's contact link to report a typo.
         </p>
       </div>
       <button className={styles.button}>Learn more →</button> */}

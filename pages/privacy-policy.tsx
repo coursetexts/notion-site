@@ -1,3 +1,4 @@
+import { contactEmail } from '../lib/contact'
 import Head from 'next/head'
 import React from 'react'
 
@@ -141,7 +142,7 @@ const PrivacyAndPolicy = () => {
                 We only retain user Google email addresses, and only for as long
                 as necessary to provide our services. Users may request deletion
                 of their Google-associated account data at any time by
-                contacting us at coursetexts@mit.edu, or revoking access via
+                contacting us at {contactEmail}, or revoking access via
                 Google settings. Upon verification, we will permanently delete
                 all associated personal data from our systems within 30 days.
               </p>
@@ -187,7 +188,7 @@ const PrivacyAndPolicy = () => {
                 contact us at:
               </p>
               <p style={{ marginBottom: '2rem' }} className='notion-text'>
-                Email: coursetexts@mit.edu
+                Email: {contactEmail}
               </p>
             </main>
           </div>

@@ -1,3 +1,4 @@
+import { maintenanceEmail } from '../lib/contact'
 /* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react'
 import dynamic from 'next/dynamic'
@@ -1421,8 +1422,12 @@ export const NotionPage: React.FC<types.PageProps> = ({
 
         // Inner span for text, so the text itself is centered in the flex container
         const innerSpan = document.createElement('span')
-        innerSpan.innerHTML =
-          'We are updating the site this week. <a href="mailto:admin@coursetexs.org" style="text-decoration: underline;">Email us</a> with any questions till then!'
+        innerSpan.append('We are updating the site this week. ')
+        const contactLink = document.createElement('a')
+        contactLink.href = `mailto:${maintenanceEmail}`
+        contactLink.style.textDecoration = 'underline'
+        contactLink.textContent = 'Email us'
+        innerSpan.append(contactLink, ' with any questions till then!')
         innerSpan.style.textAlign = 'center'
         messageContainer.appendChild(innerSpan)
 
