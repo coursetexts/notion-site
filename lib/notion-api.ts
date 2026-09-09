@@ -3,7 +3,14 @@ import { getPageContentBlockIds } from 'notion-utils'
 import pMap from 'p-map'
 
 const notionClient = new NotionAPI({
-  apiBaseUrl: process.env.NOTION_API_BASE_URL
+  apiBaseUrl: process.env.NOTION_API_BASE_URL,
+  // Notion rejects the default server-side fetch User-Agent with a 403.
+  // Identify this client on every request, including collection/block fetches.
+  kyOptions: {
+    headers: {
+      'User-Agent': 'Coursetexts/1.0 (+https://coursetexts.org)'
+    }
+  }
 })
 
 // REASON: Notion's unofficial API returns blocks double-nested as
