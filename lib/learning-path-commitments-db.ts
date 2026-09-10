@@ -255,6 +255,22 @@ export async function listMyLearningPathCommitments(): Promise<
   }))
 }
 
+/** Public profile: committed target keys for any user (no localStorage). */
+export async function listLearningPathCommitmentKeysForUser(
+  userId: string
+): Promise<string[]> {
+  const supabase = getSupabaseClient()
+  if (!supabase || !userId) return []
+  const { data, error } = await supabase
+    .from('learning_path_commitments')
+    .select('target_key')
+    .eq('user_id', userId)
+  if (error || !Array.isArray(data)) return []
+  return data
+    .map((row) => (row as { target_key?: string }).target_key)
+    .filter((key): key is string => Boolean(key))
+}
+
 export async function setLearningPathCommitted(
   targetKey: string,
   committed: boolean

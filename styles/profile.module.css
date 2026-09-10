@@ -501,7 +501,7 @@
   white-space: nowrap;
 }
 
-/* Activity → Feed: content-first subject, then actor thread */
+/* Activity → Feed: author-first, then content / target card */
 .feedCardSubjectRow {
   display: flex;
   flex-wrap: nowrap;
@@ -522,6 +522,78 @@
 .feedCardSubject em {
   font-style: italic;
   font-weight: 400;
+}
+
+.feedTargetCard {
+  margin-top: 0.45rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  background: #fafaf8;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.35;
+  color: #25272b;
+  min-width: 0;
+}
+
+.feedTargetCardIcon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.375rem;
+  height: 1.375rem;
+  margin-top: 0.05rem;
+  border-radius: 50%;
+  background: #0089c4;
+  color: #fff;
+}
+
+.feedTargetCardIcon svg {
+  display: block;
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.feedTargetCardBody {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.feedTargetCard a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.feedTargetCard a:hover,
+.feedTargetCard a:focus-visible {
+  color: #0089c4;
+}
+
+.feedThreadHead {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.feedThreadHeadMain {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.feedThreadHead .feedThreadActorRow {
+  margin-left: 0;
+}
+
+.feedThreadHead .feedCardTime {
+  margin-left: 0;
+  flex-shrink: 0;
 }
 
 .feedCardHead {
@@ -564,7 +636,27 @@
 .feedThread {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 0.15rem;
+  /* Avatar (24px) + gap to name (0.45rem) — indent content under the name */
+  --feed-avatar-indent: calc(24px + 0.45rem);
+}
+
+.feedThreadIndent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-left: var(--feed-avatar-indent);
+  min-width: 0;
+}
+
+.feedThreadIndent .feedTargetCard {
+  margin-top: 0.1rem;
+}
+
+.feedThreadIndent .feedThreadBody,
+.feedThreadIndent .feedThreadBodyMuted {
+  margin: 0;
+  padding-left: 0;
 }
 
 .feedThread .feedCardSubjectRow {
@@ -575,11 +667,71 @@
   display: flex;
   flex-direction: column;
   gap: 0.65rem;
-  margin-top: 0.35rem;
+  margin-top: 0;
   margin-left: 11px;
-  padding-top: 0.45rem;
+  padding-top: 0;
   padding-left: 0;
   border-left: 2px solid #e8e6e1;
+}
+
+/* Discussion / comment: subject card sits on the spine above actors */
+.feedThreadSpineLead {
+  gap: 0.7rem;
+}
+
+.feedLeadSubjectRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  margin-left: -13px;
+  min-width: 0;
+}
+
+.feedLeadIconOnSpine {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 2px solid #fff;
+  background: #0089c4;
+  color: #fff;
+  z-index: 1;
+}
+
+.feedLeadIconOnSpine svg {
+  display: block;
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.feedLeadSubjectCard {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-top: 0;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  background: #fafaf8;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.35;
+  color: #25272b;
+  font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
+}
+
+.feedLeadSubjectCard a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.feedLeadSubjectCard a:hover,
+.feedLeadSubjectCard a:focus-visible {
+  color: #0089c4;
 }
 
 .feedThreadTurn {
@@ -595,7 +747,42 @@
   align-items: center;
   gap: 0.35rem 0.5rem;
   min-width: 0;
+}
+
+/* Sit avatars on the reply spine line */
+.feedThreadSpine .feedThreadActorRow {
   margin-left: -13px;
+}
+
+.feedThreadSpine .feedThreadHead {
+  margin-left: 0;
+}
+
+/* Parent body under avatar/name on the spine */
+.feedThreadTurnBody {
+  margin-left: -13px;
+  padding-left: var(--feed-avatar-indent);
+  min-width: 0;
+}
+
+.feedThreadTurnBody .feedThreadBody,
+.feedThreadTurnBody .feedThreadBodyMuted {
+  margin: 0;
+  padding-left: 0;
+}
+
+/* Actions / embeds under a thread align with name, not under avatar */
+.activityFeedItemMain > .activityUpdateReplies,
+.activityFeedItemMain > .updateOriginalEmbed,
+.updatesCardMain > .activityUpdateReplies,
+.updatesCardMain > .updateOriginalEmbed,
+.updatesCardMain > .updatesTagList {
+  margin-left: var(--feed-avatar-indent, calc(24px + 0.45rem));
+}
+
+.activityFeedItemMain,
+.updatesCardMain {
+  --feed-avatar-indent: calc(24px + 0.45rem);
 }
 
 .feedThreadActor {
@@ -658,20 +845,6 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
-}
-
-/* Align body with name text (past avatar on the spine). */
-.feedThreadTurn .feedThreadBody,
-.feedThreadTurn .feedThreadBodyMuted {
-  margin-left: -13px;
-  padding-left: calc(24px + 0.45rem);
-}
-
-/* Align last reply body with name text outside the spine. */
-.feedThreadSpine + .feedThreadBody,
-.feedThreadSpine + .feedThreadBodyMuted {
-  margin-top: 0.2rem;
-  padding-left: calc(24px + 0.45rem);
 }
 
 .feedThreadBody {
@@ -4039,12 +4212,91 @@ button.learningPathCommittedTag:focus-visible:not(:disabled)
 }
 
 .updatesActionBtnLiked {
-  color: #b42318;
+  color: #0089c4;
 }
 
 .updatesActionBtnLiked:hover:not(:disabled) {
-  color: #912018;
-  background: #fef3f2;
+  color: #0077a8;
+  background: #f5fbff;
+}
+
+.updatesActionBtnReposted {
+  color: #1a7f4b;
+}
+
+.updatesActionBtnReposted:hover:not(:disabled) {
+  color: #166a3f;
+  background: #f3faf6;
+}
+
+.repostActionWrap {
+  position: relative;
+}
+
+.repostMenu {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 0.35rem);
+  z-index: 5;
+  min-width: 14.5rem;
+  padding: 0.35rem;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(37, 39, 43, 0.1);
+}
+
+.repostMenuItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  width: 100%;
+  margin: 0;
+  padding: 0.55rem 0.6rem;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #555;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+
+.repostMenuItem:hover:not(:disabled) {
+  background: #f7f7f7;
+  color: #25272b;
+}
+
+.repostMenuItem:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.repostMenuItem svg {
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.repostMenuItem span {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.repostMenuItem strong {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: inherit;
+}
+
+.repostMenuItem em {
+  font-size: 0.6875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.3;
+  color: #8a8a8a;
 }
 
 .updatesComments {
@@ -4060,6 +4312,88 @@ button.learningPathCommittedTag:focus-visible:not(:disabled)
 
 .activityUpdateReplies {
   margin-top: 0.45rem;
+}
+
+.updateOriginalEmbed {
+  margin-top: 0.55rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  background: #fafaf8;
+}
+
+.updateOriginalHead {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.35rem;
+  min-width: 0;
+}
+
+.updateOriginalAuthor {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #25272b;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.updateOriginalAuthor:hover,
+.updateOriginalAuthor:focus-visible {
+  color: #0089c4;
+}
+
+.updateOriginalBody {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: #5d534b;
+  text-decoration: none;
+  display: block;
+}
+
+a.updateOriginalBody:hover {
+  color: #0089c4;
+}
+
+.updateQuoteComposer {
+  margin-top: 0.55rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.updateQuoteInput {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid #e6e6e6;
+  border-radius: 6px;
+  background: #fff;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: #25272b;
+  resize: vertical;
+  min-height: 4.5rem;
+}
+
+.updateQuoteInput:focus,
+.updateQuoteInput:focus-visible {
+  outline: 2px solid rgba(0, 137, 196, 0.35);
+  outline-offset: 1px;
+  border-color: #0089c4;
+}
+
+.updateQuoteFooter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
 }
 
 .activityUpdateReplyBtn {

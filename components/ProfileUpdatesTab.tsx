@@ -5,7 +5,7 @@ import {
   type ActivityFeedTurn
 } from '@/components/ActivityFeedQuoteBody'
 import { ActivityFeedUpdateReplies } from '@/components/ActivityFeedUpdateReplies'
-import { ProfileAnnouncementIcon } from '@/components/ProfileTabItemIcons'
+import { ProfileUpdateOriginalEmbed } from '@/components/ProfileUpdateOriginalEmbed'
 import { UserLink } from '@/components/UserLink'
 import { useAuthOptional } from '@/contexts/AuthContext'
 import {
@@ -52,13 +52,20 @@ function UpdateAuthorAvatar({
   )
 }
 
+function updateVerb(update: ProfileUpdate): string {
+  if (update.repostOfId) return 'reposted'
+  if (update.quoteOfId) return 'quoted an update'
+  return 'posted an update'
+}
+
 function UpdateCard({
   update,
   authorUserId,
   authorDisplayName,
   authorAvatarUrl,
   showFollowingTag,
-  showFollowsYouTag
+  showFollowsYouTag,
+  onCreated
 }: {
   update: ProfileUpdate
   authorUserId: string
@@ -66,25 +73,37 @@ function UpdateCard({
   authorAvatarUrl?: string | null
   showFollowingTag?: boolean
   showFollowsYouTag?: boolean
+  onCreated?: () => void
 }) {
   const body = update.description.trim()
   const title = update.title.trim()
   const hasUrl = Boolean(update.url?.trim())
   const dateLabel = formatUpdateDate(update.createdAt)
   const name = authorDisplayName.trim() || 'User'
-  const subjectText = body || title || 'Update'
-  const subject = hasUrl ? (
-    <a
-      href={update.url}
-      target='_blank'
-      rel='noopener noreferrer'
-      className={styles.inlineLink}
-    >
-      {subjectText}
-    </a>
-  ) : (
-    subjectText
-  )
+  const isRepost = Boolean(update.repostOfId && update.original)
+  const hasQuoteOrRepostOriginal = Boolean(update.original)
+
+  // Reposts only show the original as a nested card (no duplicate plain text).
+  // Quotes / normal posts: author's text as plain subject.
+  let subject: React.ReactNode = null
+  if (!isRepost) {
+    const subjectText = body || title || (hasQuoteOrRepostOriginal ? null : 'Update')
+    const subjectHref = hasUrl ? update.url : ''
+    if (subjectText) {
+      subject = subjectHref ? (
+        <a
+          href={subjectHref}
+          target='_blank'
+          rel='noopener noreferrer'
+          className={styles.inlineLink}
+        >
+          {subjectText}
+        </a>
+      ) : (
+        subjectText
+      )
+    }
+  }
 
   const turns: ActivityFeedTurn[] = [
     {
@@ -99,21 +118,21 @@ function UpdateCard({
           />
         </span>
       ),
-      verb: 'posted an update'
+      verb: updateVerb(update)
     }
   ]
 
   return (
     <article className={styles.updatesCard}>
-      <span className={styles.tabItemIcon} aria-hidden>
-        <ProfileAnnouncementIcon />
-      </span>
       <div className={styles.updatesCardMain}>
         <ActivityFeedThread
           subject={subject}
           time={dateLabel || undefined}
           turns={turns}
         />
+        {update.original ? (
+          <ProfileUpdateOriginalEmbed original={update.original} />
+        ) : null}
         {update.tags.length > 0 ? (
           <ul className={styles.updatesTagList} aria-label='Tags'>
             {update.tags.map((tag) => (
@@ -125,9 +144,11 @@ function UpdateCard({
         ) : null}
         <ActivityFeedUpdateReplies
           updateId={update.id}
+          updateAuthorId={authorUserId}
           initialLikeCount={update.likeCount}
           initialLikedByMe={update.likedByMe}
           initialCommentCount={update.commentCount}
+          onCreated={onCreated}
         />
       </div>
     </article>
@@ -311,7 +332,8 @@ export function ProfileUpdatesTab({
   showFollowsYouTag = false,
   canAdd = false,
   embedded = false,
-  hideEmptyMessage = false
+  hideEmptyMessage = false,
+  reloadSignal = 0
 }: {
   userId: string | null | undefined
   authorDisplayName?: string | null
@@ -323,10 +345,13 @@ export function ProfileUpdatesTab({
   embedded?: boolean
   /** Skip the empty-state copy when another list shares the panel. */
   hideEmptyMessage?: boolean
+  /** Bump to force a reload (e.g. after reposting from Following). */
+  reloadSignal?: number
 }) {
   const auth = useAuthOptional()
   const [updates, setUpdates] = React.useState<ProfileUpdate[]>([])
   const [loading, setLoading] = React.useState(true)
+  const [reloadToken, setReloadToken] = React.useState(0)
   const resolvedAuthorName =
     (authorDisplayName ?? '').trim() ||
     (auth?.user?.id === userId
@@ -344,6 +369,10 @@ export function ProfileUpdatesTab({
       ? (auth.user.user_metadata?.avatar_url as string | undefined)
       : undefined)
 
+  const refresh = React.useCallback(() => {
+    setReloadToken((n) => n + 1)
+  }, [])
+
   React.useEffect(() => {
     let alive = true
     if (!userId) {
@@ -360,7 +389,7 @@ export function ProfileUpdatesTab({
     return () => {
       alive = false
     }
-  }, [userId])
+  }, [userId, reloadToken, reloadSignal])
 
   const body = (
     <>
@@ -391,6 +420,7 @@ export function ProfileUpdatesTab({
                 authorAvatarUrl={resolvedAuthorAvatar}
                 showFollowingTag={showFollowingTag}
                 showFollowsYouTag={showFollowsYouTag}
+                onCreated={refresh}
               />
             </li>
           ))}

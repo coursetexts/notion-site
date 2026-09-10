@@ -77,34 +77,34 @@ function iconForKind(kind: ActivityFeedIconKind) {
   }
 }
 
-/** Left-rail type badge for Activity feed / Your activity rows. */
+/** Type badge — used inside feed target cards. */
 export function ActivityFeedTypeIcon({
-  kind
+  kind,
+  className
 }: {
   kind: ActivityFeedIconKind
+  className?: string
 }) {
   return (
-    <span className={styles.tabItemIcon} aria-hidden>
+    <span className={className ?? styles.tabItemIcon} aria-hidden>
       {iconForKind(kind)}
     </span>
   )
 }
 
+/** Feed list row without a left-rail icon (icons live in content cards). */
 export function ActivityFeedRowShell({
-  iconKind,
   className,
   children
 }: {
-  iconKind: ActivityFeedIconKind
+  /** Kept for call-site compatibility; icon renders inside the content card. */
+  iconKind?: ActivityFeedIconKind
   className?: string
   children: React.ReactNode
 }) {
   return (
     <li className={className ?? styles.listItem}>
-      <div className={styles.tabItemRow}>
-        <ActivityFeedTypeIcon kind={iconKind} />
-        <div className={styles.activityFeedItemMain}>{children}</div>
-      </div>
+      <div className={styles.activityFeedItemMain}>{children}</div>
     </li>
   )
 }

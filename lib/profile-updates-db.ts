@@ -2,6 +2,7 @@
  * Profile Updates — tweet-like posts on /profile and /profile/[userId].
  * Likes use votes.target_type = 'profile_update' (upvote-only in UI).
  * Comments/replies use polymorphic comments with the same target_type.
+ * Repost / quote: new rows with repost_of_id / quote_of_id embedding an original.
  */
 import {
   type ThreadedComment,
@@ -12,6 +13,16 @@ import {
 import { getSupabaseClient } from '@/lib/supabase'
 
 export type ProfileUpdateType = 'Video' | 'Code' | 'Presentation' | 'Document'
+
+export type ProfileUpdateOriginal = {
+  id: string
+  userId: string
+  displayName: string
+  avatarUrl: string | null
+  body: string
+  url: string
+  createdAt: string
+}
 
 export type ProfileUpdate = {
   id: string
@@ -25,6 +36,9 @@ export type ProfileUpdate = {
   likeCount: number
   likedByMe: boolean
   commentCount: number
+  repostOfId: string | null
+  quoteOfId: string | null
+  original?: ProfileUpdateOriginal | null
 }
 
 export type ProfileUpdateDraft = {
@@ -41,6 +55,9 @@ const UPDATE_TYPES = new Set<ProfileUpdateType>([
   'Presentation',
   'Document'
 ])
+
+const UPDATE_SELECT =
+  'id, user_id, title, description, type, url, tags, created_at, repost_of_id, quote_of_id'
 
 function normalizeType(value: string | null | undefined): ProfileUpdateType {
   if (value && UPDATE_TYPES.has(value as ProfileUpdateType)) {
@@ -74,6 +91,17 @@ type UpdateRow = {
   url: string | null
   tags: string[] | null
   created_at: string
+  repost_of_id?: string | null
+  quote_of_id?: string | null
+}
+
+function bodyFromRow(row: {
+  title: string | null
+  description: string | null
+}): string {
+  const description = (row.description ?? '').trim()
+  const title = (row.title ?? '').trim()
+  return description || title
 }
 
 async function getLikeSummaries(
@@ -166,7 +194,8 @@ export async function getProfileUpdateEngagement(
 function mapRow(
   row: UpdateRow,
   likes: { count: number; likedByMe: boolean },
-  commentCount: number
+  commentCount: number,
+  original?: ProfileUpdateOriginal | null
 ): ProfileUpdate {
   return {
     id: row.id,
@@ -179,8 +208,92 @@ function mapRow(
     createdAt: row.created_at,
     likeCount: likes.count,
     likedByMe: likes.likedByMe,
-    commentCount
+    commentCount,
+    repostOfId: row.repost_of_id ?? null,
+    quoteOfId: row.quote_of_id ?? null,
+    original: original ?? null
   }
+}
+
+async function hydrateOriginals(
+  rows: UpdateRow[]
+): Promise<Record<string, ProfileUpdateOriginal>> {
+  const supabase = getSupabaseClient()
+  const out: Record<string, ProfileUpdateOriginal> = {}
+  if (!supabase) return out
+
+  const originalIds = [
+    ...new Set(
+      rows
+        .map((row) => row.repost_of_id || row.quote_of_id)
+        .filter((id): id is string => Boolean(id))
+    )
+  ]
+  if (originalIds.length === 0) return out
+
+  const { data, error } = await supabase
+    .from('profile_updates')
+    .select(UPDATE_SELECT)
+    .in('id', originalIds)
+  if (error || !Array.isArray(data)) return out
+
+  const originals = data as UpdateRow[]
+  const userIds = [...new Set(originals.map((row) => row.user_id))]
+  const { data: profiles } = await supabase
+    .from('profiles')
+    .select('user_id, display_name, avatar_url')
+    .in('user_id', userIds)
+  const profileByUser: Record<
+    string,
+    { display_name: string | null; avatar_url: string | null }
+  > = {}
+  for (const profile of (profiles || []) as Array<{
+    user_id: string
+    display_name: string | null
+    avatar_url: string | null
+  }>) {
+    profileByUser[profile.user_id] = profile
+  }
+
+  for (const row of originals) {
+    const profile = profileByUser[row.user_id]
+    out[row.id] = {
+      id: row.id,
+      userId: row.user_id,
+      displayName: profile?.display_name?.trim() || 'Someone',
+      avatarUrl: profile?.avatar_url ?? null,
+      body: bodyFromRow(row),
+      url: (row.url ?? '').trim(),
+      createdAt: row.created_at
+    }
+  }
+  return out
+}
+
+/** Resolve to root original so nests stay one level deep. */
+async function resolveRootUpdateId(updateId: string): Promise<string | null> {
+  const supabase = getSupabaseClient()
+  if (!supabase || !updateId) return null
+  const { data, error } = await supabase
+    .from('profile_updates')
+    .select('id, user_id, repost_of_id, quote_of_id')
+    .eq('id', updateId)
+    .maybeSingle()
+  if (error || !data) return null
+  const row = data as {
+    id: string
+    user_id: string
+    repost_of_id: string | null
+    quote_of_id: string | null
+  }
+  const nested = row.repost_of_id || row.quote_of_id
+  if (!nested) return row.id
+  const { data: root } = await supabase
+    .from('profile_updates')
+    .select('id')
+    .eq('id', nested)
+    .maybeSingle()
+  return (root as { id: string } | null)?.id ?? nested
 }
 
 /** Profile updates for a user, newest first. */
@@ -192,7 +305,7 @@ export async function listProfileUpdatesByUserId(
 
   const { data, error } = await supabase
     .from('profile_updates')
-    .select('id, user_id, title, description, type, url, tags, created_at')
+    .select(UPDATE_SELECT)
     .eq('user_id', userId)
     .order('created_at', { ascending: false })
 
@@ -204,14 +317,21 @@ export async function listProfileUpdatesByUserId(
 
   const rows = data as UpdateRow[]
   const ids = rows.map((row) => row.id)
-  const [likes, comments] = await Promise.all([
+  const [likes, comments, originals] = await Promise.all([
     getLikeSummaries(ids),
-    getCommentCounts(ids)
+    getCommentCounts(ids),
+    hydrateOriginals(rows)
   ])
 
-  return rows.map((row) =>
-    mapRow(row, likes[row.id] ?? { count: 0, likedByMe: false }, comments[row.id] ?? 0)
-  )
+  return rows.map((row) => {
+    const originalId = row.repost_of_id || row.quote_of_id
+    return mapRow(
+      row,
+      likes[row.id] ?? { count: 0, likedByMe: false },
+      comments[row.id] ?? 0,
+      originalId ? originals[originalId] ?? null : null
+    )
+  })
 }
 
 export async function createProfileUpdate(
@@ -238,7 +358,7 @@ export async function createProfileUpdate(
       url: draft.url.trim().slice(0, 2000),
       tags: normalizeTags(draft.tags)
     })
-    .select('id, user_id, title, description, type, url, tags, created_at')
+    .select(UPDATE_SELECT)
     .single()
 
   if (error || !data) {
@@ -246,7 +366,140 @@ export async function createProfileUpdate(
     return null
   }
 
-  return mapRow(data as UpdateRow, { count: 0, likedByMe: false }, 0)
+  return mapRow(data as UpdateRow, { count: 0, likedByMe: false }, 0, null)
+}
+
+/** One-click reshare: new empty row pointing at the root original. No self-repost. */
+export async function createProfileUpdateRepost(
+  originalId: string
+): Promise<ProfileUpdate | null> {
+  const supabase = getSupabaseClient()
+  if (!supabase || !originalId) return null
+  const {
+    data: { user }
+  } = await supabase.auth.getUser()
+  if (!user) return null
+
+  const rootId = await resolveRootUpdateId(originalId)
+  if (!rootId) return null
+
+  const { data: original, error: originalError } = await supabase
+    .from('profile_updates')
+    .select(UPDATE_SELECT)
+    .eq('id', rootId)
+    .maybeSingle()
+  if (originalError || !original) return null
+  const originalRow = original as UpdateRow
+  if (originalRow.user_id === user.id) return null
+
+  const { data, error } = await supabase
+    .from('profile_updates')
+    .insert({
+      user_id: user.id,
+      title: '',
+      description: '',
+      type: 'Document',
+      url: '',
+      tags: [],
+      repost_of_id: rootId,
+      quote_of_id: null
+    })
+    .select(UPDATE_SELECT)
+    .single()
+
+  if (error || !data) {
+    console.error('createProfileUpdateRepost failed', error)
+    return null
+  }
+
+  const originals = await hydrateOriginals([data as UpdateRow])
+  return mapRow(
+    data as UpdateRow,
+    { count: 0, likedByMe: false },
+    0,
+    originals[rootId] ?? null
+  )
+}
+
+/** Quote: commentary required; embeds root original. */
+export async function createProfileUpdateQuote(
+  originalId: string,
+  commentary: string
+): Promise<ProfileUpdate | null> {
+  const supabase = getSupabaseClient()
+  if (!supabase || !originalId) return null
+  const {
+    data: { user }
+  } = await supabase.auth.getUser()
+  if (!user) return null
+
+  const body = commentary.trim().slice(0, 4000)
+  if (!body) return null
+
+  const rootId = await resolveRootUpdateId(originalId)
+  if (!rootId) return null
+
+  const { data: original, error: originalError } = await supabase
+    .from('profile_updates')
+    .select('id')
+    .eq('id', rootId)
+    .maybeSingle()
+  if (originalError || !original) return null
+
+  const { data, error } = await supabase
+    .from('profile_updates')
+    .insert({
+      user_id: user.id,
+      title: body.slice(0, 72),
+      description: body,
+      type: 'Document',
+      url: '',
+      tags: [],
+      repost_of_id: null,
+      quote_of_id: rootId
+    })
+    .select(UPDATE_SELECT)
+    .single()
+
+  if (error || !data) {
+    console.error('createProfileUpdateQuote failed', error)
+    return null
+  }
+
+  const originals = await hydrateOriginals([data as UpdateRow])
+  return mapRow(
+    data as UpdateRow,
+    { count: 0, likedByMe: false },
+    0,
+    originals[rootId] ?? null
+  )
+}
+
+/** Fetch a single update with engagement + original (for feed helpers). */
+export async function getProfileUpdateById(
+  updateId: string
+): Promise<ProfileUpdate | null> {
+  const supabase = getSupabaseClient()
+  if (!supabase || !updateId) return null
+  const { data, error } = await supabase
+    .from('profile_updates')
+    .select(UPDATE_SELECT)
+    .eq('id', updateId)
+    .maybeSingle()
+  if (error || !data) return null
+  const row = data as UpdateRow
+  const [likes, comments, originals] = await Promise.all([
+    getLikeSummaries([row.id]),
+    getCommentCounts([row.id]),
+    hydrateOriginals([row])
+  ])
+  const originalId = row.repost_of_id || row.quote_of_id
+  return mapRow(
+    row,
+    likes[row.id] ?? { count: 0, likedByMe: false },
+    comments[row.id] ?? 0,
+    originalId ? originals[originalId] ?? null : null
+  )
 }
 
 /** Toggle like on an update. Returns the resulting liked state + count, or null. */
@@ -317,4 +570,14 @@ export async function setProfileUpdateCommentVote(
   value: 1 | -1 | null
 ): Promise<number | null> {
   return setPolymorphicCommentVote(comment, value)
+}
+
+/** Exported for feed hydration of nested originals. */
+export async function hydrateProfileUpdateOriginals(
+  rows: Array<{
+    repost_of_id?: string | null
+    quote_of_id?: string | null
+  }>
+): Promise<Record<string, ProfileUpdateOriginal>> {
+  return hydrateOriginals(rows as UpdateRow[])
 }

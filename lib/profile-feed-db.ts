@@ -7,7 +7,11 @@ import {
   learningPathHref,
   parseLearningPathSlugFromUserLinkUrl
 } from '@/lib/learning-path-bookmark-link'
-import { getProfileUpdateEngagement } from '@/lib/profile-updates-db'
+import {
+  type ProfileUpdateOriginal,
+  getProfileUpdateEngagement,
+  hydrateProfileUpdateOriginals
+} from '@/lib/profile-updates-db'
 import { getSupabaseClient } from '@/lib/supabase'
 
 type FeedActor = {
@@ -70,6 +74,9 @@ export type ProfileFeedItem =
       like_count: number
       liked_by_me: boolean
       comment_count: number
+      repost_of_id: string | null
+      quote_of_id: string | null
+      original: ProfileUpdateOriginal | null
     })
   | (FeedActor & {
       kind: 'followed_path_progress'
@@ -289,7 +296,9 @@ export async function getProfileFeed(
             .limit(120),
           supabase
             .from('profile_updates')
-            .select('id, user_id, title, description, url, created_at')
+            .select(
+              'id, user_id, title, description, url, created_at, repost_of_id, quote_of_id'
+            )
             .in('user_id', followingIds)
             .order('created_at', { ascending: false })
             .limit(120)
@@ -519,10 +528,14 @@ export async function getProfileFeed(
       description: string | null
       url: string | null
       created_at: string
+      repost_of_id: string | null
+      quote_of_id: string | null
     }
     const title = (u.title ?? '').trim()
     const body = (u.description ?? '').trim()
-    if (!title && !body) continue
+    const isRepost = Boolean(u.repost_of_id)
+    const isQuote = Boolean(u.quote_of_id)
+    if (!title && !body && !isRepost) continue
     needUserIds.add(u.user_id)
     items.push({
       kind: 'followed_profile_update',
@@ -538,7 +551,10 @@ export async function getProfileFeed(
       profile_href: `/profile/${u.user_id}`,
       like_count: 0,
       liked_by_me: false,
-      comment_count: 0
+      comment_count: 0,
+      repost_of_id: isRepost ? u.repost_of_id : null,
+      quote_of_id: isQuote ? u.quote_of_id : null,
+      original: null
     })
   }
 
@@ -677,7 +693,19 @@ export async function getProfileFeed(
         it.kind === 'followed_profile_update'
     )
     .map((it) => it.update_id)
-  const updateEngagement = await getProfileUpdateEngagement(updateIds)
+  const updateRowsForOriginals = items
+    .filter(
+      (it): it is Extract<ProfileFeedItem, { kind: 'followed_profile_update' }> =>
+        it.kind === 'followed_profile_update'
+    )
+    .map((it) => ({
+      repost_of_id: it.repost_of_id,
+      quote_of_id: it.quote_of_id
+    }))
+  const [updateEngagement, updateOriginals] = await Promise.all([
+    getProfileUpdateEngagement(updateIds),
+    hydrateProfileUpdateOriginals(updateRowsForOriginals)
+  ])
 
   const pathSlugsToCheck = [
     ...new Set(
@@ -763,6 +791,10 @@ export async function getProfileFeed(
       it.like_count = engagement?.likeCount ?? 0
       it.liked_by_me = engagement?.likedByMe ?? false
       it.comment_count = engagement?.commentCount ?? 0
+      const originalId = it.repost_of_id || it.quote_of_id
+      it.original = originalId
+        ? updateOriginals[originalId] ?? null
+        : null
       hydrated.push(it)
       continue
     }

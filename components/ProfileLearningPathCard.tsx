@@ -70,12 +70,24 @@ function GrowingPlantIcon() {
 
 function LearningPathResumePreview({
   description,
-  resume
+  resume,
+  showProgress = true
 }: {
   description?: string | null
   resume?: NavPinResume | null
+  /** Own-profile hover: progress + next. Public profiles keep description only. */
+  showProgress?: boolean
 }) {
   const blurb = (description ?? resume?.description ?? '').trim()
+  if (!showProgress) {
+    if (!blurb) return null
+    return (
+      <div className={styles.learningPathCardResume}>
+        <p className={styles.learningPathCardResumeDescription}>{blurb}</p>
+      </div>
+    )
+  }
+
   const progressLabel = resume
     ? `${resume.explored} of ${resume.total} ${resume.unit} explored`
     : 'Pick up where you left off'
@@ -122,7 +134,8 @@ export function ProfileLearningPathCard({
   onRemoveReminder,
   reminderBusy = false,
   resume = null,
-  description = null
+  description = null,
+  showResumeActions = true
 }: {
   href: string
   title: string
@@ -139,6 +152,8 @@ export function ProfileLearningPathCard({
   reminderBusy?: boolean
   resume?: NavPinResume | null
   description?: string | null
+  /** When false (public profiles): hover shows description only, no Continue. */
+  showResumeActions?: boolean
 }) {
   const committedTag = committed ? (
     onToggleCommit ? (
@@ -165,7 +180,7 @@ export function ProfileLearningPathCard({
   ) : null
 
   const commitHoverControl =
-    !committed && onToggleCommit ? (
+    showResumeActions && !committed && onToggleCommit ? (
       <button
         type='button'
         className={`${styles.learningPathTag} ${styles.learningPathCommitTag} ${styles.learningPathCommitHover}${
@@ -180,7 +195,7 @@ export function ProfileLearningPathCard({
     ) : null
 
   const continueHref = resume?.continueHref ?? href
-  const continueControl = (
+  const continueControl = showResumeActions ? (
     <Link href={continueHref}>
       <a
         className={`${styles.learningPathTag} ${styles.learningPathContinueTag} ${styles.learningPathCommitHover}`}
@@ -188,10 +203,10 @@ export function ProfileLearningPathCard({
         Continue →
       </a>
     </Link>
-  )
+  ) : null
 
   const reminderControl =
-    committed && onSaveReminder && onRemoveReminder ? (
+    showResumeActions && committed && onSaveReminder && onRemoveReminder ? (
       <ProfileCommitmentReminder
         reminder={reminder}
         onSave={onSaveReminder}
@@ -266,6 +281,7 @@ export function ProfileLearningPathCard({
         <LearningPathResumePreview
           description={description}
           resume={resume}
+          showProgress={showResumeActions}
         />
         {hasTags ? (
           <span className={styles.learningPathCardTags}>
@@ -294,7 +310,8 @@ export function ProfileCommunityLearningPathCard({
   onSaveReminder,
   onRemoveReminder,
   reminderBusy = false,
-  resume = null
+  resume = null,
+  showResumeActions = true
 }: {
   item: StoredLearningPath
   ownAuthorLabel?: string
@@ -308,6 +325,7 @@ export function ProfileCommunityLearningPathCard({
   onRemoveReminder?: () => void
   reminderBusy?: boolean
   resume?: NavPinResume | null
+  showResumeActions?: boolean
 }) {
   const savedLinkId = item.savedLinkId
   const isCreated = !savedLinkId && !item.invited
@@ -339,6 +357,7 @@ export function ProfileCommunityLearningPathCard({
       reminderBusy={reminderBusy}
       resume={resume}
       description={description}
+      showResumeActions={showResumeActions}
     />
   )
 }

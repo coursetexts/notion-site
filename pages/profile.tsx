@@ -28,6 +28,7 @@ import { ProfileBackArrow } from '@/components/ProfileBackArrow'
 import { ProfileSidebarBackHome } from '@/components/ProfileSidebarBackHome'
 import { FollowCountDividerDot } from '@/components/FollowCountDividerDot'
 import { ProfileInterestsPanel } from '@/components/ProfileInterestsPanel'
+import { ProfileUpdateOriginalEmbed } from '@/components/ProfileUpdateOriginalEmbed'
 import { ProfilePublicSummary } from '@/components/ProfilePublicSummary'
 import { ProfileKnowledgePanel } from '@/components/ProfileKnowledgePanel'
 import { ProfileNotesPanel } from '@/components/ProfileNotesPanel'
@@ -260,7 +261,10 @@ function FeedItemSubject({ item }: { item: ProfileFeedItem }) {
         <FeedTargetLink href={item.path_href}>{item.path_title}</FeedTargetLink>
       )
     case 'followed_profile_update': {
-      const label = item.body.trim() || item.title.trim() || 'Update'
+      // Reposts: original lives in ProfileUpdateOriginalEmbed only.
+      if (item.repost_of_id && item.original) return null
+      const label = item.body.trim() || item.title.trim()
+      if (!label) return null
       const href = item.url.trim()
       if (href) {
         return <FeedTargetLink href={href}>{label}</FeedTargetLink>
@@ -306,6 +310,8 @@ function feedItemVerb(item: ProfileFeedItem): string | null {
     case 'followed_learning_path':
       return 'started a learning path'
     case 'followed_profile_update':
+      if (item.repost_of_id) return 'reposted'
+      if (item.quote_of_id) return 'quoted an update'
       return 'posted an update'
     case 'followed_path_progress':
       return 'explored'
@@ -318,6 +324,24 @@ function feedItemVerb(item: ProfileFeedItem): string | null {
     default:
       return null
   }
+}
+
+function feedItemUsesContentCard(item: ProfileFeedItem): boolean {
+  switch (item.kind) {
+    case 'followed_course_bookmark':
+    case 'followed_link_bookmark':
+    case 'followed_learning_path':
+      return true
+    default:
+      return false
+  }
+}
+
+/** Discussion / comment: subject card first, spine to the actor. */
+function feedItemLeadsWithSubject(item: ProfileFeedItem): boolean {
+  return (
+    item.kind === 'followed_comment' || item.kind === 'followed_annotation'
+  )
 }
 
 function feedActorAvatar(displayName: string, avatarUrl?: string | null) {
@@ -408,7 +432,7 @@ function feedItemTurns(
     }
     turns.push({
       author: actor,
-      verb: parentBody ? null : verb,
+      verb: parentBody ? 'replied' : verb,
       body: excerpt
     })
     return turns
@@ -446,11 +470,11 @@ const PATHS_COURSES_FILTERS: { id: PathsCoursesFilter; label: string }[] = [
   { id: 'committed', label: 'Committed' }
 ]
 
-type ActivityFilter = 'feed' | 'yours'
+type ActivityFilter = 'feed' | 'you'
 
 const ACTIVITY_FILTERS: { id: ActivityFilter; label: string }[] = [
   { id: 'feed', label: 'Following' },
-  { id: 'yours', label: 'Yours' }
+  { id: 'you', label: 'You' }
 ]
 
 function nextPathsCoursesFilter(
@@ -528,7 +552,17 @@ function feedItemMatchesQuery(item: ProfileFeedItem, query: string) {
       fields.push(item.path_title, 'learning path')
       break
     case 'followed_profile_update':
-      fields.push(item.title, item.body, item.url, 'update', 'posted')
+      fields.push(
+        item.title,
+        item.body,
+        item.url,
+        'update',
+        'posted',
+        item.repost_of_id ? 'reposted' : '',
+        item.quote_of_id ? 'quoted' : '',
+        item.original?.body ?? '',
+        item.original?.displayName ?? ''
+      )
       break
     case 'followed_path_progress':
       fields.push(item.path_title, item.node_label)
@@ -584,6 +618,23 @@ function notificationMatchesQuery(
       matchesSearch(row.actor_display_name, query) ||
       matchesSearch(row.update_snippet, query) ||
       matchesSearch('liked', query)
+    )
+  }
+  if (row.kind === 'repost') {
+    return (
+      matchesSearch(row.actor_display_name, query) ||
+      matchesSearch(row.update_snippet, query) ||
+      matchesSearch('reposted', query) ||
+      matchesSearch('repost', query)
+    )
+  }
+  if (row.kind === 'quote') {
+    return (
+      matchesSearch(row.actor_display_name, query) ||
+      matchesSearch(row.update_snippet, query) ||
+      matchesSearch(row.quote_snippet, query) ||
+      matchesSearch('quoted', query) ||
+      matchesSearch('quote', query)
     )
   }
   if (row.kind === 'path_invite') {
@@ -693,6 +744,7 @@ export default function ProfilePage() {
   )
   const [activityLoading, setActivityLoading] = useState(true)
   const [feedItems, setFeedItems] = useState<ProfileFeedItem[]>([])
+  const [updatesReloadSignal, setUpdatesReloadSignal] = useState(0)
   const [knowledgeTopics, setKnowledgeTopics] = useState<UserKnowledgeTopic[]>(
     []
   )
@@ -2329,7 +2381,7 @@ export default function ProfilePage() {
                       }
                       onClick={() => selectMainTab('bookmarks')}
                     >
-                      Bookmarks
+                      Resources
                     </button>
                     <span className={styles.primaryTabsDivider} aria-hidden />
                     <button
@@ -2395,6 +2447,8 @@ export default function ProfilePage() {
                                 iconKind='follow'
                               >
                                 <ActivityFeedThread
+                                  iconKind='follow'
+                                  contentCard
                                   subject='New follower'
                                   time={formatDate(row.created_at)}
                                   turns={[
@@ -2420,6 +2474,8 @@ export default function ProfilePage() {
                                 iconKind='like'
                               >
                                 <ActivityFeedThread
+                                  iconKind='like'
+                                  contentCard
                                   subject={
                                     <Link href={row.profile_href}>
                                       <a className={styles.inlineLink}>
@@ -2444,6 +2500,72 @@ export default function ProfilePage() {
                               </ActivityFeedRowShell>
                             )
                           }
+                          if (row.kind === 'repost') {
+                            return (
+                              <ActivityFeedRowShell
+                                key={row.id}
+                                iconKind='update'
+                              >
+                                <ActivityFeedThread
+                                  iconKind='update'
+                                  contentCard
+                                  subject={
+                                    <Link href={row.profile_href}>
+                                      <a className={styles.inlineLink}>
+                                        {row.update_snippet}
+                                      </a>
+                                    </Link>
+                                  }
+                                  time={formatDate(row.created_at)}
+                                  turns={[
+                                    {
+                                      author: feedActorNode(
+                                        row.actor_id,
+                                        row.actor_display_name,
+                                        followingIds,
+                                        followerIds,
+                                        row.actor_avatar_url
+                                      ),
+                                      verb: 'reposted your update'
+                                    }
+                                  ]}
+                                />
+                              </ActivityFeedRowShell>
+                            )
+                          }
+                          if (row.kind === 'quote') {
+                            return (
+                              <ActivityFeedRowShell
+                                key={row.id}
+                                iconKind='update'
+                              >
+                                <ActivityFeedThread
+                                  iconKind='update'
+                                  contentCard
+                                  subject={
+                                    <Link href={row.profile_href}>
+                                      <a className={styles.inlineLink}>
+                                        {row.quote_snippet}
+                                      </a>
+                                    </Link>
+                                  }
+                                  time={formatDate(row.created_at)}
+                                  turns={[
+                                    {
+                                      author: feedActorNode(
+                                        row.actor_id,
+                                        row.actor_display_name,
+                                        followingIds,
+                                        followerIds,
+                                        row.actor_avatar_url
+                                      ),
+                                      verb: 'quoted your update'
+                                    }
+                                  ]}
+                                />
+                              </ActivityFeedRowShell>
+                            )
+                          }
                           if (row.kind === 'path_invite') {
                             return (
                               <ActivityFeedRowShell
@@ -2451,6 +2573,8 @@ export default function ProfilePage() {
                                 iconKind='path'
                               >
                                 <ActivityFeedThread
+                                  iconKind='path'
+                                  contentCard
                                   subject={
                                     <Link href={row.path_href}>
                                       <a className={styles.inlineLink}>
@@ -2482,6 +2606,8 @@ export default function ProfilePage() {
                                 iconKind='suggestion'
                               >
                                 <ActivityFeedThread
+                                  iconKind='suggestion'
+                                  contentCard
                                   subject={
                                     <Link href={row.path_href}>
                                       <a className={styles.inlineLink}>
@@ -2514,6 +2640,8 @@ export default function ProfilePage() {
                                 iconKind='suggestion'
                               >
                                 <ActivityFeedThread
+                                  iconKind='suggestion'
+                                  contentCard
                                   subject={
                                     <Link href={row.path_href}>
                                       <a className={styles.inlineLink}>
@@ -2550,6 +2678,8 @@ export default function ProfilePage() {
                                 className={`${styles.listItem} ${styles.listItemUnread}`}
                               >
                                 <ActivityFeedThread
+                                  iconKind='join'
+                                  contentCard
                                   subject={
                                     request.pathSlug ? (
                                       <Link
@@ -2656,6 +2786,12 @@ export default function ProfilePage() {
                               }
                             >
                               <ActivityFeedThread
+                                iconKind={
+                                  n.type === 'annotation'
+                                    ? 'discussion'
+                                    : 'comment'
+                                }
+                                contentCard
                                 subject={
                                   n.type === 'annotation' ? (
                                     <>
@@ -2731,7 +2867,7 @@ export default function ProfilePage() {
                   <div className={styles.tabPanel}>
                     <div className={styles.tabPanelTop}>
                       <h2 className={styles.mainSerifTitle}>
-                        Bookmarked Resources
+                        Resources
                       </h2>
                       <div className={styles.tabPanelActions}>
                         <button
@@ -2754,7 +2890,7 @@ export default function ProfilePage() {
                           id='profile-bookmarks-search'
                           value={bookmarkSearch}
                           onChange={setBookmarkSearch}
-                          ariaLabel='Search bookmarks'
+                          ariaLabel='Search resources'
                         />
                       </div>
                     </div>
@@ -2975,11 +3111,11 @@ export default function ProfilePage() {
                         <p className={styles.placeholder}>Loading links…</p>
                       ) : savedBookmarkRows.length === 0 ? (
                         <p className={styles.placeholder}>
-                          No saved links yet. Add a bookmark with + New Link.
+                          No saved resources yet. Add one with + New Link.
                         </p>
                       ) : visibleBookmarkRows.length === 0 ? (
                         <p className={styles.placeholder}>
-                          No matching bookmarks.
+                          No matching resources.
                         </p>
                       ) : (
                         <ul className={styles.userLinksList}>
@@ -3326,6 +3462,7 @@ export default function ProfilePage() {
                             canAdd
                             embedded
                             hideEmptyMessage
+                            reloadSignal={updatesReloadSignal}
                           />
                           {feedItems.length === 0 ? (
                             <p className={styles.placeholder}>
@@ -3350,6 +3487,14 @@ export default function ProfilePage() {
                                     <ActivityFeedThread
                                       subject={<FeedItemSubject item={item} />}
                                       time={formatDate(item.created_at)}
+                                      contentCard={feedItemUsesContentCard(item)}
+                                      leadSubject={feedItemLeadsWithSubject(item)}
+                                      iconKind={
+                                        feedItemUsesContentCard(item) ||
+                                        feedItemLeadsWithSubject(item)
+                                          ? activityIconKindForFeedItem(item)
+                                          : undefined
+                                      }
                                       turns={feedItemTurns(
                                         item,
                                         actorLabel,
@@ -3357,12 +3502,22 @@ export default function ProfilePage() {
                                         followerIds
                                       )}
                                     />
+                                    {item.kind === 'followed_profile_update' &&
+                                    item.original ? (
+                                      <ProfileUpdateOriginalEmbed
+                                        original={item.original}
+                                      />
+                                    ) : null}
                                     {item.kind === 'followed_profile_update' ? (
                                       <ActivityFeedUpdateReplies
                                         updateId={item.update_id}
+                                        updateAuthorId={item.actor_id}
                                         initialLikeCount={item.like_count}
                                         initialLikedByMe={item.liked_by_me}
                                         initialCommentCount={item.comment_count}
+                                        onCreated={() =>
+                                          setUpdatesReloadSignal((n) => n + 1)
+                                        }
                                       />
                                     ) : null}
                                   </ActivityFeedRowShell>
@@ -3374,7 +3529,7 @@ export default function ProfilePage() {
                       )}
 
                     {!activityLoading &&
-                      activitySubTab === 'yours' &&
+                      activitySubTab === 'you' &&
                       (myActivityRows.length === 0 ? (
                         <p className={styles.placeholder}>
                           No comments or discussions yet. Content you add on
@@ -3423,7 +3578,7 @@ export default function ProfilePage() {
                                   followerIds,
                                   avatarUrl
                                 ),
-                                verb: parentBody ? null : 'commented',
+                                verb: parentBody ? 'replied' : 'commented',
                                 body: comment.body
                               })
                               return (
@@ -3432,6 +3587,8 @@ export default function ProfilePage() {
                                   iconKind='comment'
                                 >
                                   <ActivityFeedThread
+                                    iconKind='comment'
+                                    leadSubject
                                     subject={
                                       <FeedTargetLink
                                         href={
@@ -3482,7 +3639,7 @@ export default function ProfilePage() {
                                 followerIds,
                                 avatarUrl
                               ),
-                              verb: parentBody ? null : 'posted',
+                              verb: parentBody ? 'replied' : 'posted',
                               body: annotation.body
                             })
                             return (
@@ -3491,6 +3648,8 @@ export default function ProfilePage() {
                                 iconKind='discussion'
                               >
                                 <ActivityFeedThread
+                                  iconKind='discussion'
+                                  leadSubject
                                   subject={
                                     <>
                                       Discussions on{' '}

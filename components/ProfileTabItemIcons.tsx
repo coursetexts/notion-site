@@ -64,7 +64,7 @@ export function ProfileNoteIcon({ className }: IconProps) {
   )
 }
 
-/** Bookmarks — bookmark ribbon. */
+/** Resources tab — bookmark ribbon. */
 export function ProfileBookmarkIcon({ className }: IconProps) {
   return (
     <svg {...common} className={className}>

@@ -13,13 +13,14 @@
 .tagFollowsYou,
 .tagEachOther {
   display: inline-block;
-  margin-left: 0.35rem;
-  padding: 0.1rem 0.4rem;
-  font-size: 0.65rem;
-  font-weight: 600;
+  margin-left: 0.25rem;
+  padding: 0.02rem 0.28rem;
+  font-size: 0.55rem;
+  line-height: 1.25;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
-  border-radius: 4px;
+  letter-spacing: 0.015em;
+  border-radius: 3px;
   vertical-align: middle;
   white-space: nowrap;
 }

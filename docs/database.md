@@ -1,6 +1,6 @@
 # Database
 
-Fresh installs: apply SQL in [`supabase/migrations/`](../supabase/migrations/README.md). Prefer `000_complete_schema.sql` (includes `001`–`030`, `034`–`038`, and `040`, with `rating` already 0–100, plus commitment reminder columns). Existing DBs that already ran an older 1–5 `038` should also apply `039`. Apply `040` so collaborative paths cannot rewrite the outline. Apply `041` for Learn-tab commitments and optional reminder cadence (`041` creates `learning_path_commitments` if `030` was never applied). Apply `042` for private-path collaborator invites by email. Apply `043` so private or unknown learning-path URLs do not render an empty Coursetexts shell. Apply `045` so `/knowledge-graph` can persist topic–path occurrences. If you previously applied `046_official_course_content`, apply `047_revert_official_course_content` to drop those columns. Run `048_drop_community_wall_and_notebooks.sql` to drop legacy Community Wall and standalone notebook tables.
+Fresh installs: apply SQL in [`supabase/migrations/`](../supabase/migrations/README.md). Prefer `000_complete_schema.sql` (includes `001`–`030`, `034`–`038`, and `040`, with `rating` already 0–100, plus commitment reminder columns). Existing DBs that already ran an older 1–5 `038` should also apply `039`. Apply `040` so collaborative paths cannot rewrite the outline. Apply `041` for Learn-tab commitments and optional reminder cadence (`041` creates `learning_path_commitments` if `030` was never applied). Apply `042` for private-path collaborator invites by email. Apply `043` so private or unknown learning-path URLs do not render an empty Coursetexts shell. Apply `045` so `/knowledge-graph` can persist topic–path occurrences. If you previously applied `046_official_course_content`, apply `047_revert_official_course_content` to drop those columns. Run `048_drop_community_wall_and_notebooks.sql` to drop legacy Community Wall and standalone notebook tables. Apply `049`–`051` for profile learning summary, Updates, and repost/quote. Apply `052_public_learning_path_commitments_read.sql` so public profiles can list another user’s committed Learning items.
 
 ## Table groups
 
@@ -391,7 +391,7 @@ erDiagram
 | `learning_path_user_state`     | Per-learner overlay: TipTap notes, extra resources, node status.                                                                                                                                               |
 | `learning_path_pins`           | Per-user pinned **course** syllabi (header pin menu).                                                                                                                                                          |
 | `learning_path_resource_votes` | Upvotes on a resource list item. Independent of sequence. Public + collaborative paths only. `/community` diagrams this (`ResourceVoteSchemaDiagram`).                                                         |
-| `learning_path_commitments`    | Per-user committed flag on a Learning tab item. Owner-only. Profile filter **Committed**. Reminder cadence is optional (`reminder_frequency` / `reminder_minute` / `reminder_timezone` nullable); a reminder cannot exist without a commitment row. Sending notifications is not built yet. Existing DBs: apply `041_learning_path_commitment_reminders.sql` (creates the table if `030` was never applied). |
+| `learning_path_commitments`    | Per-user committed flag on a Learning tab item. Profile filter **Committed** (own and public profiles). Reminder cadence is optional (`reminder_frequency` / `reminder_minute` / `reminder_timezone` nullable); a reminder cannot exist without a commitment row. Sending notifications is not built yet. Existing DBs: apply `041_learning_path_commitment_reminders.sql` (creates the table if `030` was never applied). Public read of rows: `052_public_learning_path_commitments_read.sql`; writes stay owner-only. |
 | `learning_path_invites`        | Owner-only list of emails invited to co-edit a **private** path. No invitation email is sent. Access is a matching signed-in Coursetexts account (`invited_user_id` or JWT email). Existing DBs: apply `042_learning_path_invites.sql`. |
 | `learning_path_join_requests`  | Signed-in visitor asked to join a private path. Email is stored; no email is sent. Owner Invite creates a `learning_path_invites` row and deletes the request. Existing DBs: apply `044_learning_path_join_requests.sql`. |
 
@@ -413,7 +413,7 @@ erDiagram
   auth_users ||--o{ profile_updates : ""
 ```
 
-`profile_updates` (migration `050`): short posts composed from the profile Feed. Likes use `votes.target_type = 'profile_update'`; replies use polymorphic `comments` with the same target type.
+`profile_updates` (migration `050`, extended by `051`): short posts composed from the profile Feed. Likes use `votes.target_type = 'profile_update'`; replies use polymorphic `comments` with the same target type. Reposts (`repost_of_id`) and quotes (`quote_of_id`) are new rows that embed an original update.
 
 ## Knowledge
 
@@ -525,7 +525,8 @@ erDiagram
 - **`learning_paths`**: catalog or `visibility in (public, collaborative)` is readable; owner mutates metadata and community/research `data` (outline). Signed-in users may patch `data` on catalog courses, or on a private path they were invited to. Collaborative visibility does not grant outline edits. Invitees are stored on `learning_path_invites`.
 - **`learning_path_invites`**: owner insert/select/delete on their private path; invitees can read their own row.
 - **`learning_path_join_requests`**: insert only via `request_learning_path_join`; owner or requester may select/delete.
-- **`learning_path_user_state` / `course_notes` / `learning_path_pins` / `learning_path_commitments`**: owner only.
+- **`learning_path_user_state` / `course_notes` / `learning_path_pins`**: owner only.
+- **`learning_path_commitments`**: public read (`052`); writes owner-only.
 - **`user_knowledge_topics`**: public read; owner insert/delete.
 - **`knowledge_topics` / `knowledge_topic_edges` / `knowledge_topic_path_occurrences`**: public read; writes via service role (ingest API; daily LLM cron is off). Existing DBs: apply `045_knowledge_topic_path_occurrences.sql`.
 - **`content_reports`**: public read (testing); signed-in users insert their own rows. Restrict `/reports` later via `REPORTS_DASHBOARD_OPEN`.

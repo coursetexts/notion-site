@@ -33,6 +33,23 @@ export type ProfileNotification =
       update_snippet: string
       profile_href: string
     } & ActorFields)
+  | ({
+      kind: 'repost'
+      id: string
+      created_at: string
+      update_id: string
+      update_snippet: string
+      profile_href: string
+    } & ActorFields)
+  | ({
+      kind: 'quote'
+      id: string
+      created_at: string
+      update_id: string
+      update_snippet: string
+      quote_snippet: string
+      profile_href: string
+    } & ActorFields)
   | {
       kind: 'reply'
       id: string
@@ -380,12 +397,119 @@ async function listResourceSuggestionNotifications(
   return [...submitted, ...acceptedNotifs]
 }
 
+async function listRepostQuoteNotifications(
+  userId: string
+): Promise<ProfileNotification[]> {
+  const supabase = getSupabaseClient()
+  if (!supabase) return []
+  const { data: mine, error: mineError } = await supabase
+    .from('profile_updates')
+    .select('id, title, description')
+    .eq('user_id', userId)
+  if (mineError || !Array.isArray(mine) || mine.length === 0) return []
+
+  const mineById = new Map(
+    (
+      mine as Array<{
+        id: string
+        title: string | null
+        description: string | null
+      }>
+    ).map((row) => [row.id, row])
+  )
+  const mineIds = [...mineById.keys()]
+
+  const [repostsRes, quotesRes] = await Promise.all([
+    supabase
+      .from('profile_updates')
+      .select(
+        'id, user_id, title, description, created_at, repost_of_id, quote_of_id'
+      )
+      .in('repost_of_id', mineIds)
+      .neq('user_id', userId)
+      .order('created_at', { ascending: false })
+      .limit(80),
+    supabase
+      .from('profile_updates')
+      .select(
+        'id, user_id, title, description, created_at, repost_of_id, quote_of_id'
+      )
+      .in('quote_of_id', mineIds)
+      .neq('user_id', userId)
+      .order('created_at', { ascending: false })
+      .limit(80)
+  ])
+
+  const rows = [
+    ...((repostsRes.data || []) as Array<{
+      id: string
+      user_id: string
+      title: string | null
+      description: string | null
+      created_at: string
+      repost_of_id: string | null
+      quote_of_id: string | null
+    }>),
+    ...((quotesRes.data || []) as Array<{
+      id: string
+      user_id: string
+      title: string | null
+      description: string | null
+      created_at: string
+      repost_of_id: string | null
+      quote_of_id: string | null
+    }>)
+  ]
+
+  const profiles = await hydrateProfiles(rows.map((row) => row.user_id))
+  const out: ProfileNotification[] = []
+  for (const row of rows) {
+    const originalId = row.repost_of_id || row.quote_of_id
+    if (!originalId) continue
+    const original = mineById.get(originalId)
+    if (!original) continue
+    const snippet =
+      (original.title ?? '').trim() ||
+      (original.description ?? '').trim().slice(0, 72) ||
+      'your update'
+    const actor = actorFromProfile(row.user_id, profiles)
+    if (row.repost_of_id) {
+      out.push({
+        kind: 'repost',
+        id: `repost-${row.id}`,
+        created_at: row.created_at,
+        update_id: originalId,
+        update_snippet: snippet,
+        profile_href: `/profile/${userId}`,
+        ...actor
+      })
+    } else if (row.quote_of_id) {
+      const quoteSnippet =
+        (row.description ?? '').trim() ||
+        (row.title ?? '').trim() ||
+        'a quote'
+      out.push({
+        kind: 'quote',
+        id: `quote-${row.id}`,
+        created_at: row.created_at,
+        update_id: originalId,
+        update_snippet: snippet,
+        quote_snippet: quoteSnippet.slice(0, 120),
+        profile_href: `/profile/${userId}`,
+        ...actor
+      })
+    }
+  }
+  return out
+}
+
 export async function getProfileNotifications(
   userId: string
 ): Promise<ProfileNotification[]> {
   const [
     follows,
     likes,
+    repostQuotes,
     replies,
     invites,
     resources,
@@ -393,6 +517,7 @@ export async function getProfileNotifications(
   ] = await Promise.all([
     listFollowNotifications(userId),
     listLikeNotifications(userId),
+    listRepostQuoteNotifications(userId),
     getReplyNotifications(userId),
     listPathInviteNotifications(userId),
     listResourceSuggestionNotifications(userId),
@@ -416,6 +541,7 @@ export async function getProfileNotifications(
   return [
     ...follows,
     ...likes,
+    ...repostQuotes,
     ...replyNotifs,
     ...invites,
     ...resources,

@@ -7,7 +7,11 @@ import { useAuthOptional } from '@/contexts/AuthContext'
 import { useFollowerIds } from '@/hooks/useFollowerIds'
 import { useFollowingIds } from '@/hooks/useFollowingIds'
 
-import { ActivityFeedQuoteBody } from '@/components/ActivityFeedQuoteBody'
+import {
+  ActivityFeedThread,
+  type ActivityFeedTurn
+} from '@/components/ActivityFeedQuoteBody'
+import { ActivityFeedRowShell } from '@/components/ActivityFeedTypeIcon'
 import { FollowCountDividerDot } from '@/components/FollowCountDividerDot'
 import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
@@ -19,9 +23,11 @@ import {
   ProfileCommunityLearningPathCard
 } from '@/components/ProfileLearningPathCard'
 import { ProfileKnowledgePanel } from '@/components/ProfileKnowledgePanel'
+import { ProfilePersonalLinksPopover } from '@/components/ProfilePersonalLinksPopover'
 import { ProfileUpdatesTab } from '@/components/ProfileUpdatesTab'
 import { ProfileBookmarkIcon } from '@/components/ProfileTabItemIcons'
 import { BookmarkNotePreview } from '@/components/SiteNotesEditor'
+import { UserLink } from '@/components/UserLink'
 import { name as siteName } from '@/lib/config'
 import type { Annotation, Comment, Course } from '@/lib/course-activity-db'
 import {
@@ -60,6 +66,10 @@ import {
   attachLearningPathKinds,
   listOwnedLearningPathsByUserId
 } from '@/lib/learning-path-db'
+import {
+  learningPathCommitmentKey,
+  listLearningPathCommitmentKeysForUser
+} from '@/lib/learning-path-commitments-db'
 import { isCourseKindPath } from '@/lib/learning-path-kind-ui'
 import {
   followButtonLabel,
@@ -131,11 +141,87 @@ function formatDate(iso: string): string {
   })
 }
 
-type PathsCoursesFilter = 'courses' | 'learning-paths'
+function isInternalHref(href: string) {
+  return href.startsWith('/')
+}
+
+function FeedTargetLink({
+  href,
+  children
+}: {
+  href: string
+  children: React.ReactNode
+}) {
+  if (isInternalHref(href)) {
+    return (
+      <Link href={href}>
+        <a className={styles.inlineLink}>{children}</a>
+      </Link>
+    )
+  }
+  return (
+    <a
+      href={href}
+      className={styles.inlineLink}
+      target='_blank'
+      rel='noopener noreferrer'
+    >
+      {children}
+    </a>
+  )
+}
+
+function FeedSectionUnderline({ sectionId }: { sectionId: string }) {
+  const label = sectionId.replace(/-/g, ' ').trim()
+  if (!label) return null
+  return <span className={styles.feedSectionUnderline}>{label}</span>
+}
+
+function feedActorAvatar(name: string, avatarUrl?: string | null) {
+  if (avatarUrl) {
+    return (
+      <img
+        src={avatarUrl}
+        alt=''
+        className={styles.feedThreadAvatar}
+        width={24}
+        height={24}
+      />
+    )
+  }
+  return (
+    <span className={styles.feedThreadAvatarPlaceholder} aria-hidden>
+      {(name || 'U').charAt(0).toUpperCase()}
+    </span>
+  )
+}
+
+function feedActorNode(
+  actorUserId: string,
+  name: string,
+  followingIds: Set<string>,
+  followerIds: Set<string>,
+  avatarUrl?: string | null
+) {
+  return (
+    <span className={styles.feedThreadActor}>
+      {feedActorAvatar(name, avatarUrl)}
+      <UserLink
+        userId={actorUserId}
+        displayName={name}
+        showFollowingTag={followingIds.has(actorUserId)}
+        showFollowsYouTag={followerIds.has(actorUserId)}
+      />
+    </span>
+  )
+}
+
+type PathsCoursesFilter = 'courses' | 'learning-paths' | 'committed'
 
 const PATHS_COURSES_FILTERS: { id: PathsCoursesFilter; label: string }[] = [
   { id: 'courses', label: 'Courses' },
-  { id: 'learning-paths', label: 'Learning paths' }
+  { id: 'learning-paths', label: 'Learning paths' },
+  { id: 'committed', label: 'Committed' }
 ]
 
 function nextPathsCoursesFilter(
@@ -175,6 +261,9 @@ export default function PublicProfilePage() {
   const [communityLearningPaths, setCommunityLearningPaths] = useState<
     StoredLearningPath[]
   >([])
+  const [committedKeys, setCommittedKeys] = useState<Set<string>>(
+    () => new Set()
+  )
   const [profileLinkTags, setProfileLinkTags] = useState<LinkTag[]>([])
   const [bookmarkTagFilter, setBookmarkTagFilter] = useState<BookmarkTagFilter>(
     EMPTY_BOOKMARK_TAG_FILTER
@@ -267,16 +356,45 @@ export default function PublicProfilePage() {
   const showAllLearningCards = pathsCoursesFilter == null
   const coursesOnly = pathsCoursesFilter === 'courses'
   const learningPathsOnly = pathsCoursesFilter === 'learning-paths'
-  const showCoursesGroup = showAllLearningCards || coursesOnly
-  const showLearningPathsGroup = showAllLearningCards || learningPathsOnly
+  const committedOnly = pathsCoursesFilter === 'committed'
+  const showCoursesGroup =
+    showAllLearningCards || coursesOnly || committedOnly
+  const showLearningPathsGroup =
+    showAllLearningCards || learningPathsOnly || committedOnly
+
+  const visiblePublicCoursePaths = useMemo(() => {
+    if (!committedOnly) return publicCoursePaths
+    return publicCoursePaths.filter((item) =>
+      committedKeys.has(learningPathCommitmentKey(item.slug))
+    )
+  }, [publicCoursePaths, committedOnly, committedKeys])
+
+  const visiblePublicResearchPaths = useMemo(() => {
+    if (!committedOnly) return publicResearchPaths
+    return publicResearchPaths.filter((item) =>
+      committedKeys.has(learningPathCommitmentKey(item.slug))
+    )
+  }, [publicResearchPaths, committedOnly, committedKeys])
+
+  const visiblePublicCommunityPaths = useMemo(() => {
+    if (!committedOnly) return publicCommunityPaths
+    return publicCommunityPaths.filter((item) =>
+      committedKeys.has(learningPathCommitmentKey(item.slug))
+    )
+  }, [publicCommunityPaths, committedOnly, committedKeys])
+
   const showCourseCards = showCoursesGroup
   const showResearchCards = showLearningPathsGroup
   const showCommunityCards = showLearningPathsGroup
-  const hasAnyPublicCourseCards = publicCoursePaths.length > 0
+  const hasAnyPublicCourseCards = visiblePublicCoursePaths.length > 0
   const hasAnyPublicNonCourseCards =
-    publicCommunityPaths.length > 0 || publicResearchPaths.length > 0
+    visiblePublicCommunityPaths.length > 0 ||
+    visiblePublicResearchPaths.length > 0
   const hasAnyPublicLearningCards =
     hasAnyPublicCourseCards || hasAnyPublicNonCourseCards
+  const hasAnyCommittedCards = communityLearningPaths.some((item) =>
+    committedKeys.has(learningPathCommitmentKey(item.slug))
+  )
   const [loading, setLoading] = useState(true)
   const [followLoading, setFollowLoading] = useState(false)
   const [notFound, setNotFound] = useState(false)
@@ -376,7 +494,8 @@ export default function PublicProfilePage() {
         a,
         interestTags,
         ownedPaths,
-        knowledge
+        knowledge,
+        commitmentKeys
       ] = await Promise.all([
         getProfileByUserId(uid),
         currentUserId ? getFollowStatus(currentUserId, uid) : false,
@@ -391,13 +510,15 @@ export default function PublicProfilePage() {
         getAnnotationsByUser(uid),
         getProfileInterestsByUserId(uid),
         listOwnedLearningPathsByUserId(uid, currentUserId === uid),
-        listKnowledgeTopicsByUserId(uid)
+        listKnowledgeTopicsByUserId(uid),
+        listLearningPathCommitmentKeysForUser(uid)
       ])
       if (!p) {
         setProfile(null)
         setPersonalLinks([])
         setProfileLinkTags([])
         setCommunityLearningPaths([])
+        setCommittedKeys(new Set())
         setKnowledgeTopics([])
         setNotFound(true)
         setLoading(false)
@@ -416,6 +537,7 @@ export default function PublicProfilePage() {
       setAnnotations(a)
       setProfileInterestTags(interestTags)
       setKnowledgeTopics(knowledge)
+      setCommittedKeys(new Set(commitmentKeys))
       setCommunityLearningPaths(
         await attachLearningPathBylines(
           await attachLearningPathKinds(
@@ -595,6 +717,9 @@ export default function PublicProfilePage() {
             </div>
             <div className={styles.sidebarNameRow}>
               <h1 className={styles.sidebarName}>{displayName}</h1>
+              {personalLinks.length > 0 ? (
+                <ProfilePersonalLinksPopover links={personalLinks} />
+              ) : null}
             </div>
             <div className={styles.sidebarFollowLine}>
               <button
@@ -651,7 +776,6 @@ export default function PublicProfilePage() {
               learningLearned={profile.learning_learned}
               learningOnly
               metadataStyle
-              personalLinks={personalLinks}
             />
           </aside>
 
@@ -879,7 +1003,7 @@ export default function PublicProfilePage() {
                     }
                     onClick={() => setMainTab('bookmarks')}
                   >
-                    Bookmarks
+                    Resources
                   </button>
                   <span className={styles.primaryTabsDivider} aria-hidden />
                   <button
@@ -909,7 +1033,7 @@ export default function PublicProfilePage() {
                 {mainTab === 'bookmarks' && (
                   <div className={styles.tabPanel}>
                     <h2 className={styles.mainSerifTitle}>
-                      Bookmarked Resources
+                      Resources
                     </h2>
                     <div className={styles.section}>
                       {showPublicBookmarkTagFilters ? (
@@ -955,8 +1079,8 @@ export default function PublicProfilePage() {
                       {publicSavedBookmarkRows.length === 0 ? (
                         <p className={styles.placeholder}>
                           {isBookmarkTagFilterActive(bookmarkTagFilter)
-                            ? 'No bookmarks match this filter.'
-                            : 'No saved links on this profile yet.'}
+                            ? 'No resources match this filter.'
+                            : 'No saved resources on this profile yet.'}
                         </p>
                       ) : (
                         <ul
@@ -1118,81 +1242,91 @@ export default function PublicProfilePage() {
                         {publicActivityRows.map((row) => {
                           if (row.kind === 'comment') {
                             const { comment, course } = row
+                            const turns: ActivityFeedTurn[] = [
+                              {
+                                author: feedActorNode(
+                                  comment.user_id,
+                                  displayName,
+                                  followingIds,
+                                  followerIds,
+                                  profile.avatar_url
+                                ),
+                                verb: 'commented',
+                                body: comment.body
+                              }
+                            ]
                             return (
-                              <li
+                              <ActivityFeedRowShell
                                 key={`comment-${comment.id}`}
-                                className={styles.listItem}
+                                iconKind='comment'
                               >
-                                <Link
-                                  href={
-                                    course.url ?? `/course/${course.notion_page_id}`
-                                  }
-                                >
-                                  <a className={styles.listLink}>
-                                    <span className={styles.listTitle}>
-                                      <span
-                                        className={styles.userLinkTag}
-                                        aria-label='Comment'
-                                      >
-                                        Comment
-                                      </span>{' '}
+                                <ActivityFeedThread
+                                  iconKind='comment'
+                                  leadSubject
+                                  subject={
+                                    <FeedTargetLink
+                                      href={
+                                        course.url ??
+                                        `/course/${course.notion_page_id}`
+                                      }
+                                    >
                                       {course.name}
-                                    </span>
-                                    <span className={styles.listMeta}>
-                                      {formatDate(comment.created_at)}
-                                    </span>
-                                  </a>
-                                </Link>
-                                <ActivityFeedQuoteBody>
-                                  {comment.body}
-                                </ActivityFeedQuoteBody>
-                              </li>
+                                    </FeedTargetLink>
+                                  }
+                                  time={formatDate(comment.created_at)}
+                                  turns={turns}
+                                />
+                              </ActivityFeedRowShell>
                             )
                           }
                           const { annotation, course } = row
+                          const turns: ActivityFeedTurn[] = [
+                            {
+                              author: feedActorNode(
+                                annotation.user_id,
+                                displayName,
+                                followingIds,
+                                followerIds,
+                                profile.avatar_url
+                              ),
+                              verb: 'posted',
+                              body: annotation.body
+                            }
+                          ]
                           return (
-                            <li
+                            <ActivityFeedRowShell
                               key={`annotation-${annotation.id}`}
-                              className={styles.listItem}
+                              iconKind='discussion'
                             >
-                              <Link
-                                href={
-                                  course.url ?? `/course/${course.notion_page_id}`
-                                }
-                              >
-                                <a className={styles.listLink}>
-                                  <span className={styles.listTitle}>
-                                    <span
-                                      className={styles.userLinkTag}
-                                      aria-label='Discussion'
+                              <ActivityFeedThread
+                                iconKind='discussion'
+                                leadSubject
+                                subject={
+                                  <>
+                                    Discussions on{' '}
+                                    <FeedTargetLink
+                                      href={
+                                        course.url ??
+                                        `/course/${course.notion_page_id}`
+                                      }
                                     >
-                                      Discussion
-                                    </span>{' '}
-                                    {course.name}
+                                      {course.name}
+                                    </FeedTargetLink>
                                     {annotation.section_id ? (
                                       <>
                                         {' '}
                                         in section:{' '}
-                                        <span
-                                          className={styles.feedSectionUnderline}
-                                        >
-                                          {annotation.section_id.replace(
-                                            /-/g,
-                                            ' '
-                                          )}
-                                        </span>
+                                        <FeedSectionUnderline
+                                          sectionId={annotation.section_id}
+                                        />
                                       </>
                                     ) : null}
-                                  </span>
-                                  <span className={styles.listMeta}>
-                                    {formatDate(annotation.created_at)}
-                                  </span>
-                                </a>
-                              </Link>
-                              <ActivityFeedQuoteBody>
-                                {annotation.body}
-                              </ActivityFeedQuoteBody>
-                            </li>
+                                  </>
+                                }
+                                time={formatDate(annotation.created_at)}
+                                turns={turns}
+                              />
+                            </ActivityFeedRowShell>
                           )
                         })}
                       </ul>
@@ -1246,6 +1380,12 @@ export default function PublicProfilePage() {
                       <p className={styles.placeholder}>
                         No learning paths on this profile yet.
                       </p>
+                    ) : !showAllLearningCards &&
+                      committedOnly &&
+                      !hasAnyCommittedCards ? (
+                      <p className={styles.placeholder}>
+                        No committed learning paths on this profile yet.
+                      </p>
                     ) : showAllLearningCards && !hasAnyPublicLearningCards ? (
                       <p className={styles.placeholder}>
                         No learning paths or courses on this profile yet.
@@ -1253,7 +1393,7 @@ export default function PublicProfilePage() {
                     ) : (
                       <ul className={styles.learningPathList}>
                         {showCourseCards
-                          ? publicCoursePaths.map((item) => (
+                          ? visiblePublicCoursePaths.map((item) => (
                               <li key={item.id}>
                                 <ProfileCommunityLearningPathCard
                                   item={item}
@@ -1262,12 +1402,16 @@ export default function PublicProfilePage() {
                                       ? 'you'
                                       : displayName
                                   }
+                                  committed={committedKeys.has(
+                                    learningPathCommitmentKey(item.slug)
+                                  )}
+                                  showResumeActions={false}
                                 />
                               </li>
                             ))
                           : null}
                         {showResearchCards
-                          ? publicResearchPaths.map((item) => (
+                          ? visiblePublicResearchPaths.map((item) => (
                               <li key={item.id}>
                                 <ProfileCommunityLearningPathCard
                                   item={item}
@@ -1276,12 +1420,16 @@ export default function PublicProfilePage() {
                                       ? 'you'
                                       : displayName
                                   }
+                                  committed={committedKeys.has(
+                                    learningPathCommitmentKey(item.slug)
+                                  )}
+                                  showResumeActions={false}
                                 />
                               </li>
                             ))
                           : null}
                         {showCommunityCards
-                          ? publicCommunityPaths.map((item) => (
+                          ? visiblePublicCommunityPaths.map((item) => (
                               <li key={item.id}>
                                 <ProfileCommunityLearningPathCard
                                   item={item}
@@ -1290,6 +1438,10 @@ export default function PublicProfilePage() {
                                       ? 'you'
                                       : displayName
                                   }
+                                  committed={committedKeys.has(
+                                    learningPathCommitmentKey(item.slug)
+                                  )}
+                                  showResumeActions={false}
                                 />
                               </li>
                             ))
