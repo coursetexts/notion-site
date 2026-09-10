@@ -7,6 +7,7 @@ import {
   learningPathHref,
   parseLearningPathSlugFromUserLinkUrl
 } from '@/lib/learning-path-bookmark-link'
+import { getProfileUpdateEngagement } from '@/lib/profile-updates-db'
 import { getSupabaseClient } from '@/lib/supabase'
 
 type FeedActor = {
@@ -66,6 +67,9 @@ export type ProfileFeedItem =
       body: string
       url: string
       profile_href: string
+      like_count: number
+      liked_by_me: boolean
+      comment_count: number
     })
   | (FeedActor & {
       kind: 'followed_path_progress'
@@ -531,7 +535,10 @@ export async function getProfileFeed(
       title,
       body,
       url: (u.url ?? '').trim(),
-      profile_href: `/profile/${u.user_id}`
+      profile_href: `/profile/${u.user_id}`,
+      like_count: 0,
+      liked_by_me: false,
+      comment_count: 0
     })
   }
 
@@ -664,6 +671,14 @@ export async function getProfileFeed(
 
   const profileByUser = await profilesByUserId([...needUserIds])
 
+  const updateIds = items
+    .filter(
+      (it): it is Extract<ProfileFeedItem, { kind: 'followed_profile_update' }> =>
+        it.kind === 'followed_profile_update'
+    )
+    .map((it) => it.update_id)
+  const updateEngagement = await getProfileUpdateEngagement(updateIds)
+
   const pathSlugsToCheck = [
     ...new Set(
       courseIdList
@@ -740,6 +755,14 @@ export async function getProfileFeed(
       if (!path) continue
       it.path_title = path.title
       it.path_href = learningPathHref(path.slug)
+      hydrated.push(it)
+      continue
+    }
+    if (it.kind === 'followed_profile_update') {
+      const engagement = updateEngagement[it.update_id]
+      it.like_count = engagement?.likeCount ?? 0
+      it.liked_by_me = engagement?.likedByMe ?? false
+      it.comment_count = engagement?.commentCount ?? 0
       hydrated.push(it)
       continue
     }

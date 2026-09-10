@@ -12,8 +12,13 @@ import { currentAuthRedirectPath, signInPageHref } from '@/lib/auth-redirect'
 
 import { CoursetextsBookIcon } from './CoursetextsBookIcon'
 import { CreateLearningPathModal } from './CreateLearningPathModal'
+import { ProfileNavDropdown } from './ProfileNavDropdown'
 import styles from './HomeHeader.module.css'
 import { PinnedCoursesNav } from './PinnedCoursesNav'
+import {
+  OWN_PROFILE_TAB_LINKS,
+  ownProfileTabHref
+} from '@/lib/profile-tabs'
 
 type AboutNavChild = {
   label: string
@@ -196,13 +201,23 @@ function HeaderAccountAction({
       </button>
     )
   }
+  if (isLoggedIn) {
+    return (
+      <ProfileNavDropdown
+        isLoggedIn
+        accountHref={accountHref}
+        accountLabel={accountLabel}
+        linkClassName={className}
+        onNavigate={onNavigate}
+      />
+    )
+  }
   return (
     <Link href={accountHref} legacyBehavior>
       <a
         className={className}
         onClick={(event) => {
           onNavigate?.()
-          if (isLoggedIn) return
           event.preventDefault()
           window.location.assign(signInPageHref(currentAuthRedirectPath()))
         }}
@@ -582,17 +597,46 @@ export function HomeHeader({
               </nav>
 
               <div className={styles.menuFooter}>
-                <HeaderAccountAction
-                  isLoggedIn={isLoggedIn}
-                  isOwnProfilePage={isOwnProfilePage}
-                  accountHref={accountHref}
-                  accountLabel={accountLabel}
-                  className={styles.menuSignUp}
-                  onNavigate={closeMenu}
-                  onSignOut={() => {
-                    void handleSignOut()
-                  }}
-                />
+                {isLoggedIn && !isOwnProfilePage ? (
+                  <div className={styles.menuProfileGroup}>
+                    <Link href={accountHref} legacyBehavior>
+                      <a
+                        className={styles.menuSignUp}
+                        onClick={closeMenu}
+                      >
+                        {accountLabel}
+                      </a>
+                    </Link>
+                    <div className={styles.menuProfileTabs}>
+                      {OWN_PROFILE_TAB_LINKS.map((tab) => (
+                        <Link
+                          key={tab.slug}
+                          href={ownProfileTabHref(tab.slug)}
+                          legacyBehavior
+                        >
+                          <a
+                            className={styles.menuProfileTabLink}
+                            onClick={closeMenu}
+                          >
+                            {tab.label}
+                          </a>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <HeaderAccountAction
+                    isLoggedIn={isLoggedIn}
+                    isOwnProfilePage={isOwnProfilePage}
+                    accountHref={accountHref}
+                    accountLabel={accountLabel}
+                    className={styles.menuSignUp}
+                    onNavigate={closeMenu}
+                    onSignOut={() => {
+                      void handleSignOut()
+                    }}
+                  />
+                )}
               </div>
             </div>
           </motion.div>

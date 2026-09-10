@@ -413,7 +413,7 @@ erDiagram
   auth_users ||--o{ profile_updates : ""
 ```
 
-`profile_updates` (migration `050`): short posts on the profile **Updates** tab. Likes use `votes.target_type = 'profile_update'`; replies use polymorphic `comments` with the same target type.
+`profile_updates` (migration `050`): short posts composed from the profile Feed. Likes use `votes.target_type = 'profile_update'`; replies use polymorphic `comments` with the same target type.
 
 ## Knowledge
 

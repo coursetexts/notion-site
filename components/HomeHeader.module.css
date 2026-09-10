@@ -715,6 +715,37 @@ button.menuNavLink {
   padding-top: 20px;
 }
 
+.menuProfileGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  width: 100%;
+}
+
+.menuProfileTabs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.1rem 0.15rem 0.2rem;
+}
+
+.menuProfileTabLink {
+  display: block;
+  padding: 0.55rem 0.75rem;
+  border-radius: 8px;
+  color: #25272b;
+  text-decoration: none;
+  font-size: 0.9375rem;
+  line-height: 1.3;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.menuProfileTabLink:hover,
+.menuProfileTabLink:focus-visible {
+  background: rgba(0, 0, 0, 0.04);
+  outline: none;
+}
+
 .menuSignUp {
   display: flex;
   align-items: center;

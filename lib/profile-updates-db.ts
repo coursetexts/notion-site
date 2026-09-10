@@ -134,6 +134,35 @@ async function getCommentCounts(
   return counts
 }
 
+export type ProfileUpdateEngagement = {
+  likeCount: number
+  likedByMe: boolean
+  commentCount: number
+}
+
+/** Like + comment counts for a batch of profile updates (feed / cards). */
+export async function getProfileUpdateEngagement(
+  updateIds: string[]
+): Promise<Record<string, ProfileUpdateEngagement>> {
+  const empty: Record<string, ProfileUpdateEngagement> = {}
+  updateIds.forEach((id) => {
+    empty[id] = { likeCount: 0, likedByMe: false, commentCount: 0 }
+  })
+  if (updateIds.length === 0) return empty
+  const [likes, comments] = await Promise.all([
+    getLikeSummaries(updateIds),
+    getCommentCounts(updateIds)
+  ])
+  for (const id of updateIds) {
+    empty[id] = {
+      likeCount: likes[id]?.count ?? 0,
+      likedByMe: likes[id]?.likedByMe ?? false,
+      commentCount: comments[id] ?? 0
+    }
+  }
+  return empty
+}
+
 function mapRow(
   row: UpdateRow,
   likes: { count: number; likedByMe: boolean },

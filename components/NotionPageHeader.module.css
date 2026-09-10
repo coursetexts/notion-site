@@ -128,26 +128,40 @@
   cursor: pointer;
 }
 
-/* Button look (border, background) on the span so it’s visible and not overridden by preflight on <a> */
+/* Same bordered control as home “Sign out” / “Your Profile” */
 .headerBar .signUpBtn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.45rem;
-  padding: 0.5rem 1rem;
-  font-size: 0.9375rem;
-  line-height: 1;
+  min-width: 68px;
+  height: 33px;
+  padding: 6px 14px;
+  box-sizing: border-box;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: -0.005em;
   font-weight: 400;
-  color: #37352F;
+  color: #000000;
   background-color: transparent;
-  /* border: 1px solid #E6E6E6; */
-  border-radius: 3px;
-  transition: background-color 0.15s, border-color 0.15s;
+  border: 1px solid var(--outline, #e6e6e6);
+  border-radius: 0;
+  white-space: nowrap;
+  transition:
+    border-color 220ms ease,
+    color 220ms ease,
+    background-color 220ms ease,
+    opacity 220ms ease;
   cursor: pointer;
 }
 
-.headerBar .profileLink:hover .signUpBtn {
-  border-color: #777;
-  color: #1a1a1a;
+.headerBar .profileLink:hover .signUpBtn,
+.headerBar .profileLink:focus-visible .signUpBtn {
+  border-color: #0089c4;
+  color: #0089c4;
+  background-color: #f5fbff;
+  opacity: 0.95;
   cursor: pointer;
 }
 
@@ -405,6 +419,37 @@
   transition:
     border-color 0.2s ease,
     background-color 0.2s ease;
+}
+
+.menuProfileGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  width: 100%;
+}
+
+.menuProfileTabs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.15rem 0.25rem 0.25rem;
+}
+
+.menuProfileTabLink {
+  display: block;
+  padding: 0.55rem 0.75rem;
+  border-radius: 8px;
+  color: #25272b;
+  text-decoration: none;
+  font-size: 0.9375rem;
+  line-height: 1.3;
+  font-family: 'Hanken Grotesk', sans-serif;
+}
+
+.menuProfileTabLink:hover,
+.menuProfileTabLink:focus-visible {
+  background: #f5fbff;
+  outline: none;
 }
 
 .menuProfileLink:hover,

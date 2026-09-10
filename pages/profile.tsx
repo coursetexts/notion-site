@@ -123,11 +123,11 @@ import {
   readOfficialCourseBylineMeta,
   type OfficialCourseBylineMeta
 } from '@/lib/course-byline'
+import { markReplyNotificationsRead } from '@/lib/reply-notifications'
 import {
-  type ReplyNotification,
-  getReplyNotifications,
-  markReplyNotificationsRead
-} from '@/lib/reply-notifications'
+  type ProfileNotification,
+  getProfileNotifications
+} from '@/lib/profile-notifications-db'
 import {
   listMyCourseLearningPathPins,
   subscribeCourseLearningPathPins,
@@ -152,6 +152,11 @@ import {
   getMyTags,
   updateLink
 } from '@/lib/user-links'
+import {
+  type OwnProfileMainTab,
+  ownProfileTabSlug,
+  parseOwnProfileTabParam
+} from '@/lib/profile-tabs'
 import styles from '@/styles/profile.module.css'
 
 import { useAuthOptional } from '../contexts/AuthContext'
@@ -255,9 +260,12 @@ function FeedItemSubject({ item }: { item: ProfileFeedItem }) {
         <FeedTargetLink href={item.path_href}>{item.path_title}</FeedTargetLink>
       )
     case 'followed_profile_update': {
-      const label = item.title.trim() || 'Update'
-      const href = item.url.trim() || item.profile_href
-      return <FeedTargetLink href={href}>{label}</FeedTargetLink>
+      const label = item.body.trim() || item.title.trim() || 'Update'
+      const href = item.url.trim()
+      if (href) {
+        return <FeedTargetLink href={href}>{label}</FeedTargetLink>
+      }
+      return <>{label}</>
     }
     case 'followed_path_progress':
       return (
@@ -424,18 +432,6 @@ function feedItemExcerpt(item: ProfileFeedItem): string | null {
     const body = item.body.trim()
     return body || null
   }
-  if (item.kind === 'followed_profile_update') {
-    const title = item.title.trim()
-    const body = item.body.trim()
-    if (!body) return null
-    if (
-      title &&
-      (title === body || body.startsWith(title) || title === body.slice(0, 72))
-    ) {
-      return null
-    }
-    return body
-  }
   return null
 }
 
@@ -453,8 +449,8 @@ const PATHS_COURSES_FILTERS: { id: PathsCoursesFilter; label: string }[] = [
 type ActivityFilter = 'feed' | 'yours'
 
 const ACTIVITY_FILTERS: { id: ActivityFilter; label: string }[] = [
-  { id: 'feed', label: 'Feed' },
-  { id: 'yours', label: 'Your activity' }
+  { id: 'feed', label: 'Following' },
+  { id: 'yours', label: 'Yours' }
 ]
 
 function nextPathsCoursesFilter(
@@ -547,12 +543,10 @@ function feedItemMatchesQuery(item: ProfileFeedItem, query: string) {
   return fields.some((field) => matchesSearch(field, query))
 }
 
-type ActivityFeedRow =
-  | { kind: 'feed'; item: ProfileFeedItem }
-  | { kind: 'reply'; notification: ReplyNotification }
-  | { kind: 'join-request'; request: LearningPathJoinRequest }
-
-function activityFeedRowMatchesQuery(row: ActivityFeedRow, query: string) {
+function notificationMatchesQuery(
+  row: ProfileNotification,
+  query: string
+) {
   if (!query) return true
   if (row.kind === 'reply') {
     const notification = row.notification
@@ -567,7 +561,7 @@ function activityFeedRowMatchesQuery(row: ActivityFeedRow, query: string) {
       matchesSearch(notification.type, query)
     )
   }
-  if (row.kind === 'join-request') {
+  if (row.kind === 'join_request') {
     const request = row.request
     return (
       matchesSearch(request.displayName ?? '', query) ||
@@ -579,7 +573,42 @@ function activityFeedRowMatchesQuery(row: ActivityFeedRow, query: string) {
       matchesSearch('invite', query)
     )
   }
-  return feedItemMatchesQuery(row.item, query)
+  if (row.kind === 'follow') {
+    return (
+      matchesSearch(row.actor_display_name, query) ||
+      matchesSearch('followed', query)
+    )
+  }
+  if (row.kind === 'like') {
+    return (
+      matchesSearch(row.actor_display_name, query) ||
+      matchesSearch(row.update_snippet, query) ||
+      matchesSearch('liked', query)
+    )
+  }
+  if (row.kind === 'path_invite') {
+    return (
+      matchesSearch(row.actor_display_name, query) ||
+      matchesSearch(row.path_title, query) ||
+      matchesSearch('invited', query)
+    )
+  }
+  if (row.kind === 'resource_submitted') {
+    return (
+      matchesSearch(row.actor_display_name, query) ||
+      matchesSearch(row.path_title, query) ||
+      matchesSearch(row.resource_title, query) ||
+      matchesSearch(row.body, query) ||
+      matchesSearch('submitted', query) ||
+      matchesSearch('review', query)
+    )
+  }
+  return (
+    matchesSearch(row.actor_display_name, query) ||
+    matchesSearch(row.path_title, query) ||
+    matchesSearch(row.resource_title, query) ||
+    matchesSearch('accepted', query)
+  )
 }
 
 function myActivityRowMatchesQuery(
@@ -652,7 +681,9 @@ export default function ProfilePage() {
   const [annotations, setAnnotations] = useState<
     { annotation: DbAnnotation; course: CourseType }[]
   >([])
-  const [notifications, setNotifications] = useState<ReplyNotification[]>([])
+  const [profileNotifications, setProfileNotifications] = useState<
+    ProfileNotification[]
+  >([])
   const [joinRequests, setJoinRequests] = useState<LearningPathJoinRequest[]>(
     []
   )
@@ -668,15 +699,28 @@ export default function ProfilePage() {
   const [knowledgeLoading, setKnowledgeLoading] = useState(true)
   const [topicNotes, setTopicNotes] = useState<ProfileTopicNote[]>([])
   const [notesLoading, setNotesLoading] = useState(true)
-  const [mainTab, setMainTab] = useState<
-    | 'learning-path'
-    | 'updates'
-    | 'knowledge'
-    | 'notes'
-    | 'bookmarks'
-    | 'activity'
-  >('learning-path')
+  const [mainTab, setMainTab] = useState<OwnProfileMainTab>('learning-path')
   const [activitySubTab, setActivitySubTab] = useState<ActivityFilter>('feed')
+  const [notificationsSearch, setNotificationsSearch] = useState('')
+
+  const selectMainTab = useCallback(
+    (tab: OwnProfileMainTab) => {
+      setMainTab(tab)
+      const slug = ownProfileTabSlug(tab)
+      void router.replace(
+        { pathname: '/profile', query: { tab: slug } },
+        undefined,
+        { shallow: true }
+      )
+    },
+    [router]
+  )
+
+  useEffect(() => {
+    if (!router.isReady) return
+    const fromQuery = parseOwnProfileTabParam(router.query.tab)
+    if (fromQuery) setMainTab(fromQuery)
+  }, [router.isReady, router.query.tab])
   const [learningPaths, setLearningPaths] = useState<LearningPathItem[]>([])
   const [committedKeys, setCommittedKeys] = useState<Set<string>>(
     () => new Set()
@@ -795,7 +839,7 @@ export default function ProfilePage() {
     const [
       commentsRes,
       annotationsRes,
-      notificationRes,
+      profileNotificationsRes,
       feedRes,
       joinRequestsRes,
       fCount,
@@ -805,7 +849,7 @@ export default function ProfilePage() {
     ] = await Promise.all([
       getMyComments(),
       getMyAnnotations(),
-      getReplyNotifications(userId),
+      getProfileNotifications(userId),
       getProfileFeed(userId),
       listOwnedLearningPathJoinRequests(),
       getFollowingCount(userId),
@@ -815,7 +859,7 @@ export default function ProfilePage() {
     ])
     setComments(commentsRes)
     setAnnotations(annotationsRes)
-    setNotifications(notificationRes)
+    setProfileNotifications(profileNotificationsRes)
     setFeedItems(feedRes)
     setJoinRequests(joinRequestsRes)
     setFollowingCount(fCount)
@@ -823,11 +867,29 @@ export default function ProfilePage() {
     setFollowingList(fList)
     setFollowersList(fersList)
     setActivityLoading(false)
-
-    // Mark as read after rendering this fetch so entries can appear as read next time.
-    await markReplyNotificationsRead(userId)
-    setNotifications((prev) => prev.map((n) => ({ ...n, is_unread: false })))
   }, [])
+
+  useEffect(() => {
+    const userId = effectiveUser?.id
+    if (mainTab !== 'notifications' || !userId) return
+    let cancelled = false
+    void markReplyNotificationsRead(userId).then(() => {
+      if (cancelled) return
+      setProfileNotifications((prev) =>
+        prev.map((row) =>
+          row.kind === 'reply'
+            ? {
+                ...row,
+                notification: { ...row.notification, is_unread: false }
+              }
+            : row
+        )
+      )
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [mainTab, effectiveUser?.id])
 
   const refreshFollowListsAndCounts = useCallback(async () => {
     const uid = effectiveUser?.id
@@ -880,6 +942,15 @@ export default function ProfilePage() {
           setJoinRequests((prev) =>
             prev.filter((row) => row.id !== request.id)
           )
+          setProfileNotifications((prev) =>
+            prev.filter(
+              (row) =>
+                !(
+                  row.kind === 'join_request' &&
+                  row.request.id === request.id
+                )
+            )
+          )
           return
         }
         window.alert(
@@ -892,6 +963,12 @@ export default function ProfilePage() {
         return
       }
       setJoinRequests((prev) => prev.filter((row) => row.id !== request.id))
+      setProfileNotifications((prev) =>
+        prev.filter(
+          (row) =>
+            !(row.kind === 'join_request' && row.request.id === request.id)
+        )
+      )
     } finally {
       setJoinAcceptingId(null)
     }
@@ -906,6 +983,12 @@ export default function ProfilePage() {
         return
       }
       setJoinRequests((prev) => prev.filter((row) => row.id !== requestId))
+      setProfileNotifications((prev) =>
+        prev.filter(
+          (row) =>
+            !(row.kind === 'join_request' && row.request.id === requestId)
+        )
+      )
     } finally {
       setJoinDismissingId(null)
     }
@@ -936,42 +1019,25 @@ export default function ProfilePage() {
     [savedBookmarkRows, bookmarkQuery]
   )
 
-  const activityFeedRows = useMemo(() => {
-    const rows: ActivityFeedRow[] = feedItems.map((item) => ({
-      kind: 'feed' as const,
-      item
-    }))
-    for (const notification of notifications) {
-      rows.push({ kind: 'reply', notification })
-    }
-    for (const request of joinRequests) {
-      rows.push({ kind: 'join-request', request })
-    }
-    rows.sort((a, b) => {
-      const ta =
-        a.kind === 'feed'
-          ? a.item.created_at
-          : a.kind === 'reply'
-          ? a.notification.created_at
-          : a.request.createdAt
-      const tb =
-        b.kind === 'feed'
-          ? b.item.created_at
-          : b.kind === 'reply'
-          ? b.notification.created_at
-          : b.request.createdAt
-      return tb.localeCompare(ta)
-    })
-    return rows
-  }, [feedItems, notifications, joinRequests])
-
   const activityQuery = normalizeSearch(activitySearch)
   const visibleActivityFeedRows = useMemo(
     () =>
-      activityFeedRows.filter((row) =>
-        activityFeedRowMatchesQuery(row, activityQuery)
+      feedItems.filter(
+        (item) =>
+          item.kind !== 'suggestion_for_you' &&
+          item.kind !== 'suggestion_response' &&
+          feedItemMatchesQuery(item, activityQuery)
       ),
-    [activityFeedRows, activityQuery]
+    [feedItems, activityQuery]
+  )
+
+  const notificationsQuery = normalizeSearch(notificationsSearch)
+  const visibleNotificationRows = useMemo(
+    () =>
+      profileNotifications.filter((row) =>
+        notificationMatchesQuery(row, notificationsQuery)
+      ),
+    [profileNotifications, notificationsQuery]
   )
 
   const myActivityRows = useMemo(() => {
@@ -2222,7 +2288,7 @@ export default function ProfilePage() {
                           ? styles.primaryTabActive
                           : styles.primaryTab
                       }
-                      onClick={() => setMainTab('learning-path')}
+                      onClick={() => selectMainTab('learning-path')}
                     >
                       Learning
                     </button>
@@ -2235,7 +2301,7 @@ export default function ProfilePage() {
                           ? styles.primaryTabActive
                           : styles.primaryTab
                       }
-                      onClick={() => setMainTab('knowledge')}
+                      onClick={() => selectMainTab('knowledge')}
                     >
                       Knowledge
                     </button>
@@ -2248,9 +2314,22 @@ export default function ProfilePage() {
                           ? styles.primaryTabActive
                           : styles.primaryTab
                       }
-                      onClick={() => setMainTab('notes')}
+                      onClick={() => selectMainTab('notes')}
                     >
                       Notes
+                    </button>
+                    <button
+                      type='button'
+                      role='tab'
+                      aria-selected={mainTab === 'bookmarks'}
+                      className={
+                        mainTab === 'bookmarks'
+                          ? styles.primaryTabActive
+                          : styles.primaryTab
+                      }
+                      onClick={() => selectMainTab('bookmarks')}
+                    >
+                      Bookmarks
                     </button>
                     <span className={styles.primaryTabsDivider} aria-hidden />
                     <button
@@ -2262,43 +2341,367 @@ export default function ProfilePage() {
                           ? styles.primaryTabActive
                           : styles.primaryTab
                       }
-                      onClick={() => setMainTab('activity')}
+                      onClick={() => selectMainTab('activity')}
                     >
-                      Activity
+                      Feed
                     </button>
                     <button
                       type='button'
                       role='tab'
-                      aria-selected={mainTab === 'bookmarks'}
+                      aria-selected={mainTab === 'notifications'}
                       className={
-                        mainTab === 'bookmarks'
+                        mainTab === 'notifications'
                           ? styles.primaryTabActive
                           : styles.primaryTab
                       }
-                      onClick={() => setMainTab('bookmarks')}
+                      onClick={() => selectMainTab('notifications')}
                     >
-                      Bookmarks
-                    </button>
-                    <button
-                      type='button'
-                      role='tab'
-                      aria-selected={mainTab === 'updates'}
-                      className={
-                        mainTab === 'updates'
-                          ? styles.primaryTabActive
-                          : styles.primaryTab
-                      }
-                      onClick={() => setMainTab('updates')}
-                    >
-                      Updates
+                      Notifications
                     </button>
                   </nav>
 
                   <div className={styles.primaryTabsRightActions} />
                 </div>
 
-                {mainTab === 'updates' && (
-                  <ProfileUpdatesTab userId={effectiveUser.id} canAdd />
+                {mainTab === 'notifications' && (
+                  <div className={styles.tabPanel}>
+                    <h2 className={styles.mainSerifTitle}>Notifications</h2>
+                    <div className={styles.filterSearchBlock}>
+                      <ProfilePanelSearch
+                        id='profile-notifications-search'
+                        value={notificationsSearch}
+                        onChange={setNotificationsSearch}
+                        ariaLabel='Search notifications'
+                      />
+                    </div>
+                    {activityLoading ? (
+                      <p className={styles.placeholder}>Loading…</p>
+                    ) : profileNotifications.length === 0 ? (
+                      <p className={styles.placeholder}>
+                        No notifications yet. Follows, likes, replies, path
+                        invites, and resource reviews will show up here.
+                      </p>
+                    ) : visibleNotificationRows.length === 0 ? (
+                      <p className={styles.placeholder}>
+                        No matching notifications.
+                      </p>
+                    ) : (
+                      <ul className={styles.list}>
+                        {visibleNotificationRows.map((row) => {
+                          if (row.kind === 'follow') {
+                            return (
+                              <ActivityFeedRowShell
+                                key={row.id}
+                                iconKind='follow'
+                              >
+                                <ActivityFeedThread
+                                  subject='New follower'
+                                  time={formatDate(row.created_at)}
+                                  turns={[
+                                    {
+                                      author: feedActorNode(
+                                        row.actor_id,
+                                        row.actor_display_name,
+                                        followingIds,
+                                        followerIds,
+                                        row.actor_avatar_url
+                                      ),
+                                      verb: 'followed you'
+                                    }
+                                  ]}
+                                />
+                              </ActivityFeedRowShell>
+                            )
+                          }
+                          if (row.kind === 'like') {
+                            return (
+                              <ActivityFeedRowShell
+                                key={row.id}
+                                iconKind='like'
+                              >
+                                <ActivityFeedThread
+                                  subject={
+                                    <Link href={row.profile_href}>
+                                      <a className={styles.inlineLink}>
+                                        {row.update_snippet}
+                                      </a>
+                                    </Link>
+                                  }
+                                  time={formatDate(row.created_at)}
+                                  turns={[
+                                    {
+                                      author: feedActorNode(
+                                        row.actor_id,
+                                        row.actor_display_name,
+                                        followingIds,
+                                        followerIds,
+                                        row.actor_avatar_url
+                                      ),
+                                      verb: 'liked your update'
+                                    }
+                                  ]}
+                                />
+                              </ActivityFeedRowShell>
+                            )
+                          }
+                          if (row.kind === 'path_invite') {
+                            return (
+                              <ActivityFeedRowShell
+                                key={row.id}
+                                iconKind='path'
+                              >
+                                <ActivityFeedThread
+                                  subject={
+                                    <Link href={row.path_href}>
+                                      <a className={styles.inlineLink}>
+                                        {row.path_title}
+                                      </a>
+                                    </Link>
+                                  }
+                                  time={formatDate(row.created_at)}
+                                  turns={[
+                                    {
+                                      author: feedActorNode(
+                                        row.actor_id,
+                                        row.actor_display_name,
+                                        followingIds,
+                                        followerIds,
+                                        row.actor_avatar_url
+                                      ),
+                                      verb: 'invited you to their learning path'
+                                    }
+                                  ]}
+                                />
+                              </ActivityFeedRowShell>
+                            )
+                          }
+                          if (row.kind === 'resource_submitted') {
+                            return (
+                              <ActivityFeedRowShell
+                                key={row.id}
+                                iconKind='suggestion'
+                              >
+                                <ActivityFeedThread
+                                  subject={
+                                    <Link href={row.path_href}>
+                                      <a className={styles.inlineLink}>
+                                        {row.path_title}
+                                      </a>
+                                    </Link>
+                                  }
+                                  time={formatDate(row.created_at)}
+                                  turns={[
+                                    {
+                                      author: feedActorNode(
+                                        row.actor_id,
+                                        row.actor_display_name,
+                                        followingIds,
+                                        followerIds,
+                                        row.actor_avatar_url
+                                      ),
+                                      verb: 'submitted a resource to your path — review it',
+                                      body: row.resource_title
+                                    }
+                                  ]}
+                                />
+                              </ActivityFeedRowShell>
+                            )
+                          }
+                          if (row.kind === 'resource_accepted') {
+                            return (
+                              <ActivityFeedRowShell
+                                key={row.id}
+                                iconKind='suggestion'
+                              >
+                                <ActivityFeedThread
+                                  subject={
+                                    <Link href={row.path_href}>
+                                      <a className={styles.inlineLink}>
+                                        {row.path_title}
+                                      </a>
+                                    </Link>
+                                  }
+                                  time={formatDate(row.created_at)}
+                                  turns={[
+                                    {
+                                      author: feedActorNode(
+                                        row.actor_id,
+                                        row.actor_display_name,
+                                        followingIds,
+                                        followerIds,
+                                        row.actor_avatar_url
+                                      ),
+                                      verb: 'accepted your resource submission to their path',
+                                      body: row.resource_title
+                                    }
+                                  ]}
+                                />
+                              </ActivityFeedRowShell>
+                            )
+                          }
+                          if (row.kind === 'join_request') {
+                            const request = row.request
+                            const actorLabel =
+                              request.displayName?.trim() || request.email
+                            return (
+                              <ActivityFeedRowShell
+                                key={row.id}
+                                iconKind='join'
+                                className={`${styles.listItem} ${styles.listItemUnread}`}
+                              >
+                                <ActivityFeedThread
+                                  subject={
+                                    request.pathSlug ? (
+                                      <Link
+                                        href={`/learning-path/${request.pathSlug}`}
+                                      >
+                                        <a className={styles.inlineLink}>
+                                          {request.pathTitle}
+                                        </a>
+                                      </Link>
+                                    ) : (
+                                      request.pathTitle
+                                    )
+                                  }
+                                  time={formatDate(request.createdAt)}
+                                  turns={[
+                                    {
+                                      author: feedActorNode(
+                                        request.userId,
+                                        actorLabel,
+                                        followingIds,
+                                        followerIds,
+                                        request.avatarUrl
+                                      ),
+                                      verb: 'asked to join your learning path',
+                                      body: request.email
+                                    }
+                                  ]}
+                                />
+                                <div className={styles.feedCardJoinActions}>
+                                  <button
+                                    type='button'
+                                    className={styles.feedCardJoinInvite}
+                                    disabled={joinAcceptingId === request.id}
+                                    onClick={() =>
+                                      void handleAcceptJoinRequest(request)
+                                    }
+                                  >
+                                    {joinAcceptingId === request.id
+                                      ? 'Inviting…'
+                                      : 'Invite'}
+                                  </button>
+                                  <button
+                                    type='button'
+                                    className={styles.feedCardJoinDismiss}
+                                    disabled={joinDismissingId === request.id}
+                                    onClick={() =>
+                                      void handleDismissJoinRequest(request.id)
+                                    }
+                                  >
+                                    Dismiss
+                                  </button>
+                                </div>
+                              </ActivityFeedRowShell>
+                            )
+                          }
+                          const n = row.notification
+                          const turns: ActivityFeedTurn[] = []
+                          const parentBody = (n.parent_body ?? '').trim()
+                          if (parentBody) {
+                            const parentName =
+                              (n.parent_author_name ?? '').trim() || 'You'
+                            turns.push({
+                              author: n.parent_author_id
+                                ? feedActorNode(
+                                    n.parent_author_id,
+                                    parentName,
+                                    followingIds,
+                                    followerIds,
+                                    n.parent_author_avatar_url
+                                  )
+                                : feedActorPlain(
+                                    parentName,
+                                    n.parent_author_avatar_url
+                                  ),
+                              body: parentBody,
+                              muted: true
+                            })
+                          }
+                          turns.push({
+                            author: feedActorNode(
+                              n.author_id,
+                              n.author_name,
+                              followingIds,
+                              followerIds,
+                              n.author_avatar_url
+                            ),
+                            verb: parentBody
+                              ? 'replied to you'
+                              : 'replied to you',
+                            body: n.body
+                          })
+                          return (
+                            <ActivityFeedRowShell
+                              key={row.id}
+                              iconKind={
+                                n.type === 'annotation'
+                                  ? 'discussion'
+                                  : 'comment'
+                              }
+                              className={
+                                n.is_unread
+                                  ? `${styles.listItem} ${styles.listItemUnread}`
+                                  : styles.listItem
+                              }
+                            >
+                              <ActivityFeedThread
+                                subject={
+                                  n.type === 'annotation' ? (
+                                    <>
+                                      Discussions on{' '}
+                                      <Link
+                                        href={
+                                          n.course_url ??
+                                          `/course/${n.course_id}`
+                                        }
+                                      >
+                                        <a className={styles.inlineLink}>
+                                          {n.course_name}
+                                        </a>
+                                      </Link>
+                                      {n.section_id ? (
+                                        <>
+                                          {' '}
+                                          in section:{' '}
+                                          <FeedSectionUnderline
+                                            sectionId={n.section_id}
+                                          />
+                                        </>
+                                      ) : null}
+                                    </>
+                                  ) : (
+                                    <Link
+                                      href={
+                                        n.course_url ??
+                                        `/course/${n.course_id}`
+                                      }
+                                    >
+                                      <a className={styles.inlineLink}>
+                                        {n.course_name}
+                                      </a>
+                                    </Link>
+                                  )
+                                }
+                                time={formatDate(n.created_at)}
+                                turns={turns}
+                              />
+                            </ActivityFeedRowShell>
+                          )
+                        })}
+                      </ul>
+                    )}
+                  </div>
                 )}
 
                 {mainTab === 'knowledge' && (
@@ -2874,13 +3277,13 @@ export default function ProfilePage() {
 
                 {mainTab === 'activity' && (
                   <div className={styles.tabPanel}>
-                    <h2 className={styles.mainSerifTitle}>Activity</h2>
+                    <h2 className={styles.mainSerifTitle}>Feed</h2>
                     <div className={styles.filterSearchBlock}>
                       <ProfilePanelSearch
                         id='profile-activity-search'
                         value={activitySearch}
                         onChange={setActivitySearch}
-                        ariaLabel='Search activity'
+                        ariaLabel='Search feed'
                       />
                       <div
                         className={`${styles.linkFilterRow} ${styles.pathsCoursesFilter}`}
@@ -2888,7 +3291,7 @@ export default function ProfilePage() {
                         <div
                           className={styles.linkFilterTagsWrap}
                           role='group'
-                          aria-label='Activity type'
+                          aria-label='Feed type'
                         >
                           {ACTIVITY_FILTERS.map((filter) => (
                             <button
@@ -2914,216 +3317,61 @@ export default function ProfilePage() {
                     )}
 
                     {!activityLoading &&
-                      activitySubTab === 'feed' &&
-                      (activityFeedRows.length === 0 ? (
-                        <p className={styles.placeholder}>
-                          Nothing in your feed yet. Follow people to see their
-                          updates, comments, discussions, bookmarks, new
-                          learning paths, and progress. Replies to your comments
-                          and discussions, plus suggestions on your resource
-                          lists and requests to join your private paths, show up
-                          here as well.
-                        </p>
-                      ) : visibleActivityFeedRows.length === 0 ? (
-                        <p className={styles.placeholder}>
-                          No matching activity.
-                        </p>
-                      ) : (
-                        <ul className={styles.list}>
-                          {visibleActivityFeedRows.map((row) => {
-                            if (row.kind === 'join-request') {
-                              const request = row.request
-                              const actorLabel =
-                                request.displayName?.trim() || request.email
-                              return (
-                                <ActivityFeedRowShell
-                                  key={`join-${request.id}`}
-                                  iconKind='join'
-                                  className={`${styles.listItem} ${styles.listItemUnread}`}
-                                >
-                                  <ActivityFeedThread
-                                    subject={
-                                      request.pathSlug ? (
-                                        <Link
-                                          href={`/learning-path/${request.pathSlug}`}
-                                        >
-                                          <a className={styles.inlineLink}>
-                                            {request.pathTitle}
-                                          </a>
-                                        </Link>
-                                      ) : (
-                                        request.pathTitle
-                                      )
-                                    }
-                                    time={formatDate(request.createdAt)}
-                                    turns={[
-                                      {
-                                        author: feedActorNode(
-                                          request.userId,
-                                          actorLabel,
-                                          followingIds,
-                                          followerIds,
-                                          request.avatarUrl
-                                        ),
-                                        verb: 'asked to join',
-                                        body: request.email
-                                      }
-                                    ]}
-                                  />
-                                  <div className={styles.feedCardJoinActions}>
-                                    <button
-                                      type='button'
-                                      className={styles.feedCardJoinInvite}
-                                      disabled={
-                                        joinAcceptingId === request.id
-                                      }
-                                      onClick={() =>
-                                        void handleAcceptJoinRequest(request)
-                                      }
-                                    >
-                                      {joinAcceptingId === request.id
-                                        ? 'Inviting…'
-                                        : 'Invite'}
-                                    </button>
-                                    <button
-                                      type='button'
-                                      className={styles.feedCardJoinDismiss}
-                                      disabled={
-                                        joinDismissingId === request.id
-                                      }
-                                      onClick={() =>
-                                        void handleDismissJoinRequest(
-                                          request.id
-                                        )
-                                      }
-                                    >
-                                      Dismiss
-                                    </button>
-                                  </div>
-                                </ActivityFeedRowShell>
-                              )
-                            }
-                            if (row.kind === 'reply') {
-                              const n = row.notification
-                              const turns: ActivityFeedTurn[] = []
-                              const parentBody = (n.parent_body ?? '').trim()
-                              if (parentBody) {
-                                const parentName =
-                                  (n.parent_author_name ?? '').trim() || 'You'
-                                turns.push({
-                                  author: n.parent_author_id
-                                    ? feedActorNode(
-                                        n.parent_author_id,
-                                        parentName,
+                      activitySubTab === 'feed' && (
+                        <>
+                          <ProfileUpdatesTab
+                            userId={effectiveUser.id}
+                            authorDisplayName={displayName}
+                            authorAvatarUrl={avatarUrl}
+                            canAdd
+                            embedded
+                            hideEmptyMessage
+                          />
+                          {feedItems.length === 0 ? (
+                            <p className={styles.placeholder}>
+                              Nothing from people you follow yet. Follow others
+                              to see their updates, comments, discussions,
+                              bookmarks, new learning paths, and progress.
+                            </p>
+                          ) : visibleActivityFeedRows.length === 0 ? (
+                            <p className={styles.placeholder}>
+                              No matching activity.
+                            </p>
+                          ) : (
+                            <ul className={styles.list}>
+                              {visibleActivityFeedRows.map((item) => {
+                                const actorLabel =
+                                  item.actor_display_name?.trim() || 'Someone'
+                                return (
+                                  <ActivityFeedRowShell
+                                    key={item.id}
+                                    iconKind={activityIconKindForFeedItem(item)}
+                                  >
+                                    <ActivityFeedThread
+                                      subject={<FeedItemSubject item={item} />}
+                                      time={formatDate(item.created_at)}
+                                      turns={feedItemTurns(
+                                        item,
+                                        actorLabel,
                                         followingIds,
-                                        followerIds,
-                                        n.parent_author_avatar_url
-                                      )
-                                    : feedActorPlain(
-                                        parentName,
-                                        n.parent_author_avatar_url
-                                      ),
-                                  body: parentBody,
-                                  muted: true
-                                })
-                              }
-                              turns.push({
-                                author: feedActorNode(
-                                  n.author_id,
-                                  n.author_name,
-                                  followingIds,
-                                  followerIds,
-                                  n.author_avatar_url
-                                ),
-                                verb: parentBody ? null : 'replied',
-                                body: n.body
-                              })
-                              return (
-                                <ActivityFeedRowShell
-                                  key={`reply-${n.id}`}
-                                  iconKind={
-                                    n.type === 'annotation'
-                                      ? 'discussion'
-                                      : 'comment'
-                                  }
-                                  className={
-                                    n.is_unread
-                                      ? `${styles.listItem} ${styles.listItemUnread}`
-                                      : styles.listItem
-                                  }
-                                >
-                                  <ActivityFeedThread
-                                    subject={
-                                      n.type === 'annotation' ? (
-                                        <>
-                                          Discussions on{' '}
-                                          <Link
-                                            href={
-                                              n.course_url ??
-                                              `/course/${n.course_id}`
-                                            }
-                                          >
-                                            <a className={styles.inlineLink}>
-                                              {n.course_name}
-                                            </a>
-                                          </Link>
-                                          {n.section_id ? (
-                                            <>
-                                              {' '}
-                                              in section:{' '}
-                                              <FeedSectionUnderline
-                                                sectionId={n.section_id}
-                                              />
-                                            </>
-                                          ) : null}
-                                        </>
-                                      ) : (
-                                        <Link
-                                          href={
-                                            n.course_url ??
-                                            `/course/${n.course_id}`
-                                          }
-                                        >
-                                          <a className={styles.inlineLink}>
-                                            {n.course_name}
-                                          </a>
-                                        </Link>
-                                      )
-                                    }
-                                    time={formatDate(n.created_at)}
-                                    turns={turns}
-                                  />
-                                </ActivityFeedRowShell>
-                              )
-                            }
-                            const item = row.item
-                            const actorLabel =
-                              item.actor_display_name?.trim() || 'Someone'
-                            return (
-                              <ActivityFeedRowShell
-                                key={item.id}
-                                iconKind={activityIconKindForFeedItem(item)}
-                              >
-                                <ActivityFeedThread
-                                  subject={<FeedItemSubject item={item} />}
-                                  time={formatDate(item.created_at)}
-                                  turns={feedItemTurns(
-                                    item,
-                                    actorLabel,
-                                    followingIds,
-                                    followerIds
-                                  )}
-                                />
-                                {item.kind === 'followed_profile_update' ? (
-                                  <ActivityFeedUpdateReplies
-                                    updateId={item.update_id}
-                                  />
-                                ) : null}
-                              </ActivityFeedRowShell>
-                            )
-                          })}
-                        </ul>
-                      ))}
+                                        followerIds
+                                      )}
+                                    />
+                                    {item.kind === 'followed_profile_update' ? (
+                                      <ActivityFeedUpdateReplies
+                                        updateId={item.update_id}
+                                        initialLikeCount={item.like_count}
+                                        initialLikedByMe={item.liked_by_me}
+                                        initialCommentCount={item.comment_count}
+                                      />
+                                    ) : null}
+                                  </ActivityFeedRowShell>
+                                )
+                              })}
+                            </ul>
+                          )}
+                        </>
+                      )}
 
                     {!activityLoading &&
                       activitySubTab === 'yours' &&

@@ -8,7 +8,7 @@ Topics you pick up by finishing learning paths, plus a Coursetexts-wide graph of
 
 The page reads a frozen snapshot (`data/knowledge-graph.json`). It does **not** call `GET /api/knowledge-graph` (that route returns **410 Gone**) and does not harvest on load. To rebuild the snapshot on purpose: `npx tsx scripts/snapshot-knowledge-graph.ts`.
 
-On `/profile` and `/profile/{userId}`, the primary tabs are **Learning → Knowledge → Notes → Activity → Bookmarks → Updates** (Notes is owner-only on `/profile`). A subtle divider separates Learning/Knowledge/Notes from Activity/Bookmarks/Updates. Search fields on those tabs share one width. Learning streak tags on some cards are **mocked** only — see [gaps.md](./gaps.md). Hover a Learning card for resume (description + progress + **Continue →**). Activity Feed can show followed profile Updates with expandable replies.
+On `/profile` and `/profile/{userId}`, the primary tabs are **Learning → Knowledge → Notes → Bookmarks → Feed → Notifications** (Notes and Notifications are owner-only on `/profile`). A subtle divider separates Learning/Knowledge/Notes/Bookmarks from Feed/Notifications. Search fields on those tabs share one width. Learning streak tags on some cards are **mocked** only — see [gaps.md](./gaps.md). Hover a Learning card for resume (description + progress + **Continue →**). Feed hosts Updates (compose + posts) and followed social activity (**Following** · **Yours**). Notifications covers follows, likes, replies, path invites, and resource suggestion review/acceptance.
 
 The Knowledge tab is a **list** of unique topics for that user (`user_knowledge_topics`), A–Z, with search. On your own profile you can add a topic and export the list. The profile graph view is hidden.
 

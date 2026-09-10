@@ -117,7 +117,7 @@ export function ProfileSuggestionIcon({ className }: IconProps) {
   )
 }
 
-/** Activity — join request. */
+/** Activity — join request / follow. */
 export function ProfileJoinIcon({ className }: IconProps) {
   return (
     <svg {...common} className={className}>
@@ -125,6 +125,15 @@ export function ProfileJoinIcon({ className }: IconProps) {
       <path d='M3.5 19c.6-3.2 2.9-5 5.5-5s4.9 1.8 5.5 5' />
       <path d='M17 8v6' />
       <path d='M14 11h6' />
+    </svg>
+  )
+}
+
+/** Notifications — like. */
+export function ProfileHeartIcon({ className }: IconProps) {
+  return (
+    <svg {...common} className={className}>
+      <path d='M12 20s-7-4.4-7-9.2A3.8 3.8 0 0 1 12 8a3.8 3.8 0 0 1 7 2.8C19 15.6 12 20 12 20z' />
     </svg>
   )
 }

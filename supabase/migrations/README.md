@@ -144,7 +144,7 @@ Community paths: [docs/learning-paths.md](../../docs/learning-paths.md).
 - [ ] Google sign-in → row appears in `profiles`
 - [ ] Open a Notion course page → row in `courses`; comment / bookmark / discussion (`annotations`) / notes work
 - [ ] `/community-resources` search + resource comments/votes
-- [ ] Profile: bio + learning summary (`049`); personal links under Previously learned; interests chips; bookmarked links; Activity feed (incl. followed Updates replies); Updates tab (`050`)
+- [ ] Profile: bio + learning summary (`049`); personal links under Previously learned; interests chips; bookmarked links; Feed (Updates + followed activity); Notifications (replies + join requests; `050` for Updates)
 - [ ] `/users` directory loads
 - [ ] `/learning-path/fluid-mechanics` loads the syllabus UI from `learning_paths`
 - [ ] `/learning-paths` and home community grid show catalog paths (not empty course placeholders)
@@ -152,7 +152,7 @@ Community paths: [docs/learning-paths.md](../../docs/learning-paths.md).
 - [ ] Owned path visibility: Private / Public / Collaborative
 - [ ] Private path: owner **Invite** by email of someone already on Coursetexts; invitee signed in with that email can open and edit the outline; owner can Remove. Invitee-added official resources show **Added by you**. Apply `042_learning_path_invites.sql`. No invitation email is sent.
 - [ ] Signed-out (or another account) opening a private path URL sees **This learning path is private**, not an empty Coursetexts shell. Unknown slug sees **doesn’t exist yet** + create. Apply `043_learning_path_public_access.sql`.
-- [ ] Signed-in visitor on a private path they cannot open: **Request to join** records their email; owner sees a banner on the path and on `/profile` Activity, then Invite or Dismiss. Apply `044_learning_path_join_requests.sql`. No email is sent.
+- [ ] Signed-in visitor on a private path they cannot open: **Request to join** records their email; owner sees a banner on the path and on `/profile` Feed, then Invite or Dismiss. Apply `044_learning_path_join_requests.sql`. No email is sent.
 - [ ] Collaborative path: visitor does **not** see Edit this node / Add to path; owner still does. Visitor **Suggest a resource** shows a dotted card; owner **Accept** copies it into the official list. Apply `040_learning_path_outline_owner_only.sql` (outline) and `032`/`034` (suggestions).
 - [ ] Community/research path: **Export Context** copies current step + numbered outline (mark and title on one line) + whys + goal
 - [ ] Field Atlas → new path with `kind=research`
@@ -163,7 +163,8 @@ Community paths: [docs/learning-paths.md](../../docs/learning-paths.md).
 - [ ] `/community`: two explainers (path schema + vote/order diagram); collab CTA → `/community-resources`
 - [ ] Profile Learning tab: filters **Courses** (official Notion or `kind=course`), **Learning paths** (`community`+`research`), **Committed**; Commit tag writes `learning_path_commitments`; **Notify** stores a reminder cadence (`041`, which also creates the table if `030` never ran); muted **% complete** tag sits left of Commit; hover resume + Continue
 - [ ] Profile Knowledge tab: topic list (graph view hidden); finishing a public path upserts catalog topics/structural edges. Daily Gemini cron is **off** ([docs/knowledge.md](../../docs/knowledge.md))
-- [ ] Profile Updates: compose / like / reply after `050_profile_updates.sql`
+- [ ] Profile Updates: compose / like / reply from Feed after `050_profile_updates.sql`
+- [ ] Profile Notifications: replies + join requests; opening the tab clears reply unread
 - [ ] `/reports` loads (open while testing). Hover a discussion/comment/resource and send a reason; flag next to the date on a learning-path hero. Row appears on `/reports`. Apply `037_content_reports.sql` first.
 - [ ] Mark a topic explored → enter duration + enjoyment %. Finish the path/course → same for the whole map. Apply `038_learning_path_ratings.sql` (and `039` if `038` already ran with 1–5 stars).
 

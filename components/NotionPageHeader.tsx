@@ -25,10 +25,15 @@ import {
   getUnreadReplyCount,
   subscribeReplyNotificationUpdates
 } from '@/lib/reply-notifications'
+import {
+  OWN_PROFILE_TAB_LINKS,
+  ownProfileTabHref
+} from '@/lib/profile-tabs'
 import { useDarkMode } from '@/lib/use-dark-mode'
 
 import { useAuthOptional } from '../contexts/AuthContext'
 import { CoursetextsBookIcon } from './CoursetextsBookIcon'
+import { ProfileNavDropdown } from './ProfileNavDropdown'
 import styles from './NotionPageHeader.module.css'
 
 const ToggleThemeButton = ({ className }: { className?: string }) => {
@@ -288,26 +293,52 @@ export const NotionPageHeader: React.FC<{
                   <span className={styles.menuThemeLabel}>Theme</span>
                   <ToggleThemeButton className={styles.menuThemeToggle} />
                 </div>
-                <Link
-                  href={accountHref}
-                  className={styles.menuProfileLink}
-                  onClick={(event) => {
-                    closeMenu()
-                    handleAccountClick(event)
-                  }}
-                >
-                  <span className={styles.menuProfileInner}>
-                    <span>{isLoggedIn ? 'Profile' : 'Sign in'}</span>
-                    {isLoggedIn && unreadReplies > 0 && (
-                      <span
-                        className={styles.profileAlertBadge}
-                        aria-label={`${unreadReplies} unread replies`}
-                      >
-                        {unreadReplies > 99 ? '99+' : unreadReplies}
+                {isLoggedIn ? (
+                  <div className={styles.menuProfileGroup}>
+                    <Link
+                      href={accountHref}
+                      className={styles.menuProfileLink}
+                      onClick={() => closeMenu()}
+                    >
+                      <span className={styles.menuProfileInner}>
+                        <span>Profile</span>
+                        {unreadReplies > 0 && (
+                          <span
+                            className={styles.profileAlertBadge}
+                            aria-label={`${unreadReplies} unread replies`}
+                          >
+                            {unreadReplies > 99 ? '99+' : unreadReplies}
+                          </span>
+                        )}
                       </span>
-                    )}
-                  </span>
-                </Link>
+                    </Link>
+                    <div className={styles.menuProfileTabs}>
+                      {OWN_PROFILE_TAB_LINKS.map((tab) => (
+                        <Link
+                          key={tab.slug}
+                          href={ownProfileTabHref(tab.slug)}
+                          className={styles.menuProfileTabLink}
+                          onClick={() => closeMenu()}
+                        >
+                          {tab.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <Link
+                    href={accountHref}
+                    className={styles.menuProfileLink}
+                    onClick={(event) => {
+                      closeMenu()
+                      handleAccountClick(event)
+                    }}
+                  >
+                    <span className={styles.menuProfileInner}>
+                      <span>Sign in</span>
+                    </span>
+                  </Link>
+                )}
               </div>
             </div>
           </motion.div>
@@ -365,25 +396,13 @@ export const NotionPageHeader: React.FC<{
 
             <div className={styles.headerRhs}>
               <ToggleThemeButton />
-              <Link
-                href={accountHref}
-                className={styles.profileLink}
-                onClick={handleAccountClick}
-              >
-                <span
-                  className={cs(styles.profileLinkLabelWrap, styles.signUpBtn)}
-                >
-                  <span>{isLoggedIn ? 'Profile' : 'Sign in'}</span>
-                  {isLoggedIn && unreadReplies > 0 && (
-                    <span
-                      className={styles.profileAlertBadge}
-                      aria-label={`${unreadReplies} unread replies`}
-                    >
-                      {unreadReplies > 99 ? '99+' : unreadReplies}
-                    </span>
-                  )}
-                </span>
-              </Link>
+              <ProfileNavDropdown
+                isLoggedIn={isLoggedIn}
+                accountHref={accountHref}
+                accountLabel={isLoggedIn ? 'Profile' : 'Sign in'}
+                unreadCount={unreadReplies}
+                onAccountClick={handleAccountClick}
+              />
             </div>
           </div>
 

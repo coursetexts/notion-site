@@ -7,6 +7,7 @@ import {
   ProfileBookmarkIcon,
   ProfileCommentIcon,
   ProfileDiscussionIcon,
+  ProfileHeartIcon,
   ProfileJoinIcon,
   ProfilePathIcon,
   ProfileProgressIcon,
@@ -22,6 +23,8 @@ export type ActivityFeedIconKind =
   | 'update'
   | 'suggestion'
   | 'join'
+  | 'follow'
+  | 'like'
 
 export function activityIconKindForFeedItem(
   item: ProfileFeedItem
@@ -43,6 +46,8 @@ export function activityIconKindForFeedItem(
     case 'suggestion_for_you':
     case 'suggestion_response':
       return 'suggestion'
+    default:
+      return 'comment'
   }
 }
 
@@ -63,7 +68,10 @@ function iconForKind(kind: ActivityFeedIconKind) {
     case 'suggestion':
       return <ProfileSuggestionIcon />
     case 'join':
+    case 'follow':
       return <ProfileJoinIcon />
+    case 'like':
+      return <ProfileHeartIcon />
     default:
       return <ProfileCommentIcon />
   }

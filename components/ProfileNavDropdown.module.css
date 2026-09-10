@@ -1,0 +1,208 @@
+.wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Same bordered control as home Sign out */
+.accountBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-width: 68px;
+  height: 33px;
+  padding: 6px 14px;
+  box-sizing: border-box;
+  appearance: none;
+  background: transparent;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #e6e6e6;
+  border-radius: 0;
+  text-decoration: none;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: -0.005em;
+  color: #000000;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    border-color 220ms ease,
+    color 220ms ease,
+    background-color 220ms ease,
+    opacity 220ms ease;
+}
+
+.accountBtn:hover,
+.accountBtn:focus-visible {
+  border-color: #0089c4;
+  color: #0089c4;
+  background-color: #f5fbff;
+  opacity: 0.95;
+  outline: none;
+}
+
+.triggerInner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.1rem;
+  height: 1.1rem;
+  padding: 0 0.28rem;
+  border-radius: 999px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 0.68rem;
+  line-height: 1;
+  font-weight: 600;
+}
+
+/* Match HomeHeader About flyout geometry */
+.dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: auto;
+  z-index: 40;
+  padding-top: 14px;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.dropdown::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 14px;
+}
+
+.dropdownInner {
+  display: flex;
+  flex-direction: column;
+  min-width: 168px;
+  width: max-content;
+  max-width: min(240px, calc(100vw - 32px));
+  padding: 8px 0;
+  border: 1px solid #e6e6e6;
+  background: #f8f7f4;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition:
+    opacity 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wrap:hover .dropdown,
+.wrap:focus-within .dropdown {
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.wrap:hover .dropdownInner,
+.wrap:focus-within .dropdownInner {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  color: var(--midGrey, #37352f);
+  text-decoration: none;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    color 180ms ease,
+    opacity 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wrap:hover .dropdownItem,
+.wrap:focus-within .dropdownItem {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.wrap:hover .dropdownItem:nth-child(1),
+.wrap:focus-within .dropdownItem:nth-child(1) {
+  transition-delay: 40ms;
+}
+
+.wrap:hover .dropdownItem:nth-child(2),
+.wrap:focus-within .dropdownItem:nth-child(2) {
+  transition-delay: 70ms;
+}
+
+.wrap:hover .dropdownItem:nth-child(3),
+.wrap:focus-within .dropdownItem:nth-child(3) {
+  transition-delay: 100ms;
+}
+
+.wrap:hover .dropdownItem:nth-child(4),
+.wrap:focus-within .dropdownItem:nth-child(4) {
+  transition-delay: 130ms;
+}
+
+/* Child 5 is the divider between Bookmarks and Feed */
+.wrap:hover .dropdownItem:nth-child(6),
+.wrap:focus-within .dropdownItem:nth-child(6) {
+  transition-delay: 160ms;
+}
+
+.wrap:hover .dropdownItem:nth-child(7),
+.wrap:focus-within .dropdownItem:nth-child(7) {
+  transition-delay: 190ms;
+}
+
+.dropdownDivider {
+  height: 1px;
+  margin: 6px 16px;
+  background: #e6e6e6;
+  flex-shrink: 0;
+}
+
+.dropdownIcon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: currentColor;
+  background: none;
+}
+
+.dropdownIcon svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.dropdownLabel {
+  min-width: 0;
+}
+
+.dropdownItem:hover,
+.dropdownItem:focus-visible {
+  color: #0089c4;
+  outline: none;
+}

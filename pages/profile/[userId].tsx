@@ -257,7 +257,7 @@ export default function PublicProfilePage() {
 
   const [profileInterestTags, setProfileInterestTags] = useState<string[]>([])
   const [mainTab, setMainTab] = useState<
-    'learning-path' | 'updates' | 'knowledge' | 'bookmarks' | 'activity'
+    'learning-path' | 'knowledge' | 'bookmarks' | 'activity'
   >('learning-path')
   const [knowledgeTopics, setKnowledgeTopics] = useState<UserKnowledgeTopic[]>(
     []
@@ -868,20 +868,6 @@ export default function PublicProfilePage() {
                   >
                     Knowledge
                   </button>
-                  <span className={styles.primaryTabsDivider} aria-hidden />
-                  <button
-                    type='button'
-                    role='tab'
-                    aria-selected={mainTab === 'activity'}
-                    className={
-                      mainTab === 'activity'
-                        ? styles.primaryTabActive
-                        : styles.primaryTab
-                    }
-                    onClick={() => setMainTab('activity')}
-                  >
-                    Activity
-                  </button>
                   <button
                     type='button'
                     role='tab'
@@ -895,24 +881,21 @@ export default function PublicProfilePage() {
                   >
                     Bookmarks
                   </button>
+                  <span className={styles.primaryTabsDivider} aria-hidden />
                   <button
                     type='button'
                     role='tab'
-                    aria-selected={mainTab === 'updates'}
+                    aria-selected={mainTab === 'activity'}
                     className={
-                      mainTab === 'updates'
+                      mainTab === 'activity'
                         ? styles.primaryTabActive
                         : styles.primaryTab
                     }
-                    onClick={() => setMainTab('updates')}
+                    onClick={() => setMainTab('activity')}
                   >
-                    Updates
+                    Feed
                   </button>
                 </nav>
-
-                {mainTab === 'updates' && (
-                  <ProfileUpdatesTab userId={userId} />
-                )}
 
                 {mainTab === 'knowledge' && (
                   <ProfileKnowledgePanel
@@ -1122,12 +1105,15 @@ export default function PublicProfilePage() {
 
                 {mainTab === 'activity' && (
                   <div className={styles.tabPanel}>
-                    <h2 className={styles.mainSerifTitle}>All activity</h2>
-                    {publicActivityRows.length === 0 ? (
-                      <p className={styles.placeholder}>
-                        No comments or discussions yet.
-                      </p>
-                    ) : (
+                    <h2 className={styles.mainSerifTitle}>Feed</h2>
+                    <ProfileUpdatesTab
+                      userId={userId}
+                      authorDisplayName={displayName}
+                      authorAvatarUrl={profile.avatar_url}
+                      showFollowingTag={isFollowing}
+                      embedded
+                    />
+                    {publicActivityRows.length > 0 ? (
                       <ul className={styles.list}>
                         {publicActivityRows.map((row) => {
                           if (row.kind === 'comment') {
@@ -1210,7 +1196,7 @@ export default function PublicProfilePage() {
                           )
                         })}
                       </ul>
-                    )}
+                    ) : null}
                   </div>
                 )}
 

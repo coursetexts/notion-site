@@ -15,7 +15,7 @@ What is **live** vs **partial**, **404**, or **orphaned API** in the current cod
 | Feature | Where | Gap |
 | ------- | ----- | --- |
 | **Learning streaks** | Profile Learning cards | `lib/profile-learning-streaks.ts` mocks a few titles; real streak tracking not built. |
-| **Profile Updates** | Profile **Updates** tab | Needs migration `050_profile_updates.sql` applied in Supabase for posts, likes, and comments. |
+| **Profile Updates** | profile Feed | Needs migration `050_profile_updates.sql` applied in Supabase for posts, likes, and comments. |
 | **Commitment reminders** | Profile **Notify** tag, `learning_path_commitments` | Cadence saves to DB; **no notification delivery** (email/push). |
 | **Karma score** | `profiles.karma_score` | `lib/karma.ts` is a deliberate no-op; votes work but score never updates. |
 | **Knowledge graph daily cron** | `pages/api/cron/rebuild-knowledge-graph.ts` | Disabled unless `KNOWLEDGE_GRAPH_CRON_ENABLED=true`; `vercel.json` has no cron schedule. |
@@ -23,7 +23,7 @@ What is **live** vs **partial**, **404**, or **orphaned API** in the current cod
 | **Curated videos (syllabus paths)** | `CourseLearningPathVideoList` | Empty state: “Curated videos coming soon”. |
 | **Empty syllabus stubs** | Course learning path Overview / nav | “Syllabus topics coming soon” for unfilled `kind=course` rows. |
 | **Reports dashboard access** | `/reports` | `REPORTS_DASHBOARD_OPEN = true` in `lib/content-reports.ts` — **anyone can view** while testing. Flip to false to require `coursetexts.info@gmail.com`. |
-| **Private path invites / join requests** | Learning path hero, profile Activity | Email stored; **no invitation email sent**. Owner must invite manually in app. |
+| **Private path invites / join requests** | Learning path hero, profile Feed | Email stored; **no invitation email sent**. Owner must invite manually in app. |
 
 ## API routes: implemented but not connected to UI
 
