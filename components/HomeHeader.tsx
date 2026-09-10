@@ -16,14 +16,19 @@ import { ProfileNavDropdown } from './ProfileNavDropdown'
 import styles from './HomeHeader.module.css'
 import { PinnedCoursesNav } from './PinnedCoursesNav'
 import {
+  ProfileAnnouncementIcon,
+  ProfilePathIcon
+} from '@/components/ProfileTabItemIcons'
+import {
   OWN_PROFILE_TAB_LINKS,
   ownProfileTabHref
 } from '@/lib/profile-tabs'
 
-type AboutNavChild = {
+type NavMenuChild = {
   label: string
   description: string
   href: string
+  icon: React.ReactNode
   external?: boolean
 }
 
@@ -42,57 +47,170 @@ type NavItem =
   | {
       kind: 'menu'
       label: string
-      children: AboutNavChild[]
+      children: NavMenuChild[]
     }
 
-const aboutChildren: AboutNavChild[] = [
+const navIconProps = {
+  width: 16,
+  height: 16,
+  viewBox: '0 0 24 24',
+  fill: 'none',
+  stroke: 'currentColor',
+  strokeWidth: 1.7,
+  strokeLinecap: 'round' as const,
+  strokeLinejoin: 'round' as const,
+  'aria-hidden': true as const
+}
+
+function NavAcademicCoursesIcon() {
+  return (
+    <svg {...navIconProps}>
+      <path d='M12 3L2 8l10 5 10-5-10-5z' />
+      <path d='M6 10.5V15c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5' />
+      <path d='M22 8v6' />
+    </svg>
+  )
+}
+
+function NavResearchIcon() {
+  return (
+    <svg {...navIconProps}>
+      <circle cx='11' cy='11' r='7' />
+      <path d='M20 20l-3.5-3.5' />
+    </svg>
+  )
+}
+
+function NavManifestoIcon() {
+  return (
+    <svg {...navIconProps}>
+      <path d='M6 4h9l3 3v13H6V4z' />
+      <path d='M15 4v3h3' />
+      <path d='M9 12h6' />
+      <path d='M9 16h6' />
+    </svg>
+  )
+}
+
+function NavProfessorsIcon() {
+  return (
+    <svg {...navIconProps}>
+      <path d='M4 19V7a2 2 0 0 1 2-2h12' />
+      <path d='M8 19h12V9H8v10z' />
+      <path d='M11 12h6' />
+      <path d='M11 15h4' />
+    </svg>
+  )
+}
+
+function NavBlogIcon() {
+  return (
+    <svg {...navIconProps}>
+      <path d='M5 5h14v14H5z' />
+      <path d='M8 9h8' />
+      <path d='M8 13h8' />
+      <path d='M8 17h5' />
+    </svg>
+  )
+}
+
+function NavSupportIcon() {
+  return (
+    <svg {...navIconProps}>
+      <path d='M12 20s-7-4.4-7-9.2A3.8 3.8 0 0 1 12 8.2a3.8 3.8 0 0 1 7 2.6C19 15.6 12 20 12 20z' />
+    </svg>
+  )
+}
+
+const exploreChildren: NavMenuChild[] = [
+  {
+    label: 'Academic courses',
+    description: 'University courses from partner schools and departments.',
+    href: '/all-courses?view=courses',
+    icon: <NavAcademicCoursesIcon />
+  },
+  {
+    label: 'Research',
+    description: 'Research questions and open academic inquiries.',
+    href: '/all-courses?view=research',
+    icon: <NavResearchIcon />
+  },
+  {
+    label: 'Goals',
+    description: 'Community learning paths organized around goals.',
+    href: '/all-courses?view=learning-paths',
+    icon: <ProfilePathIcon />
+  }
+]
+
+const communityChildren: NavMenuChild[] = [
+  {
+    label: 'Feed',
+    description: 'Updates and activity from people you follow.',
+    href: ownProfileTabHref('feed'),
+    icon: <ProfileAnnouncementIcon />
+  }
+]
+
+const aboutChildren: NavMenuChild[] = [
   {
     label: 'Why Coursetexts',
     description:
       'Mission, manifesto, origins, team, advisors, and nonprofit status.',
-    href: '/manifesto'
+    href: '/manifesto',
+    icon: <NavManifestoIcon />
   },
   {
     label: 'For Professors',
     description: 'Contribute materials or publish a course.',
-    href: '/professors'
+    href: '/professors',
+    icon: <NavProfessorsIcon />
   },
   {
     label: 'Blog & Research',
     description: 'Product research, educational interfaces and project updates.',
     href: 'https://blog.coursetexts.org',
-    external: true
+    external: true,
+    icon: <NavBlogIcon />
   },
   {
     label: 'Support Coursetexts',
     description: 'Donation page and explanation of how funding is used.',
-    href: '/support'
+    href: '/support',
+    icon: <NavSupportIcon />
   }
 ]
 
 const navItems: NavItem[] = [
-  { kind: 'link', label: 'Explore', href: '/all-courses' },
+  { kind: 'menu', label: 'Explore', children: exploreChildren },
   { kind: 'action', label: 'Create a path', action: 'create-path' },
-  { kind: 'link', label: 'Community', href: '/community' },
+  { kind: 'menu', label: 'Community', children: communityChildren },
   { kind: 'menu', label: 'About', children: aboutChildren }
 ]
 
-function AboutChildLink({
-  child,
-  className,
-  onNavigate
-}: {
-  child: AboutNavChild
-  className: string
-  onNavigate?: () => void
-}) {
-  const inner = (
+function NavMenuChildContent({ child }: { child: NavMenuChild }) {
+  return (
     <>
-      <span className={styles.aboutLinkTitle}>{child.label}</span>
-      <span className={styles.aboutLinkDesc}>{child.description}</span>
+      <span className={styles.aboutLinkIcon}>{child.icon}</span>
+      <span className={styles.aboutLinkCopy}>
+        <span className={styles.aboutLinkTitle}>{child.label}</span>
+        <span className={styles.aboutLinkDesc}>{child.description}</span>
+      </span>
     </>
   )
+}
 
+function NavMenuChildLink({
+  child,
+  className,
+  onNavigate,
+  tabIndex
+}: {
+  child: NavMenuChild
+  className: string
+  onNavigate?: () => void
+  tabIndex?: number
+}) {
   if (child.external) {
     return (
       <a
@@ -102,22 +220,36 @@ function AboutChildLink({
         className={className}
         role='menuitem'
         onClick={onNavigate}
+        tabIndex={tabIndex}
       >
-        {inner}
+        <NavMenuChildContent child={child} />
       </a>
     )
   }
 
   return (
     <Link href={child.href} legacyBehavior>
-      <a className={className} role='menuitem' onClick={onNavigate}>
-        {inner}
+      <a
+        className={className}
+        role='menuitem'
+        onClick={onNavigate}
+        tabIndex={tabIndex}
+      >
+        <NavMenuChildContent child={child} />
       </a>
     </Link>
   )
 }
 
-function AboutFlyout({ onNavigate }: { onNavigate?: () => void }) {
+function NavMenuFlyout({
+  label,
+  items,
+  onNavigate
+}: {
+  label: string
+  items: NavMenuChild[]
+  onNavigate?: () => void
+}) {
   const wrapRef = React.useRef<HTMLDivElement>(null)
   const [open, setOpen] = React.useState(false)
 
@@ -150,14 +282,14 @@ function AboutFlyout({ onNavigate }: { onNavigate?: () => void }) {
         aria-haspopup='menu'
         aria-expanded={open}
       >
-        About
+        {label}
       </button>
-      <div className={styles.communityPanel} role='menu' aria-label='About'>
+      <div className={styles.communityPanel} role='menu' aria-label={label}>
         <div
           className={`${styles.communityPanelInner} ${styles.aboutPanelInner}`}
         >
-          {aboutChildren.map((child) => (
-            <AboutChildLink
+          {items.map((child) => (
+            <NavMenuChildLink
               key={child.href}
               child={child}
               className={`${styles.communityLink} ${styles.aboutLink}`}
@@ -244,7 +376,9 @@ export function HomeHeader({
   const accountLabel = isLoggedIn ? 'Your Profile' : 'Sign in'
 
   const [menuOpen, setMenuOpen] = React.useState(false)
-  const [aboutMenuOpen, setAboutMenuOpen] = React.useState(false)
+  const [openNavSubmenu, setOpenNavSubmenu] = React.useState<string | null>(
+    null
+  )
   const [createPathOpen, setCreatePathOpen] = React.useState(false)
   const [portalReady, setPortalReady] = React.useState(false)
   const [searchDraft, setSearchDraft] = React.useState('')
@@ -290,7 +424,7 @@ export function HomeHeader({
 
   React.useEffect(() => {
     if (!menuOpen) {
-      setAboutMenuOpen(false)
+      setOpenNavSubmenu(null)
       return
     }
     document.body.style.overflow = 'hidden'
@@ -471,18 +605,25 @@ export function HomeHeader({
               <nav className={styles.menuNav} aria-label='Home page navigation'>
                 {navItems.map((item) => {
                   if (item.kind === 'menu') {
+                    const submenuOpen = openNavSubmenu === item.label
                     return (
                       <div key={item.label} className={styles.menuNavGroup}>
                         <button
                           type='button'
                           className={styles.menuNavToggle}
-                          onClick={() => setAboutMenuOpen((open) => !open)}
-                          aria-expanded={aboutMenuOpen}
+                          onClick={() =>
+                            setOpenNavSubmenu((current) =>
+                              current === item.label ? null : item.label
+                            )
+                          }
+                          aria-expanded={submenuOpen}
                         >
                           <span>{item.label}</span>
                           <span
                             className={`${styles.menuNavChevron}${
-                              aboutMenuOpen ? ` ${styles.menuNavChevronOpen}` : ''
+                              submenuOpen
+                                ? ` ${styles.menuNavChevronOpen}`
+                                : ''
                             }`}
                             aria-hidden
                           >
@@ -505,50 +646,20 @@ export function HomeHeader({
                         </button>
                         <div
                           className={`${styles.menuNavSubmenu}${
-                            aboutMenuOpen ? ` ${styles.menuNavSubmenuOpen}` : ''
+                            submenuOpen ? ` ${styles.menuNavSubmenuOpen}` : ''
                           }`}
-                          aria-hidden={!aboutMenuOpen}
+                          aria-hidden={!submenuOpen}
                         >
                           <div className={styles.menuNavSubmenuInner}>
-                            {item.children.map((child) =>
-                              child.external ? (
-                                <a
-                                  key={child.href}
-                                  href={child.href}
-                                  target='_blank'
-                                  rel='noreferrer'
-                                  className={styles.menuNavChild}
-                                  onClick={closeMenu}
-                                  tabIndex={aboutMenuOpen ? undefined : -1}
-                                >
-                                  <span className={styles.aboutLinkTitle}>
-                                    {child.label}
-                                  </span>
-                                  <span className={styles.aboutLinkDesc}>
-                                    {child.description}
-                                  </span>
-                                </a>
-                              ) : (
-                                <Link
-                                  key={child.href}
-                                  href={child.href}
-                                  legacyBehavior
-                                >
-                                  <a
-                                    className={styles.menuNavChild}
-                                    onClick={closeMenu}
-                                    tabIndex={aboutMenuOpen ? undefined : -1}
-                                  >
-                                    <span className={styles.aboutLinkTitle}>
-                                      {child.label}
-                                    </span>
-                                    <span className={styles.aboutLinkDesc}>
-                                      {child.description}
-                                    </span>
-                                  </a>
-                                </Link>
-                              )
-                            )}
+                            {item.children.map((child) => (
+                              <NavMenuChildLink
+                                key={child.href}
+                                child={child}
+                                className={styles.menuNavChild}
+                                onNavigate={closeMenu}
+                                tabIndex={submenuOpen ? undefined : -1}
+                              />
+                            ))}
                           </div>
                         </div>
                       </div>
@@ -664,7 +775,13 @@ export function HomeHeader({
               >
                 {navItems.map((item) => {
                   if (item.kind === 'menu') {
-                    return <AboutFlyout key={item.label} />
+                    return (
+                      <NavMenuFlyout
+                        key={item.label}
+                        label={item.label}
+                        items={item.children}
+                      />
+                    )
                   }
 
                   if (item.kind === 'action') {

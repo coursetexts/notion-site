@@ -500,6 +500,7 @@ export const CourseContent: React.FC<CourseContentProps> = ({
     replaceSearchParams({ notes: null, annotations: null, discussions: null })
   }, [])
 
+  const RIGHT_PANEL_WIDTH = 360
   const rightPanelTransition = React.useMemo(
     () => ({ duration: 0.28, ease: [0.22, 1, 0.36, 1] as const }),
     []
@@ -691,6 +692,7 @@ export const CourseContent: React.FC<CourseContentProps> = ({
           annotationCount={annotationCount}
           showNotes={rightPanel === 'notes'}
           onShowNotes={() => openRightPanel('notes')}
+          hideAnnotationsChatButtons={rightPanel !== 'none'}
           viewBarLeading={
             isMobileSidebarLayout ? (
               <button
@@ -754,23 +756,22 @@ export const CourseContent: React.FC<CourseContentProps> = ({
           {showDesktopRightPanel && (
             <motion.div
               key={rightPanel}
-              className={styles.annotationsColumn}
-              initial={{ x: 28, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: 28, opacity: 0 }}
+              className={styles.annotationsColumnSlot}
+              initial={{ width: 0, opacity: 0 }}
+              animate={{ width: RIGHT_PANEL_WIDTH, opacity: 1 }}
+              exit={{ width: 0, opacity: 0 }}
               transition={rightPanelTransition}
             >
-              {renderRightPanel(false)}
+              <div className={styles.annotationsColumn}>
+                {renderRightPanel(false)}
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
       {portalReady &&
         createPortal(
-          <AnimatePresence
-            initial={false}
-            onExitComplete={() => setIsRightPanelExiting(false)}
-          >
+          <AnimatePresence initial={false}>
             {showMobileRightPanel && (
               <>
                 <motion.button

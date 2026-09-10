@@ -119,6 +119,7 @@ export function PathContentActivity({
 
   const showDesktopRightPanel = !isCompactLayout && rightPanel !== 'none'
   const showMobileRightPanel = isCompactLayout && rightPanel !== 'none'
+  const hideViewBarActions = rightPanel !== 'none'
 
   React.useEffect(() => {
     if (!showMobileRightPanel) return
@@ -138,6 +139,7 @@ export function PathContentActivity({
     return () => window.removeEventListener('keydown', onKey)
   }, [showMobileRightPanel, closeRightPanel])
 
+  const RIGHT_PANEL_WIDTH = 360
   const rightPanelTransition = React.useMemo(
     () => ({ duration: 0.28, ease: [0.22, 1, 0.36, 1] as const }),
     []
@@ -221,7 +223,12 @@ export function PathContentActivity({
           }`}
         >
           {viewBarLeading}
-          <div className={styles.viewBarActions}>
+          <div
+            className={`${styles.viewBarActions}${
+              hideViewBarActions ? ` ${styles.viewBarActionsHidden}` : ''
+            }`}
+            aria-hidden={hideViewBarActions}
+          >
             <ViewAnnotationsButton
               count={annotationCount}
               onClick={() => openRightPanel('annotations')}
@@ -245,13 +252,15 @@ export function PathContentActivity({
         {showDesktopRightPanel ? (
           <motion.div
             key={rightPanel}
-            className={styles.annotationsColumn}
-            initial={{ x: 28, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: 28, opacity: 0 }}
+            className={styles.annotationsColumnSlot}
+            initial={{ width: 0, opacity: 0 }}
+            animate={{ width: RIGHT_PANEL_WIDTH, opacity: 1 }}
+            exit={{ width: 0, opacity: 0 }}
             transition={rightPanelTransition}
           >
-            {renderRightPanel(false)}
+            <div className={styles.annotationsColumn}>
+              {renderRightPanel(false)}
+            </div>
           </motion.div>
         ) : null}
       </AnimatePresence>

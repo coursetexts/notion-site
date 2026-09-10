@@ -525,6 +525,57 @@ function outlineRootIdsToOpen(
   return open
 }
 
+function PathOutlineAddDraftRow({
+  depth,
+  value,
+  onChange,
+  onCommit,
+  onCancel
+}: {
+  depth: number
+  value: string
+  onChange: (value: string) => void
+  onCommit: () => void
+  onCancel: () => void
+}) {
+  const inputRef = React.useRef<HTMLInputElement>(null)
+  const isRoot = depth === 0
+
+  React.useEffect(() => {
+    inputRef.current?.focus()
+  }, [])
+
+  return (
+    <li className={isRoot ? styles.pathListTopic : styles.pathListItem}>
+      <div
+        className={`${styles.pathListRow} ${styles.pathListRowSelected} ${styles.pathListRowDraft}`}
+      >
+        <input
+          ref={inputRef}
+          className={styles.pathListDraftInput}
+          value={value}
+          placeholder={isRoot ? 'New step title…' : 'New topic title…'}
+          aria-label={isRoot ? 'New step title' : 'New topic title'}
+          onChange={(event) => onChange(event.target.value)}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter') {
+              event.preventDefault()
+              onCommit()
+            }
+            if (event.key === 'Escape') {
+              event.preventDefault()
+              onCancel()
+            }
+          }}
+          onBlur={() => {
+            if (!value.trim()) onCancel()
+          }}
+        />
+      </div>
+    </li>
+  )
+}
+
 function PathOutlineBranch({
   items,
   depth,
@@ -532,7 +583,12 @@ function PathOutlineBranch({
   expanded,
   forceOpen,
   onSelect,
-  onToggle
+  onToggle,
+  addDraft = null,
+  leadingDraft = false,
+  onDraftLabelChange,
+  onDraftCommit,
+  onDraftCancel
 }: {
   items: PathTreeItem[]
   depth: number
@@ -541,74 +597,140 @@ function PathOutlineBranch({
   forceOpen: boolean
   onSelect: (id: string) => void
   onToggle: (id: string) => void
+  addDraft?: {
+    placement: 'child' | 'after'
+    anchorId: string
+    label: string
+  } | null
+  leadingDraft?: boolean
+  onDraftLabelChange?: (value: string) => void
+  onDraftCommit?: () => void
+  onDraftCancel?: () => void
 }) {
-  if (items.length === 0) return null
   const isRoot = depth === 0
+  const canRenderDraft = Boolean(
+    addDraft && onDraftLabelChange && onDraftCommit && onDraftCancel
+  )
+  const draftInTree =
+    Boolean(addDraft) && outlineContainsId(items, addDraft!.anchorId)
+  const showRootLeadingDraft =
+    isRoot && canRenderDraft && addDraft && !draftInTree
+
+  if (items.length === 0 && !leadingDraft && !showRootLeadingDraft) {
+    return null
+  }
+
+  function renderDraftRow() {
+    if (!canRenderDraft || !addDraft) return null
+    return (
+      <PathOutlineAddDraftRow
+        depth={depth}
+        value={addDraft.label}
+        onChange={onDraftLabelChange!}
+        onCommit={onDraftCommit!}
+        onCancel={onDraftCancel!}
+      />
+    )
+  }
+
   return (
     <ul className={isRoot ? styles.pathList : styles.pathListChildren}>
+      {leadingDraft || showRootLeadingDraft ? renderDraftRow() : null}
       {items.map((item) => {
         const selected = item.node.id === selectedId
         const completed = item.node.status === 'explored'
         const hasChildren = item.children.length > 0
+        const showChildDraft =
+          canRenderDraft &&
+          addDraft?.placement === 'child' &&
+          addDraft.anchorId === item.node.id
+        const showAfterDraft =
+          canRenderDraft &&
+          addDraft?.placement === 'after' &&
+          addDraft.anchorId === item.node.id
         const isOpen = Boolean(
-          hasChildren && (forceOpen || depth > 0 || expanded.has(item.node.id))
+          (hasChildren &&
+            (forceOpen || depth > 0 || expanded.has(item.node.id))) ||
+            showChildDraft
         )
         return (
-          <li
-            key={item.node.id}
-            className={isRoot ? styles.pathListTopic : styles.pathListItem}
-          >
-            <div
-              className={
-                selected
-                  ? `${styles.pathListRow} ${styles.pathListRowSelected}`
-                  : styles.pathListRow
-              }
+          <React.Fragment key={item.node.id}>
+            <li
+              className={isRoot ? styles.pathListTopic : styles.pathListItem}
             >
-              <button
-                type='button'
-                className={styles.pathListSelect}
-                aria-current={selected ? 'true' : undefined}
-                aria-label={item.node.label}
-                onClick={() => onSelect(item.node.id)}
+              <div
+                className={
+                  selected
+                    ? `${styles.pathListRow} ${styles.pathListRowSelected}`
+                    : styles.pathListRow
+                }
               >
-                <span className={styles.pathListCopy}>
-                  <span className={styles.pathListLabel}>
-                    {item.node.label}
-                  </span>
-                </span>
-              </button>
-              <span className={styles.completeCheckSlot}>
-                {completed ? <PathCompleteCheck /> : null}
-              </span>
-              {hasChildren && depth === 0 ? (
                 <button
                   type='button'
-                  className={styles.outlineChevronBtn}
-                  aria-label={
-                    isOpen
-                      ? `Collapse ${item.node.label}`
-                      : `Expand ${item.node.label}`
-                  }
-                  aria-expanded={isOpen}
-                  onClick={() => onToggle(item.node.id)}
+                  className={styles.pathListSelect}
+                  aria-current={selected ? 'true' : undefined}
+                  aria-label={item.node.label}
+                  onClick={() => onSelect(item.node.id)}
                 >
-                  <OutlineAccordionChevron open={isOpen} />
+                  <span className={styles.pathListCopy}>
+                    <span className={styles.pathListLabel}>
+                      {item.node.label}
+                    </span>
+                  </span>
                 </button>
+                <span className={styles.completeCheckSlot}>
+                  {completed ? <PathCompleteCheck /> : null}
+                </span>
+                {hasChildren && depth === 0 ? (
+                  <button
+                    type='button'
+                    className={styles.outlineChevronBtn}
+                    aria-label={
+                      isOpen
+                        ? `Collapse ${item.node.label}`
+                        : `Expand ${item.node.label}`
+                    }
+                    aria-expanded={isOpen}
+                    onClick={() => onToggle(item.node.id)}
+                  >
+                    <OutlineAccordionChevron open={isOpen} />
+                  </button>
+                ) : null}
+              </div>
+              {hasChildren && isOpen ? (
+                <PathOutlineBranch
+                  items={item.children}
+                  depth={depth + 1}
+                  selectedId={selectedId}
+                  expanded={expanded}
+                  forceOpen={forceOpen}
+                  onSelect={onSelect}
+                  onToggle={onToggle}
+                  addDraft={addDraft}
+                  leadingDraft={Boolean(showChildDraft)}
+                  onDraftLabelChange={onDraftLabelChange}
+                  onDraftCommit={onDraftCommit}
+                  onDraftCancel={onDraftCancel}
+                />
+              ) : showChildDraft ? (
+                <PathOutlineBranch
+                  items={[]}
+                  depth={depth + 1}
+                  selectedId={selectedId}
+                  expanded={expanded}
+                  forceOpen={forceOpen}
+                  onSelect={onSelect}
+                  onToggle={onToggle}
+                  addDraft={addDraft}
+                  leadingDraft
+                  onDraftLabelChange={onDraftLabelChange}
+                  onDraftCommit={onDraftCommit}
+                  onDraftCancel={onDraftCancel}
+                />
               ) : null}
-            </div>
-            {hasChildren && isOpen ? (
-              <PathOutlineBranch
-                items={item.children}
-                depth={depth + 1}
-                selectedId={selectedId}
-                expanded={expanded}
-                forceOpen={forceOpen}
-                onSelect={onSelect}
-                onToggle={onToggle}
-              />
-            ) : null}
-          </li>
+            </li>
+            {showAfterDraft ? renderDraftRow() : null}
+          </React.Fragment>
         )
       })}
     </ul>
@@ -619,12 +741,24 @@ function PathOutlineList({
   items,
   selectedId,
   onSelect,
-  forceOpen = false
+  forceOpen = false,
+  addDraft = null,
+  onDraftLabelChange,
+  onDraftCommit,
+  onDraftCancel
 }: {
   items: PathTreeItem[]
   selectedId: string
   onSelect: (id: string) => void
   forceOpen?: boolean
+  addDraft?: {
+    placement: 'child' | 'after'
+    anchorId: string
+    label: string
+  } | null
+  onDraftLabelChange?: (value: string) => void
+  onDraftCommit?: () => void
+  onDraftCancel?: () => void
 }) {
   const [expanded, setExpanded] = React.useState<Set<string>>(() =>
     outlineRootIdsToOpen(items, selectedId)
@@ -644,6 +778,16 @@ function PathOutlineList({
       return changed ? next : prev
     })
   }, [items, selectedId])
+
+  React.useEffect(() => {
+    if (addDraft?.placement !== 'child') return
+    setExpanded((prev) => {
+      if (prev.has(addDraft.anchorId)) return prev
+      const next = new Set(prev)
+      next.add(addDraft.anchorId)
+      return next
+    })
+  }, [addDraft])
 
   function onToggle(id: string) {
     setExpanded((prev) => {
@@ -675,6 +819,10 @@ function PathOutlineList({
       forceOpen={forceOpen}
       onSelect={handleSelect}
       onToggle={onToggle}
+      addDraft={addDraft}
+      onDraftLabelChange={onDraftLabelChange}
+      onDraftCommit={onDraftCommit}
+      onDraftCancel={onDraftCancel}
     />
   )
 }
@@ -1146,11 +1294,11 @@ function CommunityLearningPath({
   const [isMobileOutlineLayout, setIsMobileOutlineLayout] = React.useState(false)
   const detailRef = React.useRef<HTMLDivElement>(null)
   const [activityRefreshNonce, setActivityRefreshNonce] = React.useState(0)
-  const [addOpen, setAddOpen] = React.useState(false)
-  const [addLabel, setAddLabel] = React.useState('')
-  const [addPlacement, setAddPlacement] = React.useState<'child' | 'after'>(
-    'child'
-  )
+  const [outlineAddDraft, setOutlineAddDraft] = React.useState<{
+    placement: 'child' | 'after'
+    anchorId: string
+    label: string
+  } | null>(null)
   const [inlineWhyEditing, setInlineWhyEditing] = React.useState(false)
   const [inlineWhyDraft, setInlineWhyDraft] = React.useState('')
   const inlineWhyRef = React.useRef<HTMLTextAreaElement>(null)
@@ -1365,7 +1513,7 @@ function CommunityLearningPath({
     setInlineWhyEditing(false)
     setInlineWhyDraft('')
     setDeleteOpen(false)
-    setAddOpen(false)
+    setOutlineAddDraft(null)
     setNotes({})
     notesRef.current = {}
 
@@ -1771,6 +1919,7 @@ function CommunityLearningPath({
     setInlineWhyDraft('')
     setInlineTitleEditing(false)
     setInlineTitleDraft('')
+    setOutlineAddDraft(null)
   }, [selectedId])
 
   React.useEffect(() => {
@@ -1786,9 +1935,152 @@ function CommunityLearningPath({
 
   function openAdd(placement: 'child' | 'after') {
     if (!canEditPathStructure) return
-    setAddPlacement(placement)
-    setAddLabel('')
-    setAddOpen(true)
+    const target = selected ?? goalNode
+    if (!target) return
+    const anchorId =
+      showingOverview || showingKnowledge ? goalNode.id : target.id
+    setOutlineAddDraft({
+      placement,
+      anchorId,
+      label: ''
+    })
+  }
+
+  function cancelOutlineAddDraft() {
+    setOutlineAddDraft(null)
+  }
+
+  function commitOutlineAddDraft() {
+    if (!canEditPathStructure || !outlineAddDraft) return
+    const label = outlineAddDraft.label.trim()
+    if (!label) {
+      setOutlineAddDraft(null)
+      return
+    }
+    const target =
+      path.nodes.find((node) => node.id === outlineAddDraft.anchorId) ??
+      goalNode
+    if (!target) return
+    const id = newId('n')
+    const after = outlineAddDraft.placement === 'after'
+    const afterOnCore =
+      after &&
+      (target.kind === 'goal' ||
+        target.kind === 'concept' ||
+        target.kind === 'milestone')
+
+    setPath((prev) => {
+      const core = prev.nodes
+        .filter((item) => item.kind === 'concept' || item.kind === 'milestone')
+        .sort((a, b) => (a.sequence ?? 0) - (b.sequence ?? 0))
+      const coreIds = new Set(core.map((item) => item.id))
+      const goal = prev.nodes.find((item) => item.kind === 'goal') ?? target
+
+      if (afterOnCore) {
+        const afterIndex =
+          target.kind === 'goal'
+            ? -1
+            : core.findIndex((item) => item.id === target.id)
+        const sequence = afterIndex + 2
+        const fromId = target.kind === 'goal' ? goal.id : target.id
+        const oldNext = prev.edges.find(
+          (edge) => edge.from === fromId && coreIds.has(edge.to)
+        )
+        const nodes = prev.nodes.map((item) => {
+          if (item.kind !== 'concept' && item.kind !== 'milestone') {
+            return item
+          }
+          const seq = item.sequence ?? 0
+          if (seq >= sequence) {
+            return { ...item, sequence: seq + 1, sub: `Step ${seq + 1}` }
+          }
+          return item
+        })
+        const node: LearningPathNode = {
+          id,
+          label,
+          kind: 'milestone',
+          sub: `Step ${sequence}`,
+          status: 'next',
+          sequence,
+          x: Math.min(88, Math.max(12, (target.x ?? 34) + 16)),
+          y: target.kind === 'goal' ? 36 : target.y,
+          description: `A milestone on the way to ${prev.title}.`,
+          why: '',
+          resources: []
+        }
+        const edges = oldNext
+          ? [
+              ...prev.edges.filter(
+                (edge) => !(edge.from === fromId && edge.to === oldNext.to)
+              ),
+              { from: fromId, to: id },
+              { from: id, to: oldNext.to }
+            ]
+          : [...prev.edges, { from: fromId, to: id }]
+        const next = { ...prev, nodes: [...nodes, node], edges }
+        persistGraph(next)
+        pathRef.current = next
+        queueUserStateSave()
+        return next
+      }
+
+      const parentId = after
+        ? prev.edges.find((edge) => edge.to === target.id)?.from ?? target.id
+        : target.id
+      const parent = prev.nodes.find((item) => item.id === parentId) ?? target
+      const siblings = prev.edges
+        .filter((edge) => edge.from === parentId)
+        .map((edge) => prev.nodes.find((item) => item.id === edge.to))
+        .filter(
+          (item): item is LearningPathNode =>
+            !!item && item.kind === 'prerequisite'
+        )
+        .sort((a, b) => (a.sequence ?? 0) - (b.sequence ?? 0))
+      const sequence = after ? (target.sequence ?? 0) + 1 : siblings.length + 1
+      const siblingIds = new Set(siblings.map((item) => item.id))
+      const nodes = after
+        ? prev.nodes.map((item) => {
+            if (!siblingIds.has(item.id)) return item
+            const seq = item.sequence ?? 0
+            if (seq >= sequence) return { ...item, sequence: seq + 1 }
+            return item
+          })
+        : prev.nodes
+
+      const node: LearningPathNode = {
+        id,
+        label,
+        kind: 'prerequisite',
+        sub: '',
+        status: 'next',
+        sequence,
+        x: Math.min(
+          88,
+          Math.max(12, parent.x + (after ? 8 : siblings.length * 8 - 8))
+        ),
+        y: Math.min(88, parent.y + (parent.kind === 'prerequisite' ? 16 : 20)),
+        description:
+          parent.kind === 'prerequisite'
+            ? 'A finer concept under the parent idea.'
+            : 'A concept this step depends on.',
+        why: '',
+        resources: []
+      }
+
+      const next = {
+        ...prev,
+        nodes: [...nodes, node],
+        edges: [...prev.edges, { from: parentId, to: id }]
+      }
+      persistGraph(next)
+      pathRef.current = next
+      queueUserStateSave()
+      return next
+    })
+    setSelectedId(id)
+    replaceSearchParams({ node: id })
+    setOutlineAddDraft(null)
   }
 
   function startInlineWhyEdit() {
@@ -1948,135 +2240,6 @@ function CommunityLearningPath({
         replaceSearchParams({ node: LEARNING_PATH_KNOWLEDGE_SECTION_ID })
       }
     }
-  }
-
-  function addNode(event: React.FormEvent) {
-    event.preventDefault()
-    if (!canEditPathStructure) return
-    const label = addLabel.trim()
-    const target = selected ?? goalNode
-    if (!label || !target) return
-    const id = newId('n')
-    const after = addPlacement === 'after'
-    const afterOnCore =
-      after &&
-      (target.kind === 'goal' ||
-        target.kind === 'concept' ||
-        target.kind === 'milestone')
-
-    setPath((prev) => {
-      const core = prev.nodes
-        .filter((item) => item.kind === 'concept' || item.kind === 'milestone')
-        .sort((a, b) => (a.sequence ?? 0) - (b.sequence ?? 0))
-      const coreIds = new Set(core.map((item) => item.id))
-      const goal = prev.nodes.find((item) => item.kind === 'goal') ?? target
-
-      if (afterOnCore) {
-        const afterIndex =
-          target.kind === 'goal'
-            ? -1
-            : core.findIndex((item) => item.id === target.id)
-        const sequence = afterIndex + 2
-        const fromId = target.kind === 'goal' ? goal.id : target.id
-        const oldNext = prev.edges.find(
-          (edge) => edge.from === fromId && coreIds.has(edge.to)
-        )
-        const nodes = prev.nodes.map((item) => {
-          if (item.kind !== 'concept' && item.kind !== 'milestone') {
-            return item
-          }
-          const seq = item.sequence ?? 0
-          if (seq >= sequence) {
-            return { ...item, sequence: seq + 1, sub: `Step ${seq + 1}` }
-          }
-          return item
-        })
-        const node: LearningPathNode = {
-          id,
-          label,
-          kind: 'milestone',
-          sub: `Step ${sequence}`,
-          status: 'next',
-          sequence,
-          x: Math.min(88, Math.max(12, (target.x ?? 34) + 16)),
-          y: target.kind === 'goal' ? 36 : target.y,
-          description: `A milestone on the way to ${prev.title}.`,
-          why: '',
-          resources: []
-        }
-        const edges = oldNext
-          ? [
-              ...prev.edges.filter(
-                (edge) => !(edge.from === fromId && edge.to === oldNext.to)
-              ),
-              { from: fromId, to: id },
-              { from: id, to: oldNext.to }
-            ]
-          : [...prev.edges, { from: fromId, to: id }]
-        const next = { ...prev, nodes: [...nodes, node], edges }
-        persistGraph(next)
-        pathRef.current = next
-        queueUserStateSave()
-        return next
-      }
-
-      const parentId = after
-        ? prev.edges.find((edge) => edge.to === target.id)?.from ?? target.id
-        : target.id
-      const parent = prev.nodes.find((item) => item.id === parentId) ?? target
-      const siblings = prev.edges
-        .filter((edge) => edge.from === parentId)
-        .map((edge) => prev.nodes.find((item) => item.id === edge.to))
-        .filter(
-          (item): item is LearningPathNode =>
-            !!item && item.kind === 'prerequisite'
-        )
-        .sort((a, b) => (a.sequence ?? 0) - (b.sequence ?? 0))
-      const sequence = after ? (target.sequence ?? 0) + 1 : siblings.length + 1
-      const siblingIds = new Set(siblings.map((item) => item.id))
-      const nodes = after
-        ? prev.nodes.map((item) => {
-            if (!siblingIds.has(item.id)) return item
-            const seq = item.sequence ?? 0
-            if (seq >= sequence) return { ...item, sequence: seq + 1 }
-            return item
-          })
-        : prev.nodes
-
-      const node: LearningPathNode = {
-        id,
-        label,
-        kind: 'prerequisite',
-        sub: '',
-        status: 'next',
-        sequence,
-        x: Math.min(
-          88,
-          Math.max(12, parent.x + (after ? 8 : siblings.length * 8 - 8))
-        ),
-        y: Math.min(88, parent.y + (parent.kind === 'prerequisite' ? 16 : 20)),
-        description:
-          parent.kind === 'prerequisite'
-            ? 'A finer concept under the parent idea.'
-            : 'A concept this step depends on.',
-        why: '',
-        resources: []
-      }
-
-      const next = {
-        ...prev,
-        nodes: [...nodes, node],
-        edges: [...prev.edges, { from: parentId, to: id }]
-      }
-      persistGraph(next)
-      pathRef.current = next
-      queueUserStateSave()
-      return next
-    })
-    setSelectedId(id)
-    replaceSearchParams({ node: id })
-    setAddLabel('')
-    setAddOpen(false)
   }
 
   async function toggleBookmarkPath() {
@@ -2722,7 +2885,6 @@ function CommunityLearningPath({
     )
   }
 
-  const editorNode = selected ?? goalNode
   const canEditDisplayedTitle =
     canEditPathStructure &&
     !showingKnowledge &&
@@ -2730,12 +2892,6 @@ function CommunityLearningPath({
       ? !isPrivateInvitee
       : Boolean(selected) &&
         !(isPrivateInvitee && selected?.kind === 'goal'))
-  const addingOnCore =
-    addPlacement === 'after' &&
-    (editorNode.kind === 'goal' ||
-      editorNode.kind === 'concept' ||
-      editorNode.kind === 'milestone')
-
   const heroInstructors = isOwnPath
     ? [{ name: 'By You', url: '/profile' }]
     : pathOwnerId
@@ -3006,12 +3162,20 @@ function CommunityLearningPath({
                     />
                   </div>
                 ) : null}
-                {filteredTree.length > 0 ? (
+                {filteredTree.length > 0 || outlineAddDraft ? (
                   <PathOutlineList
                     items={filteredTree}
                     selectedId={selectedId}
                     onSelect={selectNode}
                     forceOpen={searching}
+                    addDraft={outlineAddDraft}
+                    onDraftLabelChange={(label) =>
+                      setOutlineAddDraft((prev) =>
+                        prev ? { ...prev, label } : prev
+                      )
+                    }
+                    onDraftCommit={commitOutlineAddDraft}
+                    onDraftCancel={cancelOutlineAddDraft}
                   />
                 ) : !searching && coreSteps.length === 0 ? (
                   <p className={styles.pathListEmpty}>
@@ -3514,54 +3678,56 @@ function CommunityLearningPath({
                                     }
                                   />
                                 ) : null}
-                                {showActionsDivider ? (
-                                  <span
-                                    className={styles.resourceActionsDivider}
-                                    aria-hidden
+                                <div className={styles.resourceHoverActions}>
+                                  {showActionsDivider ? (
+                                    <span
+                                      className={styles.resourceActionsDivider}
+                                      aria-hidden
+                                    />
+                                  ) : null}
+                                  <ReportButton
+                                    target={{
+                                      type: 'resource',
+                                      id: pathResourceReportId({
+                                        slug: path.slug,
+                                        nodeId: selected.id,
+                                        resourceId: resource.id
+                                      }),
+                                      url: learningPathHref(path.slug),
+                                      title: resource.title,
+                                      snippet: helpedText
+                                    }}
                                   />
-                                ) : null}
-                                <ReportButton
-                                  target={{
-                                    type: 'resource',
-                                    id: pathResourceReportId({
-                                      slug: path.slug,
-                                      nodeId: selected.id,
-                                      resourceId: resource.id
-                                    }),
-                                    url: learningPathHref(path.slug),
-                                    title: resource.title,
-                                    snippet: helpedText
-                                  }}
-                                />
-                                <ResourceBookmarkControl
-                                  saved={bookmarkSaved}
-                                  disabled={
-                                    bookmarkingResourceId === resource.id
-                                  }
-                                  signedIn={Boolean(currentUserId)}
-                                  onToggle={() =>
-                                    void toggleResourceBookmark(resource)
-                                  }
-                                />
-                                {resource.addedByYou ||
-                                (isPrivateInvitee &&
-                                  !resource.suggested &&
-                                  Boolean(
-                                    selected.resources.some(
-                                      (item) => item.id === resource.id
-                                    )
-                                  )) ? (
-                                  <button
-                                    type='button'
-                                    className={styles.resourceEditBtn}
-                                    onClick={() =>
-                                      openEditResource(resource)
+                                  <ResourceBookmarkControl
+                                    saved={bookmarkSaved}
+                                    disabled={
+                                      bookmarkingResourceId === resource.id
                                     }
-                                    aria-label='Edit'
-                                  >
-                                    <ResourceEditPencilIcon />
-                                  </button>
-                                ) : null}
+                                    signedIn={Boolean(currentUserId)}
+                                    onToggle={() =>
+                                      void toggleResourceBookmark(resource)
+                                    }
+                                  />
+                                  {resource.addedByYou ||
+                                  (isPrivateInvitee &&
+                                    !resource.suggested &&
+                                    Boolean(
+                                      selected.resources.some(
+                                        (item) => item.id === resource.id
+                                      )
+                                    )) ? (
+                                    <button
+                                      type='button'
+                                      className={styles.resourceEditBtn}
+                                      onClick={() =>
+                                        openEditResource(resource)
+                                      }
+                                      aria-label='Edit'
+                                    >
+                                      <ResourceEditPencilIcon />
+                                    </button>
+                                  ) : null}
+                                </div>
                               </div>
                             </div>
                           </li>
@@ -3783,79 +3949,6 @@ function CommunityLearningPath({
                     : canSuggestResources
                     ? 'Suggest resource'
                     : 'Save resource'}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      ) : null}
-
-      {addOpen && canEditPathStructure ? (
-        <div
-          className={styles.backdrop}
-          role='presentation'
-          onMouseDown={(event) => {
-            if (event.target === event.currentTarget) setAddOpen(false)
-          }}
-        >
-          <div
-            className={styles.modal}
-            role='dialog'
-            aria-modal='true'
-            aria-labelledby='add-concept-title'
-            onMouseDown={(event) => event.stopPropagation()}
-          >
-            <div className={styles.modalHeader}>
-              <h2 id='add-concept-title' className={styles.modalTitle}>
-                Add to path
-              </h2>
-              <button
-                type='button'
-                className={styles.modalClose}
-                onClick={() => setAddOpen(false)}
-                aria-label='Close'
-              >
-                ×
-              </button>
-            </div>
-            <form className={styles.modalForm} onSubmit={addNode}>
-              <p className={styles.placementHint}>
-                {addPlacement === 'after'
-                  ? `New after “${editorNode.label}”`
-                  : `New node under “${editorNode.label}”`}
-              </p>
-              <label className={styles.modalLabel}>
-                {addingOnCore
-                  ? 'Step title'
-                  : editorNode.kind === 'prerequisite'
-                  ? 'Sub-concept'
-                  : 'Concept'}
-                <input
-                  className={styles.modalInput}
-                  value={addLabel}
-                  onChange={(event) => setAddLabel(event.target.value)}
-                  placeholder={
-                    addingOnCore
-                      ? 'e.g. Practice project'
-                      : 'e.g. Positional embeddings'
-                  }
-                  autoFocus
-                />
-              </label>
-              <div className={styles.modalActions}>
-                <button
-                  type='button'
-                  className={styles.modalCancel}
-                  onClick={() => setAddOpen(false)}
-                >
-                  Cancel
-                </button>
-                <button
-                  type='submit'
-                  className={styles.modalSubmit}
-                  disabled={!addLabel.trim()}
-                >
-                  Add to path
                 </button>
               </div>
             </form>

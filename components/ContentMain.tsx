@@ -92,9 +92,8 @@ export const ContentMain: React.FC<ContentMainProps> = ({
   viewBarLeading,
   titleRowTrailing
 }) => {
-  const showViewBar = Boolean(
-    (onShowAnnotations || onShowNotes) && !hideAnnotationsChatButtons
-  )
+  const hasViewBarActions = Boolean(onShowAnnotations || onShowNotes)
+  const showViewBar = hasViewBarActions || Boolean(viewBarLeading)
   const isPdf = Boolean(embedUrl && /\.pdf(?:$|[?#])/i.test(embedUrl))
   const isCompleted = sectionStatus?.isCompleted ?? false
   const stepCurrent = isOnChildTab
@@ -119,15 +118,24 @@ export const ContentMain: React.FC<ContentMainProps> = ({
           }`}
         >
           {viewBarLeading}
-          <div className={styles.viewBarActions}>
-            {onShowAnnotations && (
-              <ViewAnnotationsButton
-                count={annotationCount}
-                onClick={onShowAnnotations}
-              />
-            )}
-            {onShowNotes && <ViewYourNotesButton onClick={onShowNotes} />}
-          </div>
+          {hasViewBarActions ? (
+            <div
+              className={`${styles.viewBarActions}${
+                hideAnnotationsChatButtons
+                  ? ` ${styles.viewBarActionsHidden}`
+                  : ''
+              }`}
+              aria-hidden={hideAnnotationsChatButtons}
+            >
+              {onShowAnnotations && (
+                <ViewAnnotationsButton
+                  count={annotationCount}
+                  onClick={onShowAnnotations}
+                />
+              )}
+              {onShowNotes && <ViewYourNotesButton onClick={onShowNotes} />}
+            </div>
+          ) : null}
         </div>
       )}
       <div className={styles.slot}>

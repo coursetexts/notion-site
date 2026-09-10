@@ -40,6 +40,11 @@
   min-width: 0;
 }
 
+.viewBarActionsHidden {
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .viewBarCommunityActions {
   display: flex;
   align-items: center;

@@ -117,10 +117,12 @@ button.middleItem {
 }
 
 .communityPanel {
+  /* Align item titles with the trigger label (skip left padding + icon + gap). */
+  --nav-menu-title-inset: calc(16px + 16px + 12px);
   position: absolute;
   top: 100%;
-  left: auto;
-  right: 0;
+  left: calc(-1 * var(--nav-menu-title-inset));
+  right: auto;
   z-index: 30;
   padding-top: 14px;
   pointer-events: none;
@@ -233,11 +235,36 @@ button.middleItem {
 
 .aboutLink {
   display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 16px;
+  white-space: normal;
+}
+
+.aboutLinkIcon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  margin-top: 1px;
+  color: currentColor;
+}
+
+.aboutLinkIcon svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.aboutLinkCopy {
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 2px;
-  padding: 10px 16px;
-  white-space: normal;
+  min-width: 0;
 }
 
 .aboutLinkTitle {
@@ -678,9 +705,9 @@ button.menuNavLink {
 
 .menuNavChild {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
-  gap: 2px;
+  gap: 10px;
   font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
   font-size: 0.9375rem;
   line-height: 1.35;
@@ -695,6 +722,11 @@ button.menuNavLink {
   color: #0089c4;
 }
 
+.menuNavChild .aboutLinkIcon {
+  margin-top: 2px;
+  color: currentColor;
+}
+
 .menuNavChild .aboutLinkTitle {
   color: #37352f;
 }
@@ -702,6 +734,15 @@ button.menuNavLink {
 .menuNavChild:hover .aboutLinkTitle,
 .menuNavChild:focus-visible .aboutLinkTitle {
   color: #0089c4;
+}
+
+.menuNavChild .aboutLinkDesc {
+  color: #6b7280;
+}
+
+.menuNavChild:hover .aboutLinkDesc,
+.menuNavChild:focus-visible .aboutLinkDesc {
+  color: #5a8aa3;
 }
 
 .menuNavGroup {

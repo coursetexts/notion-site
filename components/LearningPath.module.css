@@ -1353,6 +1353,41 @@
   color: #0089c4;
 }
 
+.pathListRowDraft {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.pathListDraftInput {
+  box-sizing: border-box;
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 8px 4px;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: #0089c4;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.pathListChildren .pathListDraftInput {
+  font-weight: 400;
+}
+
+.pathListDraftInput::placeholder {
+  color: #7eb8e0;
+  opacity: 1;
+}
+
+.pathListDraftInput:focus,
+.pathListDraftInput:focus-visible {
+  outline: none;
+}
+
 .outlineChevronBtn {
   display: flex;
   align-items: center;
@@ -1880,6 +1915,24 @@
   flex-shrink: 0;
   margin-top: 2px;
   max-width: min(100%, 22rem);
+}
+
+.resourceHoverActions {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.resource:hover .resourceHoverActions,
+.resource:focus-within .resourceHoverActions {
+  display: inline-flex;
+}
+
+@media (hover: none) {
+  .resourceHoverActions {
+    display: inline-flex;
+  }
 }
 
 .resourceActionsDivider {

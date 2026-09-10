@@ -26,7 +26,8 @@
 }
 
 .rootWithRightPanel {
-  grid-template-columns: minmax(0, 280px) 1fr minmax(280px, 360px);
+  /* Third column tracks the animated panel width (0 → 360). */
+  grid-template-columns: minmax(0, 280px) minmax(0, 1fr) auto;
 }
 
 .sidebar {
@@ -49,10 +50,18 @@
   background-color: #fff;
 }
 
-.annotationsColumn {
+.annotationsColumnSlot {
   position: sticky;
   top: 0;
   align-self: start;
+  max-height: 100vh;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.annotationsColumn {
+  width: 360px;
+  min-width: 360px;
   max-height: 100vh;
   overflow-y: auto;
 }
@@ -62,7 +71,7 @@
     grid-template-columns: minmax(0, 280px) 1fr;
   }
 
-  .rootWithRightPanel .annotationsColumn {
+  .rootWithRightPanel .annotationsColumnSlot {
     display: none;
   }
 }
