@@ -1140,7 +1140,7 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
                 <ul className={styles.pathMemberList}>
                   {pathMembers.map((member) => (
                     <li
-                      key={`${member.initials}-${member.name}`}
+                      key={`${member.role ?? 'member'}-${member.userId ?? member.initials}-${member.name}`}
                       className={styles.pathMember}
                     >
                       <span className={styles.pathMemberAvatar} aria-hidden>
@@ -1148,6 +1148,12 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
                       </span>
                       <span className={styles.pathMemberName}>
                         {member.name}
+                        {member.role === 'collaborator' ? (
+                          <span className={styles.pathMemberRole}>
+                            {' '}
+                            (collaborator)
+                          </span>
+                        ) : null}
                       </span>
                     </li>
                   ))}

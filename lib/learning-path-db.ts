@@ -739,7 +739,6 @@ export async function updateLearningPathDataAsInvitee(
       updated_at: new Date().toISOString()
     })
     .eq('id', pathId)
-    .eq('visibility', 'private')
     .eq('is_catalog', false)
   if (error) {
     console.error('updateLearningPathDataAsInvitee failed', error)

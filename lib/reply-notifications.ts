@@ -49,6 +49,23 @@ async function getLastReadAt(userId: string): Promise<string | null> {
   return data?.replies_last_read_at ?? null
 }
 
+/** Shared watermark for reply + profile Notifications tab unread state. */
+export async function getNotificationsLastReadAt(
+  userId: string
+): Promise<string | null> {
+  return getLastReadAt(userId)
+}
+
+export function isNotificationUnread(
+  createdAt: string,
+  lastReadAt: string | null
+): boolean {
+  return (
+    !lastReadAt ||
+    new Date(createdAt).getTime() > new Date(lastReadAt).getTime()
+  )
+}
+
 async function getMyCommentIds(userId: string): Promise<string[]> {
   const supabase = getSupabaseClient()
   if (!supabase) return []

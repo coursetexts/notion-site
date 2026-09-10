@@ -9,7 +9,9 @@ import {
 } from '@/lib/learning-path-join-requests-db'
 import {
   type ReplyNotification,
-  getReplyNotifications
+  getNotificationsLastReadAt,
+  getReplyNotifications,
+  isNotificationUnread
 } from '@/lib/reply-notifications'
 import { getSupabaseClient } from '@/lib/supabase'
 
@@ -19,7 +21,7 @@ type ActorFields = {
   actor_avatar_url: string | null
 }
 
-export type ProfileNotification =
+type ProfileNotificationBase =
   | ({
       kind: 'follow'
       id: string
@@ -87,6 +89,10 @@ export type ProfileNotification =
       request: LearningPathJoinRequest
     }
 
+export type ProfileNotification = ProfileNotificationBase & {
+  is_unread: boolean
+}
+
 type ProfileRow = {
   user_id: string
   display_name: string | null
@@ -124,7 +130,7 @@ async function hydrateProfiles(
 
 async function listFollowNotifications(
   userId: string
-): Promise<ProfileNotification[]> {
+): Promise<Extract<ProfileNotificationBase, { kind: 'follow' }>[]> {
   const supabase = getSupabaseClient()
   if (!supabase) return []
   const { data, error } = await supabase
@@ -146,7 +152,7 @@ async function listFollowNotifications(
 
 async function listLikeNotifications(
   userId: string
-): Promise<ProfileNotification[]> {
+): Promise<Extract<ProfileNotificationBase, { kind: 'like' }>[]> {
   const supabase = getSupabaseClient()
   if (!supabase) return []
   const { data: updates, error: updatesError } = await supabase
@@ -201,14 +207,14 @@ async function listLikeNotifications(
         ...actorFromProfile(row.user_id, profiles)
       }
     })
-    .filter((row): row is Extract<ProfileNotification, { kind: 'like' }> =>
+    .filter((row): row is Extract<ProfileNotificationBase, { kind: 'like' }> =>
       Boolean(row)
     )
 }
 
 async function listPathInviteNotifications(
   userId: string
-): Promise<ProfileNotification[]> {
+): Promise<Extract<ProfileNotificationBase, { kind: 'path_invite' }>[]> {
   const supabase = getSupabaseClient()
   if (!supabase) return []
 
@@ -261,14 +267,19 @@ async function listPathInviteNotifications(
       }
     })
     .filter(
-      (row): row is Extract<ProfileNotification, { kind: 'path_invite' }> =>
+      (row): row is Extract<ProfileNotificationBase, { kind: 'path_invite' }> =>
         Boolean(row)
     )
 }
 
 async function listResourceSuggestionNotifications(
   userId: string
-): Promise<ProfileNotification[]> {
+): Promise<
+  Extract<
+    ProfileNotificationBase,
+    { kind: 'resource_submitted' | 'resource_accepted' }
+  >[]
+> {
   const supabase = getSupabaseClient()
   if (!supabase) return []
 
@@ -363,7 +374,10 @@ async function listResourceSuggestionNotifications(
     ...ownerIds
   ])
 
-  const submitted: ProfileNotification[] = []
+  const submitted: Extract<
+    ProfileNotificationBase,
+    { kind: 'resource_submitted' }
+  >[] = []
   for (const row of incoming) {
     const path = pathById[row.path_id]
     if (!path) continue
@@ -379,7 +393,10 @@ async function listResourceSuggestionNotifications(
     })
   }
 
-  const acceptedNotifs: ProfileNotification[] = []
+  const acceptedNotifs: Extract<
+    ProfileNotificationBase,
+    { kind: 'resource_accepted' }
+  >[] = []
   for (const row of accepted) {
     const path = pathById[row.path_id]
     if (!path?.owner_id || path.owner_id === userId) continue
@@ -399,7 +416,9 @@ async function listResourceSuggestionNotifications(
 
 async function listRepostQuoteNotifications(
   userId: string
-): Promise<ProfileNotification[]> {
+): Promise<
+  Extract<ProfileNotificationBase, { kind: 'repost' | 'quote' }>[]
+> {
   const supabase = getSupabaseClient()
   if (!supabase) return []
   const { data: mine, error: mineError } = await supabase
@@ -462,7 +481,10 @@ async function listRepostQuoteNotifications(
   ]
 
   const profiles = await hydrateProfiles(rows.map((row) => row.user_id))
-  const out: ProfileNotification[] = []
+  const out: Extract<
+    ProfileNotificationBase,
+    { kind: 'repost' | 'quote' }
+  >[] = []
   for (const row of rows) {
     const originalId = row.repost_of_id || row.quote_of_id
     if (!originalId) continue
@@ -513,7 +535,8 @@ export async function getProfileNotifications(
     replies,
     invites,
     resources,
-    joinRequests
+    joinRequests,
+    lastReadAt
   ] = await Promise.all([
     listFollowNotifications(userId),
     listLikeNotifications(userId),
@@ -521,24 +544,29 @@ export async function getProfileNotifications(
     getReplyNotifications(userId),
     listPathInviteNotifications(userId),
     listResourceSuggestionNotifications(userId),
-    listOwnedLearningPathJoinRequests()
+    listOwnedLearningPathJoinRequests(),
+    getNotificationsLastReadAt(userId)
   ])
 
-  const replyNotifs: ProfileNotification[] = replies.map((notification) => ({
-    kind: 'reply' as const,
-    id: notification.id,
-    created_at: notification.created_at,
-    notification
-  }))
+  const replyNotifs: Extract<ProfileNotificationBase, { kind: 'reply' }>[] =
+    replies.map((notification) => ({
+      kind: 'reply' as const,
+      id: notification.id,
+      created_at: notification.created_at,
+      notification
+    }))
 
-  const joinNotifs: ProfileNotification[] = joinRequests.map((request) => ({
+  const joinNotifs: Extract<
+    ProfileNotificationBase,
+    { kind: 'join_request' }
+  >[] = joinRequests.map((request) => ({
     kind: 'join_request' as const,
     id: `join-${request.id}`,
     created_at: request.createdAt,
     request
   }))
 
-  return [
+  const rows: ProfileNotificationBase[] = [
     ...follows,
     ...likes,
     ...repostQuotes,
@@ -547,4 +575,12 @@ export async function getProfileNotifications(
     ...resources,
     ...joinNotifs
   ].sort((a, b) => b.created_at.localeCompare(a.created_at))
+
+  return rows.map((row) => {
+    const is_unread =
+      row.kind === 'reply'
+        ? row.notification.is_unread
+        : isNotificationUnread(row.created_at, lastReadAt)
+    return { ...row, is_unread }
+  })
 }

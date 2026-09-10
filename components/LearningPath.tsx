@@ -80,6 +80,7 @@ import {
   listLearningPathJoinRequests,
   subscribeLearningPathJoinRequestUpdates
 } from '@/lib/learning-path-join-requests-db'
+import { listLearningPathPeople } from '@/lib/learning-path-people-db'
 import {
   type PathTreeItem,
   isCoreStep,
@@ -129,6 +130,7 @@ import {
   outlineTreeWithoutGoal
 } from '@/lib/learning-path-sections'
 import {
+  type LearningPathCircleMember,
   type LearningPathData,
   type LearningPathKind,
   type LearningPathListedResource,
@@ -469,19 +471,6 @@ function prevOutlineNode(
   return order[index - 1] ?? null
 }
 
-function PlusIcon() {
-  return (
-    <svg width='12' height='12' viewBox='0 0 12 12' fill='none' aria-hidden>
-      <path
-        d='M6 1.5V10.5M1.5 6H10.5'
-        stroke='currentColor'
-        strokeWidth='1.4'
-        strokeLinecap='round'
-      />
-    </svg>
-  )
-}
-
 function PencilIcon() {
   return (
     <svg width='12' height='12' viewBox='0 0 12 12' fill='none' aria-hidden>
@@ -797,74 +786,119 @@ function ChevronSmall() {
   )
 }
 
-function PathStageActions({
-  onAdd,
-  onEdit,
-  inline = false,
-  popout = false,
-  underLabel
+function PathEditMenu({
+  canDelete,
+  onAddUnder,
+  onAddAfter,
+  onDelete
 }: {
-  onAdd: () => void
-  onEdit: () => void
-  inline?: boolean
-  popout?: boolean
-  underLabel?: string
+  canDelete: boolean
+  onAddUnder: () => void
+  onAddAfter: () => void
+  onDelete: () => void
 }) {
-  const wrapClass = popout
-    ? styles.nodeMenu
-    : inline
-    ? styles.graphActionsInline
-    : styles.graphActions
-  const btnClass = inline
-    ? `${styles.addNode} ${styles.addNodeInline}`
-    : popout
-    ? `${styles.addNode} ${styles.addNodePopout}`
-    : styles.addNode
-  const plusClass = popout ? styles.nodePlusBtn : btnClass
-  const addAria = popout
-    ? underLabel
-      ? `New node under “${underLabel}”`
-      : 'New node under this node'
-    : 'Add to path'
+  const [open, setOpen] = React.useState(false)
+  const [menuVisible, setMenuVisible] = React.useState(false)
+  const wrapRef = React.useRef<HTMLDivElement>(null)
+
+  React.useEffect(() => {
+    if (!open) {
+      setMenuVisible(false)
+      return
+    }
+    let frame2 = 0
+    const frame1 = window.requestAnimationFrame(() => {
+      frame2 = window.requestAnimationFrame(() => {
+        setMenuVisible(true)
+      })
+    })
+    return () => {
+      window.cancelAnimationFrame(frame1)
+      window.cancelAnimationFrame(frame2)
+    }
+  }, [open])
+
+  React.useEffect(() => {
+    if (!open) return
+    function onPointerDown(event: MouseEvent) {
+      if (!wrapRef.current?.contains(event.target as Node)) {
+        setOpen(false)
+      }
+    }
+    function onKey(event: KeyboardEvent) {
+      if (event.key === 'Escape') setOpen(false)
+    }
+    document.addEventListener('mousedown', onPointerDown)
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('mousedown', onPointerDown)
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [open])
+
   return (
-    <div
-      className={wrapClass}
-      role={popout ? 'menu' : undefined}
-      aria-label={popout ? 'Node actions' : undefined}
-      data-no-pan={popout ? '' : undefined}
-    >
+    <div className={styles.editPathWrap} ref={wrapRef}>
       <button
         type='button'
-        className={btnClass}
-        role={popout ? 'menuitem' : undefined}
-        aria-label='Edit this node'
-        title='Edit this node'
-        onClick={(event) => {
-          event.stopPropagation()
-          onEdit()
-        }}
+        className={styles.editPathBtn}
+        aria-haspopup='menu'
+        aria-expanded={open}
+        onClick={() => setOpen((value) => !value)}
       >
-        {popout ? <PencilIcon /> : 'Edit this node'}
+        Edit path
       </button>
-      <button
-        type='button'
-        className={plusClass}
-        role={popout ? 'menuitem' : undefined}
-        aria-label={addAria}
-        title={addAria}
-        onClick={(event) => {
-          event.stopPropagation()
-          onAdd()
-        }}
-      >
-        {popout ? (
-          <PlusIcon />
-        ) : (
-          <>
-            <PlusIcon /> Add to path
-          </>
-        )}
-      </button>
+      {open ? (
+        <div
+          className={
+            menuVisible
+              ? `${styles.editPathMenu} ${styles.editPathMenuVisible}`
+              : styles.editPathMenu
+          }
+          role='menu'
+          aria-label='Edit path'
+        >
+          <div className={styles.editPathMenuInner}>
+            <button
+              type='button'
+              role='menuitem'
+              className={styles.editPathMenuItem}
+              style={{ ['--edit-path-delay' as string]: '40ms' }}
+              onClick={() => {
+                onAddUnder()
+                setOpen(false)
+              }}
+            >
+              Add node under current topic
+            </button>
+            <button
+              type='button'
+              role='menuitem'
+              className={styles.editPathMenuItem}
+              style={{ ['--edit-path-delay' as string]: '70ms' }}
+              onClick={() => {
+                onAddAfter()
+                setOpen(false)
+              }}
+            >
+              Add node after current topic
+            </button>
+            {canDelete ? (
+              <button
+                type='button'
+                role='menuitem'
+                className={`${styles.editPathMenuItem} ${styles.editPathMenuItemDanger}`}
+                style={{ ['--edit-path-delay' as string]: '100ms' }}
+                onClick={() => {
+                  onDelete()
+                  setOpen(false)
+                }}
+              >
+                Delete current node
+              </button>
+            ) : null}
+          </div>
+        </div>
+      ) : null}
     </div>
   )
 }
@@ -1117,10 +1151,12 @@ function CommunityLearningPath({
   const [addPlacement, setAddPlacement] = React.useState<'child' | 'after'>(
     'child'
   )
-  const [editOpen, setEditOpen] = React.useState(false)
-  const [editLabel, setEditLabel] = React.useState('')
-  const [editDescription, setEditDescription] = React.useState('')
-  const [editWhy, setEditWhy] = React.useState('')
+  const [inlineWhyEditing, setInlineWhyEditing] = React.useState(false)
+  const [inlineWhyDraft, setInlineWhyDraft] = React.useState('')
+  const inlineWhyRef = React.useRef<HTMLTextAreaElement>(null)
+  const [inlineTitleEditing, setInlineTitleEditing] = React.useState(false)
+  const [inlineTitleDraft, setInlineTitleDraft] = React.useState('')
+  const inlineTitleRef = React.useRef<HTMLInputElement>(null)
   const [deleteOpen, setDeleteOpen] = React.useState(false)
   const [addResourceOpen, setAddResourceOpen] = React.useState(false)
   const [editingResourceId, setEditingResourceId] = React.useState<
@@ -1169,6 +1205,9 @@ function CommunityLearningPath({
   const [pathInvites, setPathInvites] = React.useState<LearningPathInvite[]>(
     []
   )
+  const [pathPeople, setPathPeople] = React.useState<
+    LearningPathCircleMember[] | null
+  >(null)
   const [inviteBusy, setInviteBusy] = React.useState(false)
   const [inviteRemovingId, setInviteRemovingId] = React.useState<string | null>(
     null
@@ -1211,7 +1250,7 @@ function CommunityLearningPath({
     if (mode === 'progress') {
       if (!isOwnPath) return
     } else if (!canEditPathStructure) return
-    if (isPrivateInvitee && pathVisibility === 'private') {
+    if (isPrivateInvitee) {
       const id = pathRowIdRef.current
       if (id) void updateLearningPathDataAsInvitee(id, next)
       return
@@ -1295,6 +1334,7 @@ function CommunityLearningPath({
     setOwnerOverlayResources({})
     setInviteOpen(false)
     setPathInvites([])
+    setPathPeople(null)
     setInviteBusy(false)
     setInviteRemovingId(null)
     setInviteError(null)
@@ -1320,7 +1360,10 @@ function CommunityLearningPath({
     setVotingResourceId(null)
     setPrivacyBusy(false)
     setPublishModal(null)
-    setEditOpen(false)
+    setInlineTitleEditing(false)
+    setInlineTitleDraft('')
+    setInlineWhyEditing(false)
+    setInlineWhyDraft('')
     setDeleteOpen(false)
     setAddOpen(false)
     setNotes({})
@@ -1351,7 +1394,6 @@ function CommunityLearningPath({
       const invitee =
         Boolean(record?.id) &&
         Boolean(viewerId) &&
-        record?.visibility === 'private' &&
         Boolean(record.ownerId) &&
         record.ownerId !== viewerId &&
         (await isCurrentUserLearningPathInvitee(record.id))
@@ -1425,7 +1467,7 @@ function CommunityLearningPath({
 
   const canEditPathStructure =
     isOwnPath ||
-    (isPrivateInvitee && pathVisibility === 'private') ||
+    isPrivateInvitee ||
     (!currentUserId &&
       !pathOwnerId &&
       !isCatalogLearningPathSlug(slug) &&
@@ -1434,7 +1476,8 @@ function CommunityLearningPath({
   const canVoteOnResources =
     pathVisibility === 'public' || pathVisibility === 'collaborative'
   const isCollabPath = pathVisibility === 'collaborative'
-  const canSuggestResources = isCollabPath && !isOwnPath
+  const canSuggestResources =
+    isCollabPath && !isOwnPath && !isPrivateInvitee
 
   React.useEffect(() => {
     if (!isCollabPath) {
@@ -1723,6 +1766,24 @@ function CommunityLearningPath({
     if (nextNode) selectNodeKeepingScroll(nextNode.id)
   }
 
+  React.useEffect(() => {
+    setInlineWhyEditing(false)
+    setInlineWhyDraft('')
+    setInlineTitleEditing(false)
+    setInlineTitleDraft('')
+  }, [selectedId])
+
+  React.useEffect(() => {
+    if (!inlineWhyEditing) return
+    inlineWhyRef.current?.focus()
+  }, [inlineWhyEditing])
+
+  React.useEffect(() => {
+    if (!inlineTitleEditing) return
+    inlineTitleRef.current?.focus()
+    inlineTitleRef.current?.select()
+  }, [inlineTitleEditing])
+
   function openAdd(placement: 'child' | 'after') {
     if (!canEditPathStructure) return
     setAddPlacement(placement)
@@ -1730,51 +1791,26 @@ function CommunityLearningPath({
     setAddOpen(true)
   }
 
-  function addToPathFromSelection() {
-    openAdd('child')
+  function startInlineWhyEdit() {
+    if (!canEditPathStructure || !selected || showingOverview) return
+    setInlineWhyDraft((selected.why || selected.description || '').trim())
+    setInlineWhyEditing(true)
   }
 
-  function openEdit() {
-    if (!canEditPathStructure) return
-    const node = selected ?? goalNode
-    if (!node) return
-    setEditLabel(node.label)
-    setEditDescription(node.description)
-    setEditWhy(node.why)
-    setEditOpen(true)
+  function cancelInlineWhyEdit() {
+    setInlineWhyEditing(false)
+    setInlineWhyDraft('')
   }
 
-  function saveEdit(event: React.FormEvent) {
-    event.preventDefault()
-    if (!canEditPathStructure) return
-    const node = selected ?? goalNode
-    const inviteeLockedGoal = isPrivateInvitee && node?.kind === 'goal'
-    const label = inviteeLockedGoal ? node.label : editLabel.trim()
-    if (!label || !node) return
+  function saveInlineWhy() {
+    if (!canEditPathStructure || !selected || showingOverview) return
+    const nextWhy = inlineWhyDraft.trim()
+    const nodeId = selected.id
     setPath((prev) => {
       const next: LearningPathData = {
         ...prev,
-        title: inviteeLockedGoal
-          ? prev.title
-          : node.kind === 'goal'
-          ? label
-          : prev.title,
-        goal: inviteeLockedGoal
-          ? prev.goal
-          : node.kind === 'goal'
-          ? /^i want to\s+/i.test(label)
-            ? label
-            : `I want to ${label}`
-          : prev.goal,
         nodes: prev.nodes.map((item) =>
-          item.id === node.id
-            ? {
-                ...item,
-                label,
-                description: editDescription.trim(),
-                why: editWhy.trim()
-              }
-            : item
+          item.id === nodeId ? { ...item, why: nextWhy } : item
         )
       }
       persistGraph(next)
@@ -1782,7 +1818,74 @@ function CommunityLearningPath({
       queueUserStateSave()
       return next
     })
-    setEditOpen(false)
+    setInlineWhyEditing(false)
+    setInlineWhyDraft('')
+  }
+
+  function startInlineTitleEdit() {
+    if (!canEditPathStructure) return
+    if (showingKnowledge) return
+    if (showingOverview) {
+      if (isPrivateInvitee) return
+      setInlineTitleDraft(path.title)
+      setInlineTitleEditing(true)
+      return
+    }
+    if (!selected) return
+    if (isPrivateInvitee && selected.kind === 'goal') return
+    setInlineTitleDraft(selected.label)
+    setInlineTitleEditing(true)
+  }
+
+  function cancelInlineTitleEdit() {
+    setInlineTitleEditing(false)
+    setInlineTitleDraft('')
+  }
+
+  function saveInlineTitle() {
+    if (!canEditPathStructure) return
+    const label = inlineTitleDraft.trim()
+    if (!label) return
+    if (showingOverview) {
+      if (isPrivateInvitee) return
+      setPath((prev) => {
+        const next: LearningPathData = {
+          ...prev,
+          title: label
+        }
+        persistGraph(next)
+        pathRef.current = next
+        queueUserStateSave()
+        return next
+      })
+      setInlineTitleEditing(false)
+      setInlineTitleDraft('')
+      return
+    }
+    if (!selected) return
+    if (isPrivateInvitee && selected.kind === 'goal') return
+    const nodeId = selected.id
+    const isGoal = selected.kind === 'goal'
+    setPath((prev) => {
+      const next: LearningPathData = {
+        ...prev,
+        title: isGoal ? label : prev.title,
+        goal: isGoal
+          ? /^i want to\s+/i.test(label)
+            ? label
+            : `I want to ${label}`
+          : prev.goal,
+        nodes: prev.nodes.map((item) =>
+          item.id === nodeId ? { ...item, label } : item
+        )
+      }
+      persistGraph(next)
+      pathRef.current = next
+      queueUserStateSave()
+      return next
+    })
+    setInlineTitleEditing(false)
+    setInlineTitleDraft('')
   }
 
   function deleteSelected() {
@@ -2110,7 +2213,6 @@ function CommunityLearningPath({
 
   const canInviteCollaborators =
     isOwnPath &&
-    pathVisibility === 'private' &&
     Boolean(pathRowId) &&
     !pathRowId?.startsWith('path-') &&
     !isCatalogLearningPathSlug(slug)
@@ -2123,10 +2225,11 @@ function CommunityLearningPath({
     }
     let cancelled = false
     async function load() {
-      const [invites, requests] = await Promise.all([
-        listLearningPathInvites(pathRowId as string),
-        listLearningPathJoinRequests(pathRowId as string)
-      ])
+      const invites = await listLearningPathInvites(pathRowId as string)
+      const requests =
+        pathVisibility === 'private'
+          ? await listLearningPathJoinRequests(pathRowId as string)
+          : []
       if (cancelled) return
       setPathInvites(invites)
       setJoinRequests(requests)
@@ -2143,10 +2246,15 @@ function CommunityLearningPath({
       unsub()
       window.clearInterval(timer)
     }
-  }, [canInviteCollaborators, pathRowId, currentUserId])
+  }, [canInviteCollaborators, pathRowId, currentUserId, pathVisibility])
 
   React.useEffect(() => {
-    if (!canInviteCollaborators || joinRequests.length === 0 || !pathRowId) {
+    if (
+      !canInviteCollaborators ||
+      pathVisibility !== 'private' ||
+      joinRequests.length === 0 ||
+      !pathRowId
+    ) {
       return
     }
     const key = `coursetexts.lp-join-popup:${pathRowId}`
@@ -2157,7 +2265,31 @@ function CommunityLearningPath({
       /* private mode */
     }
     setInviteOpen(true)
-  }, [canInviteCollaborators, joinRequests.length, pathRowId])
+  }, [
+    canInviteCollaborators,
+    pathVisibility,
+    joinRequests.length,
+    pathRowId
+  ])
+
+  React.useEffect(() => {
+    let cancelled = false
+    async function loadPeople() {
+      if (!pathRowId || pathRowId.startsWith('path-')) {
+        if (!cancelled) setPathPeople(path.circle.members)
+        return
+      }
+      const people = await listLearningPathPeople({
+        pathId: pathRowId,
+        slug
+      })
+      if (!cancelled) setPathPeople(people)
+    }
+    void loadPeople()
+    return () => {
+      cancelled = true
+    }
+  }, [pathRowId, slug, pathInvites, bookmarkLinkId])
 
   async function openInviteCollaborators() {
     if (!currentUserId) {
@@ -2591,6 +2723,13 @@ function CommunityLearningPath({
   }
 
   const editorNode = selected ?? goalNode
+  const canEditDisplayedTitle =
+    canEditPathStructure &&
+    !showingKnowledge &&
+    (showingOverview
+      ? !isPrivateInvitee
+      : Boolean(selected) &&
+        !(isPrivateInvitee && selected?.kind === 'goal'))
   const addingOnCore =
     addPlacement === 'after' &&
     (editorNode.kind === 'goal' ||
@@ -2706,10 +2845,8 @@ function CommunityLearningPath({
           if (gap.missingWhy) {
             const node = path.nodes.find((item) => item.id === gap.id)
             if (node) {
-              setEditLabel(node.label)
-              setEditDescription(node.description)
-              setEditWhy(node.why)
-              setEditOpen(true)
+              setInlineWhyDraft((node.why || node.description || '').trim())
+              setInlineWhyEditing(true)
             }
           }
         }}
@@ -2826,7 +2963,7 @@ function CommunityLearningPath({
                     : undefined
                 }
                 onInviteCollaborators={
-                  isOwnPath && pathVisibility === 'private'
+                  canInviteCollaborators
                     ? () => void openInviteCollaborators()
                     : undefined
                 }
@@ -2897,11 +3034,16 @@ function CommunityLearningPath({
             }
             footer={
               canEditPathStructure ? (
-                <PathStageActions
-                  inline
-                  onEdit={openEdit}
-                  onAdd={addToPathFromSelection}
-                  underLabel={editorNode.label}
+                <PathEditMenu
+                  canDelete={
+                    Boolean(selected) &&
+                    !showingOverview &&
+                    !showingKnowledge &&
+                    selected?.kind !== 'goal'
+                  }
+                  onAddUnder={() => openAdd('child')}
+                  onAddAfter={() => openAdd('after')}
+                  onDelete={() => setDeleteOpen(true)}
                 />
               ) : undefined
             }
@@ -3044,18 +3186,157 @@ function CommunityLearningPath({
                     </nav>
                   ) : null}
                   <div className={styles.articleIntro}>
-                    <h1 className={styles.articleTitle}>
-                      {showingOverview ? path.title : selected.label}
-                    </h1>
+                    {inlineTitleEditing ? (
+                      <div className={styles.titleEditing}>
+                        <div className={styles.titleEditRow}>
+                          <input
+                            ref={inlineTitleRef}
+                            className={styles.titleEditInput}
+                            value={inlineTitleDraft}
+                            onChange={(event) =>
+                              setInlineTitleDraft(event.target.value)
+                            }
+                            onKeyDown={(event) => {
+                              if (event.key === 'Escape') {
+                                event.preventDefault()
+                                cancelInlineTitleEdit()
+                              }
+                              if (event.key === 'Enter') {
+                                event.preventDefault()
+                                saveInlineTitle()
+                              }
+                            }}
+                            aria-label={
+                              showingOverview
+                                ? 'Learning path title'
+                                : 'Topic title'
+                            }
+                          />
+                          <span className={styles.whyEditActions}>
+                            <button
+                              type='button'
+                              className={styles.whySaveBtn}
+                              onClick={saveInlineTitle}
+                              disabled={!inlineTitleDraft.trim()}
+                            >
+                              Save
+                            </button>
+                            <button
+                              type='button'
+                              className={styles.whyCancelBtn}
+                              onClick={cancelInlineTitleEdit}
+                              aria-label='Cancel editing title'
+                            >
+                              ×
+                            </button>
+                          </span>
+                        </div>
+                      </div>
+                    ) : (
+                      <h1
+                        className={
+                          canEditDisplayedTitle
+                            ? `${styles.articleTitle} ${styles.articleTitleEditable}`
+                            : styles.articleTitle
+                        }
+                      >
+                        {showingOverview ? path.title : selected.label}
+                        {canEditDisplayedTitle ? (
+                          <button
+                            type='button'
+                            className={styles.titleEditBtn}
+                            onClick={startInlineTitleEdit}
+                            aria-label={
+                              showingOverview
+                                ? 'Edit learning path title'
+                                : 'Edit topic title'
+                            }
+                            title='Edit title'
+                          >
+                            <PencilIcon />
+                          </button>
+                        ) : null}
+                      </h1>
+                    )}
                     {!showingOverview ? (
-                      <p className={styles.whyCopy}>
-                        <strong className={styles.whyLead}>
-                          Why is this on the learning path:
-                        </strong>{' '}
-                        {selected.why ||
-                          selected.description ||
-                          'A reason has not been written for this step yet.'}
-                      </p>
+                      <div
+                        className={
+                          canEditPathStructure
+                            ? `${styles.whyBlock} ${styles.whyBlockEditable}`
+                            : styles.whyBlock
+                        }
+                      >
+                        {inlineWhyEditing ? (
+                          <div className={styles.whyEditing}>
+                            <div className={styles.whyLeadRow}>
+                              <strong className={styles.whyLead}>
+                                Why is this on the learning path:
+                              </strong>
+                              <span className={styles.whyEditActions}>
+                                <button
+                                  type='button'
+                                  className={styles.whySaveBtn}
+                                  onClick={saveInlineWhy}
+                                >
+                                  Save
+                                </button>
+                                <button
+                                  type='button'
+                                  className={styles.whyCancelBtn}
+                                  onClick={cancelInlineWhyEdit}
+                                  aria-label='Cancel editing why'
+                                >
+                                  ×
+                                </button>
+                              </span>
+                            </div>
+                            <textarea
+                              ref={inlineWhyRef}
+                              className={styles.whyEditTextarea}
+                              rows={4}
+                              value={inlineWhyDraft}
+                              onChange={(event) =>
+                                setInlineWhyDraft(event.target.value)
+                              }
+                              onKeyDown={(event) => {
+                                if (event.key === 'Escape') {
+                                  event.preventDefault()
+                                  cancelInlineWhyEdit()
+                                }
+                                if (
+                                  event.key === 'Enter' &&
+                                  (event.metaKey || event.ctrlKey)
+                                ) {
+                                  event.preventDefault()
+                                  saveInlineWhy()
+                                }
+                              }}
+                              aria-label='Why is this on the learning path'
+                              placeholder='Explain why this step belongs on the path…'
+                            />
+                          </div>
+                        ) : (
+                          <p className={styles.whyCopy}>
+                            <strong className={styles.whyLead}>
+                              Why is this on the learning path:
+                            </strong>{' '}
+                            {selected.why ||
+                              selected.description ||
+                              'A reason has not been written for this step yet.'}
+                            {canEditPathStructure ? (
+                              <button
+                                type='button'
+                                className={styles.whyEditBtn}
+                                onClick={startInlineWhyEdit}
+                                aria-label='Edit why this is on the learning path'
+                                title='Edit why'
+                              >
+                                <PencilIcon />
+                              </button>
+                            ) : null}
+                          </p>
+                        )}
+                      </div>
                     ) : null}
                   </div>
                 </header>
@@ -3355,7 +3636,7 @@ function CommunityLearningPath({
           courseTitle={path.title}
           courseUrl={learningPathHref(slug)}
           activityRefreshNonce={activityRefreshNonce}
-          pathMembers={path.circle.members}
+          pathMembers={pathPeople ?? path.circle.members}
         />
       </div>
 
@@ -3575,104 +3856,6 @@ function CommunityLearningPath({
                   disabled={!addLabel.trim()}
                 >
                   Add to path
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      ) : null}
-
-      {editOpen && canEditPathStructure ? (
-        <div
-          className={styles.backdrop}
-          role='presentation'
-          onMouseDown={(event) => {
-            if (event.target === event.currentTarget) setEditOpen(false)
-          }}
-        >
-          <div
-            className={styles.modal}
-            role='dialog'
-            aria-modal='true'
-            aria-labelledby='edit-node-title'
-            onMouseDown={(event) => event.stopPropagation()}
-          >
-            <div className={styles.modalHeader}>
-              <h2 id='edit-node-title' className={styles.modalTitle}>
-                Edit node
-              </h2>
-              <button
-                type='button'
-                className={styles.modalClose}
-                onClick={() => setEditOpen(false)}
-                aria-label='Close'
-              >
-                ×
-              </button>
-            </div>
-            <form className={styles.modalForm} onSubmit={saveEdit}>
-              <label className={styles.modalLabel}>
-                {editorNode.kind === 'goal'
-                  ? 'Goal'
-                  : editorNode.kind === 'milestone'
-                  ? 'Step title'
-                  : 'Name'}
-                <input
-                  className={styles.modalInput}
-                  value={editLabel}
-                  onChange={(event) => setEditLabel(event.target.value)}
-                  autoFocus={
-                    !(isPrivateInvitee && editorNode.kind === 'goal')
-                  }
-                  disabled={
-                    isPrivateInvitee && editorNode.kind === 'goal'
-                  }
-                />
-              </label>
-              <label className={styles.modalLabel}>
-                Description
-                <textarea
-                  className={styles.modalTextarea}
-                  rows={3}
-                  value={editDescription}
-                  onChange={(event) => setEditDescription(event.target.value)}
-                />
-              </label>
-              <label className={styles.modalLabel}>
-                Why it is on your path
-                <textarea
-                  className={styles.modalTextarea}
-                  rows={3}
-                  value={editWhy}
-                  onChange={(event) => setEditWhy(event.target.value)}
-                />
-              </label>
-              <div className={styles.modalActions}>
-                {editorNode.kind !== 'goal' ? (
-                  <button
-                    type='button'
-                    className={styles.modalDelete}
-                    onClick={() => {
-                      setEditOpen(false)
-                      setDeleteOpen(true)
-                    }}
-                  >
-                    Delete this node
-                  </button>
-                ) : null}
-                <button
-                  type='button'
-                  className={styles.modalCancel}
-                  onClick={() => setEditOpen(false)}
-                >
-                  Cancel
-                </button>
-                <button
-                  type='submit'
-                  className={styles.modalSubmit}
-                  disabled={!editLabel.trim()}
-                >
-                  Save changes
                 </button>
               </div>
             </form>

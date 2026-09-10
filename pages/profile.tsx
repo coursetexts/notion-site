@@ -932,9 +932,10 @@ export default function ProfilePage() {
           row.kind === 'reply'
             ? {
                 ...row,
+                is_unread: false,
                 notification: { ...row.notification, is_unread: false }
               }
-            : row
+            : { ...row, is_unread: false }
         )
       )
     })
@@ -1090,6 +1091,10 @@ export default function ProfilePage() {
         notificationMatchesQuery(row, notificationsQuery)
       ),
     [profileNotifications, notificationsQuery]
+  )
+  const unreadNotificationCount = useMemo(
+    () => profileNotifications.filter((row) => row.is_unread).length,
+    [profileNotifications]
   )
 
   const myActivityRows = useMemo(() => {
@@ -2408,7 +2413,21 @@ export default function ProfilePage() {
                       }
                       onClick={() => selectMainTab('notifications')}
                     >
-                      Notifications
+                      <span className={styles.primaryTabLabel}>
+                        {unreadNotificationCount > 0 ? (
+                          <span
+                            className={styles.primaryTabNotificationBadge}
+                            aria-label={`${unreadNotificationCount} unread notification${
+                              unreadNotificationCount === 1 ? '' : 's'
+                            }`}
+                          >
+                            {unreadNotificationCount > 99
+                              ? '99+'
+                              : unreadNotificationCount}
+                          </span>
+                        ) : null}
+                        Notifications
+                      </span>
                     </button>
                   </nav>
 
@@ -2440,11 +2459,15 @@ export default function ProfilePage() {
                     ) : (
                       <ul className={styles.list}>
                         {visibleNotificationRows.map((row) => {
+                          const unreadClass = row.is_unread
+                            ? `${styles.listItem} ${styles.listItemUnread}`
+                            : undefined
                           if (row.kind === 'follow') {
                             return (
                               <ActivityFeedRowShell
                                 key={row.id}
                                 iconKind='follow'
+                                className={unreadClass}
                               >
                                 <ActivityFeedThread
                                   iconKind='follow'
@@ -2472,6 +2495,7 @@ export default function ProfilePage() {
                               <ActivityFeedRowShell
                                 key={row.id}
                                 iconKind='like'
+                                className={unreadClass}
                               >
                                 <ActivityFeedThread
                                   iconKind='like'
@@ -2505,6 +2529,7 @@ export default function ProfilePage() {
                               <ActivityFeedRowShell
                                 key={row.id}
                                 iconKind='update'
+                                className={unreadClass}
                               >
                                 <ActivityFeedThread
                                   iconKind='update'
@@ -2538,6 +2563,7 @@ export default function ProfilePage() {
                               <ActivityFeedRowShell
                                 key={row.id}
                                 iconKind='update'
+                                className={unreadClass}
                               >
                                 <ActivityFeedThread
                                   iconKind='update'
@@ -2571,6 +2597,7 @@ export default function ProfilePage() {
                               <ActivityFeedRowShell
                                 key={row.id}
                                 iconKind='path'
+                                className={unreadClass}
                               >
                                 <ActivityFeedThread
                                   iconKind='path'
@@ -2604,6 +2631,7 @@ export default function ProfilePage() {
                               <ActivityFeedRowShell
                                 key={row.id}
                                 iconKind='suggestion'
+                                className={unreadClass}
                               >
                                 <ActivityFeedThread
                                   iconKind='suggestion'
@@ -2638,6 +2666,7 @@ export default function ProfilePage() {
                               <ActivityFeedRowShell
                                 key={row.id}
                                 iconKind='suggestion'
+                                className={unreadClass}
                               >
                                 <ActivityFeedThread
                                   iconKind='suggestion'
@@ -2675,7 +2704,7 @@ export default function ProfilePage() {
                               <ActivityFeedRowShell
                                 key={row.id}
                                 iconKind='join'
-                                className={`${styles.listItem} ${styles.listItemUnread}`}
+                                className={unreadClass}
                               >
                                 <ActivityFeedThread
                                   iconKind='join'
@@ -2779,11 +2808,7 @@ export default function ProfilePage() {
                                   ? 'discussion'
                                   : 'comment'
                               }
-                              className={
-                                n.is_unread
-                                  ? `${styles.listItem} ${styles.listItemUnread}`
-                                  : styles.listItem
-                              }
+                              className={unreadClass}
                             >
                               <ActivityFeedThread
                                 iconKind={

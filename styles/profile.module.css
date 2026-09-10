@@ -422,14 +422,14 @@
 }
 
 .listItemUnread {
-  background: #fff7ed;
+  background: #eef6fb;
   border-radius: 6px;
   padding-left: 0.6rem;
   padding-right: 0.6rem;
 }
 
 .listItemUnread:hover {
-  background: #fef3e6;
+  background: #e3f1f9;
 }
 
 .listItem:last-child {
@@ -2706,6 +2706,28 @@
   color: #666;
   cursor: pointer;
   font-weight: 400;
+}
+
+.primaryTabLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.primaryTabNotificationBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.15rem;
+  height: 1.15rem;
+  padding: 0 0.3rem;
+  border-radius: 999px;
+  background: #d9eef8;
+  color: #0089c4;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 1;
+  font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
 }
 
 .primaryTab:hover {

@@ -13,7 +13,7 @@ This Next.js app renders **Notion** professor courses at `/course/{pageId}` and 
 | [Routes & gaps](./docs/gaps.md)                      | Unbuilt routes, partial features, orphaned APIs |
 | [Database](./docs/database.md)                       | Schema groups, ERDs, RLS                                                                               |
 | [Auth](./docs/auth.md)                               | Google OAuth → profiles. Return to the gated page after sign-in.                                       |
-| [Community learning paths](./docs/learning-paths.md) | `/learning-path/{slug}`. Publish only with 2 resources + why per topic. Visitors see public vs collab; outline edits are owner-only. **Export Context** copies an LLM prompt of the path. |
+| [Community learning paths](./docs/learning-paths.md) | `/learning-path/{slug}`. Publish only with 1 resource + why per topic. Visitors see public vs collab; outline edits are owner-only. **Export Context** copies an LLM prompt of the path. |
 | [Course learning paths](./docs/curated-courses.md)   | `/learning-path/{slug}`                                                                                |
 | [Knowledge](./docs/knowledge.md)                     | Profile Knowledge tab, finish celebration, duration + enjoyment %, shared graph (daily LLM job is off) |
 | [Migrations](./supabase/migrations/README.md)        | Fresh Supabase setup and seeds                                                                         |

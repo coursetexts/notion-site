@@ -6,7 +6,7 @@ import {
   mergeLearningPathResources
 } from '@/lib/learning-path-seed'
 
-export const LEARNING_PATH_PUBLISH_MIN_RESOURCES = 2
+export const LEARNING_PATH_PUBLISH_MIN_RESOURCES = 1
 
 /** Defaults written when a node is created without a real reason. */
 export const LEARNING_PATH_PLACEHOLDER_WHYS = new Set([

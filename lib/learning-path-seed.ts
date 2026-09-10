@@ -321,6 +321,9 @@ export type LearningPathEdge = {
 export type LearningPathCircleMember = {
   initials: string
   name: string
+  /** Live people list: invited editors first, then public savers. */
+  role?: 'collaborator' | 'saved'
+  userId?: string | null
 }
 
 export type LearningPathCircle = {

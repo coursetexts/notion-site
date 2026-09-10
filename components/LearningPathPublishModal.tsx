@@ -19,8 +19,10 @@ function visibilityLabel(
 function gapDetail(gap: LearningPathPublishTopicGap) {
   const parts: string[] = []
   if (gap.needed > 0) {
+    const unit =
+      LEARNING_PATH_PUBLISH_MIN_RESOURCES === 1 ? 'resource' : 'resources'
     parts.push(
-      `${gap.resourceCount} of ${LEARNING_PATH_PUBLISH_MIN_RESOURCES} resources`
+      `${gap.resourceCount} of ${LEARNING_PATH_PUBLISH_MIN_RESOURCES} ${unit}`
     )
   }
   if (gap.missingWhy) parts.push('Needs why')
@@ -104,8 +106,9 @@ export function LearningPathPublishModal({
         <p className={styles.intro}>
           A {target} path needs a filled “Why is this on the learning path” on
           every topic, and at least {LEARNING_PATH_PUBLISH_MIN_RESOURCES}{' '}
-          resources on each, so the next person inherits a real trail instead of
-          an empty outline.
+          {LEARNING_PATH_PUBLISH_MIN_RESOURCES === 1 ? 'resource' : 'resources'}{' '}
+          on each, so the next person inherits a real trail instead of an empty
+          outline.
         </p>
         {needsTopics ? (
           <p className={styles.empty}>

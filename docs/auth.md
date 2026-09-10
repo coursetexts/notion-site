@@ -61,7 +61,7 @@ Needs a session (or local-only until sign-in):
 | Comments, votes, discussions      | Supabase (`annotations` table)                                | disabled                                 |
 | Course / path notes               | `course_notes` / `learning_path_user_state`                   | `localStorage`                           |
 | Create / edit own learning path   | `learning_paths`                                              | `sessionStorage` / `localStorage` drafts |
-| Co-edit a private path you were invited to | `learning_path_invites` + `learning_paths.data`        | n/a                                      |
+| Co-edit a path you were invited to | `learning_path_invites` + `learning_paths.data` (any visibility; `053`) | n/a                          |
 | Request to join a private path             | `learning_path_join_requests` (email recorded; owner invites) | Sign in first                            |
 | Save someone else’s path          | `user_links` row pointing at `/learning-path/{slug}`          | n/a                                      |
 | Bookmark a learning-path resource | `user_links` (resource URL or path + `node`/`resource` query) | n/a                                      |

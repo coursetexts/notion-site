@@ -116,7 +116,7 @@ export function LearningPathInviteModal({
         </div>
         <p className={styles.intro}>
           They must already have a Coursetexts account. We don’t send an email —
-          they can open this private path while signed in with that address.
+          they can open and edit this path while signed in with that address.
         </p>
         <form className={styles.form} onSubmit={(event) => void handleSubmit(event)}>
           <label className={styles.field}>

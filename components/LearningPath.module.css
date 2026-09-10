@@ -722,6 +722,112 @@
   gap: 8px;
 }
 
+.editPathWrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.editPathBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border: 1px dashed #c9cbce;
+  border-radius: 0;
+  background: #fff;
+  color: #0089c4;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.editPathBtn:hover,
+.editPathBtn:focus-visible {
+  border-color: #0089c4;
+  outline: none;
+}
+
+.editPathMenu {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 8px);
+  z-index: 40;
+  min-width: 220px;
+  pointer-events: none;
+}
+
+.editPathMenuInner {
+  display: flex;
+  flex-direction: column;
+  min-width: 220px;
+  padding: 6px;
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: auto;
+  transition:
+    opacity 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.editPathMenuVisible .editPathMenuInner {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.editPathMenuItem {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 5px;
+  background: none;
+  color: #37352f;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+  text-align: left;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    opacity 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--edit-path-delay, 0ms);
+}
+
+.editPathMenuVisible .editPathMenuItem {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.editPathMenuItem:hover,
+.editPathMenuItem:focus-visible {
+  background: #f5f5f5;
+  outline: none;
+}
+
+.editPathMenuItemDanger {
+  color: #b42318;
+}
+
+.editPathMenuItemDanger:hover,
+.editPathMenuItemDanger:focus-visible {
+  background: #fef3f2;
+  color: #912018;
+}
+
 .addNode {
   display: inline-flex;
   align-items: center;
@@ -957,6 +1063,78 @@
 .topicArticle .articleTitle {
   margin: 0;
   max-width: none;
+}
+
+.articleTitleEditable {
+  display: inline;
+}
+
+.titleEditBtn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.35rem;
+  height: 1.35rem;
+  margin: 0 0 0 0.45rem;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #9ca3af;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.articleTitleEditable:hover .titleEditBtn,
+.articleTitleEditable:focus-within .titleEditBtn,
+.titleEditBtn:focus-visible {
+  display: inline-flex;
+}
+
+.titleEditBtn:hover,
+.titleEditBtn:focus-visible {
+  color: #0089c4;
+  background: #f0f9fd;
+  outline: none;
+}
+
+.titleEditing {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  width: 100%;
+  max-width: 900px;
+}
+
+.titleEditRow {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  width: 100%;
+}
+
+.titleEditInput {
+  box-sizing: border-box;
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  background: #fff;
+  color: #000;
+  font-family: var(--font-serif);
+  font-size: clamp(24px, 3.5vw, 32px);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.titleEditInput:focus,
+.titleEditInput:focus-visible {
+  outline: none;
+  border-color: #0089c4;
+  box-shadow: 0 0 0 3px rgba(0, 137, 196, 0.12);
 }
 
 .articleEmpty {
@@ -2096,9 +2274,138 @@ a.resourceTitle:focus-visible {
   color: #3f3f46;
 }
 
+.whyBlock {
+  max-width: 900px;
+  width: 100%;
+}
+
 .whyLead {
   font-weight: 700;
   color: #25272b;
+}
+
+.whyLeadRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  vertical-align: baseline;
+}
+
+.whyEditBtn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.35rem;
+  height: 1.35rem;
+  margin: 0 0 0 0.35rem;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #9ca3af;
+  cursor: pointer;
+  vertical-align: text-bottom;
+}
+
+.whyBlockEditable:hover .whyEditBtn,
+.whyBlockEditable:focus-within .whyEditBtn,
+.whyEditBtn:focus-visible {
+  display: inline-flex;
+}
+
+.whyEditBtn:hover,
+.whyEditBtn:focus-visible {
+  color: #0089c4;
+  background: #f0f9fd;
+  outline: none;
+}
+
+.whyEditing {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  width: 100%;
+}
+
+.whyEditActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.whySaveBtn {
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 0;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid #0089c4;
+  border-radius: 4px;
+  background: #0089c4;
+  color: #fff;
+  cursor: pointer;
+}
+
+.whySaveBtn:hover,
+.whySaveBtn:focus-visible {
+  background: #0077a8;
+  border-color: #0077a8;
+  outline: none;
+}
+
+.whySaveBtn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.whyCancelBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  background: #fff;
+  color: #6b7280;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.whyCancelBtn:hover,
+.whyCancelBtn:focus-visible {
+  color: #25272b;
+  border-color: #d4d4d4;
+  background: #f7f7f7;
+  outline: none;
+}
+
+.whyEditTextarea {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  background: #fff;
+  color: #3f3f46;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.55;
+  resize: vertical;
+  min-height: 5.5rem;
+}
+
+.whyEditTextarea:focus,
+.whyEditTextarea:focus-visible {
+  outline: none;
+  border-color: #0089c4;
+  box-shadow: 0 0 0 3px rgba(0, 137, 196, 0.12);
 }
 
 .actionRow .primaryBtn {
