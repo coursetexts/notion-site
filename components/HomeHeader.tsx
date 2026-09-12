@@ -47,6 +47,7 @@ type NavItem =
   | {
       kind: 'menu'
       label: string
+      href?: string
       children: NavMenuChild[]
     }
 
@@ -182,9 +183,14 @@ const aboutChildren: NavMenuChild[] = [
 ]
 
 const navItems: NavItem[] = [
-  { kind: 'menu', label: 'Explore', children: exploreChildren },
+  {
+    kind: 'menu',
+    label: 'Explore paths',
+    href: '/all-courses?view=all',
+    children: exploreChildren
+  },
   { kind: 'action', label: 'Create a path', action: 'create-path' },
-  { kind: 'menu', label: 'Community', children: communityChildren },
+  { kind: 'menu', label: 'Community', href: '/community', children: communityChildren },
   { kind: 'menu', label: 'About', children: aboutChildren }
 ]
 
@@ -243,10 +249,12 @@ function NavMenuChildLink({
 
 function NavMenuFlyout({
   label,
+  href,
   items,
   onNavigate
 }: {
   label: string
+  href?: string
   items: NavMenuChild[]
   onNavigate?: () => void
 }) {
@@ -256,7 +264,9 @@ function NavMenuFlyout({
   function handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
     if (event.key !== 'Escape') return
     setOpen(false)
-    wrapRef.current?.querySelector('button')?.focus()
+    wrapRef.current
+      ?.querySelector<HTMLElement>('a, button')
+      ?.focus()
   }
 
   function handleBlur(event: React.FocusEvent<HTMLDivElement>) {
@@ -264,6 +274,8 @@ function NavMenuFlyout({
       setOpen(false)
     }
   }
+
+  const triggerClass = `${styles.middleItem} ${styles.interactiveLink}`
 
   return (
     <div
@@ -276,14 +288,26 @@ function NavMenuFlyout({
       onBlur={handleBlur}
       onKeyDown={handleKeyDown}
     >
-      <button
-        type='button'
-        className={`${styles.middleItem} ${styles.interactiveLink}`}
-        aria-haspopup='menu'
-        aria-expanded={open}
-      >
-        {label}
-      </button>
+      {href ? (
+        <Link href={href} legacyBehavior>
+          <a
+            className={triggerClass}
+            aria-haspopup='menu'
+            aria-expanded={open}
+          >
+            {label}
+          </a>
+        </Link>
+      ) : (
+        <button
+          type='button'
+          className={triggerClass}
+          aria-haspopup='menu'
+          aria-expanded={open}
+        >
+          {label}
+        </button>
+      )}
       <div className={styles.communityPanel} role='menu' aria-label={label}>
         <div
           className={`${styles.communityPanelInner} ${styles.aboutPanelInner}`}
@@ -606,44 +630,67 @@ export function HomeHeader({
                 {navItems.map((item) => {
                   if (item.kind === 'menu') {
                     const submenuOpen = openNavSubmenu === item.label
+                    const toggleSubmenu = () =>
+                      setOpenNavSubmenu((current) =>
+                        current === item.label ? null : item.label
+                      )
+                    const chevron = (
+                      <span
+                        className={`${styles.menuNavChevron}${
+                          submenuOpen ? ` ${styles.menuNavChevronOpen}` : ''
+                        }`}
+                        aria-hidden
+                      >
+                        <svg
+                          xmlns='http://www.w3.org/2000/svg'
+                          width='12'
+                          height='12'
+                          viewBox='0 0 12 12'
+                          fill='none'
+                        >
+                          <path
+                            d='M4.5 2.5L8 6L4.5 9.5'
+                            stroke='currentColor'
+                            strokeWidth='1.3'
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                          />
+                        </svg>
+                      </span>
+                    )
                     return (
                       <div key={item.label} className={styles.menuNavGroup}>
-                        <button
-                          type='button'
-                          className={styles.menuNavToggle}
-                          onClick={() =>
-                            setOpenNavSubmenu((current) =>
-                              current === item.label ? null : item.label
-                            )
-                          }
-                          aria-expanded={submenuOpen}
-                        >
-                          <span>{item.label}</span>
-                          <span
-                            className={`${styles.menuNavChevron}${
-                              submenuOpen
-                                ? ` ${styles.menuNavChevronOpen}`
-                                : ''
-                            }`}
-                            aria-hidden
-                          >
-                            <svg
-                              xmlns='http://www.w3.org/2000/svg'
-                              width='12'
-                              height='12'
-                              viewBox='0 0 12 12'
-                              fill='none'
+                        {item.href ? (
+                          <div className={styles.menuNavToggle}>
+                            <Link href={item.href} legacyBehavior>
+                              <a
+                                className={styles.menuNavToggleLink}
+                                onClick={closeMenu}
+                              >
+                                {item.label}
+                              </a>
+                            </Link>
+                            <button
+                              type='button'
+                              className={styles.menuNavChevronBtn}
+                              onClick={toggleSubmenu}
+                              aria-expanded={submenuOpen}
+                              aria-label={`${submenuOpen ? 'Collapse' : 'Expand'} ${item.label} menu`}
                             >
-                              <path
-                                d='M4.5 2.5L8 6L4.5 9.5'
-                                stroke='currentColor'
-                                strokeWidth='1.3'
-                                strokeLinecap='round'
-                                strokeLinejoin='round'
-                              />
-                            </svg>
-                          </span>
-                        </button>
+                              {chevron}
+                            </button>
+                          </div>
+                        ) : (
+                          <button
+                            type='button'
+                            className={styles.menuNavToggle}
+                            onClick={toggleSubmenu}
+                            aria-expanded={submenuOpen}
+                          >
+                            <span>{item.label}</span>
+                            {chevron}
+                          </button>
+                        )}
                         <div
                           className={`${styles.menuNavSubmenu}${
                             submenuOpen ? ` ${styles.menuNavSubmenuOpen}` : ''
@@ -779,6 +826,7 @@ export function HomeHeader({
                       <NavMenuFlyout
                         key={item.label}
                         label={item.label}
+                        href={item.href}
                         items={item.children}
                       />
                     )

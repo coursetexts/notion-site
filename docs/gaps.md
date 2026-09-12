@@ -14,7 +14,6 @@ What is **live** vs **partial**, **404**, or **orphaned API** in the current cod
 
 | Feature | Where | Gap |
 | ------- | ----- | --- |
-| **Learning streaks** | Profile Learning cards | `lib/profile-learning-streaks.ts` mocks a few titles; real streak tracking not built. |
 | **Profile Updates** | profile Feed | Needs migrations `050_profile_updates.sql` (posts, likes, comments) and `051_profile_update_reposts.sql` (repost / quote) applied in Supabase. |
 | **Public Committed filter** | `/profile/{userId}` Learning | Needs `052_public_learning_path_commitments_read.sql` so another user’s commitments are readable. |
 | **Commitment reminders** | Profile **Notify** tag, `learning_path_commitments` | Cadence saves to DB; **no notification delivery** (email/push). |

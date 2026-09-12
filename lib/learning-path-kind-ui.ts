@@ -23,7 +23,7 @@ export function learningPathOutlineHint(kind: LearningPathKind): string {
   return 'Hover a step to see its children · click a node to read it'
 }
 
-/** Profile Courses filter: `kind=course` syllabi. Official Notion pages are a separate list. */
+/** Profile Academic filter: `kind=course` syllabi. Official Notion pages are a separate list. */
 export function isCourseKindPath(
   kind: LearningPathKind | string | undefined | null
 ): boolean {

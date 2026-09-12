@@ -465,6 +465,7 @@
 .inlineLink:hover {
   color: #25272b;
   text-decoration: underline;
+  text-decoration-color: #25272b;
 }
 
 .feedSectionUnderline {
@@ -571,7 +572,9 @@
 
 .feedTargetCard a:hover,
 .feedTargetCard a:focus-visible {
-  color: #0089c4;
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: #25272b;
 }
 
 .feedThreadHead {
@@ -731,7 +734,9 @@
 
 .feedLeadSubjectCard a:hover,
 .feedLeadSubjectCard a:focus-visible {
-  color: #0089c4;
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: #25272b;
 }
 
 .feedThreadTurn {
@@ -2632,8 +2637,7 @@
 
   .tabPanelActions .notebooksCreateBtn,
   .tabPanelActions .linkFilterBtnNew,
-  .tabPanelActions .addLinkBtn,
-  .tabPanelActions .knowledgeAddInput {
+  .tabPanelActions .addLinkBtn {
     font-size: 0.75rem;
     padding: 0.4rem 0.55rem;
   }
@@ -2779,30 +2783,6 @@
 
 .notebooksToolbar .subsectionSerifTitle {
   margin: 0;
-}
-
-.knowledgeAddInput {
-  font: inherit;
-  font-size: 0.8125rem;
-  padding: 0.45rem 0.85rem;
-  border: 1px solid #d0d0d0;
-  border-radius: 6px;
-  background: #fff;
-  color: #25272b;
-  width: 16rem;
-  max-width: 100%;
-  min-width: 0;
-  flex-shrink: 0;
-  box-sizing: border-box;
-  outline: none;
-}
-
-.knowledgeAddInput::placeholder {
-  color: #888;
-}
-
-.knowledgeAddInput:focus {
-  border-color: #0089c4;
 }
 
 .knowledgeGraphStage {
@@ -3669,11 +3649,12 @@ a.learningPathCard:hover {
 .learningPathCardTags {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: flex-start;
   gap: 0.35rem;
   margin-top: 0;
   width: 100%;
+  min-width: 0;
 }
 
 .learningPathCardTags:has(:not(.learningPathCommitHover)),
@@ -3697,19 +3678,6 @@ a.learningPathCard:hover {
 .learningPathCompleteTag {
   color: #6b944f;
   background: #eef0e3;
-}
-
-.learningPathStreakTag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.32rem;
-  color: #6b944f;
-  background: #eef0e3;
-}
-
-.learningPathStreakTag svg {
-  flex-shrink: 0;
-  display: block;
 }
 
 .learningPathCommitTag,
@@ -3752,6 +3720,11 @@ a.learningPathContinueTag {
   border: 1px solid #c5e0ee;
   text-decoration: none;
   cursor: pointer;
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 100%;
+  width: max-content;
+  overflow: hidden;
 }
 
 a.learningPathContinueTag:hover,
@@ -3764,6 +3737,20 @@ a.learningPathContinueTag:focus-visible {
 a.learningPathContinueTag:focus-visible {
   outline: 2px solid rgba(0, 137, 196, 0.35);
   outline-offset: 1px;
+}
+
+.learningPathCard:hover a.learningPathContinueTag,
+.learningPathCard:focus-within a.learningPathContinueTag,
+a.learningPathContinueTag:focus-visible {
+  display: block;
+  overflow: hidden;
+}
+
+.learningPathContinueLabel {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .learningPathCommittedTag {
@@ -4147,7 +4134,9 @@ button.learningPathCommittedTag:focus-visible:not(:disabled)
 
 .updatesCardAuthorName:hover,
 .updatesCardAuthorName:focus-visible {
-  color: #0089c4;
+  color: #25272b;
+  text-decoration: underline;
+  text-decoration-color: #25272b;
 }
 
 .updatesCardAuthorRow .tabItemDate {
@@ -4371,7 +4360,9 @@ button.learningPathCommittedTag:focus-visible:not(:disabled)
 
 .updateOriginalAuthor:hover,
 .updateOriginalAuthor:focus-visible {
-  color: #0089c4;
+  color: #25272b;
+  text-decoration: underline;
+  text-decoration-color: #25272b;
 }
 
 .updateOriginalBody {
@@ -4384,7 +4375,9 @@ button.learningPathCommittedTag:focus-visible:not(:disabled)
 }
 
 a.updateOriginalBody:hover {
-  color: #0089c4;
+  color: #5d534b;
+  text-decoration: underline;
+  text-decoration-color: #25272b;
 }
 
 .updateQuoteComposer {
@@ -4531,7 +4524,7 @@ a.updateOriginalBody:hover {
 .updatesNoteFooter {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 0.75rem;
   margin-top: 0.65rem;
 }

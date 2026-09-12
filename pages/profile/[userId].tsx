@@ -216,12 +216,17 @@ function feedActorNode(
   )
 }
 
-type PathsCoursesFilter = 'courses' | 'learning-paths' | 'committed'
+type PathsCoursesFilter =
+  | 'committed'
+  | 'goal-based'
+  | 'academic'
+  | 'research'
 
 const PATHS_COURSES_FILTERS: { id: PathsCoursesFilter; label: string }[] = [
-  { id: 'courses', label: 'Courses' },
-  { id: 'learning-paths', label: 'Learning paths' },
-  { id: 'committed', label: 'Committed' }
+  { id: 'committed', label: 'Committed' },
+  { id: 'goal-based', label: 'Goals-based' },
+  { id: 'academic', label: 'Academic' },
+  { id: 'research', label: 'Research' }
 ]
 
 function nextPathsCoursesFilter(
@@ -229,6 +234,19 @@ function nextPathsCoursesFilter(
   clicked: PathsCoursesFilter
 ): PathsCoursesFilter | null {
   return current === clicked ? null : clicked
+}
+
+function partitionCommittedFirst<T>(
+  items: T[],
+  isCommitted: (item: T) => boolean
+): T[] {
+  const committed: T[] = []
+  const rest: T[] = []
+  for (const item of items) {
+    if (isCommitted(item)) committed.push(item)
+    else rest.push(item)
+  }
+  return [...committed, ...rest]
 }
 
 const profileFontLinks = (
@@ -354,13 +372,16 @@ export default function PublicProfilePage() {
   const [pathsCoursesFilter, setPathsCoursesFilter] =
     useState<PathsCoursesFilter | null>(null)
   const showAllLearningCards = pathsCoursesFilter == null
-  const coursesOnly = pathsCoursesFilter === 'courses'
-  const learningPathsOnly = pathsCoursesFilter === 'learning-paths'
   const committedOnly = pathsCoursesFilter === 'committed'
-  const showCoursesGroup =
-    showAllLearningCards || coursesOnly || committedOnly
-  const showLearningPathsGroup =
-    showAllLearningCards || learningPathsOnly || committedOnly
+  const goalBasedOnly = pathsCoursesFilter === 'goal-based'
+  const academicOnly = pathsCoursesFilter === 'academic'
+  const researchOnly = pathsCoursesFilter === 'research'
+  const showCourseCards =
+    showAllLearningCards || academicOnly || committedOnly
+  const showResearchCards =
+    showAllLearningCards || researchOnly || committedOnly
+  const showCommunityCards =
+    showAllLearningCards || goalBasedOnly || committedOnly
 
   const visiblePublicCoursePaths = useMemo(() => {
     if (!committedOnly) return publicCoursePaths
@@ -383,18 +404,33 @@ export default function PublicProfilePage() {
     )
   }, [publicCommunityPaths, committedOnly, committedKeys])
 
-  const showCourseCards = showCoursesGroup
-  const showResearchCards = showLearningPathsGroup
-  const showCommunityCards = showLearningPathsGroup
   const hasAnyPublicCourseCards = visiblePublicCoursePaths.length > 0
+  const hasAnyPublicGoalBasedCards = visiblePublicCommunityPaths.length > 0
+  const hasAnyPublicResearchCards = visiblePublicResearchPaths.length > 0
   const hasAnyPublicNonCourseCards =
-    visiblePublicCommunityPaths.length > 0 ||
-    visiblePublicResearchPaths.length > 0
+    hasAnyPublicGoalBasedCards || hasAnyPublicResearchCards
   const hasAnyPublicLearningCards =
     hasAnyPublicCourseCards || hasAnyPublicNonCourseCards
   const hasAnyCommittedCards = communityLearningPaths.some((item) =>
     committedKeys.has(learningPathCommitmentKey(item.slug))
   )
+  const orderedPublicLearningPaths = useMemo(() => {
+    const items: StoredLearningPath[] = []
+    if (showCourseCards) items.push(...visiblePublicCoursePaths)
+    if (showResearchCards) items.push(...visiblePublicResearchPaths)
+    if (showCommunityCards) items.push(...visiblePublicCommunityPaths)
+    return partitionCommittedFirst(items, (item) =>
+      committedKeys.has(learningPathCommitmentKey(item.slug))
+    )
+  }, [
+    showCourseCards,
+    showResearchCards,
+    showCommunityCards,
+    visiblePublicCoursePaths,
+    visiblePublicResearchPaths,
+    visiblePublicCommunityPaths,
+    committedKeys
+  ])
   const [loading, setLoading] = useState(true)
   const [followLoading, setFollowLoading] = useState(false)
   const [notFound, setNotFound] = useState(false)
@@ -1369,16 +1405,22 @@ export default function PublicProfilePage() {
                       </div>
                     </div>
                     {!showAllLearningCards &&
-                    coursesOnly &&
+                    academicOnly &&
                     !hasAnyPublicCourseCards ? (
                       <p className={styles.placeholder}>
-                        No courses on this profile yet.
+                        No academic courses on this profile yet.
                       </p>
                     ) : !showAllLearningCards &&
-                      learningPathsOnly &&
-                      !hasAnyPublicNonCourseCards ? (
+                      goalBasedOnly &&
+                      !hasAnyPublicGoalBasedCards ? (
                       <p className={styles.placeholder}>
-                        No learning paths on this profile yet.
+                        No goals-based learning paths on this profile yet.
+                      </p>
+                    ) : !showAllLearningCards &&
+                      researchOnly &&
+                      !hasAnyPublicResearchCards ? (
+                      <p className={styles.placeholder}>
+                        No research learning paths on this profile yet.
                       </p>
                     ) : !showAllLearningCards &&
                       committedOnly &&
@@ -1392,60 +1434,22 @@ export default function PublicProfilePage() {
                       </p>
                     ) : (
                       <ul className={styles.learningPathList}>
-                        {showCourseCards
-                          ? visiblePublicCoursePaths.map((item) => (
-                              <li key={item.id}>
-                                <ProfileCommunityLearningPathCard
-                                  item={item}
-                                  ownAuthorLabel={
-                                    currentUserId && userId === currentUserId
-                                      ? 'you'
-                                      : displayName
-                                  }
-                                  committed={committedKeys.has(
-                                    learningPathCommitmentKey(item.slug)
-                                  )}
-                                  showResumeActions={false}
-                                />
-                              </li>
-                            ))
-                          : null}
-                        {showResearchCards
-                          ? visiblePublicResearchPaths.map((item) => (
-                              <li key={item.id}>
-                                <ProfileCommunityLearningPathCard
-                                  item={item}
-                                  ownAuthorLabel={
-                                    currentUserId && userId === currentUserId
-                                      ? 'you'
-                                      : displayName
-                                  }
-                                  committed={committedKeys.has(
-                                    learningPathCommitmentKey(item.slug)
-                                  )}
-                                  showResumeActions={false}
-                                />
-                              </li>
-                            ))
-                          : null}
-                        {showCommunityCards
-                          ? visiblePublicCommunityPaths.map((item) => (
-                              <li key={item.id}>
-                                <ProfileCommunityLearningPathCard
-                                  item={item}
-                                  ownAuthorLabel={
-                                    currentUserId && userId === currentUserId
-                                      ? 'you'
-                                      : displayName
-                                  }
-                                  committed={committedKeys.has(
-                                    learningPathCommitmentKey(item.slug)
-                                  )}
-                                  showResumeActions={false}
-                                />
-                              </li>
-                            ))
-                          : null}
+                        {orderedPublicLearningPaths.map((item) => (
+                          <li key={item.id}>
+                            <ProfileCommunityLearningPathCard
+                              item={item}
+                              ownAuthorLabel={
+                                currentUserId && userId === currentUserId
+                                  ? 'you'
+                                  : displayName
+                              }
+                              committed={committedKeys.has(
+                                learningPathCommitmentKey(item.slug)
+                              )}
+                              showResumeActions={false}
+                            />
+                          </li>
+                        ))}
                       </ul>
                     )}
                   </div>

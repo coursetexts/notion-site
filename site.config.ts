@@ -64,7 +64,7 @@ export default siteConfig({
   includeNotionIdInUrls: false,
 
   navigationLinks: [
-    { title: 'Explore', url: '/all-courses' },
+    { title: 'Explore paths', url: '/all-courses?view=all' },
     { title: 'Create a path', url: '/learning-path/new' },
     { title: 'Community', url: '/community' },
     { title: 'About', url: '/about' }

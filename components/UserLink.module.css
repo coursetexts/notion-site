@@ -5,8 +5,9 @@
 }
 
 .link:hover {
-  color: #0089C4;
+  color: #25272b;
   text-decoration: underline;
+  text-decoration-color: #25272b;
 }
 
 .tagFollowing,

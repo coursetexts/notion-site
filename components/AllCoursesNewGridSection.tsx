@@ -142,6 +142,18 @@ function SearchCreatePathCallout({ onCreate }: { onCreate: () => void }) {
   )
 }
 
+function DiscoverBottomPromos({ onCreate }: { onCreate: () => void }) {
+  return (
+    <>
+      <div className={styles.sectionDivider} role='separator' />
+      <div className={styles.promoRow}>
+        <CreatePathPromoCard onCreate={onCreate} />
+        <DegreesPromoCard />
+      </div>
+    </>
+  )
+}
+
 function LearningPathsPromoSlot({
   inline,
   onCreate
@@ -249,7 +261,7 @@ export function AllCoursesNewGridSection({
                   degree, or start a learning path.
                 </p>
               </div>
-              <SearchCreatePathCallout onCreate={openCreate} />
+              <DiscoverBottomPromos onCreate={openCreate} />
             </>
           ) : (
             <>
@@ -261,25 +273,17 @@ export function AllCoursesNewGridSection({
                   key={group.kind}
                   label={group.label}
                   cards={group.cards}
-                  startSlot={
-                    group.kind === 'learning-path' && !unifiedHasQuery ? (
-                      <LearningPathsPromoSlot onCreate={openCreate} />
-                    ) : group.kind === 'degree' && !unifiedHasQuery ? (
-                      <DegreesPromoCard />
-                    ) : undefined
-                  }
                 />
               ))}
-              {unifiedHasQuery ? (
-                <SearchCreatePathCallout onCreate={openCreate} />
-              ) : (
+              {!unifiedHasQuery ? (
                 <p className={styles.disclaimerText}>
                   Coursetexts has neither sought nor received permission from
                   any university to open-source courses that were taught at that
                   university. It is not affiliated with, sponsored by, or
                   endorsed by any university.
                 </p>
-              )}
+              ) : null}
+              <DiscoverBottomPromos onCreate={openCreate} />
             </>
           )}
         </div>
@@ -311,15 +315,8 @@ export function AllCoursesNewGridSection({
                   topicActive
                 )}
                 descriptionWidth='75%'
-                startSlot={
-                  coursePathQuery.trim() ? undefined : (
-                    <LearningPathsPromoSlot onCreate={openCreate} />
-                  )
-                }
               />
-              {coursePathQuery.trim() ? (
-                <SearchCreatePathCallout onCreate={openCreate} />
-              ) : null}
+              <SearchCreatePathCallout onCreate={openCreate} />
             </>
           )}
         </div>
@@ -364,7 +361,7 @@ export function AllCoursesNewGridSection({
             }
             descriptionWidth='75%'
           />
-          {searched ? <SearchCreatePathCallout onCreate={openCreate} /> : null}
+          <SearchCreatePathCallout onCreate={openCreate} />
         </div>
         <CreateLearningPathModal open={createOpen} onClose={closeCreate} />
       </section>

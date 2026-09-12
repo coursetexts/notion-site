@@ -122,7 +122,6 @@ import {
   type NavPinResume
 } from '@/lib/nav-pin-resume'
 import { completionPercent } from '@/lib/profile-learning-progress'
-import { mockLearningStreakDays } from '@/lib/profile-learning-streaks'
 import {
   COURSETEXTS_BYLINE_AUTHOR,
   officialCourseBylineAuthor,
@@ -478,13 +477,19 @@ function feedItemExcerpt(item: ProfileFeedItem): string | null {
 
 type LearningPathItem = StoredLearningPath
 
-type PathsCoursesFilter = 'courses' | 'learning-paths' | 'by-you' | 'committed'
+type PathsCoursesFilter =
+  | 'by-you'
+  | 'committed'
+  | 'goal-based'
+  | 'academic'
+  | 'research'
 
 const PATHS_COURSES_FILTERS: { id: PathsCoursesFilter; label: string }[] = [
-  { id: 'courses', label: 'Courses' },
-  { id: 'learning-paths', label: 'Learning paths' },
   { id: 'by-you', label: 'By you' },
-  { id: 'committed', label: 'Committed' }
+  { id: 'committed', label: 'Committed' },
+  { id: 'goal-based', label: 'Goals-based' },
+  { id: 'academic', label: 'Academic' },
+  { id: 'research', label: 'Research' }
 ]
 
 type ActivityFilter = 'feed' | 'you'
@@ -499,6 +504,41 @@ function nextPathsCoursesFilter(
   clicked: PathsCoursesFilter
 ): PathsCoursesFilter | null {
   return current === clicked ? null : clicked
+}
+
+function partitionCommittedFirst<T>(
+  items: T[],
+  isCommitted: (item: T) => boolean
+): T[] {
+  const committed: T[] = []
+  const rest: T[] = []
+  for (const item of items) {
+    if (isCommitted(item)) committed.push(item)
+    else rest.push(item)
+  }
+  return [...committed, ...rest]
+}
+
+type OwnLearningListEntry =
+  | { kind: 'course-pin'; item: PinnedCourseLearningPath }
+  | { kind: 'path'; item: StoredLearningPath }
+  | {
+      kind: 'official'
+      bookmark: { id: string }
+      course: CourseType
+    }
+
+function ownLearningEntryCommitmentKey(entry: OwnLearningListEntry): string {
+  if (entry.kind === 'official') {
+    return officialCourseCommitmentKey(entry.course.notion_page_id)
+  }
+  return learningPathCommitmentKey(entry.item.slug)
+}
+
+function ownLearningEntryKey(entry: OwnLearningListEntry): string {
+  if (entry.kind === 'course-pin') return `pin-${entry.item.pinId}`
+  if (entry.kind === 'official') return `official-${entry.bookmark.id}`
+  return `path-${entry.item.id}`
 }
 
 function isCreatedLearningPath(item: StoredLearningPath) {
@@ -1170,10 +1210,11 @@ export default function ProfilePage() {
     )
   }, [learningPaths, courseLearningPaths])
   const learningQuery = normalizeSearch(learningSearch)
-  const coursesOnly = pathsCoursesFilter === 'courses'
-  const learningPathsOnly = pathsCoursesFilter === 'learning-paths'
   const byYouOnly = pathsCoursesFilter === 'by-you'
   const committedOnly = pathsCoursesFilter === 'committed'
+  const goalBasedOnly = pathsCoursesFilter === 'goal-based'
+  const academicOnly = pathsCoursesFilter === 'academic'
+  const researchOnly = pathsCoursesFilter === 'research'
   const filteredCourseLearningPaths = useMemo(
     () =>
       courseLearningPaths.filter((item) => {
@@ -1276,21 +1317,24 @@ export default function ProfilePage() {
     [officialCourses, learningQuery, byYouOnly, committedOnly, committedKeys]
   )
   const showAllLearningCards = pathsCoursesFilter == null
-  const showCoursesGroup =
-    showAllLearningCards || coursesOnly || committedOnly
-  const showLearningPathsGroup =
-    showAllLearningCards || learningPathsOnly || committedOnly || byYouOnly
-  const showCourseCards = showCoursesGroup
-  const showSavedCourseKindCards = showCoursesGroup || byYouOnly
-  const showOfficialCards = showCoursesGroup
-  const showResearchCards = showLearningPathsGroup
-  const showCommunityCards = showLearningPathsGroup
+  const showCourseCards =
+    showAllLearningCards || academicOnly || committedOnly
+  const showSavedCourseKindCards =
+    showAllLearningCards || academicOnly || committedOnly || byYouOnly
+  const showOfficialCards =
+    showAllLearningCards || academicOnly || committedOnly
+  const showResearchCards =
+    showAllLearningCards || researchOnly || committedOnly || byYouOnly
+  const showCommunityCards =
+    showAllLearningCards || goalBasedOnly || committedOnly || byYouOnly
   const hasAnyCourseCards =
     courseLearningPaths.length > 0 ||
     savedCourseKindPaths.length > 0 ||
     officialCourses.length > 0
+  const hasAnyGoalBasedCards = communityLearningPaths.length > 0
+  const hasAnyResearchCards = researchLearningPaths.length > 0
   const hasAnyNonCourseLearningCards =
-    researchLearningPaths.length > 0 || communityLearningPaths.length > 0
+    hasAnyGoalBasedCards || hasAnyResearchCards
   const hasAnyCreatedCards =
     savedCourseKindPaths.some(isCreatedLearningPath) ||
     researchLearningPaths.some(isCreatedLearningPath) ||
@@ -1319,6 +1363,50 @@ export default function ProfilePage() {
     (showResearchCards && filteredResearchLearningPaths.length > 0) ||
     (showCommunityCards && filteredCommunityLearningPaths.length > 0) ||
     (showOfficialCards && filteredOfficialCourses.length > 0)
+
+  const orderedLearningEntries = useMemo(() => {
+    const entries: OwnLearningListEntry[] = []
+    if (showCourseCards) {
+      for (const item of filteredCourseLearningPaths) {
+        entries.push({ kind: 'course-pin', item })
+      }
+    }
+    if (showSavedCourseKindCards) {
+      for (const item of filteredSavedCourseKindPaths) {
+        entries.push({ kind: 'path', item })
+      }
+    }
+    if (showResearchCards) {
+      for (const item of filteredResearchLearningPaths) {
+        entries.push({ kind: 'path', item })
+      }
+    }
+    if (showCommunityCards) {
+      for (const item of filteredCommunityLearningPaths) {
+        entries.push({ kind: 'path', item })
+      }
+    }
+    if (showOfficialCards) {
+      for (const row of filteredOfficialCourses) {
+        entries.push({ kind: 'official', ...row })
+      }
+    }
+    return partitionCommittedFirst(entries, (entry) =>
+      committedKeys.has(ownLearningEntryCommitmentKey(entry))
+    )
+  }, [
+    showCourseCards,
+    showSavedCourseKindCards,
+    showResearchCards,
+    showCommunityCards,
+    showOfficialCards,
+    filteredCourseLearningPaths,
+    filteredSavedCourseKindPaths,
+    filteredResearchLearningPaths,
+    filteredCommunityLearningPaths,
+    filteredOfficialCourses,
+    committedKeys
+  ])
 
   const loadPersonalLinks = useCallback(async () => {
     const list = await listMyPersonalLinks()
@@ -1612,6 +1700,7 @@ export default function ProfilePage() {
   const handleCreateTag = async () => {
     const name = newTagName.trim()
     if (!name || tagSubmitting) return
+    tagSubmittingRef.current = true
     setTagSubmitting(true)
     const tag = await createTag(name)
     if (tag) {
@@ -2887,9 +2976,7 @@ export default function ProfilePage() {
                     topics={knowledgeTopics}
                     loading={knowledgeLoading}
                     searchId='profile-knowledge-search'
-                    emptyMessage='Topics you complete on learning paths will show up here. You can also add them yourself.'
-                    canAdd
-                    onTopicsChange={setKnowledgeTopics}
+                    emptyMessage='Topics you complete on learning paths will show up here.'
                   />
                 )}
 
@@ -2912,13 +2999,6 @@ export default function ProfilePage() {
                         Resources
                       </h2>
                       <div className={styles.tabPanelActions}>
-                        <button
-                          type='button'
-                          className={styles.linkFilterBtnNew}
-                          onClick={() => setShowNewTagInput(true)}
-                        >
-                          + New tag
-                        </button>
                         <button
                           type='button'
                           className={styles.addLinkBtn}
@@ -2953,27 +3033,6 @@ export default function ProfilePage() {
                           >
                             All
                           </button>
-                          {linkTags.map((t) => (
-                            <button
-                              key={t.id}
-                              type='button'
-                              aria-pressed={bookmarkTagFilter.tagIds.includes(
-                                t.id
-                              )}
-                              className={
-                                bookmarkTagFilter.tagIds.includes(t.id)
-                                  ? styles.linkFilterBtnActive
-                                  : styles.linkFilterBtn
-                              }
-                              onClick={() =>
-                                setBookmarkTagFilter((prev) =>
-                                  toggleBookmarkTagFilter(prev, t.id)
-                                )
-                              }
-                            >
-                              {t.name}
-                            </button>
-                          ))}
                           {showNewTagInput ? (
                             <input
                               type='text'
@@ -3003,7 +3062,37 @@ export default function ProfilePage() {
                               disabled={tagSubmitting}
                               autoFocus
                             />
-                          ) : null}
+                          ) : (
+                            <button
+                              type='button'
+                              className={styles.linkFilterBtn}
+                              onClick={() => setShowNewTagInput(true)}
+                              aria-label='Create new tag'
+                            >
+                              + New tag
+                            </button>
+                          )}
+                          {linkTags.map((t) => (
+                            <button
+                              key={t.id}
+                              type='button'
+                              aria-pressed={bookmarkTagFilter.tagIds.includes(
+                                t.id
+                              )}
+                              className={
+                                bookmarkTagFilter.tagIds.includes(t.id)
+                                  ? styles.linkFilterBtnActive
+                                  : styles.linkFilterBtn
+                              }
+                              onClick={() =>
+                                setBookmarkTagFilter((prev) =>
+                                  toggleBookmarkTagFilter(prev, t.id)
+                                )
+                              }
+                            >
+                              {t.name}
+                            </button>
+                          ))}
                         </div>
                       </div>
                       </div>
@@ -3740,7 +3829,8 @@ export default function ProfilePage() {
                         Learning
                       </h2>
                       {showAllLearningCards ||
-                      learningPathsOnly ||
+                      goalBasedOnly ||
+                      researchOnly ||
                       byYouOnly ? (
                         <div className={styles.tabPanelActions}>
                           <button
@@ -3793,17 +3883,23 @@ export default function ProfilePage() {
                     </div>
                     </div>
                     {!showAllLearningCards &&
-                    coursesOnly &&
+                    academicOnly &&
                     !hasAnyCourseCards ? (
                       <p className={styles.placeholder}>
-                        No courses yet. Official courses and course learning
-                        paths show up here.
+                        No academic courses yet. Official courses and course
+                        learning paths show up here.
                       </p>
                     ) : !showAllLearningCards &&
-                      learningPathsOnly &&
-                      !hasAnyNonCourseLearningCards ? (
+                      goalBasedOnly &&
+                      !hasAnyGoalBasedCards ? (
                       <p className={styles.placeholder}>
-                        No learning paths yet.
+                        No goals-based learning paths yet.
+                      </p>
+                    ) : !showAllLearningCards &&
+                      researchOnly &&
+                      !hasAnyResearchCards ? (
+                      <p className={styles.placeholder}>
+                        No research learning paths yet.
                       </p>
                     ) : byYouOnly && !hasAnyCreatedCards ? (
                       <p className={styles.placeholder}>
@@ -3824,270 +3920,118 @@ export default function ProfilePage() {
                       </p>
                     ) : (
                       <ul className={styles.learningPathList}>
-                        {showCourseCards
-                          ? filteredCourseLearningPaths.map((item) => (
-                              <li key={item.pinId}>
+                        {orderedLearningEntries.map((entry) => {
+                          if (entry.kind === 'course-pin') {
+                            const item = entry.item
+                            const targetKey = learningPathCommitmentKey(item.slug)
+                            return (
+                              <li key={ownLearningEntryKey(entry)}>
                                 <ProfileLearningPathCard
                                   href={`/learning-path/${item.slug}`}
                                   title={item.title}
                                   bylineAuthor={COURSETEXTS_BYLINE_AUTHOR}
                                   privacy='public'
-                                  committed={committedKeys.has(
-                                    learningPathCommitmentKey(item.slug)
-                                  )}
+                                  committed={committedKeys.has(targetKey)}
                                   onToggleCommit={() =>
-                                    void handleToggleCommit(
-                                      learningPathCommitmentKey(item.slug)
-                                    )
+                                    void handleToggleCommit(targetKey)
                                   }
-                                  commitBusy={
-                                    commitBusyKey ===
-                                    learningPathCommitmentKey(item.slug)
-                                  }
+                                  commitBusy={commitBusyKey === targetKey}
                                   completedPercent={
                                     progressByPathSlug[item.slug] ?? null
                                   }
                                   resume={resumeByPathSlug[item.slug] ?? null}
-                                  streakDays={mockLearningStreakDays(item.title)}
                                   reminder={
-                                    commitmentReminders[
-                                      learningPathCommitmentKey(item.slug)
-                                    ] ?? null
+                                    commitmentReminders[targetKey] ?? null
                                   }
                                   onSaveReminder={(reminder) =>
-                                    void handleSaveReminder(
-                                      learningPathCommitmentKey(item.slug),
-                                      reminder
-                                    )
+                                    void handleSaveReminder(targetKey, reminder)
                                   }
                                   onRemoveReminder={() =>
-                                    void handleRemoveReminder(
-                                      learningPathCommitmentKey(item.slug)
-                                    )
+                                    void handleRemoveReminder(targetKey)
                                   }
-                                  reminderBusy={
-                                    reminderBusyKey ===
-                                    learningPathCommitmentKey(item.slug)
-                                  }
+                                  reminderBusy={reminderBusyKey === targetKey}
                                 />
                               </li>
-                            ))
-                          : null}
-                        {showSavedCourseKindCards
-                          ? filteredSavedCourseKindPaths.map((item) => (
-                              <li key={item.id}>
+                            )
+                          }
+                          if (entry.kind === 'path') {
+                            const item = entry.item
+                            const targetKey = learningPathCommitmentKey(item.slug)
+                            return (
+                              <li key={ownLearningEntryKey(entry)}>
                                 <ProfileCommunityLearningPathCard
                                   item={item}
-                                  committed={committedKeys.has(
-                                    learningPathCommitmentKey(item.slug)
-                                  )}
+                                  committed={committedKeys.has(targetKey)}
                                   onToggleCommit={(slug) =>
                                     void handleToggleCommit(
                                       learningPathCommitmentKey(slug)
                                     )
                                   }
-                                  commitBusy={
-                                    commitBusyKey ===
-                                    learningPathCommitmentKey(item.slug)
-                                  }
+                                  commitBusy={commitBusyKey === targetKey}
                                   completedPercent={
                                     progressByPathSlug[item.slug] ?? null
                                   }
                                   resume={resumeByPathSlug[item.slug] ?? null}
-                                  streakDays={mockLearningStreakDays(item.goal)}
                                   reminder={
-                                    commitmentReminders[
-                                      learningPathCommitmentKey(item.slug)
-                                    ] ?? null
+                                    commitmentReminders[targetKey] ?? null
                                   }
                                   onSaveReminder={(reminder) =>
-                                    void handleSaveReminder(
-                                      learningPathCommitmentKey(item.slug),
-                                      reminder
-                                    )
+                                    void handleSaveReminder(targetKey, reminder)
                                   }
                                   onRemoveReminder={() =>
-                                    void handleRemoveReminder(
-                                      learningPathCommitmentKey(item.slug)
-                                    )
+                                    void handleRemoveReminder(targetKey)
                                   }
-                                  reminderBusy={
-                                    reminderBusyKey ===
-                                    learningPathCommitmentKey(item.slug)
-                                  }
+                                  reminderBusy={reminderBusyKey === targetKey}
                                 />
                               </li>
-                            ))
-                          : null}
-                        {showResearchCards
-                          ? filteredResearchLearningPaths.map((item) => (
-                              <li key={item.id}>
-                                <ProfileCommunityLearningPathCard
-                                  item={item}
-                                  committed={committedKeys.has(
-                                    learningPathCommitmentKey(item.slug)
-                                  )}
-                                  onToggleCommit={(slug) =>
-                                    void handleToggleCommit(
-                                      learningPathCommitmentKey(slug)
-                                    )
-                                  }
-                                  commitBusy={
-                                    commitBusyKey ===
-                                    learningPathCommitmentKey(item.slug)
-                                  }
-                                  completedPercent={
-                                    progressByPathSlug[item.slug] ?? null
-                                  }
-                                  resume={resumeByPathSlug[item.slug] ?? null}
-                                  streakDays={mockLearningStreakDays(item.goal)}
-                                  reminder={
-                                    commitmentReminders[
-                                      learningPathCommitmentKey(item.slug)
-                                    ] ?? null
-                                  }
-                                  onSaveReminder={(reminder) =>
-                                    void handleSaveReminder(
-                                      learningPathCommitmentKey(item.slug),
-                                      reminder
-                                    )
-                                  }
-                                  onRemoveReminder={() =>
-                                    void handleRemoveReminder(
-                                      learningPathCommitmentKey(item.slug)
-                                    )
-                                  }
-                                  reminderBusy={
-                                    reminderBusyKey ===
-                                    learningPathCommitmentKey(item.slug)
-                                  }
-                                />
-                              </li>
-                            ))
-                          : null}
-                        {showCommunityCards
-                          ? filteredCommunityLearningPaths.map((item) => (
-                              <li key={item.id}>
-                                <ProfileCommunityLearningPathCard
-                                  item={item}
-                                  committed={committedKeys.has(
-                                    learningPathCommitmentKey(item.slug)
-                                  )}
-                                  onToggleCommit={(slug) =>
-                                    void handleToggleCommit(
-                                      learningPathCommitmentKey(slug)
-                                    )
-                                  }
-                                  commitBusy={
-                                    commitBusyKey ===
-                                    learningPathCommitmentKey(item.slug)
-                                  }
-                                  completedPercent={
-                                    progressByPathSlug[item.slug] ?? null
-                                  }
-                                  resume={resumeByPathSlug[item.slug] ?? null}
-                                  streakDays={mockLearningStreakDays(item.goal)}
-                                  reminder={
-                                    commitmentReminders[
-                                      learningPathCommitmentKey(item.slug)
-                                    ] ?? null
-                                  }
-                                  onSaveReminder={(reminder) =>
-                                    void handleSaveReminder(
-                                      learningPathCommitmentKey(item.slug),
-                                      reminder
-                                    )
-                                  }
-                                  onRemoveReminder={() =>
-                                    void handleRemoveReminder(
-                                      learningPathCommitmentKey(item.slug)
-                                    )
-                                  }
-                                  reminderBusy={
-                                    reminderBusyKey ===
-                                    learningPathCommitmentKey(item.slug)
-                                  }
-                                />
-                              </li>
-                            ))
-                          : null}
-                        {showOfficialCards
-                          ? filteredOfficialCourses.map(({ bookmark, course }) => (
-                              <li key={bookmark.id}>
-                                <ProfileLearningPathCard
-                                  href={
-                                    course.url ??
-                                    `/course/${course.notion_page_id}`
-                                  }
-                                  title={course.name}
-                                  bylineAuthor={officialCourseBylineAuthor(
-                                    course,
-                                    officialBylineMeta
-                                  )}
-                                  privacy='public'
-                                  committed={committedKeys.has(
-                                    officialCourseCommitmentKey(
-                                      course.notion_page_id
-                                    )
-                                  )}
-                                  onToggleCommit={() =>
-                                    void handleToggleCommit(
-                                      officialCourseCommitmentKey(
-                                        course.notion_page_id
-                                      )
-                                    )
-                                  }
-                                  commitBusy={
-                                    commitBusyKey ===
-                                    officialCourseCommitmentKey(
-                                      course.notion_page_id
-                                    )
-                                  }
-                                  completedPercent={
-                                    progressByOfficialPageId[
-                                      course.notion_page_id
-                                    ] ?? null
-                                  }
-                                  resume={
-                                    resumeByOfficialPageId[
-                                      course.notion_page_id
-                                    ] ?? null
-                                  }
-                                  streakDays={mockLearningStreakDays(
-                                    course.name
-                                  )}
-                                  reminder={
-                                    commitmentReminders[
-                                      officialCourseCommitmentKey(
-                                        course.notion_page_id
-                                      )
-                                    ] ?? null
-                                  }
-                                  onSaveReminder={(reminder) =>
-                                    void handleSaveReminder(
-                                      officialCourseCommitmentKey(
-                                        course.notion_page_id
-                                      ),
-                                      reminder
-                                    )
-                                  }
-                                  onRemoveReminder={() =>
-                                    void handleRemoveReminder(
-                                      officialCourseCommitmentKey(
-                                        course.notion_page_id
-                                      )
-                                    )
-                                  }
-                                  reminderBusy={
-                                    reminderBusyKey ===
-                                    officialCourseCommitmentKey(
-                                      course.notion_page_id
-                                    )
-                                  }
-                                />
-                              </li>
-                            ))
-                          : null}
+                            )
+                          }
+                          const { course } = entry
+                          const targetKey = officialCourseCommitmentKey(
+                            course.notion_page_id
+                          )
+                          return (
+                            <li key={ownLearningEntryKey(entry)}>
+                              <ProfileLearningPathCard
+                                href={
+                                  course.url ??
+                                  `/course/${course.notion_page_id}`
+                                }
+                                title={course.name}
+                                bylineAuthor={officialCourseBylineAuthor(
+                                  course,
+                                  officialBylineMeta
+                                )}
+                                privacy='public'
+                                committed={committedKeys.has(targetKey)}
+                                onToggleCommit={() =>
+                                  void handleToggleCommit(targetKey)
+                                }
+                                commitBusy={commitBusyKey === targetKey}
+                                completedPercent={
+                                  progressByOfficialPageId[
+                                    course.notion_page_id
+                                  ] ?? null
+                                }
+                                resume={
+                                  resumeByOfficialPageId[
+                                    course.notion_page_id
+                                  ] ?? null
+                                }
+                                reminder={
+                                  commitmentReminders[targetKey] ?? null
+                                }
+                                onSaveReminder={(reminder) =>
+                                  void handleSaveReminder(targetKey, reminder)
+                                }
+                                onRemoveReminder={() =>
+                                  void handleRemoveReminder(targetKey)
+                                }
+                                reminderBusy={reminderBusyKey === targetKey}
+                              />
+                            </li>
+                          )
+                        })}
                       </ul>
                     )}
                     {showLearningPathModal && (

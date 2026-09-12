@@ -155,10 +155,6 @@ function UpdateCard({
   )
 }
 
-function normalizeTag(value: string): string {
-  return value.trim().replace(/\s+/g, ' ')
-}
-
 function UpdateNoteComposer({
   onSubmit
 }: {
@@ -171,9 +167,6 @@ function UpdateNoteComposer({
   }) => Promise<boolean>
 }) {
   const [body, setBody] = React.useState('')
-  const [tags, setTags] = React.useState<string[]>([])
-  const [tagDraft, setTagDraft] = React.useState('')
-  const [showTags, setShowTags] = React.useState(false)
   const [busy, setBusy] = React.useState(false)
   const [focused, setFocused] = React.useState(false)
   const bodyRef = React.useRef<HTMLTextAreaElement>(null)
@@ -190,21 +183,6 @@ function UpdateNoteComposer({
     resizeTextarea()
   }, [body])
 
-  function addTagFromDraft() {
-    const next = normalizeTag(tagDraft)
-    if (!next) return
-    setTags((prev) =>
-      prev.some((tag) => tag.toLowerCase() === next.toLowerCase())
-        ? prev
-        : [...prev, next]
-    )
-    setTagDraft('')
-  }
-
-  function removeTag(tag: string) {
-    setTags((prev) => prev.filter((item) => item !== tag))
-  }
-
   async function post() {
     const description = body.trim()
     if (!description || busy) return
@@ -213,7 +191,7 @@ function UpdateNoteComposer({
       title: description.slice(0, 72),
       type: 'Document',
       description,
-      tags,
+      tags: [],
       url: previewUrl
     })
     setBusy(false)
@@ -222,16 +200,12 @@ function UpdateNoteComposer({
       return
     }
     setBody('')
-    setTags([])
-    setTagDraft('')
-    setShowTags(false)
     setFocused(false)
     bodyRef.current?.blur()
   }
 
   const canPost = Boolean(body.trim())
-  const expanded =
-    focused || canPost || showTags || tags.length > 0 || Boolean(previewUrl)
+  const expanded = focused || canPost || Boolean(previewUrl)
 
   return (
     <form
@@ -253,12 +227,7 @@ function UpdateNoteComposer({
         onFocus={() => setFocused(true)}
         onBlur={() => {
           window.setTimeout(() => {
-            if (
-              !body.trim() &&
-              !showTags &&
-              tags.length === 0 &&
-              !previewUrl
-            ) {
+            if (!body.trim() && !previewUrl) {
               setFocused(false)
             }
           }, 120)
@@ -276,51 +245,8 @@ function UpdateNoteComposer({
       {previewUrl ? (
         <LinkPreviewCard url={previewUrl} showPlaceholder />
       ) : null}
-      {showTags || tags.length > 0 ? (
-        <div className={styles.updatesNoteTags}>
-          {tags.length > 0 ? (
-            <ul className={styles.updatesComposerTagList} aria-label='Tags'>
-              {tags.map((tag) => (
-                <li key={tag}>
-                  <button
-                    type='button'
-                    className={styles.updatesComposerTag}
-                    onClick={() => removeTag(tag)}
-                    aria-label={`Remove tag ${tag}`}
-                  >
-                    {tag}
-                    <span aria-hidden>×</span>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          ) : null}
-          <input
-            type='text'
-            className={styles.updatesNoteTagInput}
-            value={tagDraft}
-            onChange={(event) => setTagDraft(event.target.value)}
-            onKeyDown={(event) => {
-              if (event.key === 'Enter') {
-                event.preventDefault()
-                addTagFromDraft()
-              }
-            }}
-            onBlur={addTagFromDraft}
-            placeholder='Add a tag'
-            aria-label='Add tag'
-          />
-        </div>
-      ) : null}
       {expanded ? (
         <div className={styles.updatesNoteFooter}>
-          <button
-            type='button'
-            className={styles.updatesNoteSecondary}
-            onClick={() => setShowTags((value) => !value)}
-          >
-            {showTags || tags.length > 0 ? 'Hide tags' : 'Add tags'}
-          </button>
           <button
             type='submit'
             className={styles.updatesNotePost}

@@ -109,15 +109,18 @@
 }
 
 .inlineUrl {
-  color: #0089c4;
+  color: inherit;
   text-decoration: underline;
+  text-decoration-color: currentColor;
   text-underline-offset: 2px;
   word-break: break-all;
 }
 
 .inlineUrl:hover,
 .inlineUrl:focus-visible {
-  color: #0077a8;
+  color: inherit;
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 1.5px;
 }
 
 @media (min-width: 640px) {

@@ -56,14 +56,6 @@ export const ALL_COURSES_VIEW_LABELS: Record<AllCoursesView, string> = {
   research: 'Research Questions'
 }
 
-export const ALL_COURSES_VIEW_SUBTITLES: Partial<
-  Record<AllCoursesView, string>
-> = {
-  'learning-paths': '“I want to do something.”',
-  courses: '“I want to understand a body of knowledge.”',
-  research: '“I want to answer a question.”'
-}
-
 export const ALL_COURSES_VIEW_FILTERS: Record<AllCoursesView, string> = {
   all: 'All',
   'learning-paths': 'Goal-based',
@@ -72,7 +64,7 @@ export const ALL_COURSES_VIEW_FILTERS: Record<AllCoursesView, string> = {
   research: 'Research'
 }
 
-/** Catalog filter chips shown under search (Degrees stays via URL / promo only). */
+/** Catalog filter chips shown above the title (Degrees stays via URL / promo only). */
 export const ALL_COURSES_FILTER_BAR_VIEWS = ALL_COURSES_VIEWS.filter(
   (view) => view !== 'degrees'
 )
@@ -106,6 +98,8 @@ export function AllCoursesNewTopSection({
   const showCourseFilters = view === 'courses'
   const showPathFilters = view === 'learning-paths'
   const showPartnerLogos = view === 'courses'
+  const showBelowSearch =
+    showPathFilters || showCourseFilters || showPartnerLogos
 
   React.useEffect(() => {
     return () => {
@@ -161,16 +155,40 @@ export function AllCoursesNewTopSection({
     [onSearchSubmit, triggerSearchPulse]
   )
 
-  const subtitle = ALL_COURSES_VIEW_SUBTITLES[view]
-
   return (
     <section className={styles.section}>
-      <div className={styles.headingRow}>
-        <div className={styles.headingCopy}>
-          <h1 className={styles.heading}>{ALL_COURSES_VIEW_LABELS[view]}</h1>
-          {subtitle ? <p className={styles.subtitle}>{subtitle}</p> : null}
-        </div>
+      <div
+        className={styles.catalogRow}
+        role='radiogroup'
+        aria-label='Catalog type'
+      >
+        {ALL_COURSES_FILTER_BAR_VIEWS.map((option, index) => {
+          const selected = option === view
+
+          return (
+            <React.Fragment key={option}>
+              {index > 0 ? (
+                <span className={styles.catalogDivider} aria-hidden='true'>
+                  |
+                </span>
+              ) : null}
+              <button
+                type='button'
+                role='radio'
+                aria-checked={selected}
+                className={`${styles.catalogLink}${
+                  selected ? ` ${styles.catalogLinkSelected}` : ''
+                }`}
+                onClick={() => onViewChange(option)}
+              >
+                {ALL_COURSES_VIEW_FILTERS[option]}
+              </button>
+            </React.Fragment>
+          )
+        })}
       </div>
+
+      <h1 className={styles.heading}>{ALL_COURSES_VIEW_LABELS[view]}</h1>
 
       <form
         id='all-courses-search'
@@ -197,114 +215,81 @@ export function AllCoursesNewTopSection({
         </button>
       </form>
 
-      <div className={styles.filtersStack}>
-        <div
-          className={styles.catalogRow}
-          role='radiogroup'
-          aria-label='Catalog type'
-        >
-          {ALL_COURSES_FILTER_BAR_VIEWS.map((option, index) => {
-            const selected = option === view
-
-            return (
-              <React.Fragment key={option}>
-                {index > 0 ? (
-                  <span className={styles.catalogDivider} aria-hidden='true'>
-                    |
-                  </span>
-                ) : null}
+      {showBelowSearch ? (
+        <div className={styles.filtersRow}>
+          {showPathFilters ? (
+            <div className={styles.subjectRow}>
+              {LEARNING_PATH_TOPICS.map((topic) => (
                 <button
+                  key={topic.id}
                   type='button'
-                  role='radio'
-                  aria-checked={selected}
-                  className={`${styles.catalogLink}${
-                    selected ? ` ${styles.catalogLinkSelected}` : ''
+                  className={`${styles.subjectItem} ${
+                    activeTopic === topic.id ? styles.subjectItemActive : ''
                   }`}
-                  onClick={() => onViewChange(option)}
+                  onClick={() => onTopicToggle?.(topic.id)}
+                  aria-pressed={activeTopic === topic.id}
                 >
-                  {ALL_COURSES_VIEW_FILTERS[option]}
+                  <span className={styles.subjectIconWrap}>
+                    <LearningPathTopicIcon
+                      id={topic.id}
+                      className={styles.topicIcon}
+                    />
+                  </span>
+                  <span className={styles.subjectLabel}>{topic.label}</span>
                 </button>
-              </React.Fragment>
-            )
-          })}
+              ))}
+            </div>
+          ) : null}
+
+          {showCourseFilters ? (
+            <div className={styles.subjectRow}>
+              {SUBJECTS.map((subject) => (
+                <button
+                  key={subject.label}
+                  type='button'
+                  className={`${styles.subjectItem} ${
+                    activeSubjects.includes(subject.label)
+                      ? styles.subjectItemActive
+                      : ''
+                  }`}
+                  onClick={() => onSubjectToggle(subject.label)}
+                  aria-pressed={activeSubjects.includes(subject.label)}
+                >
+                  <span className={styles.subjectIconWrap}>
+                    <img
+                      src={subject.icon}
+                      alt=''
+                      className={styles.subjectIcon}
+                      aria-hidden='true'
+                    />
+                  </span>
+                  <span className={styles.subjectLabel}>{subject.label}</span>
+                </button>
+              ))}
+            </div>
+          ) : null}
+
+          {showPartnerLogos ? (
+            <div className={styles.logoPill} aria-label='Partner schools'>
+              {PARTNER_LINKS.map((partner) => (
+                <Link key={partner.label} href={partner.href} legacyBehavior>
+                  <a className={styles.logoCircle} title={partner.label}>
+                    <img
+                      src={partner.icon}
+                      alt={partner.label}
+                      className={
+                        partner.label === 'More schools'
+                          ? styles.logoPlusImage
+                          : styles.logoImage
+                      }
+                    />
+                  </a>
+                </Link>
+              ))}
+            </div>
+          ) : null}
         </div>
-
-        {showPathFilters || showCourseFilters || showPartnerLogos ? (
-          <div className={styles.filtersRow}>
-            {showPathFilters ? (
-              <div className={styles.subjectRow}>
-                {LEARNING_PATH_TOPICS.map((topic) => (
-                  <button
-                    key={topic.id}
-                    type='button'
-                    className={`${styles.subjectItem} ${
-                      activeTopic === topic.id ? styles.subjectItemActive : ''
-                    }`}
-                    onClick={() => onTopicToggle?.(topic.id)}
-                    aria-pressed={activeTopic === topic.id}
-                  >
-                    <span className={styles.subjectIconWrap}>
-                      <LearningPathTopicIcon
-                        id={topic.id}
-                        className={styles.topicIcon}
-                      />
-                    </span>
-                    <span className={styles.subjectLabel}>{topic.label}</span>
-                  </button>
-                ))}
-              </div>
-            ) : null}
-
-            {showCourseFilters ? (
-              <div className={styles.subjectRow}>
-                {SUBJECTS.map((subject) => (
-                  <button
-                    key={subject.label}
-                    type='button'
-                    className={`${styles.subjectItem} ${
-                      activeSubjects.includes(subject.label)
-                        ? styles.subjectItemActive
-                        : ''
-                    }`}
-                    onClick={() => onSubjectToggle(subject.label)}
-                    aria-pressed={activeSubjects.includes(subject.label)}
-                  >
-                    <span className={styles.subjectIconWrap}>
-                      <img
-                        src={subject.icon}
-                        alt=''
-                        className={styles.subjectIcon}
-                        aria-hidden='true'
-                      />
-                    </span>
-                    <span className={styles.subjectLabel}>{subject.label}</span>
-                  </button>
-                ))}
-              </div>
-            ) : null}
-
-            {showPartnerLogos ? (
-              <div className={styles.logoRow} aria-label='Partner schools'>
-                {PARTNER_LINKS.map((partner) => (
-                  <Link key={partner.label} href={partner.href} legacyBehavior>
-                    <a className={styles.logoCircle} title={partner.label}>
-                      <img
-                        src={partner.icon}
-                        alt={partner.label}
-                        className={
-                          partner.label === 'More schools'
-                            ? styles.logoPlusImage
-                            : styles.logoImage
-                        }
-                      />
-                    </a>
-                  </Link>
-                ))}
-              </div>
-            ) : null}
-          </div>
-        ) : null}
-      </div>
+      ) : null}
     </section>
   )
 }

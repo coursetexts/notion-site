@@ -146,7 +146,8 @@
   margin-top: 64px;
 }
 
-.promoRow .createPathPromo {
+.promoRow .createPathPromo,
+.promoRow .degreesPromo {
   grid-column: auto;
   grid-row: auto;
   min-height: 260px;
