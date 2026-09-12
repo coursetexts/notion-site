@@ -44,7 +44,9 @@ function LearningPathResumePreview({
   if (!blurb) return null
   return (
     <div className={styles.learningPathCardResume}>
-      <p className={styles.learningPathCardResumeDescription}>{blurb}</p>
+      <div className={styles.learningPathCardResumeInner}>
+        <p className={styles.learningPathCardResumeDescription}>{blurb}</p>
+      </div>
     </div>
   )
 }

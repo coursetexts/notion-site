@@ -107,7 +107,10 @@ export function ProfileCommitmentReminder({
     : `${styles.learningPathTag} ${styles.learningPathNotifyTag}`
 
   return (
-    <span className={styles.learningPathReminderWrap} ref={wrapRef}>
+    <span
+      className={`${styles.learningPathReminderWrap} ${styles.learningPathCommitHover}`}
+      ref={wrapRef}
+    >
       <button
         type='button'
         className={tagClass}

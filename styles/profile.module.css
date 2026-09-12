@@ -618,7 +618,7 @@
 
 .feedCardTime {
   font-size: 0.75rem;
-  color: #9ca3af;
+  color: #c5c8ce;
   flex-shrink: 0;
   margin-left: auto;
   white-space: nowrap;
@@ -1701,7 +1701,7 @@
 
 .userLinkDate {
   font-size: 0.75rem;
-  color: #9ca3af;
+  color: #c5c8ce;
   flex-shrink: 0;
   white-space: nowrap;
   margin-left: auto;
@@ -1712,7 +1712,7 @@
   margin-left: auto;
   font-size: 0.75rem;
   line-height: 1.2;
-  color: #9ca3af;
+  color: #c5c8ce;
   white-space: nowrap;
   align-self: flex-start;
   padding-top: 0.1rem;
@@ -2747,7 +2747,7 @@
 .primaryTabActive {
   color: #111;
   font-weight: 400;
-  border-bottom-color: #0089c4;
+  border-bottom-color: #111;
 }
 
 .mainSerifTitle {
@@ -3510,7 +3510,7 @@
   justify-content: space-between;
   gap: 0.75rem;
   margin: 0;
-  padding: 0.75rem 0.5rem;
+  padding: 1.4rem 0.5rem;
   border: none;
   border-bottom: 1px solid #f8f8f8;
   border-radius: 6px;
@@ -3589,25 +3589,47 @@ a.learningPathCard:hover {
 }
 
 .learningPathCardResume {
-  display: none;
+  display: grid;
+  grid-template-rows: 0fr;
   box-sizing: border-box;
   width: 100%;
-  margin-top: 0.35rem;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition:
+    grid-template-rows 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 220ms ease,
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.learningPathCardResumeInner {
+  min-height: 0;
+  overflow: hidden;
 }
 
 .learningPathCard:hover .learningPathCardResume,
 .learningPathCard:focus-within .learningPathCardResume {
-  display: block;
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 @media (hover: none) {
   .learningPathCardResume {
-    display: block;
+    grid-template-rows: 1fr;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .learningPathCardResume {
+    transition: none;
+    transform: none;
   }
 }
 
 .learningPathCardResumeDescription {
-  margin: 0;
+  margin: 0.4rem 0 0;
   padding-left: 0.65rem;
   border-left: 2px solid #e8e6e1;
   font-family: 'Hanken Grotesk', 'Inter', sans-serif;

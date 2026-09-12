@@ -3586,15 +3586,6 @@ export default function ProfilePage() {
                     {!activityLoading &&
                       activitySubTab === 'feed' && (
                         <>
-                          <ProfileUpdatesTab
-                            userId={effectiveUser.id}
-                            authorDisplayName={displayName}
-                            authorAvatarUrl={avatarUrl}
-                            canAdd
-                            embedded
-                            hideEmptyMessage
-                            reloadSignal={updatesReloadSignal}
-                          />
                           {feedItems.length === 0 ? (
                             <p className={styles.placeholder}>
                               Nothing from people you follow yet. Follow others
@@ -3666,19 +3657,23 @@ export default function ProfilePage() {
                         </>
                       )}
 
-                    {!activityLoading &&
-                      activitySubTab === 'you' &&
-                      (myActivityRows.length === 0 ? (
-                        <p className={styles.placeholder}>
-                          No comments or discussions yet. Content you add on
-                          course pages will appear here with a Comment or
-                          Discussion label.
-                        </p>
-                      ) : visibleMyActivityRows.length === 0 ? (
-                        <p className={styles.placeholder}>
-                          No matching activity.
-                        </p>
-                      ) : (
+                    {!activityLoading && activitySubTab === 'you' && (
+                      <>
+                        <ProfileUpdatesTab
+                          userId={effectiveUser.id}
+                          authorDisplayName={displayName}
+                          authorAvatarUrl={avatarUrl}
+                          canAdd
+                          embedded
+                          hideEmptyMessage
+                          reloadSignal={updatesReloadSignal}
+                        />
+                        {myActivityRows.length === 0 ? null : visibleMyActivityRows.length ===
+                          0 ? (
+                          <p className={styles.placeholder}>
+                            No matching activity.
+                          </p>
+                        ) : (
                         <ul className={styles.list}>
                           {visibleMyActivityRows.map((row) => {
                             if (row.kind === 'comment') {
@@ -3817,7 +3812,9 @@ export default function ProfilePage() {
                             )
                           })}
                         </ul>
-                      ))}
+                        )}
+                      </>
+                    )}
 
                   </div>
                 )}
