@@ -23,7 +23,7 @@ function formatLearningPathByline(
     privacy === 'private'
       ? 'Private'
       : privacy === 'collaborative'
-        ? 'Collaborative'
+        ? 'Open to suggestions'
         : privacy === 'public'
           ? 'Public'
           : null

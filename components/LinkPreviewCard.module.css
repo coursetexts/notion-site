@@ -1,0 +1,144 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin-top: 0.55rem;
+  border: 1px solid #e6e2da;
+  border-radius: 10px;
+  background: #faf9f6;
+  text-decoration: none;
+  color: inherit;
+  max-width: 100%;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+.card:hover,
+.card:focus-visible {
+  border-color: #cfd6dd;
+  background: #f5f8fb;
+  outline: none;
+}
+
+.cardLoading {
+  min-height: 72px;
+  background: linear-gradient(90deg, #f3f1ec 0%, #faf9f6 50%, #f3f1ec 100%);
+  background-size: 200% 100%;
+  animation: linkPreviewShimmer 1.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes linkPreviewShimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+.imageWrap {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.91 / 1;
+  background: #ebe8e2;
+  overflow: hidden;
+}
+
+.imageWrap[hidden] {
+  display: none;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.7rem 0.85rem 0.8rem;
+  min-width: 0;
+}
+
+.domain {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #8a8a8a;
+}
+
+.favicon {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  object-fit: contain;
+}
+
+.title {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #25272b;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.description {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  color: #6b6f78;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.inlineUrl {
+  color: #0089c4;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  word-break: break-all;
+}
+
+.inlineUrl:hover,
+.inlineUrl:focus-visible {
+  color: #0077a8;
+}
+
+@media (min-width: 640px) {
+  .card {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .imageWrap {
+    width: 140px;
+    flex-shrink: 0;
+    aspect-ratio: auto;
+    min-height: 100%;
+  }
+
+  .image {
+    min-height: 100%;
+  }
+
+  .copy {
+    flex: 1;
+    justify-content: center;
+  }
+}

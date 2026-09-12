@@ -13,6 +13,14 @@
   gap: 16px 24px;
 }
 
+.headingCopy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  min-width: 0;
+}
+
 .heading {
   margin: 0;
   color: #000000;
@@ -22,6 +30,16 @@
   font-size: 32px;
   line-height: 1.2;
   letter-spacing: 0.0002em;
+}
+
+.subtitle {
+  margin: 0;
+  color: #6b7280;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
 }
 
 .searchWrap {
@@ -115,7 +133,6 @@
   align-items: center;
   gap: 8px;
   flex: none;
-  margin-right: 8px;
 }
 
 .catalogLink {
@@ -176,8 +193,17 @@
   user-select: none;
 }
 
-.filtersRow {
+.filtersStack {
   margin-top: 20px;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.filtersRow {
   width: 100%;
   max-width: 100%;
   display: flex;
@@ -185,10 +211,6 @@
   flex-wrap: wrap;
   gap: 20px;
   row-gap: 12px;
-}
-
-.pathFiltersRow {
-  width: 100%;
 }
 
 .subjectRow {
@@ -341,6 +363,7 @@
   }
 
   .searchWrap,
+  .filtersStack,
   .filtersRow {
     width: 100%;
   }
@@ -357,7 +380,6 @@
     align-items: center;
     width: 100%;
     max-width: 100%;
-    margin-right: 0;
     padding: 2px 0 6px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;

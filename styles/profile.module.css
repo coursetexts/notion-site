@@ -774,10 +774,16 @@
 /* Actions / embeds under a thread align with name, not under avatar */
 .activityFeedItemMain > .activityUpdateReplies,
 .activityFeedItemMain > .updateOriginalEmbed,
+.activityFeedItemMain > .linkPreviewSlot,
 .updatesCardMain > .activityUpdateReplies,
 .updatesCardMain > .updateOriginalEmbed,
-.updatesCardMain > .updatesTagList {
+.updatesCardMain > .updatesTagList,
+.updatesCardMain > .linkPreviewSlot {
   margin-left: var(--feed-avatar-indent, calc(24px + 0.45rem));
+}
+
+.linkPreviewSlot {
+  min-width: 0;
 }
 
 .activityFeedItemMain,

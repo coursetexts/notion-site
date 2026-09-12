@@ -60,6 +60,7 @@ import {
   setOwnedLearningPathVisibility,
   updateLearningPathDataAsInvitee,
   upsertOwnedLearningPath,
+  deleteOwnedLearningPath,
   userStateFromPath,
   writeLocalUserState
 } from '@/lib/learning-path-db'
@@ -168,6 +169,7 @@ import heroStyles from './CourseHero.module.css'
 import styles from './LearningPath.module.css'
 import { LearningPathFinishedModal } from './LearningPathFinishedModal'
 import { LearningPathInviteModal } from './LearningPathInviteModal'
+import { LearningPathDeleteModal } from './LearningPathDeleteModal'
 import { LearningPathLearnedPanel } from './LearningPathLearnedPanel'
 import { LearningPathPublishModal } from './LearningPathPublishModal'
 import { LearningPathRatingModal } from './LearningPathRatingModal'
@@ -1350,6 +1352,11 @@ function CommunityLearningPath({
     Record<string, LearningPathUserResource[]>
   >({})
   const [inviteOpen, setInviteOpen] = React.useState(false)
+  const [deletePathOpen, setDeletePathOpen] = React.useState(false)
+  const [deletePathBusy, setDeletePathBusy] = React.useState(false)
+  const [deletePathError, setDeletePathError] = React.useState<string | null>(
+    null
+  )
   const [pathInvites, setPathInvites] = React.useState<LearningPathInvite[]>(
     []
   )
@@ -1481,6 +1488,9 @@ function CommunityLearningPath({
     setIsPrivateInvitee(false)
     setOwnerOverlayResources({})
     setInviteOpen(false)
+    setDeletePathOpen(false)
+    setDeletePathBusy(false)
+    setDeletePathError(null)
     setPathInvites([])
     setPathPeople(null)
     setInviteBusy(false)
@@ -2472,6 +2482,25 @@ function CommunityLearningPath({
     setInviteOpen(true)
   }
 
+  async function handleDeleteLearningPath() {
+    if (!isOwnPath || deletePathBusy || isCatalogLearningPathSlug(slug)) {
+      return
+    }
+    setDeletePathBusy(true)
+    setDeletePathError(null)
+    const ok = await deleteOwnedLearningPath({
+      pathId: pathRowId,
+      slug
+    })
+    setDeletePathBusy(false)
+    if (!ok) {
+      setDeletePathError('Could not delete this learning path. Try again.')
+      return
+    }
+    setDeletePathOpen(false)
+    void router.replace('/profile?tab=learning')
+  }
+
   async function handleInviteCollaborator(email: string) {
     const id = pathRowId
     if (!id || id.startsWith('path-')) return false
@@ -2892,16 +2921,42 @@ function CommunityLearningPath({
       ? !isPrivateInvitee
       : Boolean(selected) &&
         !(isPrivateInvitee && selected?.kind === 'goal'))
-  const heroInstructors = isOwnPath
-    ? [{ name: 'By You', url: '/profile' }]
-    : pathOwnerId
-    ? [
-        {
+  const heroInstructors = (() => {
+    const owner: { name: string; url?: string } = isOwnPath
+      ? { name: 'By You', url: '/profile' }
+      : pathOwnerId
+      ? {
           name: `By ${creatorName?.trim() || 'Someone'}`,
           url: `/profile/${pathOwnerId}`
         }
-      ]
-    : [{ name: 'By Coursetexts' }]
+      : { name: 'By Coursetexts' }
+
+    const collaborators = (pathPeople ?? path.circle.members).filter(
+      (member) =>
+        member.role === 'collaborator' &&
+        Boolean(member.name?.trim()) &&
+        (!pathOwnerId || member.userId !== pathOwnerId)
+    )
+
+    if (collaborators.length === 0) return [owner]
+
+    return [
+      owner,
+      { name: 'Collaborators:', tone: 'label' as const },
+      ...collaborators.map((member, index) => ({
+        name:
+          index < collaborators.length - 1
+            ? `${member.name.trim()},`
+            : member.name.trim(),
+        url: member.userId
+          ? member.userId === currentUserId
+            ? '/profile'
+            : `/profile/${member.userId}`
+          : undefined,
+        tone: 'accent' as const
+      }))
+    ]
+  })()
 
   const ownAvatarUrl =
     auth?.profile?.avatar_url ||
@@ -3024,6 +3079,18 @@ function CommunityLearningPath({
         onAcceptRequest={(request) => void handleAcceptJoinRequest(request)}
         onDismissRequest={(requestId) => void handleDismissJoinRequest(requestId)}
       />
+      <LearningPathDeleteModal
+        open={deletePathOpen}
+        pathTitle={path.title}
+        busy={deletePathBusy}
+        error={deletePathError}
+        onClose={() => {
+          if (deletePathBusy) return
+          setDeletePathOpen(false)
+          setDeletePathError(null)
+        }}
+        onConfirm={() => void handleDeleteLearningPath()}
+      />
       {isOwnPath && joinRequests.length > 0 ? (
         <div className={styles.joinBanner} role='status'>
           <div className={styles.joinBannerInner}>
@@ -3102,12 +3169,16 @@ function CommunityLearningPath({
               />
               <HeroMoreMenu
                 shareHref={learningPathHref(path.slug)}
-                reportTarget={{
-                  type: 'learning_path',
-                  id: pathRowId || path.slug,
-                  url: learningPathHref(path.slug),
-                  title: path.title
-                }}
+                reportTarget={
+                  isOwnPath
+                    ? undefined
+                    : {
+                        type: 'learning_path',
+                        id: pathRowId || path.slug,
+                        url: learningPathHref(path.slug),
+                        title: path.title
+                      }
+                }
                 pinned={navPinned}
                 pinBusy={navPinBusy}
                 onPinToggle={() => void toggleNavPin()}
@@ -3121,6 +3192,14 @@ function CommunityLearningPath({
                 onInviteCollaborators={
                   canInviteCollaborators
                     ? () => void openInviteCollaborators()
+                    : undefined
+                }
+                onDeletePath={
+                  isOwnPath && !isCatalogLearningPathSlug(slug)
+                    ? () => {
+                        setDeletePathError(null)
+                        setDeletePathOpen(true)
+                      }
                     : undefined
                 }
               />
@@ -3432,28 +3511,9 @@ function CommunityLearningPath({
                       >
                         {inlineWhyEditing ? (
                           <div className={styles.whyEditing}>
-                            <div className={styles.whyLeadRow}>
-                              <strong className={styles.whyLead}>
-                                Why is this on the learning path:
-                              </strong>
-                              <span className={styles.whyEditActions}>
-                                <button
-                                  type='button'
-                                  className={styles.whySaveBtn}
-                                  onClick={saveInlineWhy}
-                                >
-                                  Save
-                                </button>
-                                <button
-                                  type='button'
-                                  className={styles.whyCancelBtn}
-                                  onClick={cancelInlineWhyEdit}
-                                  aria-label='Cancel editing why'
-                                >
-                                  ×
-                                </button>
-                              </span>
-                            </div>
+                            <strong className={styles.whyLead}>
+                              Why is this on the learning path:
+                            </strong>
                             <textarea
                               ref={inlineWhyRef}
                               className={styles.whyEditTextarea}
@@ -3478,6 +3538,23 @@ function CommunityLearningPath({
                               aria-label='Why is this on the learning path'
                               placeholder='Explain why this step belongs on the path…'
                             />
+                            <span className={styles.whyEditActions}>
+                              <button
+                                type='button'
+                                className={styles.whySaveBtn}
+                                onClick={saveInlineWhy}
+                              >
+                                Save
+                              </button>
+                              <button
+                                type='button'
+                                className={styles.whyCancelBtn}
+                                onClick={cancelInlineWhyEdit}
+                                aria-label='Cancel editing why'
+                              >
+                                ×
+                              </button>
+                            </span>
                           </div>
                         ) : (
                           <p className={styles.whyCopy}>
@@ -3629,7 +3706,7 @@ function CommunityLearningPath({
                                     className={`${styles.resourceYou} ${styles.resourceYouSuggestion}`}
                                   >
                                     {resource.suggestedByYou
-                                      ? 'Resource suggestion added by you'
+                                      ? 'Suggestion added by you'
                                       : 'Resource suggestion'}
                                   </span>
                                 ) : resource.addedByYou ? (

@@ -2337,13 +2337,6 @@ a.resourceTitle:focus-visible {
   color: #25272b;
 }
 
-.whyLeadRow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  vertical-align: baseline;
-}
-
 .whyEditBtn {
   display: none;
   align-items: center;
@@ -2384,7 +2377,9 @@ a.resourceTitle:focus-visible {
 .whyEditActions {
   display: inline-flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 0.3rem;
+  align-self: flex-end;
 }
 
 .whySaveBtn {

@@ -1,6 +1,11 @@
 import * as React from 'react'
 import Link from 'next/link'
 
+import {
+  LinkPreviewCard,
+  LinkifiedText
+} from '@/components/LinkPreviewCard'
+import { resolveUpdateLinkUrl } from '@/lib/link-preview'
 import type { ProfileUpdateOriginal } from '@/lib/profile-updates-db'
 import styles from '@/styles/profile.module.css'
 
@@ -36,6 +41,7 @@ export function ProfileUpdateOriginalEmbed({
   original: ProfileUpdateOriginal
 }) {
   const body = original.body.trim() || 'Update'
+  const previewUrl = resolveUpdateLinkUrl(original.url, body)
   return (
     <div className={styles.updateOriginalEmbed}>
       <div className={styles.updateOriginalHead}>
@@ -47,18 +53,10 @@ export function ProfileUpdateOriginalEmbed({
           <a className={styles.updateOriginalAuthor}>{original.displayName}</a>
         </Link>
       </div>
-      {original.url ? (
-        <a
-          href={original.url}
-          target='_blank'
-          rel='noopener noreferrer'
-          className={styles.updateOriginalBody}
-        >
-          {body}
-        </a>
-      ) : (
-        <p className={styles.updateOriginalBody}>{body}</p>
-      )}
+      <p className={styles.updateOriginalBody}>
+        <LinkifiedText text={body} />
+      </p>
+      {previewUrl ? <LinkPreviewCard url={previewUrl} /> : null}
     </div>
   )
 }

@@ -263,18 +263,32 @@ export function ActivityFeedUpdateReplies({
           }
           disabled={likeBusy}
           aria-pressed={likedByMe}
-          aria-label={likedByMe ? 'Unlike update' : 'Like update'}
+          aria-label={
+            likedByMe
+              ? likeCount > 0
+                ? `Unlike update (${likeCount})`
+                : 'Unlike update'
+              : likeCount > 0
+              ? `Like update (${likeCount})`
+              : 'Like update'
+          }
           onClick={() => void toggleLike()}
         >
           <HeartIcon filled={likedByMe} />
-          <span>{likeCount > 0 ? likeCount : 'Like'}</span>
+          {likeCount > 0 ? <span>{likeCount}</span> : null}
         </button>
         <button
           type='button'
           className={styles.updatesActionBtn}
           aria-expanded={open}
           aria-label={
-            open ? 'Hide replies' : 'Show replies and discussion'
+            open
+              ? commentCount > 0
+                ? `Hide replies (${commentCount})`
+                : 'Hide replies'
+              : commentCount > 0
+              ? `Show replies (${commentCount})`
+              : 'Show replies and discussion'
           }
           onClick={() => {
             if (!signedIn) {
@@ -287,11 +301,7 @@ export function ActivityFeedUpdateReplies({
           }}
         >
           <CommentIcon />
-          <span>
-            {commentCount > 0
-              ? `${commentCount} ${commentCount === 1 ? 'reply' : 'replies'}`
-              : 'Reply'}
-          </span>
+          {commentCount > 0 ? <span>{commentCount}</span> : null}
         </button>
         {!isOwnUpdate ? (
           <div className={styles.repostActionWrap}>
@@ -305,13 +315,16 @@ export function ActivityFeedUpdateReplies({
               disabled={repostBusy}
               aria-expanded={repostMenuOpen}
               aria-haspopup='menu'
-              aria-label='Repost or quote update'
+              aria-label={
+                repostBusy
+                  ? 'Reposting'
+                  : reposted
+                  ? 'Already reposted'
+                  : 'Repost or quote update'
+              }
               onClick={openRepostMenu}
             >
               <RepostIcon />
-              <span>
-                {repostBusy ? 'Reposting…' : reposted ? 'Reposted' : 'Repost'}
-              </span>
             </button>
             {repostMenuOpen ? (
               <div className={styles.repostMenu} role='menu'>
@@ -352,7 +365,6 @@ export function ActivityFeedUpdateReplies({
             onClick={openQuoteComposer}
           >
             <QuoteIcon />
-            <span>Quote</span>
           </button>
         )}
       </div>

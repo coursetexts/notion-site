@@ -13,7 +13,7 @@ import styles from './LearningPathPublishModal.module.css'
 function visibilityLabel(
   visibility: Extract<LearningPathVisibility, 'public' | 'collaborative'>
 ) {
-  return visibility === 'collaborative' ? 'collaborative' : 'public'
+  return visibility === 'collaborative' ? 'open to suggestions' : 'public'
 }
 
 function gapDetail(gap: LearningPathPublishTopicGap) {

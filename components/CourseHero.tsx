@@ -12,6 +12,8 @@ import { SaveCourseButton } from './SaveCourseButton'
 export interface CourseHeroInstructor {
   name: string
   url?: string
+  /** `label` = plain “Collaborators:”; `accent` = blue name link. */
+  tone?: 'default' | 'label' | 'accent'
 }
 
 export interface CourseHeroData {
@@ -393,7 +395,7 @@ export function formatHeroPublishedDate(
   })
   const vis =
     options?.visibility === 'collaborative'
-      ? 'Collab'
+      ? 'Open to suggestions'
       : options?.visibility === 'public'
       ? 'Public'
       : options?.visibility === 'private'
@@ -686,18 +688,29 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
         <h1 className={styles.title}>{displayTitle}</h1>
         {instructors.length > 0 ? (
           <div className={styles.instructor}>
-            {instructors.map((inst, i) => (
-              <React.Fragment key={i}>
-                {i > 0 && ' '}
-                {inst.url ? (
-                  <a href={inst.url} className={styles.instructorLink}>
-                    {inst.name}
-                  </a>
-                ) : (
-                  <span className={styles.instructorName}>{inst.name}</span>
-                )}
-              </React.Fragment>
-            ))}
+            {instructors.map((inst, i) => {
+              const tone = inst.tone ?? 'default'
+              const className =
+                tone === 'label'
+                  ? styles.instructorLabel
+                  : tone === 'accent'
+                  ? `${styles.instructorLink} ${styles.instructorLinkAccent}`
+                  : inst.url
+                  ? styles.instructorLink
+                  : styles.instructorName
+              return (
+                <React.Fragment key={`${inst.name}-${i}`}>
+                  {i > 0 && ' '}
+                  {inst.url && tone !== 'label' ? (
+                    <a href={inst.url} className={className}>
+                      {inst.name}
+                    </a>
+                  ) : (
+                    <span className={className}>{inst.name}</span>
+                  )}
+                </React.Fragment>
+              )
+            })}
           </div>
         ) : null}
         {schoolDate || showSaveButton || actions ? (

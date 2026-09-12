@@ -5,9 +5,15 @@ import {
   type ActivityFeedTurn
 } from '@/components/ActivityFeedQuoteBody'
 import { ActivityFeedUpdateReplies } from '@/components/ActivityFeedUpdateReplies'
+import {
+  LinkPreviewCard,
+  LinkifiedText,
+  useFirstUrlFromText
+} from '@/components/LinkPreviewCard'
 import { ProfileUpdateOriginalEmbed } from '@/components/ProfileUpdateOriginalEmbed'
 import { UserLink } from '@/components/UserLink'
 import { useAuthOptional } from '@/contexts/AuthContext'
+import { resolveUpdateLinkUrl } from '@/lib/link-preview'
 import {
   type ProfileUpdate,
   createProfileUpdate,
@@ -77,31 +83,20 @@ function UpdateCard({
 }) {
   const body = update.description.trim()
   const title = update.title.trim()
-  const hasUrl = Boolean(update.url?.trim())
   const dateLabel = formatUpdateDate(update.createdAt)
   const name = authorDisplayName.trim() || 'User'
   const isRepost = Boolean(update.repostOfId && update.original)
   const hasQuoteOrRepostOriginal = Boolean(update.original)
+  const previewUrl = resolveUpdateLinkUrl(update.url, body || title)
 
   // Reposts only show the original as a nested card (no duplicate plain text).
-  // Quotes / normal posts: author's text as plain subject.
+  // Quotes / normal posts: author's text as plain subject with autolinked URLs.
   let subject: React.ReactNode = null
   if (!isRepost) {
-    const subjectText = body || title || (hasQuoteOrRepostOriginal ? null : 'Update')
-    const subjectHref = hasUrl ? update.url : ''
+    const subjectText =
+      body || title || (hasQuoteOrRepostOriginal ? null : 'Update')
     if (subjectText) {
-      subject = subjectHref ? (
-        <a
-          href={subjectHref}
-          target='_blank'
-          rel='noopener noreferrer'
-          className={styles.inlineLink}
-        >
-          {subjectText}
-        </a>
-      ) : (
-        subjectText
-      )
+      subject = <LinkifiedText text={subjectText} />
     }
   }
 
@@ -130,6 +125,11 @@ function UpdateCard({
           time={dateLabel || undefined}
           turns={turns}
         />
+        {previewUrl && !isRepost ? (
+          <div className={styles.linkPreviewSlot}>
+            <LinkPreviewCard url={previewUrl} showPlaceholder />
+          </div>
+        ) : null}
         {update.original ? (
           <ProfileUpdateOriginalEmbed original={update.original} />
         ) : null}
@@ -177,6 +177,7 @@ function UpdateNoteComposer({
   const [busy, setBusy] = React.useState(false)
   const [focused, setFocused] = React.useState(false)
   const bodyRef = React.useRef<HTMLTextAreaElement>(null)
+  const previewUrl = useFirstUrlFromText(body)
 
   function resizeTextarea() {
     const el = bodyRef.current
@@ -213,7 +214,7 @@ function UpdateNoteComposer({
       type: 'Document',
       description,
       tags,
-      url: ''
+      url: previewUrl
     })
     setBusy(false)
     if (!ok) {
@@ -229,7 +230,8 @@ function UpdateNoteComposer({
   }
 
   const canPost = Boolean(body.trim())
-  const expanded = focused || canPost || showTags || tags.length > 0
+  const expanded =
+    focused || canPost || showTags || tags.length > 0 || Boolean(previewUrl)
 
   return (
     <form
@@ -251,7 +253,12 @@ function UpdateNoteComposer({
         onFocus={() => setFocused(true)}
         onBlur={() => {
           window.setTimeout(() => {
-            if (!body.trim() && !showTags && tags.length === 0) {
+            if (
+              !body.trim() &&
+              !showTags &&
+              tags.length === 0 &&
+              !previewUrl
+            ) {
               setFocused(false)
             }
           }, 120)
@@ -266,6 +273,9 @@ function UpdateNoteComposer({
         rows={2}
         aria-label='Write an update'
       />
+      {previewUrl ? (
+        <LinkPreviewCard url={previewUrl} showPlaceholder />
+      ) : null}
       {showTags || tags.length > 0 ? (
         <div className={styles.updatesNoteTags}>
           {tags.length > 0 ? (

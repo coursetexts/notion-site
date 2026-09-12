@@ -10,6 +10,7 @@ import {
   getPolymorphicCommentThread,
   setPolymorphicCommentVote
 } from '@/lib/community-comments-db'
+import { extractFirstHttpUrl } from '@/lib/link-preview'
 import { getSupabaseClient } from '@/lib/supabase'
 
 export type ProfileUpdateType = 'Video' | 'Code' | 'Presentation' | 'Document'
@@ -453,7 +454,7 @@ export async function createProfileUpdateQuote(
       title: body.slice(0, 72),
       description: body,
       type: 'Document',
-      url: '',
+      url: extractFirstHttpUrl(body) ?? '',
       tags: [],
       repost_of_id: null,
       quote_of_id: rootId

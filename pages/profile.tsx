@@ -22,6 +22,10 @@ import {
   activityIconKindForFeedItem
 } from '@/components/ActivityFeedTypeIcon'
 import { ActivityFeedUpdateReplies } from '@/components/ActivityFeedUpdateReplies'
+import {
+  LinkPreviewCard,
+  LinkifiedText
+} from '@/components/LinkPreviewCard'
 import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
 import { ProfileBackArrow } from '@/components/ProfileBackArrow'
@@ -82,6 +86,7 @@ import {
   type ProfileFeedItem,
   getProfileFeed
 } from '@/lib/profile-feed-db'
+import { resolveUpdateLinkUrl } from '@/lib/link-preview'
 import {
   readStoredLearningPaths,
   type StoredLearningPath
@@ -265,11 +270,7 @@ function FeedItemSubject({ item }: { item: ProfileFeedItem }) {
       if (item.repost_of_id && item.original) return null
       const label = item.body.trim() || item.title.trim()
       if (!label) return null
-      const href = item.url.trim()
-      if (href) {
-        return <FeedTargetLink href={href}>{label}</FeedTargetLink>
-      }
-      return <>{label}</>
+      return <LinkifiedText text={label} />
     }
     case 'followed_path_progress':
       return (
@@ -295,6 +296,22 @@ function FeedItemSubject({ item }: { item: ProfileFeedItem }) {
     default:
       return null
   }
+}
+
+function FollowedUpdateLinkPreview({
+  url,
+  body
+}: {
+  url: string
+  body: string
+}) {
+  const previewUrl = resolveUpdateLinkUrl(url, body)
+  if (!previewUrl) return null
+  return (
+    <div className={styles.linkPreviewSlot}>
+      <LinkPreviewCard url={previewUrl} />
+    </div>
+  )
 }
 
 function feedItemVerb(item: ProfileFeedItem): string | null {
@@ -3527,6 +3544,13 @@ export default function ProfilePage() {
                                         followerIds
                                       )}
                                     />
+                                    {item.kind === 'followed_profile_update' &&
+                                    !(item.repost_of_id && item.original) ? (
+                                      <FollowedUpdateLinkPreview
+                                        url={item.url}
+                                        body={item.body || item.title}
+                                      />
+                                    ) : null}
                                     {item.kind === 'followed_profile_update' &&
                                     item.original ? (
                                       <ProfileUpdateOriginalEmbed

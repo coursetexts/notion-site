@@ -1,0 +1,129 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(0, 13, 26, 0.42);
+}
+
+.modal {
+  width: min(420px, 100%);
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+  outline: none;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 1.25rem 1.25rem 0.35rem;
+}
+
+.title {
+  margin: 0;
+  font-family: 'Guyot Press', 'Fraunces', serif;
+  font-size: 1.35rem;
+  font-weight: 401;
+  line-height: 1.25;
+  color: #000;
+}
+
+.close {
+  border: none;
+  background: none;
+  padding: 0.25rem;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus-visible {
+  color: #0089c4;
+}
+
+.close:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.body {
+  margin: 0;
+  padding: 0 1.25rem 1rem;
+  font-family: 'Hanken Grotesk', 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  color: #374151;
+}
+
+.body strong {
+  font-weight: 600;
+  color: #111827;
+}
+
+.error {
+  margin: 0;
+  padding: 0 1.25rem 0.75rem;
+  font-family: 'Hanken Grotesk', 'Inter', sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #b42318;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 0 1.25rem 1.25rem;
+}
+
+.cancel,
+.confirm {
+  font-family: 'Hanken Grotesk', 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.2;
+  padding: 0.55rem 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cancel {
+  border: 1px solid #d1d5db;
+  background: #fff;
+  color: #374151;
+}
+
+.cancel:hover:not(:disabled),
+.cancel:focus-visible:not(:disabled) {
+  border-color: #9ca3af;
+  outline: none;
+}
+
+.confirm {
+  border: 1px solid #b42318;
+  background: #b42318;
+  color: #fff;
+}
+
+.confirm:hover:not(:disabled),
+.confirm:focus-visible:not(:disabled) {
+  background: #912018;
+  border-color: #912018;
+  outline: none;
+}
+
+.cancel:disabled,
+.confirm:disabled {
+  opacity: 0.6;
+  cursor: default;
+}

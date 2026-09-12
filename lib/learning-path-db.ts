@@ -19,6 +19,7 @@ import {
   parseLearningPathKind,
   parseLearningPathVisibility,
   readStoredLearningPaths,
+  removeStoredLearningPath,
   saveStoredLearningPath,
   writeStoredLearningPaths
 } from '@/lib/learning-path-seed'
@@ -822,6 +823,37 @@ export async function upsertOwnedLearningPath(
     return null
   }
   return retry.data?.id ?? null
+}
+
+/** Owner-only hard delete. Catalog / seeded paths cannot be removed. */
+export async function deleteOwnedLearningPath(options: {
+  pathId: string | null | undefined
+  slug: string
+}): Promise<boolean> {
+  const slug = options.slug.trim()
+  if (!slug || isCatalogLearningPathSlug(slug)) return false
+
+  const pathId = (options.pathId ?? '').trim()
+  const localOnly = !pathId || pathId.startsWith('path-')
+  const { supabase, userId } = await currentUserId()
+
+  if (supabase && userId && !localOnly) {
+    const { error } = await supabase
+      .from('learning_paths')
+      .delete()
+      .eq('id', pathId)
+      .eq('owner_id', userId)
+      .eq('is_catalog', false)
+    if (error) {
+      console.error('deleteOwnedLearningPath failed', error)
+      return false
+    }
+  } else if (!localOnly && (!supabase || !userId)) {
+    return false
+  }
+
+  removeStoredLearningPath(slug)
+  return true
 }
 
 export async function setOwnedLearningPathVisibility(

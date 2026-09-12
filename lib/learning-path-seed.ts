@@ -1789,6 +1789,15 @@ export function saveStoredLearningPath(
   ])
 }
 
+export function removeStoredLearningPath(slug: string) {
+  if (typeof window === 'undefined') return
+  const trimmed = slug.trim()
+  if (!trimmed || SEEDED_LEARNING_PATHS_BY_SLUG[trimmed]) return
+  writeStoredLearningPaths(
+    readStoredLearningPaths().filter((row) => row.slug !== trimmed)
+  )
+}
+
 export function resolveLearningPath(
   slug: string,
   stored: StoredLearningPath[] = []

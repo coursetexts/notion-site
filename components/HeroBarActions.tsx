@@ -212,6 +212,45 @@ function InviteIcon() {
   )
 }
 
+function TrashIcon() {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='14'
+      height='14'
+      viewBox='0 0 16 16'
+      fill='none'
+      aria-hidden
+    >
+      <path
+        d='M3.5 4.5h9'
+        stroke='currentColor'
+        strokeWidth='1.3'
+        strokeLinecap='round'
+      />
+      <path
+        d='M6 4.5V3.25C6 2.56 6.56 2 7.25 2h1.5C9.44 2 10 2.56 10 3.25V4.5'
+        stroke='currentColor'
+        strokeWidth='1.3'
+        strokeLinecap='round'
+      />
+      <path
+        d='M4.75 4.5l.5 8.25c.05.66.6 1.15 1.26 1.15h3c.66 0 1.21-.49 1.26-1.15l.5-8.25'
+        stroke='currentColor'
+        strokeWidth='1.3'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+      <path
+        d='M7 7v4.5M9 7v4.5'
+        stroke='currentColor'
+        strokeWidth='1.3'
+        strokeLinecap='round'
+      />
+    </svg>
+  )
+}
+
 const VISIBILITY_ITEMS: Array<{
   value: LearningPathVisibility
   label: string
@@ -219,7 +258,7 @@ const VISIBILITY_ITEMS: Array<{
 }> = [
   { value: 'private', label: 'Private', icon: <LockIcon /> },
   { value: 'public', label: 'Public', icon: <GlobeIcon /> },
-  { value: 'collaborative', label: 'Collab', icon: <UsersIcon /> }
+  { value: 'collaborative', label: 'Open to suggestions', icon: <UsersIcon /> }
 ]
 
 function MenuItemLabel({
@@ -336,9 +375,10 @@ export function HeroMoreMenu({
   visibility,
   visibilityBusy,
   onVisibilityChange,
-  onInviteCollaborators
+  onInviteCollaborators,
+  onDeletePath
 }: {
-  reportTarget: ContentReportTarget
+  reportTarget?: ContentReportTarget
   shareHref?: string
   pinned?: boolean
   pinBusy?: boolean
@@ -347,6 +387,7 @@ export function HeroMoreMenu({
   visibilityBusy?: boolean
   onVisibilityChange?: (next: LearningPathVisibility) => void
   onInviteCollaborators?: () => void
+  onDeletePath?: () => void
 }) {
   const [open, setOpen] = React.useState(false)
   const [menuVisible, setMenuVisible] = React.useState(false)
@@ -448,26 +489,28 @@ export function HeroMoreMenu({
                 </MenuItemLabel>
               </button>
             ) : null}
-            <ReportButton
-              target={reportTarget}
-              variant='menuItem'
-              className={heroStyles.moreItem}
-              iconClassName={heroStyles.moreItemIcon}
-              style={nextItemDelay()}
-              onOpen={() => setOpen(false)}
-            />
-            {onInviteCollaborators ? (
+            {reportTarget ? (
+              <ReportButton
+                target={reportTarget}
+                variant='menuItem'
+                className={heroStyles.moreItem}
+                iconClassName={heroStyles.moreItemIcon}
+                style={nextItemDelay()}
+                onOpen={() => setOpen(false)}
+              />
+            ) : null}
+            {onDeletePath ? (
               <button
                 type='button'
                 role='menuitem'
                 className={heroStyles.moreItem}
                 style={nextItemDelay()}
                 onClick={() => {
-                  onInviteCollaborators()
+                  onDeletePath()
                   setOpen(false)
                 }}
               >
-                <MenuItemLabel icon={<InviteIcon />}>Invite</MenuItemLabel>
+                <MenuItemLabel icon={<TrashIcon />}>Delete</MenuItemLabel>
               </button>
             ) : null}
             {showVisibility ? (
@@ -504,6 +547,22 @@ export function HeroMoreMenu({
                   )
                 })}
               </>
+            ) : null}
+            {onInviteCollaborators ? (
+              <button
+                type='button'
+                role='menuitem'
+                className={heroStyles.moreItem}
+                style={nextItemDelay()}
+                onClick={() => {
+                  onInviteCollaborators()
+                  setOpen(false)
+                }}
+              >
+                <MenuItemLabel icon={<InviteIcon />}>
+                  Invite editors
+                </MenuItemLabel>
+              </button>
             ) : null}
           </div>
         </div>
