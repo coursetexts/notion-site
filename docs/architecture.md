@@ -65,7 +65,7 @@ Course cards come from the Notion sitemap in `getStaticProps`. Subject chips and
 
 ## Paths home (`/paths`)
 
-The previous Paths-oriented landing (hero with learning-path topic chips, “What is a learning path?”, community catalog grid, social learning CTA) lives at `/paths` (`pages/paths/index.tsx`). Header brand label there is **Paths by Coursetexts**.
+The previous Paths-oriented landing (hero with learning-path topic chips, “What is a learning path?”, community catalog grid, social learning CTA) lives at `/paths` (`pages/paths/index.tsx`). Header brand label there is **Paths by Coursetexts**. The DotGrid shows the university-affiliation disclaimer with extra space below it before the hero copy.
 
 ## Site header (`HomeHeader`)
 
