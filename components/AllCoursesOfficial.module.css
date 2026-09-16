@@ -147,6 +147,14 @@
   border-radius: 50%;
 }
 
+.schoolLabelFull {
+  display: inline;
+}
+
+.schoolLabelShort {
+  display: none;
+}
+
 .courseGridSpacious {
   margin-top: 0;
   column-gap: 40px;
@@ -170,6 +178,14 @@
   .schoolRow {
     justify-content: flex-start;
     gap: 10px 16px;
+  }
+
+  .schoolLabelFull {
+    display: none;
+  }
+
+  .schoolLabelShort {
+    display: inline;
   }
 
   .courseGridSpacious {

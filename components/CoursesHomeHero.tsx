@@ -1,4 +1,5 @@
 import * as React from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import { HomeDotGrid } from '@/components/HomeDotGrid'
@@ -11,6 +12,30 @@ const SUBJECTS = [
   { label: 'Math', icon: '/images/home/math.png' },
   { label: 'Sociology', icon: '/images/home/sociology.png' },
   { label: 'English', icon: '/images/home/english.png' }
+] as const
+
+const SCHOOL_STACK = [
+  {
+    label: 'Stanford',
+    icon: '/images/home/stanford.png',
+    href: '/all-courses?q=Stanford'
+  },
+  {
+    label: 'Cambridge',
+    icon: '/images/home/waterloo.png',
+    href: '/all-courses?q=Cambridge'
+  },
+  {
+    label: 'Harvard',
+    icon: '/images/home/harvard-red.png',
+    href: '/all-courses?q=Harvard'
+  },
+  {
+    label: 'More schools',
+    icon: '/images/home/plus-10.png',
+    href: '/all-courses',
+    isMore: true
+  }
 ] as const
 
 const LUCKY_QUERIES = [
@@ -179,6 +204,24 @@ export function CoursesHomeHero({ courses = [] }: CoursesHomeHeroProps) {
                 <span>{subject.label}</span>
               </button>
             ))}
+
+            <div className={styles.schoolStack} aria-label='Top schools'>
+              {SCHOOL_STACK.map((school) => (
+                <Link key={school.label} href={school.href} legacyBehavior>
+                  <a className={styles.schoolCircle} title={school.label}>
+                    <img
+                      src={school.icon}
+                      alt={school.label}
+                      className={
+                        'isMore' in school && school.isMore
+                          ? styles.schoolPlusImage
+                          : styles.schoolImage
+                      }
+                    />
+                  </a>
+                </Link>
+              ))}
+            </div>
           </div>
 
           <button

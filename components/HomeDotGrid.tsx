@@ -55,6 +55,13 @@ export function HomeDotGrid({
     >
       <div className={styles.content}>
         <div className={styles.heroImageWrap}>
+          <div className={styles.dotField} aria-hidden />
+          <img
+            src='/images/home/hero-class-preview.png'
+            alt=''
+            className={styles.classPreview}
+            aria-hidden
+          />
           <img
             src='/images/home/dot-grid-hero.png'
             alt=''

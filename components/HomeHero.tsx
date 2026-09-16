@@ -166,12 +166,12 @@ export function HomeHero({
     <section className={styles.heroWrapper}>
       <div className={styles.heroContent}>
         <h1 className={styles.title}>
-        Learn independently, <span className={styles.titleFree}>not</span> alone
+        Learn independently, <br></br><span className={styles.titleFree}>not</span> alone
         </h1>
 
         <p className={styles.description}>
         {/* learning paths with the concepts, resources, and structure you need to finish what you set out to learn. */}
-          Learning paths for self-learners — concepts, resources, and structure <br />to help you actually finish what you set out to learn.
+          Paths for self-learners — concepts, resources, and structure <br />to help you actually finish what you set out to learn.
           {/* High-quality materials, structure and community to help you <br />actually finish what you set to learn. */}
           {/* or set out to do ?*/}
         </p>

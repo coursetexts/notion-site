@@ -15,9 +15,9 @@
 .headingRow {
   position: relative;
   display: flex;
-  align-items: flex-start;
-  justify-content: left;
-  text-align: left;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
   min-height: 40px;
   margin: 0 0 20px;
 }
@@ -30,22 +30,19 @@
 
 .heading {
   margin: 0;
-  padding: 0 110px;
+  padding: 0;
   color: #000;
-  text-align: center;
+  text-align: left;
   font-family: 'Guyot Press', serif;
   font-weight: 401;
   font-size: 32px;
   line-height: 1.28;
   letter-spacing: 0.0002em;
-  text-align: left;
 }
 
 .viewAllBtn {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
+  position: static;
+  transform: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -139,10 +136,36 @@
   border-radius: 50%;
 }
 
+.schoolLabelFull {
+  display: inline;
+}
+
+.schoolLabelShort {
+  display: none;
+}
+
 .courseGridSpacious {
   margin-top: 0;
   column-gap: 40px;
   row-gap: 56px;
+}
+
+.viewAllRow {
+  display: flex;
+  justify-content: center;
+  grid-template-columns: none;
+  margin-top: 56px;
+}
+
+.viewAllBar {
+  grid-column: auto;
+  width: min(320px, 100%);
+  margin-left: 0;
+}
+
+.viewAllBarLink {
+  justify-content: center;
+  gap: 12px;
 }
 
 .disclaimer {
@@ -159,14 +182,53 @@
     font-size: 28px;
   }
 
+  .openCoursesContainer {
+    width: 100%;
+  }
+
   .schoolBox {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    grid-template-columns: none;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .schoolBox::-webkit-scrollbar {
+    display: none;
+  }
+
+  .schoolChip {
+    flex-shrink: 0;
+    font-size: 12px;
+    gap: 6px;
+  }
+
+  .schoolLabelFull {
+    display: none;
+  }
+
+  .schoolLabelShort {
+    display: inline;
+    white-space: nowrap;
   }
 }
 
 @media (max-width: 720px) {
   .content {
-    padding: 88px 0 72px;
+    width: 100%;
+    max-width: none;
+    padding: 72px 12px 64px;
+    box-sizing: border-box;
+  }
+
+  .openCoursesContainer {
+    width: 100%;
+    margin: 0;
   }
 
   .headingRow {
@@ -179,7 +241,7 @@
   .heading {
     padding: 0;
     text-align: left;
-    font-size: 26px;
+    font-size: 24px;
   }
 
   .viewAllBtn {
@@ -188,13 +250,28 @@
   }
 
   .schoolBox {
-    grid-template-columns: 1fr;
-    padding: 16px 0;
-    margin-bottom: 40px;
+    padding: 14px 0;
+    margin-bottom: 36px;
+    column-gap: 0;
+    row-gap: 0;
+  }
+
+  .schoolLabelShort {
+    font-size: 12px;
   }
 
   .courseGridSpacious {
     column-gap: 20px;
     row-gap: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 64px 8px 56px;
+  }
+
+  .schoolBox {
+    justify-content: space-around;
   }
 }

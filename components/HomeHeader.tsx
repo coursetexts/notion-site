@@ -28,10 +28,7 @@ import {
   pathsHomeHref,
   pathsProfileHref
 } from '@/lib/paths-routes'
-import {
-  OWN_PROFILE_TAB_LINKS,
-  ownProfileTabHref
-} from '@/lib/profile-tabs'
+import { ownProfileTabHref } from '@/lib/profile-tabs'
 
 type NavMenuChild = {
   label: string
@@ -792,22 +789,6 @@ export function HomeHeader({
                         {accountLabel}
                       </a>
                     </Link>
-                    <div className={styles.menuProfileTabs}>
-                      {OWN_PROFILE_TAB_LINKS.map((tab) => (
-                        <Link
-                          key={tab.slug}
-                          href={ownProfileTabHref(tab.slug)}
-                          legacyBehavior
-                        >
-                          <a
-                            className={styles.menuProfileTabLink}
-                            onClick={closeMenu}
-                          >
-                            {tab.label}
-                          </a>
-                        </Link>
-                      ))}
-                    </div>
                   </div>
                 ) : (
                   <HeaderAccountAction

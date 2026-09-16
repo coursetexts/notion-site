@@ -3,7 +3,7 @@
     var(--home-main-max, 1324px),
     calc(100vw - (var(--home-side, 58px) * 2))
   );
-  margin: 72px auto 0;
+  margin: 5px auto 0;
   display: flex;
   justify-content: center;
 }
@@ -179,11 +179,63 @@
   object-fit: contain;
 }
 
+.schoolStack {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.schoolCircle {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.04);
+  flex: none;
+  text-decoration: none;
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.schoolCircle + .schoolCircle {
+  margin-left: -6px;
+}
+
+.schoolCircle:hover,
+.schoolCircle:focus-visible {
+  opacity: 0.92;
+  transform: translateY(-1px);
+  z-index: 1;
+}
+
+.schoolCircle:focus-visible {
+  outline: 2px solid #0089c4;
+  outline-offset: 2px;
+}
+
+.schoolImage {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  display: block;
+}
+
+.schoolPlusImage {
+  width: 14px;
+  height: 8px;
+  object-fit: contain;
+  display: block;
+}
+
 .luckyBtn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin: 36px 0 0;
+  margin: 150px 0 0;
   padding: 0;
   border: none;
   background: transparent;
@@ -192,6 +244,8 @@
   font-size: 13px;
   line-height: 18px;
   color: #37352f;
+  text-decoration: underline;
+  opacity: 0.5;
 }
 
 .luckyBtn:hover,
@@ -216,7 +270,7 @@
 
 @media (max-width: 640px) {
   .heroWrapper {
-    margin-top: 40px;
+    margin-top: 20px;
   }
 
   .title {

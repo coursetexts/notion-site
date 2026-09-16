@@ -319,7 +319,8 @@ export default function OfficialAllCoursesPage({
                       className={styles.schoolIcon}
                       aria-hidden
                     />
-                    <span>{school.label}</span>
+                    <span className={styles.schoolLabelFull}>{school.label}</span>
+                    <span className={styles.schoolLabelShort}>{school.id}</span>
                   </button>
                 ))}
               </div>

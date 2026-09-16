@@ -98,7 +98,8 @@ export function HomeOpenCoursesSection({
                       className={styles.schoolIcon}
                     />
                   </span>
-                  <span>{school.label}</span>
+                  <span className={styles.schoolLabelFull}>{school.label}</span>
+                  <span className={styles.schoolLabelShort}>{school.id}</span>
                 </button>
               )
             })}
@@ -115,13 +116,11 @@ export function HomeOpenCoursesSection({
           }
         />
 
-        <div className={courseStyles.viewAllRow}>
-          <div
-            className={`${courseStyles.viewAllBar} ${courseStyles.viewAllBarEnd}`}
-          >
+        <div className={`${courseStyles.viewAllRow} ${styles.viewAllRow}`}>
+          <div className={`${courseStyles.viewAllBar} ${styles.viewAllBar}`}>
             <Link href='/all-courses' legacyBehavior>
               <a
-                className={courseStyles.viewAllBarLink}
+                className={`${courseStyles.viewAllBarLink} ${styles.viewAllBarLink}`}
                 aria-label='View all courses'
               >
                 <span className={courseStyles.viewAllText}>View All</span>

@@ -56,9 +56,9 @@ Signed-out users still see catalog content. Writes (notes, path edits, votes) fa
 Custom landing for the **courses** product (not the Paths home). Section order:
 
 1. Header — brand label **Coursetexts**
-2. Dot-grid of featured Notion courses (`HomeDotGrid`, disclaimer hidden; compact top)
-3. Hero (`CoursesHomeHero`) — “Coursetexts is an open library of advanced course readings.”, search, subject chips (Science, Math, Sociology, English), I’m Feeling Lucky, university-affiliation disclaimer
-4. **Try open courses from top schools.** (`HomeOpenCoursesSection`) — left-aligned title + View All; school filters in a full-width band with **top/bottom dotted borders only** (Stanford / Harvard / Yale / Columbia / Princeton); Notion course card grid → `/all-courses`
+2. Dot-grid of featured Notion courses (`HomeDotGrid`, disclaimer hidden; compact top). Furniture sits over a raised class-preview image; the dotted field stops at the furniture shadow so the preview is not clipped.
+3. Hero (`CoursesHomeHero`) — “Coursetexts is an open library of advanced course readings.”, search, subject chips (Science, Math, Sociology, English) with a stacked school-logo row beside them (links into `/all-courses`), I’m Feeling Lucky, university-affiliation disclaimer
+4. **Try open courses from top schools.** (`HomeOpenCoursesSection`) — left-aligned title + View All; school filters in a full-width band with **top/bottom dotted borders only** (Stanford / Harvard / Yale / Columbia / Princeton); Notion course card grid → `/all-courses`. On narrow viewports, school chips use short names (e.g. **Stanford**, not **Stanford University**) and sit on one row with tighter side padding; the bottom View All is centered.
 5. Donate / blog / footer
 
 Course cards come from the Notion sitemap in `getStaticProps`. Subject chips and search navigate to `/all-courses` with `q` / subject filters.
@@ -76,11 +76,11 @@ Shared chrome. Brand and nav switch on `isPathsProductPathname()`:
 | Coursetexts (`/`, `/all-courses`, `/course/…`) | Coursetexts | `/` |
 | Paths (`/paths/*`) | Paths by Coursetexts | `/paths` |
 
-On Paths, Explore / Create / Community destinations use `lib/paths-routes.ts` (`/paths/all-courses`, `/paths/learning-path/new`, `/paths/community`, `/paths/profile`, etc.). About items stay on root manifesto / professors / support / blog.
+On Paths, Explore / Create / Community destinations use `lib/paths-routes.ts` (`/paths/all-courses`, `/paths/learning-path/new`, `/paths/community`, `/paths/profile`, etc.). About items stay on root manifesto / professors / support / blog. The mobile menu shows a single Your Profile link when signed in (no nested profile-tab list).
 
 ## Official All Courses (`/all-courses`)
 
-Notion university courses only (`pages/all-courses.tsx` + `AllCoursesOfficial`). Left-aligned hero: title, search, subject chips, school filters, then the course grid. No Discover / Goal-based / Research catalog filters — those live on the Paths catalog.
+Notion university courses only (`pages/all-courses.tsx` + `AllCoursesOfficial`). Left-aligned hero: title, search, subject chips, school filters, then the course grid. School filter labels drop **University** on mobile (same short names as the home open-courses band). No Discover / Goal-based / Research catalog filters — those live on the Paths catalog.
 
 ## Paths catalog (`/paths/all-courses`)
 
