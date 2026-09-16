@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { useRouter } from 'next/router'
 
+import { pathsNewLearningPathHref } from '@/lib/paths-routes'
+
 import styles from './CreateLearningPathModal.module.css'
 
 export function CreateLearningPathModal({
@@ -31,10 +33,7 @@ export function CreateLearningPathModal({
     const goal = draft.trim()
     if (!goal) return
     onClose()
-    void router.push({
-      pathname: '/learning-path/new',
-      query: { goal }
-    })
+    void router.push(pathsNewLearningPathHref({ goal }))
   }
 
   if (!open) return null

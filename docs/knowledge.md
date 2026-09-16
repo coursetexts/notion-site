@@ -8,9 +8,9 @@ Topics you pick up by finishing learning paths, plus a Coursetexts-wide graph of
 
 The page reads a frozen snapshot (`data/knowledge-graph.json`). It does **not** call `GET /api/knowledge-graph` (that route returns **410 Gone**) and does not harvest on load. To rebuild the snapshot on purpose: `npx tsx scripts/snapshot-knowledge-graph.ts`.
 
-On `/profile` and `/profile/{userId}`, the primary tabs are **Learning → Knowledge → Notes → Resources → Feed → Notifications** (Notes and Notifications are owner-only on `/profile`). A subtle divider separates Learning/Knowledge/Notes/Resources from Feed/Notifications. Search fields on those tabs share one width. Hover a Learning card on **your** profile for resume (description + **Continue, Next: {topic}** when available); on someone else’s profile, hover shows **description only**. Public profiles also expose a **Committed** filter (read-only; needs migration `052`). Feed pills are **Following** · **You**. **You** hosts the Updates composer and your posts (plain text with link preview cards when a URL is present, **Repost** / **Quote**, nested original cards); Following is followed social activity. Comments/discussions lead with a target card then a spine to the actor. Notifications show an unread count badge left of the tab label and a faint blue background on new cards; they cover follows, likes, reposts, quotes, replies, path invites, and resource suggestion review/acceptance.
+On `/profile` and `/profile/{userId}`, the primary tabs are **Paths → Concepts → Notes → Resources → Feed → Notifications** (Notes and Notifications are owner-only on `/profile`). A subtle divider separates Paths/Concepts/Notes/Resources from Feed/Notifications. Search fields on those tabs share one width. Hover a Paths card on **your** profile for resume (description + **Continue, Next: {topic}** when available); on someone else’s profile, hover shows **description only**. Public profiles also expose a **Committed** filter (read-only; needs migration `052`). Feed pills are **Following** · **You**. **You** hosts the Updates composer and your posts (plain text with link preview cards when a URL is present, **Repost** / **Quote**, nested original cards); Following is followed social activity. Comments/discussions lead with a target card then a spine to the actor. Notifications show an unread count badge left of the tab label and a faint blue background on new cards; they cover follows, likes, reposts, quotes, replies, path invites, and resource suggestion review/acceptance.
 
-The Knowledge tab is a **list** of unique topics for that user (`user_knowledge_topics`), A–Z, with search. Topics are filled by completing learning paths (no manual add / export on the profile). The profile graph view is hidden.
+The Concepts tab is a **list** of unique topics for that user (`user_knowledge_topics`), A–Z, with search. Topics are filled by completing learning paths (no manual add / export on the profile). The profile graph view is hidden.
 
 On a learning path (`/learning-path/{slug}`), finishing the last remaining topic:
 
@@ -31,7 +31,7 @@ Finishing a path (or loading an already-finished path while signed in) upserts l
 
 If `035` is not applied yet, the client still stores topics in `localStorage` (`coursetexts.user-knowledge-topics:{userId}`).
 
-Un-exploring a topic does **not** delete it from the Knowledge tab. You still “have” that concept; it just is not explored on that path anymore.
+Un-exploring a topic does **not** delete it from the Concepts tab. You still “have” that concept; it just is not explored on that path anymore.
 
 ## Shared catalog (collective graph)
 
@@ -78,4 +78,4 @@ Vercel will send `Authorization: Bearer $CRON_SECRET`. The job is incremental (~
 
 The next LLM step is clustering similar labels across paths (`KNOWLEDGE_GRAPH_LLM_CLUSTER_SCHEMA`). Do not invent new topics. Until that is wired, `/knowledge-graph` uses exact `normalized_label` matches.
 
-Until then, catalog ingest still writes structural edges and path occurrences. The Knowledge tab no longer shows a graph; `ProfileKnowledgeGraph` stays in the repo if we turn that view back on.
+Until then, catalog ingest still writes structural edges and path occurrences. The Concepts tab no longer shows a graph; `ProfileKnowledgeGraph` stays in the repo if we turn that view back on.

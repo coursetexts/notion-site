@@ -4,7 +4,7 @@ import type { GetServerSideProps } from 'next'
 
 import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
-import { LearningPathBuilder } from '@/components/LearningPathBuilder'
+import { LearningPath } from '@/components/LearningPath'
 
 type NewLearningPathPageProps = {
   initialGoal: string
@@ -51,7 +51,7 @@ export default function NewLearningPathPage({
           {
             '--home-side': 'clamp(20px, 4.03vw, 58px)',
             '--home-main-max': '1324px',
-            '--home-content-max': '720px',
+            '--home-content-max': '960px',
             '--home-footer-side': 'max(28px, 15.28vw)',
             minHeight: '100vh',
             background: 'var(--footer, #F8F7F4)',
@@ -61,7 +61,8 @@ export default function NewLearningPathPage({
         }
       >
         <HomeHeader />
-        <LearningPathBuilder
+        <LearningPath
+          creationMode
           initialGoal={initialGoal}
           initialKind={initialKind}
         />

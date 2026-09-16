@@ -14,6 +14,13 @@ import {
   type LearningPathData,
   SEEDED_LEARNING_PATHS
 } from '@/lib/learning-path-seed'
+import {
+  pathsCatalogHref,
+  pathsDegreesHref,
+  pathsFieldAtlasHref,
+  pathsLearningPathHref,
+  pathsLearningPathsIndexHref
+} from '@/lib/paths-routes'
 
 import styles from './CommunityLearning.module.css'
 
@@ -42,7 +49,7 @@ export function CommunityLearning() {
             <span className={styles.barLabel}>Trending learning paths</span>
             <span className={styles.barCount}>({paths.length})</span>
           </span>
-          <Link href='/learning-paths' className={styles.barLink}>
+          <Link href={pathsLearningPathsIndexHref()} className={styles.barLink}>
             All learning paths
           </Link>
         </div>
@@ -54,7 +61,7 @@ export function CommunityLearning() {
                 <p className={styles.kicker}>Community path</p>
                 <h2 className={styles.title}>
                   <Link
-                    href={`/learning-path/${path.slug}`}
+                    href={pathsLearningPathHref(path.slug)}
                     className={styles.titleLink}
                   >
                     {path.title}
@@ -78,7 +85,7 @@ export function CommunityLearning() {
             <span className={styles.barLabel}>Trending questions</span>
             <span className={styles.barCount}>({frontier.length})</span>
           </span>
-          <Link href='/field-atlas' className={styles.barLink}>
+          <Link href={pathsFieldAtlasHref()} className={styles.barLink}>
             Field Atlas
           </Link>
         </div>
@@ -97,7 +104,7 @@ export function CommunityLearning() {
                 </p>
                 <h2 className={styles.title}>
                   <Link
-                    href={`/field-atlas?q=${encodeURIComponent(
+                    href={`${pathsFieldAtlasHref()}?q=${encodeURIComponent(
                       question.id
                     )}`}
                     className={styles.titleLink}
@@ -128,7 +135,7 @@ export function CommunityLearning() {
               <span className={styles.barLabel}>Popular degrees</span>
               <span className={styles.barCount}>({POPULAR_DEGREES.length})</span>
             </span>
-            <Link href='/degrees' className={styles.barLink}>
+            <Link href={pathsDegreesHref()} className={styles.barLink}>
               All degrees
             </Link>
           </div>
@@ -142,7 +149,7 @@ export function CommunityLearning() {
                 </p>
                 <h2 className={styles.title}>
                   <Link
-                    href={`/degrees?q=${encodeURIComponent(degree.name)}`}
+                    href={`${pathsDegreesHref()}?q=${encodeURIComponent(degree.name)}`}
                     className={styles.titleLink}
                   >
                     {degree.name}
@@ -165,7 +172,7 @@ export function CommunityLearning() {
               <span className={styles.barLabel}>Popular courses</span>
               <span className={styles.barCount}>({POPULAR_COURSES.length})</span>
             </span>
-            <Link href='/all-courses' className={styles.barLink}>
+            <Link href={pathsCatalogHref()} className={styles.barLink}>
               All courses
             </Link>
           </div>
@@ -179,7 +186,7 @@ export function CommunityLearning() {
                 </p>
                 <h2 className={styles.title}>
                   <Link
-                    href={`/learning-path/${course.slug}`}
+                    href={pathsLearningPathHref(course.slug)}
                     className={styles.titleLink}
                   >
                     {course.title}

@@ -77,6 +77,10 @@
   flex-direction: column;
 }
 
+.subjectGroupTight {
+  margin-top: 12px;
+}
+
 .dashedRule {
   width: 100%;
   height: 0;
@@ -200,6 +204,10 @@
 .courseCard {
   width: 100%;
   min-height: 135px;
+}
+
+.courseCardNoDescription {
+  min-height: 0;
 }
 
 .courseMetaRow {
@@ -383,6 +391,10 @@
   width: 100%;
 }
 
+.viewAllRow .viewAllBarEnd {
+  grid-column: 2;
+}
+
 .viewAllBar:hover,
 .viewAllBar:focus-within {
   border-top-color: #1f1f1f;
@@ -503,7 +515,9 @@
     row-gap: 20px;
   }
 
-  .viewAllRow .viewAllBar {
+  .viewAllRow .viewAllBar,
+  .viewAllRow .viewAllBarEnd {
+    grid-column: auto;
     width: 100%;
   }
 

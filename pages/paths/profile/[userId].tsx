@@ -84,6 +84,10 @@ import {
   getLinksByUserId,
   getMyLinks
 } from '@/lib/user-links'
+import {
+  pathsProfileHref,
+  pathsPublicProfileHref
+} from '@/lib/paths-routes'
 import styles from '@/styles/profile.module.css'
 
 import {
@@ -641,7 +645,7 @@ export default function PublicProfilePage() {
     if (!userId) return
     setView('profile')
     if (currentUserId && userId === currentUserId) {
-      router.replace('/profile')
+      router.replace(pathsProfileHref())
       return
     }
     loadProfile(userId)
@@ -880,7 +884,7 @@ export default function PublicProfilePage() {
                         return (
                           <li key={u.user_id} className={styles.userListItem}>
                             <a
-                              href={`/profile/${u.user_id}`}
+                              href={pathsPublicProfileHref(u.user_id)}
                               className={styles.userListLink}
                             >
                               {u.avatar_url ? (
@@ -946,7 +950,7 @@ export default function PublicProfilePage() {
                       return (
                         <li key={u.user_id} className={styles.userListItem}>
                           <a
-                            href={`/profile/${u.user_id}`}
+                            href={pathsPublicProfileHref(u.user_id)}
                             className={styles.userListLink}
                           >
                             {u.avatar_url ? (
@@ -1013,7 +1017,7 @@ export default function PublicProfilePage() {
                     }
                     onClick={() => setMainTab('learning-path')}
                   >
-                    Learning
+                    Paths
                   </button>
                   <button
                     type='button'
@@ -1026,7 +1030,7 @@ export default function PublicProfilePage() {
                     }
                     onClick={() => setMainTab('knowledge')}
                   >
-                    Knowledge
+                    Concepts
                   </button>
                   <button
                     type='button'
@@ -1373,7 +1377,7 @@ export default function PublicProfilePage() {
                 {mainTab === 'learning-path' && (
                   <div className={styles.tabPanel}>
                     <h2 className={styles.mainSerifTitle}>
-                      Learning Paths & Courses
+                      Paths
                     </h2>
                     <div
                       className={`${styles.linkFilterRow} ${styles.pathsCoursesFilter}`}

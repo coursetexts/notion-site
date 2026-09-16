@@ -44,12 +44,12 @@ export function getCourseLearningPathSlug(courseName: string): string {
     .replace(/^-+|-+$/g, '')
 }
 
-/** Path: /learning-path/{slug} */
+/** Path: /paths/learning-path/{slug} */
 export function getCourseLearningPathHref(courseName: string): string {
   const slug = getCourseLearningPathSlug(courseName)
   return slug
-    ? `/learning-path/${slug}`
-    : '/learning-path/fluid-mechanics'
+    ? `/paths/learning-path/${slug}`
+    : '/paths/learning-path/fluid-mechanics'
 }
 
 export type UndergraduateDegree = {

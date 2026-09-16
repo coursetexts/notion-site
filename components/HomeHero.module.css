@@ -240,80 +240,6 @@
   background: #f3fbff;
 }
 
-.logoRow {
-  margin: 0;
-  width: auto;
-  height: 24px;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0;
-  margin-left: auto;
-  transform: translateX(8px);
-  flex: none;
-}
-
-.nonProfitNote {
-  margin: 8px 0 0;
-  width: var(--hero-search-width, 534px);
-  max-width: 100%;
-  font-family: 'Hanken Grotesk', sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 12px;
-  line-height: 16px;
-  letter-spacing: 0;
-  text-align: right;
-  color: #9ca3af;
-  transform: translateX(8px);
-}
-
-.logoCircle {
-  width: 24px;
-  height: 24px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5px;
-  gap: 6px;
-  isolation: isolate;
-  border-radius: 999px;
-  background: var(--offwhite, #fdfdfd);
-  box-shadow:
-    0px 6px 25px 0px #0000000a,
-    0px 12px 50px 0px #00000014;
-  flex: none;
-  cursor: pointer;
-  transition:
-    opacity 200ms ease,
-    transform 200ms ease;
-}
-
-.logoCircle:hover,
-.logoCircle:focus-visible {
-  opacity: 0.9;
-  transform: translateY(-1px);
-}
-
-.logoCircle + .logoCircle {
-  margin-left: -5px;
-}
-
-.logoImage {
-  width: 16px;
-  height: 16px;
-  object-fit: contain;
-  display: block;
-}
-
-.logoPlusImage {
-  width: 13px;
-  height: 7px;
-  object-fit: contain;
-  display: block;
-}
-
 @media (max-width: 900px) {
   .title {
     font-size: 52px;
@@ -342,17 +268,12 @@
   }
 
   .searchWrap,
-  .frameBelow,
-  .nonProfitNote {
+  .frameBelow {
     width: 100%;
   }
 
   .frameBelow {
     gap: 12px;
-  }
-
-  .logoRow {
-    margin-left: auto;
   }
 }
 
@@ -401,16 +322,5 @@
   .chip {
     min-height: 36px;
     padding: 6px 12px;
-  }
-
-  .logoRow {
-    margin-left: 0;
-    transform: none;
-    justify-content: center;
-  }
-
-  .nonProfitNote {
-    text-align: center;
-    transform: none;
   }
 }

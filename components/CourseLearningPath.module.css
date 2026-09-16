@@ -867,11 +867,15 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .childrenSequence .childTitle {
   white-space: normal;
+}
+
+.childrenSequence .navIndex {
+  color: inherit;
 }
 
 .overviewPathSection {
@@ -887,34 +891,39 @@
 }
 
 .childBtn {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  align-items: baseline;
+  justify-content: flex-start;
   gap: 8px;
-  padding: 12px 14px;
-  border: 1px solid #e6e6e6;
+  margin: 0;
+  padding: 0;
+  border: none;
   border-radius: 0;
   background: transparent;
   text-align: left;
   cursor: pointer;
-  font-family: var(--font-sans);
-  font-size: 13px;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
   color: #000;
-  transition: border-color 160ms ease, background 160ms ease;
+  text-decoration: none;
+  transition: color 160ms ease, text-decoration-color 160ms ease;
 }
 
-.childBtn:hover {
-  border-color: #0089c4;
-  background: color-mix(in srgb, #0089c4 6%, transparent);
+.childBtn:hover,
+.childBtn:focus-visible {
+  color: #0089c4;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  outline: none;
 }
 
 .childTitle {
   flex: 1;
   min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .videosHeader {

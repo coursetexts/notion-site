@@ -2,6 +2,7 @@ import * as React from 'react'
 import Link from 'next/link'
 
 import { getCachedAuth } from '@/lib/auth-cache'
+import { pathsProfileHref } from '@/lib/paths-routes'
 import { useAuthOptional } from '@/contexts/AuthContext'
 
 import styles from './HomeSocialLearningSection.module.css'
@@ -33,9 +34,10 @@ export function HomeSocialLearningSection() {
   const user = auth?.user ?? cached.user
   const isLoggedIn = Boolean(user)
 
+  const profileHref = pathsProfileHref()
   const ctaHref = isLoggedIn
-    ? '/profile'
-    : `/signin?redirect=${encodeURIComponent('/profile')}`
+    ? profileHref
+    : `/signin?redirect=${encodeURIComponent(profileHref)}`
 
   return (
     <section className={styles.section}>

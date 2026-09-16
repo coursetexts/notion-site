@@ -25,7 +25,7 @@ export function ProfileKnowledgePanel({
   return (
     <div className={styles.tabPanel}>
       <div className={styles.tabPanelTop}>
-        <h2 className={styles.mainSerifTitle}>Knowledge</h2>
+        <h2 className={styles.mainSerifTitle}>Concepts</h2>
         <div className={styles.tabPanelSearchRow}>
           <div className={styles.panelSearchWrap}>
             <input

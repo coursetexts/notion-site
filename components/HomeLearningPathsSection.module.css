@@ -18,19 +18,62 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 10px;
 }
 
-.metaMark {
-  width: 100%;
-  height: 100%;
-  display: flex;
+.filterBand {
+  margin-top: 28px;
+}
+
+.filterRow {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+  row-gap: 12px;
+}
+
+.filterDivider {
+  width: 1px;
+  height: 16px;
+  background: #e6e6e6;
+  flex-shrink: 0;
+}
+
+.topicIconWrap {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+  color: #37352f;
+  transition: color 160ms ease;
+}
+
+.topicIcon {
+  width: 20px;
+  height: 20px;
+  display: block;
+  object-fit: contain;
+  color: inherit;
+}
+
+.topicChipActive .topicIconWrap,
+.filterRow button:hover .topicIconWrap,
+.filterRow button:focus-visible .topicIconWrap {
   color: #0089c4;
 }
 
-.metaMark svg {
-  display: block;
+.kindLabel {
+  margin: 0;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0;
+  color: #6b7280;
 }
 
 @media (max-width: 800px) {

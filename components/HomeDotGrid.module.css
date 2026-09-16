@@ -10,6 +10,11 @@
   overflow: hidden;
 }
 
+.gridBandCompact {
+  margin-top: 56px;
+  min-height: 420px;
+}
+
 .content {
   width: 100%;
   display: flex;

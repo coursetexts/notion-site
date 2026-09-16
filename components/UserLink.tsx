@@ -25,7 +25,7 @@ export const UserLink: React.FC<UserLinkProps> = ({
   className
 }) => {
   const name = displayName || 'Anonymous'
-  const href = `/profile/${userId}`
+  const href = `/paths/profile/${userId}`
   const relationship = followRelationship(
     showFollowingTag,
     showFollowsYouTag

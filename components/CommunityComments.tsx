@@ -170,7 +170,7 @@ const CommentNode: React.FC<CommentNodeProps> = ({
           target={{
             type: 'comment',
             id: comment.id,
-            url: '/community-resources',
+            url: '/paths/community-resources',
             title: 'Community resource comment',
             snippet: snippetFromText(comment.body)
           }}

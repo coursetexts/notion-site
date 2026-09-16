@@ -7,15 +7,16 @@ What is **live** vs **partial**, **404**, or **orphaned API** in the current cod
 | URL | Notes |
 | --- | ----- |
 | `/feed.xml` | RSS metadata references this URL, but only `/feed` exists. Subscribers using `/feed.xml` get 404. |
-| Bare root slugs (e.g. `/some-course-name`) | Not a route. Use `/course/{slug}` for Notion courses or `/learning-path/{slug}` for syllabi/paths. Only `/about`, `/process`, and `/why` are valid root Notion overrides. |
-| Former legacy paths (`/undergraduate-degrees`, `/human-knowledge-atlas`, `/curated-course/*`, `/course-learning-path/*`, `/course-videos`, `/c/*`, `/research-field-atlas`, `/notebook/*`) | Removed. Link to `/degrees`, `/field-atlas`, `/learning-path/{slug}`, or `/course/{slug}` directly. |
+| Bare root slugs (e.g. `/some-course-name`) | Not a route. Use `/course/{slug}` for Notion courses or `/paths/learning-path/{slug}` for syllabi/paths. Only `/about`, `/process`, and `/why` are valid root Notion overrides. |
+| Former legacy paths (`/undergraduate-degrees`, `/human-knowledge-atlas`, `/curated-course/*`, `/course-learning-path/*`, `/course-videos`, `/c/*`, `/research-field-atlas`, `/notebook/*`) | Removed. Link to `/paths/degrees`, `/paths/field-atlas`, `/paths/learning-path/{slug}`, or `/course/{slug}` directly. |
+| Pre-split Paths URLs (`/learning-path/*`, `/learning-paths`, `/profile`, `/community`, `/degrees`, …) | **301 redirect** into `/paths/…` via `next.config.js`. Prefer `lib/paths-routes.ts` for new links. |
 
 ## Product features: UI exists, backend incomplete
 
 | Feature | Where | Gap |
 | ------- | ----- | --- |
 | **Profile Updates** | profile Feed | Needs migrations `050_profile_updates.sql` (posts, likes, comments) and `051_profile_update_reposts.sql` (repost / quote) applied in Supabase. |
-| **Public Committed filter** | `/profile/{userId}` Learning | Needs `052_public_learning_path_commitments_read.sql` so another user’s commitments are readable. |
+| **Public Committed filter** | `/paths/profile/{userId}` Paths | Needs `052_public_learning_path_commitments_read.sql` so another user’s commitments are readable. |
 | **Commitment reminders** | Profile **Notify** tag, `learning_path_commitments` | Cadence saves to DB; **no notification delivery** (email/push). |
 | **Karma score** | `profiles.karma_score` | `lib/karma.ts` is a deliberate no-op; votes work but score never updates. |
 | **Knowledge graph daily cron** | `pages/api/cron/rebuild-knowledge-graph.ts` | Disabled unless `KNOWLEDGE_GRAPH_CRON_ENABLED=true`; `vercel.json` has no cron schedule. |

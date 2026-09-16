@@ -255,7 +255,7 @@ export function ProfileCommunityLearningPathCard({
   const description = item.data?.summary?.trim() || null
   return (
     <ProfileLearningPathCard
-      href={`/learning-path/${item.slug}`}
+      href={`/paths/learning-path/${item.slug}`}
       title={item.goal}
       bylineAuthor={bylineAuthor}
       privacy={privacy}

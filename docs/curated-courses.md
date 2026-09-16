@@ -1,10 +1,10 @@
 # Course learning paths (curated syllabi)
 
-Degree syllabi with a topic tree and sequenced resources. They live on the same `learning_paths` table as community/research paths (`kind = course`) and share `/learning-path/{slug}`. See [learning-paths.md](./learning-paths.md) for the graph UI.
+Degree syllabi with a topic tree and sequenced resources. They live on the same `learning_paths` table as community/research paths (`kind = course`) and share `/paths/learning-path/{slug}`. See [learning-paths.md](./learning-paths.md) for the graph UI.
 
 **Official Notion courses stay on `/course/{pageId}`.** They are not `kind = course` rows. A later pass will migrate those professor courses onto `learning_paths` too so every Coursetexts course is a learning path. That work is not started — see [architecture — Future](./architecture.md#future-official-notion-courses).
 
-**Canonical route:** `/learning-path/{slug}`
+**Canonical route:** `/paths/learning-path/{slug}`
 
 Migrated rows: `kind = 'course'`, `visibility = 'public'`, `is_catalog = true`, `owner_id = null`. `curated_*` tables are **not dropped**; they remain a backup. The app reads/writes `learning_paths.data` after cutover.
 
@@ -69,7 +69,7 @@ Resources added on a syllabus node also appear in `/community-resources`. They a
 
 Comments/bookmarks on the page keep `courses.notion_page_id = 'course-learning-path:{slug}'` so existing threads stay attached.
 
-Empty catalog placeholders (~1800 slug+title rows) become `kind=course` catalog paths with empty `topics` and `is_filled = false`. Home does **not** list them. The **University Courses** view of `/all-courses` (`?view=courses`) lists official Notion courses, then (below a divider) filled syllabi: every `data/curated-courses/{slug}.json` that has a topic tree, plus any extra `learning_paths` rows with `is_filled`. Unified Discover search (omit `view`) can still rank a matching syllabus under **Related learning paths**. A brown promo in that syllabus grid links to `/degrees`. A trigger keeps `is_filled` in sync when `data` changes. Existing DBs: apply `029_learning_path_is_filled.sql`. The **Goal-based** catalog filter does **not** list these syllabi (see [learning-paths.md](./learning-paths.md)). The profile Learning tab **Academic** filter uses the same split: official Notion bookmarks plus `kind=course` paths. Finishing every syllabus topic records Knowledge labels, shows the completion modal, and adds **What you learned** under Resources in the left nav. See [knowledge.md](./knowledge.md).
+Empty catalog placeholders (~1800 slug+title rows) become `kind=course` catalog paths with empty `topics` and `is_filled = false`. Paths home lists filled syllabi in the shared **Try learning paths built by our community** grid (with goal-based and research cards), each labeled **Academic course**, and does **not** list the empty stubs. Official Notion university courses are on the Coursetexts home and `/all-courses`, not that Paths home section. The **University Courses** view of `/paths/all-courses` (`?view=courses`) lists official Notion courses, then (below a divider) filled syllabi: every `data/curated-courses/{slug}.json` that has a topic tree, plus any extra `learning_paths` rows with `is_filled`. Unified Discover search (omit `view`) can still rank a matching syllabus with the other learning paths (no section heading). Degree curricula are not on that view. A brown promo in that syllabus grid links to `/paths/degrees`. A trigger keeps `is_filled` in sync when `data` changes. Existing DBs: apply `029_learning_path_is_filled.sql`. The **Goal-based** catalog filter does **not** list these syllabi (see [learning-paths.md](./learning-paths.md)). The profile Paths tab **Academic** filter uses the same split: official Notion bookmarks plus `kind=course` paths. Finishing every syllabus topic records Knowledge labels, shows the completion modal, and adds **What you learned** under Resources in the left nav. See [knowledge.md](./knowledge.md).
 
 Subject icons on those cards reuse the degrees-page SVG set (`DegreeCardIcon`). Area is **not** a Supabase column: optional JSON `"area": "mathematics"` (a degree id) overrides slug-based keywords. The Coursetexts book mark stays on the card; the colored icon is the subject.
 

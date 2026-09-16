@@ -220,7 +220,8 @@
   color: #353b48;
 }
 
-.resultGroup + .resultGroup {
+.resultGroup + .resultGroup,
+.academicDegrees {
   margin-top: 64px;
 }
 

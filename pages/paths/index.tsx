@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 
 import type { Block, ExtendedRecordMap } from 'notion-types'
 import {
@@ -12,14 +13,23 @@ import {
   uuidToId
 } from 'notion-utils'
 
-import type { HomeCourseCard } from '@/components/HomeCoursesSection'
-import { CoursesHomeHero } from '@/components/CoursesHomeHero'
-import { HomeBlogSection } from '@/components/HomeBlogSection'
+import {
+  HomeCourseCard,
+  HomeCoursesSection
+} from '@/components/HomeCoursesSection'
 import { HomeDonateSection } from '@/components/HomeDonateSection'
+import { HomeDotGrid } from '@/components/HomeDotGrid'
 import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
-import { HomeOpenCoursesSection } from '@/components/HomeOpenCoursesSection'
+import { HomeHero } from '@/components/HomeHero'
+// import { HomeLearnSection } from '@/components/HomeLearnSection'
+import { HomeWhatIsLearningPathSection } from '@/components/HomeWhatIsLearningPathSection'
 import { getCourseLearningPathSubject } from '@/lib/course-learning-path-subject'
+import type { LearningPathTopicId } from '@/lib/learning-path-topic'
+import {
+  PATHS_BASE,
+  pathsLearningPathHref
+} from '@/lib/paths-routes'
 import { isDev, rootNotionPageId } from '@/lib/config'
 import { getSiteMap } from '@/lib/get-site-map'
 import { notionPageHref } from '@/lib/map-page-url'
@@ -129,7 +139,7 @@ function coursePathToHomeCard(path: {
   const subject = getCourseLearningPathSubject(path.slug, path.title, path.area)
   return {
     id: path.id,
-    href: `/paths/learning-path/${path.slug}`,
+    href: pathsLearningPathHref(path.slug),
     meta: `Coursetexts · ${subject.label}`,
     title: path.title,
     description: path.description,
@@ -456,6 +466,28 @@ function fallbackCourses(): HomeCourseCard[] {
       'Investigate digital media as a convergence-point where technical-systems, economic-imperatives, and power-structures collide',
     subjects: [SUBJECT_OPTIONS[index % SUBJECT_OPTIONS.length]]
   }))
+}
+
+function parseSubjectsParam(
+  value: string | string[] | undefined
+): HomeSubject[] {
+  const raw = Array.isArray(value) ? value.join(',') : value || ''
+
+  if (!raw.trim()) return []
+
+  const normalized = raw
+    .split(',')
+    .map((subject) => subject.trim().toLowerCase())
+    .filter(Boolean)
+
+  return SUBJECT_OPTIONS.filter((subject) =>
+    normalized.includes(subject.toLowerCase())
+  )
+}
+
+function sameSubjects(a: HomeSubject[], b: HomeSubject[]): boolean {
+  if (a.length !== b.length) return false
+  return a.every((subject, index) => subject === b[index])
 }
 
 function inferSubjects(params: {
@@ -1299,8 +1331,11 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
 
 export default function HomePage({
   courses,
+  academicCourses = [],
   notionHomeDebug
 }: HomePageProps) {
+  const router = useRouter()
+
   React.useEffect(() => {
     if (notionHomeDebug && typeof window !== 'undefined') {
       console.log(
@@ -1310,6 +1345,103 @@ export default function HomePage({
       )
     }
   }, [notionHomeDebug])
+
+  React.useEffect(() => {
+    if (!router.isReady) return
+
+    const legacySubjectRaw = router.query.subject
+    const legacySchoolRaw = router.query.school
+
+    const legacySubject = Array.isArray(legacySubjectRaw)
+      ? legacySubjectRaw[0]
+      : legacySubjectRaw
+    const legacySchool = Array.isArray(legacySchoolRaw)
+      ? legacySchoolRaw[0]
+      : legacySchoolRaw
+
+    if (!legacySubject && !legacySchool) return
+
+    const nextQuery: Record<string, string> = {}
+
+    if (legacySubject?.trim()) {
+      const normalizedSubject = /^maths$/i.test(legacySubject.trim())
+        ? 'Math'
+        : legacySubject.trim()
+      nextQuery.subjects = normalizedSubject
+    }
+
+    if (legacySchool?.trim()) {
+      nextQuery.q = legacySchool.trim()
+    }
+
+    void router.replace(
+      {
+        pathname: `${PATHS_BASE}/all-courses`,
+        query: nextQuery
+      },
+      undefined,
+      { shallow: true }
+    )
+  }, [router])
+
+  const querySubjects = React.useMemo(
+    () =>
+      parseSubjectsParam(
+        router.query.subjects as string | string[] | undefined
+      ),
+    [router.query.subjects]
+  )
+  const [activeSubjects, setActiveSubjects] =
+    React.useState<HomeSubject[]>(querySubjects)
+  const [activeTopic, setActiveTopic] =
+    React.useState<LearningPathTopicId | null>(null)
+
+  React.useEffect(() => {
+    if (!router.isReady) return
+    setActiveSubjects((current) =>
+      sameSubjects(current, querySubjects) ? current : querySubjects
+    )
+  }, [querySubjects, router.isReady])
+
+  React.useEffect(() => {
+    if (!router.isReady || sameSubjects(querySubjects, activeSubjects)) return
+
+    const nextQuery: Record<string, string | string[]> = {
+      ...router.query
+    } as Record<string, string | string[]>
+
+    if (activeSubjects.length > 0) {
+      nextQuery.subjects = activeSubjects.join(',')
+    } else {
+      delete nextQuery.subjects
+    }
+
+    void router.replace(
+      {
+        pathname: router.pathname,
+        query: nextQuery
+      },
+      undefined,
+      { shallow: true, scroll: false }
+    )
+  }, [activeSubjects, querySubjects, router])
+
+  const handleSubjectToggle = React.useCallback((subject: string) => {
+    if (!SUBJECT_OPTIONS.includes(subject as HomeSubject)) return
+
+    setActiveSubjects((current) => {
+      const typedSubject = subject as HomeSubject
+      const next = current.includes(typedSubject)
+        ? current.filter((item) => item !== typedSubject)
+        : [...current, typedSubject]
+
+      return SUBJECT_OPTIONS.filter((item) => next.includes(item))
+    })
+  }, [])
+
+  const handleTopicToggle = React.useCallback((topic: LearningPathTopicId) => {
+    setActiveTopic((current) => (current === topic ? null : topic))
+  }, [])
 
   return (
     <>
@@ -1345,10 +1477,21 @@ export default function HomePage({
         }
       >
         <HomeHeader />
-        <CoursesHomeHero courses={courses} />
-        <HomeOpenCoursesSection courses={courses} />
+        <HomeHero
+          activeTopic={activeTopic}
+          onTopicToggle={handleTopicToggle}
+        />
+        <HomeDotGrid courses={courses} />
+        <HomeWhatIsLearningPathSection />
+        <HomeCoursesSection
+          academicCourses={academicCourses}
+          activeSubjects={activeSubjects}
+          onSubjectToggle={handleSubjectToggle}
+          onTopicToggle={handleTopicToggle}
+          activeTopic={activeTopic}
+        />
+        {/* <HomeLearnSection /> */}
         <HomeDonateSection />
-        <HomeBlogSection />
         <HomeFooterSection />
       </main>
     </>

@@ -29,9 +29,14 @@ import {
   communityResourceReportId,
   snippetFromText
 } from '@/lib/content-reports'
+import {
+  pathsCommunityResourcesHref,
+  pathsLearningPathHref,
+  pathsPublicProfileHref
+} from '@/lib/paths-routes'
 import { getCourseLearningPathHref } from '@/lib/undergraduate-degrees'
 
-import { useAuthOptional } from '../contexts/AuthContext'
+import { useAuthOptional } from '@/contexts/AuthContext'
 import { currentAuthRedirectPath } from '@/lib/auth-redirect'
 import styles from './community.module.css'
 
@@ -129,10 +134,15 @@ function courseLearningPathHref(
   courseName?: string
 ): string | null {
   const trimmed = slug?.trim()
-  if (trimmed) return `/learning-path/${trimmed}`
+  if (trimmed) return pathsLearningPathHref(trimmed)
   if (!courseName) return null
   const path = getCourseLearningPathHref(courseName)
-  return path.startsWith('/learning-path/') ? path : null
+  if (path.startsWith('/paths/learning-path/')) return path
+  if (path.startsWith('/paths/learning-path/')) {
+    const slug = path.slice('/paths/learning-path/'.length)
+    return slug ? pathsLearningPathHref(slug) : null
+  }
+  return null
 }
 
 function CourseLearningPathConceptTreeLine({
@@ -823,7 +833,7 @@ export default function CommunityResourcesPage() {
                             by{' '}
                             {r.authorId ? (
                               <Link
-                                href={`/profile/${r.authorId}`}
+                                href={pathsPublicProfileHref(r.authorId)}
                                 className={styles.authorLink}
                               >
                                 {r.author}
@@ -849,7 +859,7 @@ export default function CommunityResourcesPage() {
                           target={{
                             type: 'resource',
                             id: communityResourceReportId(r.id, r.kind),
-                            url: '/community-resources',
+                            url: pathsCommunityResourcesHref(),
                             title: r.title,
                             snippet: snippetFromText(r.description)
                           }}

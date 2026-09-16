@@ -333,6 +333,34 @@
   font-weight: 400;
 }
 
+.titleEditable {
+  width: 100%;
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: normal;
+  caret-color: #0089c4;
+  cursor: text;
+  outline: none;
+  border-bottom: 1px solid transparent;
+}
+
+.titleEditable:empty::before {
+  content: attr(data-placeholder);
+  color: #a1a1aa;
+}
+
+.titleEditable:empty:focus::before,
+.titleEditable:empty:focus-visible::before {
+  content: none;
+}
+
+.titleEditable:focus,
+.titleEditable:focus-visible {
+  outline: none;
+  border-bottom-color: #0089c4;
+}
+
 .instructor a{
   color: #5D534B;
   font-family: 'Hanken Grotesk', sans-serif;

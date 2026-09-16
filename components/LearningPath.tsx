@@ -52,7 +52,13 @@ import {
 import { learningPathCommitmentKey } from '@/lib/learning-path-commitments-db'
 import { formatLearningPathExportContext } from '@/lib/learning-path-export-context'
 import {
+  type FilledLearningPath,
+  outlineFromFilledLearningPath
+} from '@/lib/learning-path-fill'
+import { LEARNING_PATH_FILL_DAILY_LIMIT } from '@/lib/learning-path-fill-quota'
+import {
   getLearningPathRecord,
+  listAllLearningPathSlugs,
   loadLearningPathUserState,
   overlayUserState,
   probeLearningPathAccess,
@@ -131,6 +137,10 @@ import {
   outlineTreeWithoutGoal
 } from '@/lib/learning-path-sections'
 import {
+  ensureUniqueSlug,
+  slugifyLearningPathName
+} from '@/lib/learning-path-slug'
+import {
   type LearningPathCircleMember,
   type LearningPathData,
   type LearningPathKind,
@@ -142,9 +152,11 @@ import {
   type LearningPathVisibility,
   SEEDED_LEARNING_PATHS_BY_SLUG,
   emptyLearningPath,
+  starterCreationLearningPath,
   insertLearningPathOfficialResource,
   insertLearningPathUserResource,
   isCatalogLearningPathSlug,
+  learningPathFromOutline,
   mergeLearningPathResources,
   officialResourcesWithOwnerOverlay,
   parseLearningPathKind,
@@ -152,21 +164,34 @@ import {
   resolveLearningPath,
   sequenceMarks,
   updateLearningPathOfficialResource,
-  updateLearningPathUserResource
+  updateLearningPathUserResource,
+  writeStoredLearningPaths
 } from '@/lib/learning-path-seed'
-import { readSearchParam, replaceSearchParams } from '@/lib/note-deep-link'
+import {
+  firstQueryParam,
+  readSearchParam,
+  replaceSearchParams
+} from '@/lib/note-deep-link'
 import {
   type NotebookDocJson,
   parseStoredNotebookNote,
   serializeStoredNotebookNote
 } from '@/lib/notebook-editor-default'
+import {
+  PATHS_BASE,
+  pathsLearningPathsIndexHref,
+  pathsProfileHref,
+  pathsPublicProfileHref
+} from '@/lib/paths-routes'
 import { registerPersistBeforeSignOut } from '@/lib/persist-before-sign-out'
 import { restoreScrollAfter } from '@/lib/restore-scroll-after'
+import { getSupabaseClient } from '@/lib/supabase'
 import { addKnowledgeTopicsFromCompletedPath } from '@/lib/user-knowledge-topics-db'
 import { addLink, deleteLink, getMyLinks } from '@/lib/user-links'
 
 import heroStyles from './CourseHero.module.css'
 import styles from './LearningPath.module.css'
+import { LearningPathFillOverlay } from './LearningPathFillOverlay'
 import { LearningPathFinishedModal } from './LearningPathFinishedModal'
 import { LearningPathInviteModal } from './LearningPathInviteModal'
 import { LearningPathDeleteModal } from './LearningPathDeleteModal'
@@ -487,6 +512,157 @@ function PencilIcon() {
   )
 }
 
+function CreationWhyEditable({
+  id,
+  value,
+  onChange
+}: {
+  id: string
+  value: string
+  onChange: (value: string) => void
+}) {
+  const editRef = React.useRef<HTMLSpanElement | null>(null)
+  const focusedRef = React.useRef(false)
+
+  React.useEffect(() => {
+    const el = editRef.current
+    if (!el || focusedRef.current) return
+    const current = (el.innerText || '')
+      .replace(/\u00a0/g, ' ')
+      .replace(/\n$/, '')
+    if (current !== value) {
+      el.textContent = value
+    }
+  }, [value])
+
+  function readText() {
+    const el = editRef.current
+    if (!el) return value
+    return (el.innerText || '')
+      .replace(/\u00a0/g, ' ')
+      .replace(/\n$/, '')
+      .replace(/^\n/, '')
+  }
+
+  function focusEditor() {
+    const el = editRef.current
+    if (!el) return
+    el.focus()
+    const selection = window.getSelection()
+    if (!selection) return
+    const range = document.createRange()
+    range.selectNodeContents(el)
+    range.collapse(false)
+    selection.removeAllRanges()
+    selection.addRange(range)
+  }
+
+  return (
+    <p
+      className={`${styles.whyCopy} ${styles.creationWhyField}`}
+      onMouseDown={(event) => {
+        const el = editRef.current
+        if (!el) return
+        if (event.target === el || el.contains(event.target as Node)) return
+        event.preventDefault()
+        focusEditor()
+      }}
+    >
+      <strong className={styles.whyLead} id={`${id}-label`}>
+        Why is this on the learning path:
+      </strong>{' '}
+      <span
+        ref={editRef}
+        id={id}
+        className={styles.creationWhyEditable}
+        contentEditable
+        suppressContentEditableWarning
+        role='textbox'
+        tabIndex={0}
+        aria-multiline='true'
+        aria-labelledby={`${id}-label`}
+        data-placeholder='Explain why this step belongs on the path…'
+        onFocus={() => {
+          focusedRef.current = true
+        }}
+        onBlur={() => {
+          focusedRef.current = false
+          onChange(readText())
+        }}
+        onInput={() => {
+          onChange(readText())
+        }}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter' && !event.shiftKey) {
+            // Keep Shift+Enter for a new line; plain Enter stays in the field.
+            event.stopPropagation()
+          }
+        }}
+      />
+    </p>
+  )
+}
+
+function CreationPathTitleEditable({
+  value,
+  onChange
+}: {
+  value: string
+  onChange: (value: string) => void
+}) {
+  const editRef = React.useRef<HTMLHeadingElement | null>(null)
+  const focusedRef = React.useRef(false)
+
+  React.useEffect(() => {
+    const el = editRef.current
+    if (!el || focusedRef.current) return
+    const current = (el.innerText || '')
+      .replace(/\u00a0/g, ' ')
+      .replace(/\n+/g, ' ')
+      .replace(/\s+$/g, '')
+    if (current !== value) {
+      el.textContent = value
+    }
+  }, [value])
+
+  function readText() {
+    const el = editRef.current
+    if (!el) return value
+    return (el.innerText || '')
+      .replace(/\u00a0/g, ' ')
+      .replace(/\n+/g, ' ')
+      .replace(/[ \t]+$/g, '')
+  }
+
+  return (
+    <h1
+      ref={editRef}
+      className={`${heroStyles.title} ${heroStyles.titleEditable}`}
+      contentEditable
+      suppressContentEditableWarning
+      role='textbox'
+      tabIndex={0}
+      aria-label='Learning path title'
+      data-placeholder='Learning path title'
+      onFocus={() => {
+        focusedRef.current = true
+      }}
+      onBlur={() => {
+        focusedRef.current = false
+        onChange(readText())
+      }}
+      onInput={() => {
+        onChange(readText())
+      }}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter') {
+          event.preventDefault()
+        }
+      }}
+    />
+  )
+}
+
 function fallbackSelection() {
   return LEARNING_PATH_OVERVIEW_SECTION_ID
 }
@@ -525,6 +701,119 @@ function outlineRootIdsToOpen(
     }
   }
   return open
+}
+
+function OutlinePlusIcon() {
+  return (
+    <svg width='12' height='12' viewBox='0 0 12 12' fill='none' aria-hidden>
+      <path
+        d='M6 1.5V10.5M1.5 6H10.5'
+        stroke='currentColor'
+        strokeWidth='1.4'
+        strokeLinecap='round'
+      />
+    </svg>
+  )
+}
+
+function OutlineHoverControls({
+  open,
+  onToggle,
+  onClose,
+  onAddBelow,
+  onAddAfter,
+  onDelete,
+  canDelete
+}: {
+  open: boolean
+  onToggle: () => void
+  onClose: () => void
+  onAddBelow: () => void
+  onAddAfter: () => void
+  onDelete: () => void
+  canDelete: boolean
+}) {
+  const wrapRef = React.useRef<HTMLDivElement | null>(null)
+
+  React.useEffect(() => {
+    if (!open) return
+    function onPointerDown(event: MouseEvent) {
+      if (!wrapRef.current?.contains(event.target as Node)) onClose()
+    }
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') onClose()
+    }
+    document.addEventListener('mousedown', onPointerDown)
+    document.addEventListener('keydown', onKeyDown)
+    return () => {
+      document.removeEventListener('mousedown', onPointerDown)
+      document.removeEventListener('keydown', onKeyDown)
+    }
+  }, [open, onClose])
+
+  return (
+    <div
+      className={styles.outlineHoverControls}
+      ref={wrapRef}
+      data-open={open ? 'true' : undefined}
+    >
+      <div className={styles.outlineAddMenuWrap} data-open={open ? 'true' : undefined}>
+        <button
+          type='button'
+          className={styles.outlineHoverBtn}
+          onClick={(event) => {
+            event.stopPropagation()
+            onToggle()
+          }}
+          aria-label='Add section'
+          aria-haspopup='menu'
+          aria-expanded={open}
+        >
+          <OutlinePlusIcon />
+        </button>
+        {open ? (
+          <div className={styles.outlineAddMenu} role='menu'>
+            <button
+              type='button'
+              role='menuitem'
+              className={styles.outlineAddMenuItem}
+              onClick={(event) => {
+                event.stopPropagation()
+                onAddBelow()
+                onClose()
+              }}
+            >
+              Add a section below
+            </button>
+            <button
+              type='button'
+              role='menuitem'
+              className={styles.outlineAddMenuItem}
+              onClick={(event) => {
+                event.stopPropagation()
+                onAddAfter()
+                onClose()
+              }}
+            >
+              Add a section after
+            </button>
+          </div>
+        ) : null}
+      </div>
+      <button
+        type='button'
+        className={styles.outlineHoverBtn}
+        onClick={(event) => {
+          event.stopPropagation()
+          onDelete()
+        }}
+        aria-label='Remove section'
+        disabled={!canDelete}
+      >
+        ×
+      </button>
+    </div>
+  )
 }
 
 function PathOutlineAddDraftRow({
@@ -578,6 +867,77 @@ function PathOutlineAddDraftRow({
   )
 }
 
+function PathOutlineInlineLabel({
+  value,
+  placeholder,
+  ariaLabel,
+  selected,
+  onFocusSelect,
+  onRename
+}: {
+  value: string
+  placeholder: string
+  ariaLabel: string
+  selected: boolean
+  onFocusSelect: () => void
+  onRename: (label: string) => void
+}) {
+  const editRef = React.useRef<HTMLSpanElement | null>(null)
+  const focusedRef = React.useRef(false)
+
+  React.useEffect(() => {
+    const el = editRef.current
+    if (!el || focusedRef.current) return
+    const current = (el.innerText || '')
+      .replace(/\u00a0/g, ' ')
+      .replace(/\n+/g, ' ')
+      .replace(/\s+$/g, '')
+    if (current !== value) {
+      el.textContent = value
+    }
+  }, [value])
+
+  function readText() {
+    const el = editRef.current
+    if (!el) return value
+    return (el.innerText || '')
+      .replace(/\u00a0/g, ' ')
+      .replace(/\n+/g, ' ')
+      .replace(/[ \t]+$/g, '')
+  }
+
+  return (
+    <span
+      ref={editRef}
+      className={styles.pathListInlineInput}
+      contentEditable
+      suppressContentEditableWarning
+      role='textbox'
+      tabIndex={0}
+      aria-label={ariaLabel}
+      aria-current={selected ? 'true' : undefined}
+      data-placeholder={placeholder}
+      onFocus={() => {
+        focusedRef.current = true
+        onFocusSelect()
+      }}
+      onBlur={() => {
+        focusedRef.current = false
+        onRename(readText())
+      }}
+      onInput={() => {
+        onRename(readText())
+      }}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter') {
+          event.preventDefault()
+          ;(event.currentTarget as HTMLSpanElement).blur()
+        }
+      }}
+    />
+  )
+}
+
 function PathOutlineBranch({
   items,
   depth,
@@ -590,7 +950,10 @@ function PathOutlineBranch({
   leadingDraft = false,
   onDraftLabelChange,
   onDraftCommit,
-  onDraftCancel
+  onDraftCancel,
+  creationControls = null,
+  openAddMenuId = null,
+  onOpenAddMenuIdChange
 }: {
   items: PathTreeItem[]
   depth: number
@@ -608,6 +971,15 @@ function PathOutlineBranch({
   onDraftLabelChange?: (value: string) => void
   onDraftCommit?: () => void
   onDraftCancel?: () => void
+  creationControls?: {
+    onAddBelow: (id: string) => void
+    onAddAfter: (id: string) => void
+    onDelete: (id: string) => void
+    canDelete: (id: string) => boolean
+    onRename?: (id: string, label: string) => void
+  } | null
+  openAddMenuId?: string | null
+  onOpenAddMenuIdChange?: (id: string | null) => void
 }) {
   const isRoot = depth === 0
   const canRenderDraft = Boolean(
@@ -655,6 +1027,13 @@ function PathOutlineBranch({
             (forceOpen || depth > 0 || expanded.has(item.node.id))) ||
             showChildDraft
         )
+        const label =
+          item.node.label.trim() ||
+          (creationControls
+            ? isRoot
+              ? 'Topic title'
+              : 'Add a concept…'
+            : item.node.label)
         return (
           <React.Fragment key={item.node.id}>
             <li
@@ -663,23 +1042,65 @@ function PathOutlineBranch({
               <div
                 className={
                   selected
-                    ? `${styles.pathListRow} ${styles.pathListRowSelected}`
-                    : styles.pathListRow
+                    ? `${styles.pathListRow} ${styles.pathListRowSelected}${
+                        creationControls ? ` ${styles.pathListRowEditable}` : ''
+                      }`
+                    : `${styles.pathListRow}${
+                        creationControls ? ` ${styles.pathListRowEditable}` : ''
+                      }`
                 }
               >
-                <button
-                  type='button'
-                  className={styles.pathListSelect}
-                  aria-current={selected ? 'true' : undefined}
-                  aria-label={item.node.label}
-                  onClick={() => onSelect(item.node.id)}
-                >
-                  <span className={styles.pathListCopy}>
-                    <span className={styles.pathListLabel}>
-                      {item.node.label}
+                {creationControls?.onRename ? (
+                  <PathOutlineInlineLabel
+                    value={item.node.label}
+                    placeholder={isRoot ? 'Topic title' : 'Add a concept…'}
+                    ariaLabel={isRoot ? 'Topic title' : 'Concept title'}
+                    selected={selected}
+                    onFocusSelect={() => onSelect(item.node.id)}
+                    onRename={(next) =>
+                      creationControls.onRename?.(item.node.id, next)
+                    }
+                  />
+                ) : (
+                  <button
+                    type='button'
+                    className={styles.pathListSelect}
+                    aria-current={selected ? 'true' : undefined}
+                    aria-label={label}
+                    onClick={() => onSelect(item.node.id)}
+                  >
+                    <span className={styles.pathListCopy}>
+                      <span
+                        className={
+                          item.node.label.trim()
+                            ? styles.pathListLabel
+                            : `${styles.pathListLabel} ${styles.pathListLabelPlaceholder}`
+                        }
+                      >
+                        {label}
+                      </span>
                     </span>
-                  </span>
-                </button>
+                  </button>
+                )}
+                {creationControls ? (
+                  <OutlineHoverControls
+                    open={openAddMenuId === item.node.id}
+                    onToggle={() =>
+                      onOpenAddMenuIdChange?.(
+                        openAddMenuId === item.node.id ? null : item.node.id
+                      )
+                    }
+                    onClose={() => onOpenAddMenuIdChange?.(null)}
+                    onAddBelow={() =>
+                      creationControls.onAddBelow(item.node.id)
+                    }
+                    onAddAfter={() =>
+                      creationControls.onAddAfter(item.node.id)
+                    }
+                    onDelete={() => creationControls.onDelete(item.node.id)}
+                    canDelete={creationControls.canDelete(item.node.id)}
+                  />
+                ) : null}
                 <span className={styles.completeCheckSlot}>
                   {completed ? <PathCompleteCheck /> : null}
                 </span>
@@ -689,8 +1110,8 @@ function PathOutlineBranch({
                     className={styles.outlineChevronBtn}
                     aria-label={
                       isOpen
-                        ? `Collapse ${item.node.label}`
-                        : `Expand ${item.node.label}`
+                        ? `Collapse ${label}`
+                        : `Expand ${label}`
                     }
                     aria-expanded={isOpen}
                     onClick={() => onToggle(item.node.id)}
@@ -713,6 +1134,9 @@ function PathOutlineBranch({
                   onDraftLabelChange={onDraftLabelChange}
                   onDraftCommit={onDraftCommit}
                   onDraftCancel={onDraftCancel}
+                  creationControls={creationControls}
+                  openAddMenuId={openAddMenuId}
+                  onOpenAddMenuIdChange={onOpenAddMenuIdChange}
                 />
               ) : showChildDraft ? (
                 <PathOutlineBranch
@@ -728,6 +1152,9 @@ function PathOutlineBranch({
                   onDraftLabelChange={onDraftLabelChange}
                   onDraftCommit={onDraftCommit}
                   onDraftCancel={onDraftCancel}
+                  creationControls={creationControls}
+                  openAddMenuId={openAddMenuId}
+                  onOpenAddMenuIdChange={onOpenAddMenuIdChange}
                 />
               ) : null}
             </li>
@@ -747,7 +1174,8 @@ function PathOutlineList({
   addDraft = null,
   onDraftLabelChange,
   onDraftCommit,
-  onDraftCancel
+  onDraftCancel,
+  creationControls = null
 }: {
   items: PathTreeItem[]
   selectedId: string
@@ -761,10 +1189,18 @@ function PathOutlineList({
   onDraftLabelChange?: (value: string) => void
   onDraftCommit?: () => void
   onDraftCancel?: () => void
+  creationControls?: {
+    onAddBelow: (id: string) => void
+    onAddAfter: (id: string) => void
+    onDelete: (id: string) => void
+    canDelete: (id: string) => boolean
+    onRename?: (id: string, label: string) => void
+  } | null
 }) {
   const [expanded, setExpanded] = React.useState<Set<string>>(() =>
     outlineRootIdsToOpen(items, selectedId)
   )
+  const [openAddMenuId, setOpenAddMenuId] = React.useState<string | null>(null)
 
   React.useEffect(() => {
     setExpanded((prev) => {
@@ -825,6 +1261,9 @@ function PathOutlineList({
       onDraftLabelChange={onDraftLabelChange}
       onDraftCommit={onDraftCommit}
       onDraftCancel={onDraftCancel}
+      creationControls={creationControls}
+      openAddMenuId={openAddMenuId}
+      onOpenAddMenuIdChange={setOpenAddMenuId}
     />
   )
 }
@@ -940,12 +1379,14 @@ function PathEditMenu({
   canDelete,
   onAddUnder,
   onAddAfter,
-  onDelete
+  onDelete,
+  menuBelow = false
 }: {
   canDelete: boolean
   onAddUnder: () => void
   onAddAfter: () => void
   onDelete: () => void
+  menuBelow?: boolean
 }) {
   const [open, setOpen] = React.useState(false)
   const [menuVisible, setMenuVisible] = React.useState(false)
@@ -1000,9 +1441,13 @@ function PathEditMenu({
       {open ? (
         <div
           className={
-            menuVisible
-              ? `${styles.editPathMenu} ${styles.editPathMenuVisible}`
-              : styles.editPathMenu
+            [
+              styles.editPathMenu,
+              menuBelow ? styles.editPathMenuBelow : '',
+              menuVisible ? styles.editPathMenuVisible : ''
+            ]
+              .filter(Boolean)
+              .join(' ')
           }
           role='menu'
           aria-label='Edit path'
@@ -1188,7 +1633,7 @@ function LearningPathDescription({
         className={heroStyles.descriptionToggleInner}
         contentEditable={isEditing}
         suppressContentEditableWarning
-        data-placeholder='Add a description…'
+        data-placeholder='What should someone get out of this path? Who is this for?'
         dangerouslySetInnerHTML={{
           __html: escapeHtml(value).replace(/\n/g, '<br/>')
         }}
@@ -1262,19 +1707,33 @@ function PathOutlineChevronIcon() {
 
 function CommunityLearningPath({
   slug,
-  kicker
+  kicker,
+  creationMode = false,
+  initialGoal = '',
+  initialKind = 'community'
 }: {
   slug: string
   kicker: string
+  /** Editing an outline that does not exist yet (`/learning-path/new`). */
+  creationMode?: boolean
+  initialGoal?: string
+  initialKind?: LearningPathKind
 }) {
   const router = useRouter()
   const auth = useAuthOptional()
   const currentUserId = auth?.user?.id ?? null
   const [path, setPath] = React.useState<LearningPathData>(() =>
-    resolveLearningPath(slug)
+    creationMode
+      ? starterCreationLearningPath(
+          initialGoal.trim() || 'I want to learn',
+          slug
+        )
+      : resolveLearningPath(slug)
   )
   const [summaryDraft, setSummaryDraft] = React.useState(path.summary)
-  const [selectedId, setSelectedId] = React.useState(() => fallbackSelection())
+  const [selectedId, setSelectedId] = React.useState(() =>
+    creationMode ? 'step-1' : fallbackSelection()
+  )
   const [notes, setNotes] = React.useState<Record<string, string>>({})
   const [userResources, setUserResources] = React.useState<
     Record<string, LearningPathUserResource[]>
@@ -1375,6 +1834,15 @@ function CommunityLearningPath({
     null
   )
   const [userStateReady, setUserStateReady] = React.useState(false)
+  const [filling, setFilling] = React.useState(false)
+  const [fillError, setFillError] = React.useState<string | null>(null)
+  const [preFillSnapshot, setPreFillSnapshot] = React.useState<{
+    path: LearningPathData
+    selectedId: string
+    summaryDraft: string
+  } | null>(null)
+  const [creatingPath, setCreatingPath] = React.useState(false)
+  const [createError, setCreateError] = React.useState<string | null>(null)
   const stateTimer = React.useRef<ReturnType<typeof setTimeout> | null>(null)
   const pathRef = React.useRef(path)
   const notesRef = React.useRef(notes)
@@ -1402,6 +1870,7 @@ function CommunityLearningPath({
     next: LearningPathData,
     mode: 'structure' | 'progress' = 'structure'
   ) {
+    if (creationMode) return
     if (mode === 'progress') {
       if (!isOwnPath) return
     } else if (!canEditPathStructure) return
@@ -1431,6 +1900,7 @@ function CommunityLearningPath({
   }
 
   function queueUserStateSave() {
+    if (creationMode) return
     const ownerId = currentUserId ?? getCachedAuth().user?.id ?? null
     const state = userStateFromPath(
       pathRef.current,
@@ -1458,6 +1928,7 @@ function CommunityLearningPath({
   }
 
   function flushUserState() {
+    if (creationMode) return Promise.resolve(null)
     if (stateTimer.current) {
       clearTimeout(stateTimer.current)
       stateTimer.current = null
@@ -1476,6 +1947,11 @@ function CommunityLearningPath({
   }
 
   React.useEffect(() => {
+    if (creationMode) {
+      setUserStateReady(true)
+      setPathOwnerId(currentUserId)
+      return
+    }
     let cancelled = false
     const local = resolveLearningPath(slug, readStoredLearningPaths())
     setPath(local)
@@ -1574,14 +2050,14 @@ function CommunityLearningPath({
     return () => {
       cancelled = true
     }
-  }, [slug, currentUserId])
+  }, [slug, currentUserId, creationMode])
 
   React.useEffect(() => {
     return registerPersistBeforeSignOut(() => flushUserState())
   }, [slug])
 
   React.useEffect(() => {
-    if (!userStateReady || !currentUserId) return
+    if (creationMode || !userStateReady || !currentUserId) return
     if (!isLearningPathFinished(path)) return
     void addKnowledgeTopicsFromCompletedPath({
       labels: knowledgeTopicsFromLearningPath(path),
@@ -1593,14 +2069,46 @@ function CommunityLearningPath({
           ? undefined
           : structuralKnowledgeEdgesFromLearningPath(path)
     })
-  }, [userStateReady, currentUserId, path, pathRowId, slug, pathVisibility])
+  }, [
+    creationMode,
+    userStateReady,
+    currentUserId,
+    path,
+    pathRowId,
+    slug,
+    pathVisibility
+  ])
 
   React.useEffect(() => {
+    if (!creationMode) return
+    const firstTopic =
+      path.nodes.find(
+        (node) =>
+          (node.kind === 'milestone' || node.kind === 'concept') &&
+          path.edges.some(
+            (edge) =>
+              edge.to === node.id &&
+              path.nodes.find((item) => item.id === edge.from)?.kind === 'goal'
+          )
+      )?.id ?? path.nodes.find((node) => node.kind === 'milestone')?.id
+    if (!firstTopic) return
+    if (
+      isLearningPathOverviewSelection(selectedId) ||
+      isLearningPathKnowledgeSelection(selectedId) ||
+      !path.nodes.some((node) => node.id === selectedId)
+    ) {
+      setSelectedId(firstTopic)
+      replaceSearchParams({ node: firstTopic })
+    }
+  }, [creationMode, path, selectedId])
+
+  React.useEffect(() => {
+    if (creationMode) return
     if (!isLearningPathKnowledgeSelection(selectedId)) return
     if (isLearningPathFinished(path)) return
     setSelectedId(LEARNING_PATH_OVERVIEW_SECTION_ID)
     replaceSearchParams({ node: LEARNING_PATH_OVERVIEW_SECTION_ID })
-  }, [path, selectedId])
+  }, [creationMode, path, selectedId])
 
   React.useEffect(() => {
     function onLeave() {
@@ -1615,13 +2123,14 @@ function CommunityLearningPath({
   }, [slug])
 
   const isOwnPath = React.useMemo(() => {
+    if (creationMode) return true
     if (isCatalogLearningPathSlug(slug)) return false
     if (currentUserId && pathOwnerId === currentUserId) return true
     if (currentUserId && !pathOwnerId) {
       return readStoredLearningPaths().some((item) => item.slug === slug)
     }
     return false
-  }, [slug, currentUserId, pathOwnerId])
+  }, [creationMode, slug, currentUserId, pathOwnerId])
 
   const canEditPathStructure =
     isOwnPath ||
@@ -1696,7 +2205,7 @@ function CommunityLearningPath({
     let cancelled = false
     setBookmarkLinkId(null)
     setSavedLinkByUrl({})
-    if (!currentUserId) {
+    if (creationMode || !currentUserId) {
       return
     }
     void getMyLinks().then((links) => {
@@ -1714,11 +2223,11 @@ function CommunityLearningPath({
     return () => {
       cancelled = true
     }
-  }, [slug, currentUserId])
+  }, [slug, currentUserId, creationMode])
 
   React.useEffect(() => {
     const pinKey = learningPathNavPinKey(slug)
-    if (!currentUserId) {
+    if (creationMode || !currentUserId) {
       setNavPinnedState(false)
       return
     }
@@ -1735,7 +2244,7 @@ function CommunityLearningPath({
       alive = false
       unsub()
     }
-  }, [slug, currentUserId])
+  }, [slug, currentUserId, creationMode])
 
   React.useEffect(() => {
     return () => {
@@ -1784,13 +2293,14 @@ function CommunityLearningPath({
     [path.nodes, marks]
   )
   const showOverviewNav =
-    !searching ||
-    'overview'.includes(outlineQuery) ||
-    'recommended path'.includes(outlineQuery) ||
-    'mental map'.includes(outlineQuery) ||
-    'general approach'.includes(outlineQuery) ||
-    path.title.toLowerCase().includes(outlineQuery) ||
-    (goalNode?.label ?? '').toLowerCase().includes(outlineQuery)
+    !creationMode &&
+    (!searching ||
+      'overview'.includes(outlineQuery) ||
+      'recommended path'.includes(outlineQuery) ||
+      'mental map'.includes(outlineQuery) ||
+      'general approach'.includes(outlineQuery) ||
+      path.title.toLowerCase().includes(outlineQuery) ||
+      (goalNode?.label ?? '').toLowerCase().includes(outlineQuery))
   const showKnowledgeNav =
     pathFinished &&
     (!searching ||
@@ -1908,6 +2418,7 @@ function CommunityLearningPath({
       selectNodeKeepingScroll(prevNode.id)
       return
     }
+    if (creationMode) return
     selectNodeKeepingScroll(LEARNING_PATH_OVERVIEW_SECTION_ID)
   }
 
@@ -1949,11 +2460,66 @@ function CommunityLearningPath({
     if (!target) return
     const anchorId =
       showingOverview || showingKnowledge ? goalNode.id : target.id
+    openAddAt(anchorId, placement)
+  }
+
+  function openAddAt(anchorId: string, placement: 'child' | 'after') {
+    if (!canEditPathStructure) return
+    setSelectedId(anchorId)
+    replaceSearchParams({ node: anchorId })
     setOutlineAddDraft({
       placement,
       anchorId,
       label: ''
     })
+  }
+
+  function deleteNodeById(nodeId: string) {
+    if (!canEditPathStructure) return
+    const target = path.nodes.find((node) => node.id === nodeId)
+    if (!target || target.kind === 'goal') return
+    const parentEdge = path.edges.find((edge) => edge.to === nodeId)
+    const parent = parentEdge
+      ? path.nodes.find((node) => node.id === parentEdge.from)
+      : null
+    const fallback =
+      !parent || parent.kind === 'goal'
+        ? creationMode
+          ? path.nodes.find(
+              (node) =>
+                node.id !== nodeId &&
+                path.edges.some(
+                  (edge) =>
+                    edge.to === node.id &&
+                    path.nodes.find((item) => item.id === edge.from)?.kind ===
+                      'goal'
+                )
+            )?.id ?? LEARNING_PATH_OVERVIEW_SECTION_ID
+          : LEARNING_PATH_OVERVIEW_SECTION_ID
+        : parent.id
+    const isTopLevel = parent?.kind === 'goal'
+    if (isTopLevel) {
+      const topLevels = path.nodes.filter((node) =>
+        path.edges.some(
+          (edge) =>
+            edge.to === node.id &&
+            path.nodes.find((item) => item.id === edge.from)?.kind === 'goal'
+        )
+      )
+      if (topLevels.length <= 1) return
+    }
+    const removed = new Set([nodeId, ...descendantIds(path, nodeId)])
+    setPath((prev) => {
+      const next = removeNodeSubtree(prev, nodeId)
+      persistGraph(next)
+      pathRef.current = next
+      queueUserStateSave()
+      return next
+    })
+    if (removed.has(selectedId)) {
+      setSelectedId(fallback)
+      replaceSearchParams({ node: fallback })
+    }
   }
 
   function cancelOutlineAddDraft() {
@@ -2122,6 +2688,54 @@ function CommunityLearningPath({
     })
     setInlineWhyEditing(false)
     setInlineWhyDraft('')
+  }
+
+  function renameNodeLabel(nodeId: string, label: string) {
+    if (!canEditPathStructure) return
+    const node = path.nodes.find((item) => item.id === nodeId)
+    if (!node || node.kind === 'goal') return
+    setPath((prev) => {
+      const next: LearningPathData = {
+        ...prev,
+        nodes: prev.nodes.map((item) =>
+          item.id === nodeId ? { ...item, label } : item
+        )
+      }
+      persistGraph(next)
+      pathRef.current = next
+      queueUserStateSave()
+      return next
+    })
+  }
+
+  function setNodeWhy(nodeId: string, why: string) {
+    if (!canEditPathStructure) return
+    setPath((prev) => {
+      const next: LearningPathData = {
+        ...prev,
+        nodes: prev.nodes.map((item) =>
+          item.id === nodeId ? { ...item, why } : item
+        )
+      }
+      persistGraph(next)
+      pathRef.current = next
+      queueUserStateSave()
+      return next
+    })
+  }
+
+  function setPathTitle(title: string) {
+    if (!canEditPathStructure || isPrivateInvitee) return
+    setPath((prev) => {
+      const next: LearningPathData = {
+        ...prev,
+        title
+      }
+      persistGraph(next)
+      pathRef.current = next
+      queueUserStateSave()
+      return next
+    })
   }
 
   function startInlineTitleEdit() {
@@ -2498,7 +3112,7 @@ function CommunityLearningPath({
       return
     }
     setDeletePathOpen(false)
-    void router.replace('/profile?tab=learning')
+    void router.replace(pathsProfileHref('learning'))
   }
 
   async function handleInviteCollaborator(email: string) {
@@ -2903,6 +3517,146 @@ function CommunityLearningPath({
     }
   }
 
+  const creationGoal = (initialGoal.trim() || path.goal).trim()
+
+  async function handleFillPath() {
+    if (!creationGoal || filling) return
+    if (!currentUserId) {
+      requestSignIn()
+      return
+    }
+    setFilling(true)
+    setFillError(null)
+    try {
+      const supabase = getSupabaseClient()
+      const session = supabase
+        ? (await supabase.auth.getSession()).data.session
+        : null
+      const accessToken = session?.access_token
+      if (!accessToken) {
+        requestSignIn()
+        setFillError('Sign in to auto-fill a learning path.')
+        return
+      }
+      const response = await fetch('/api/fill-learning-path', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${accessToken}`
+        },
+        body: JSON.stringify({ goal: creationGoal })
+      })
+      const payload = (await response.json()) as FilledLearningPath & {
+        error?: string
+      }
+      if (response.status === 401) {
+        requestSignIn()
+        setFillError(payload.error || 'Sign in to auto-fill a learning path.')
+        return
+      }
+      if (response.status === 429) {
+        setFillError(
+          payload.error ||
+            `You've used all ${LEARNING_PATH_FILL_DAILY_LIMIT} auto-fills for today. Try again tomorrow.`
+        )
+        return
+      }
+      if (!response.ok) {
+        setFillError(payload.error || 'Could not fill this path.')
+        return
+      }
+      if (!payload.steps?.length) {
+        setFillError('Could not read a path outline from the model.')
+        return
+      }
+      if (!preFillSnapshot) {
+        setPreFillSnapshot({
+          path: structuredClone(pathRef.current),
+          selectedId,
+          summaryDraft
+        })
+      }
+      const next = learningPathFromOutline({
+        goal: creationGoal,
+        slug: path.slug,
+        steps: outlineFromFilledLearningPath(payload, newId),
+        summary: payload.description
+      })
+      setPath(next)
+      pathRef.current = next
+      setSummaryDraft(next.summary)
+      const firstTopic =
+        next.nodes.find(
+          (node) =>
+            node.kind === 'milestone' &&
+            next.edges.some(
+              (edge) =>
+                edge.to === node.id &&
+                next.nodes.find((item) => item.id === edge.from)?.kind ===
+                  'goal'
+            )
+        )?.id ?? next.nodes.find((node) => node.kind === 'milestone')?.id
+      if (firstTopic) {
+        setSelectedId(firstTopic)
+        replaceSearchParams({ node: firstTopic })
+      }
+    } catch {
+      setFillError('Could not fill this path. Try again.')
+    } finally {
+      setFilling(false)
+    }
+  }
+
+  function handleRejectFilledPath() {
+    if (!preFillSnapshot || filling) return
+    const restored = structuredClone(preFillSnapshot.path)
+    setPath(restored)
+    pathRef.current = restored
+    setSummaryDraft(preFillSnapshot.summaryDraft)
+    setSelectedId(preFillSnapshot.selectedId)
+    replaceSearchParams({ node: preFillSnapshot.selectedId })
+    setPreFillSnapshot(null)
+    setFillError(null)
+  }
+
+  async function handleCreatePath() {
+    if (creatingPath) return
+    if (!currentUserId) {
+      requestSignIn()
+      return
+    }
+    setCreatingPath(true)
+    setCreateError(null)
+    try {
+      const existing = await listAllLearningPathSlugs()
+      const nextSlug = ensureUniqueSlug(
+        slugifyLearningPathName(creationGoal || path.title),
+        existing
+      )
+      const data: LearningPathData = {
+        ...path,
+        slug: nextSlug,
+        goal: creationGoal || path.goal,
+        summary: summaryDraft.trim() || path.summary
+      }
+      const id = await upsertOwnedLearningPath(data, { kind: initialKind })
+      writeStoredLearningPaths([
+        {
+          id: id ?? `path-${Date.now()}`,
+          goal: data.goal,
+          slug: nextSlug,
+          data: id ? { ...data, id } : data,
+          kind: initialKind
+        },
+        ...readStoredLearningPaths().filter((row) => row.slug !== nextSlug)
+      ])
+      void router.push(learningPathHref(nextSlug))
+    } catch {
+      setCreateError('Could not create this path. Try again.')
+      setCreatingPath(false)
+    }
+  }
+
   if (!goalNode) {
     const empty = emptyLearningPath(path.goal, path.slug)
     return (
@@ -2923,11 +3677,11 @@ function CommunityLearningPath({
         !(isPrivateInvitee && selected?.kind === 'goal'))
   const heroInstructors = (() => {
     const owner: { name: string; url?: string } = isOwnPath
-      ? { name: 'By You', url: '/profile' }
+      ? { name: 'By You', url: pathsProfileHref() }
       : pathOwnerId
       ? {
           name: `By ${creatorName?.trim() || 'Someone'}`,
-          url: `/profile/${pathOwnerId}`
+          url: pathsPublicProfileHref(pathOwnerId)
         }
       : { name: 'By Coursetexts' }
 
@@ -2950,8 +3704,8 @@ function CommunityLearningPath({
             : member.name.trim(),
         url: member.userId
           ? member.userId === currentUserId
-            ? '/profile'
-            : `/profile/${member.userId}`
+            ? pathsProfileHref()
+            : pathsPublicProfileHref(member.userId)
           : undefined,
         tone: 'accent' as const
       }))
@@ -2982,9 +3736,9 @@ function CommunityLearningPath({
     ? ownInitialSource.toString().trim().charAt(0).toUpperCase() || 'Y'
     : (creatorName || 'S').trim().charAt(0).toUpperCase()
   const publisherAvatarHref = isOwnPath
-    ? '/profile'
+    ? pathsProfileHref()
     : pathOwnerId
-    ? `/profile/${pathOwnerId}`
+    ? pathsPublicProfileHref(pathOwnerId)
     : undefined
 
   return (
@@ -3133,9 +3887,17 @@ function CommunityLearningPath({
       ) : null}
       <div className={styles.hero}>
         <CourseHero
-          courseCode={kicker}
+          courseCode={creationMode ? 'New Learning Path' : kicker}
           title={path.title}
-          instructors={heroInstructors}
+          titleSlot={
+            creationMode && canEditPathStructure ? (
+              <CreationPathTitleEditable
+                value={path.title}
+                onChange={setPathTitle}
+              />
+            ) : undefined
+          }
+          instructors={creationMode ? undefined : heroInstructors}
           descriptionHtml={pathDescriptionHtml(path.summary)}
           descriptionSlot={
             <LearningPathDescription
@@ -3145,20 +3907,29 @@ function CommunityLearningPath({
               onSave={savePathSummary}
             />
           }
-          schoolDate={formatHeroPublishedDate(path.createdAt, {
-            visibility: pathVisibility
-          })}
-          publisherAvatarUrl={publisherAvatarUrl}
-          publisherAvatarFallback={publisherAvatarFallback}
+          schoolDate={
+            creationMode
+              ? undefined
+              : formatHeroPublishedDate(path.createdAt, {
+                  visibility: pathVisibility
+                })
+          }
+          publisherAvatarUrl={creationMode ? undefined : publisherAvatarUrl}
+          publisherAvatarFallback={
+            creationMode ? undefined : publisherAvatarFallback
+          }
           publisherAvatarAlt={
-            isOwnPath
+            creationMode
+              ? undefined
+              : isOwnPath
               ? 'Your profile'
               : pathOwnerId
               ? `${creatorName?.trim() || 'Publisher'} profile`
               : 'Coursetexts'
           }
-          publisherAvatarHref={publisherAvatarHref}
+          publisherAvatarHref={creationMode ? undefined : publisherAvatarHref}
           actions={
+            creationMode ? undefined : (
             <HeroActionGroup>
               <HeroSaveButton
                 saved={Boolean(bookmarkLinkId)}
@@ -3204,6 +3975,7 @@ function CommunityLearningPath({
                 }
               />
             </HeroActionGroup>
+            )
           }
         />
       </div>
@@ -3220,6 +3992,8 @@ function CommunityLearningPath({
             <LearningPathOutlinePanel
               search={outlineSearch}
               onSearchChange={setOutlineSearch}
+              title={creationMode ? 'BUILD THE PATH' : 'THE PATH'}
+              hideSearch={creationMode}
               onMobileClose={
                 isMobileOutlineLayout
                   ? () => setMobileOutlineOpen(false)
@@ -3241,12 +4015,69 @@ function CommunityLearningPath({
                     />
                   </div>
                 ) : null}
+                {creationMode && canEditPathStructure ? (
+                  <div className={styles.creationEditPathSlot}>
+                    <PathEditMenu
+                      menuBelow
+                      canDelete={
+                        Boolean(selected) &&
+                        !showingOverview &&
+                        !showingKnowledge &&
+                        selected?.kind !== 'goal'
+                      }
+                      onAddUnder={() => openAdd('child')}
+                      onAddAfter={() => openAdd('after')}
+                      onDelete={() => setDeleteOpen(true)}
+                    />
+                    {preFillSnapshot ? (
+                      <>
+                        <button
+                          type='button'
+                          className={styles.creationFillBtn}
+                          onClick={() => void handleFillPath()}
+                          disabled={filling || !currentUserId}
+                          aria-busy={filling}
+                          title={
+                            currentUserId
+                              ? undefined
+                              : 'Sign in to fill out this path'
+                          }
+                        >
+                          Try again
+                        </button>
+                        <button
+                          type='button'
+                          className={styles.creationRejectFillBtn}
+                          onClick={handleRejectFilledPath}
+                          disabled={filling}
+                        >
+                          Reject this path
+                        </button>
+                      </>
+                    ) : (
+                      <button
+                        type='button'
+                        className={styles.creationFillBtn}
+                        onClick={() => void handleFillPath()}
+                        disabled={filling || !currentUserId}
+                        aria-busy={filling}
+                        title={
+                          currentUserId
+                            ? undefined
+                            : 'Sign in to fill out this path'
+                        }
+                      >
+                        Fill out this path for me
+                      </button>
+                    )}
+                  </div>
+                ) : null}
                 {filteredTree.length > 0 || outlineAddDraft ? (
                   <PathOutlineList
                     items={filteredTree}
                     selectedId={selectedId}
                     onSelect={selectNode}
-                    forceOpen={searching}
+                    forceOpen={searching || creationMode}
                     addDraft={outlineAddDraft}
                     onDraftLabelChange={(label) =>
                       setOutlineAddDraft((prev) =>
@@ -3255,6 +4086,36 @@ function CommunityLearningPath({
                     }
                     onDraftCommit={commitOutlineAddDraft}
                     onDraftCancel={cancelOutlineAddDraft}
+                    creationControls={
+                      creationMode && canEditPathStructure
+                        ? {
+                            onAddBelow: (id) => openAddAt(id, 'child'),
+                            onAddAfter: (id) => openAddAt(id, 'after'),
+                            onDelete: (id) => deleteNodeById(id),
+                            onRename: (id, label) => renameNodeLabel(id, label),
+                            canDelete: (id) => {
+                              const node = path.nodes.find((n) => n.id === id)
+                              if (!node || node.kind === 'goal') return false
+                              const fromGoal = path.edges.some(
+                                (edge) =>
+                                  edge.to === id &&
+                                  path.nodes.find((n) => n.id === edge.from)
+                                    ?.kind === 'goal'
+                              )
+                              if (!fromGoal) return true
+                              const topLevel = path.nodes.filter((n) =>
+                                path.edges.some(
+                                  (edge) =>
+                                    edge.to === n.id &&
+                                    path.nodes.find((x) => x.id === edge.from)
+                                      ?.kind === 'goal'
+                                )
+                              )
+                              return topLevel.length > 1
+                            }
+                          }
+                        : null
+                    }
                   />
                 ) : !searching && coreSteps.length === 0 ? (
                   <p className={styles.pathListEmpty}>
@@ -3276,7 +4137,7 @@ function CommunityLearningPath({
               </>
             }
             footer={
-              canEditPathStructure ? (
+              !creationMode && canEditPathStructure ? (
                 <PathEditMenu
                   canDelete={
                     Boolean(selected) &&
@@ -3316,7 +4177,7 @@ function CommunityLearningPath({
                 aria-label='Open the path'
               >
                 <PathOutlineOpenIcon />
-                <span>The Path</span>
+                <span>{creationMode ? 'Build the Path' : 'The Path'}</span>
                 <PathOutlineChevronIcon />
               </button>
             }
@@ -3331,8 +4192,9 @@ function CommunityLearningPath({
                 ? 'What you learned'
                 : selected?.label ?? path.title
             }
+            hideActivityChrome={creationMode}
             notesEditor={
-              userStateReady ? (
+              creationMode ? undefined : userStateReady ? (
                 <SiteNotesEditor
                   key={`${slug}:${selectedId}:${currentUserId ?? 'anon'}`}
                   value={parseStoredNotebookNote(
@@ -3363,11 +4225,14 @@ function CommunityLearningPath({
               )
             }
             onActivityPosted={() => setActivityRefreshNonce((n) => n + 1)}
-            onExportContext={() =>
-              formatLearningPathExportContext({
-                path,
-                selectedId
-              })
+            onExportContext={
+              creationMode
+                ? undefined
+                : () =>
+                    formatLearningPathExportContext({
+                      path,
+                      selectedId
+                    })
             }
             footer={
               showingKnowledge || !selected ? null : (
@@ -3375,7 +4240,7 @@ function CommunityLearningPath({
                   current={stepCurrent}
                   total={Math.max(stepTotal, 1)}
                   hasPrevious={!showingOverview}
-                  isLastStep={isLastOutlineStep}
+                  isLastStep={!creationMode && isLastOutlineStep}
                   onPrevious={goStepPrevious}
                   onNext={
                     showingOverview && outlineOrder.length === 0
@@ -3387,11 +4252,13 @@ function CommunityLearningPath({
                   }
                   explored={selected.status === 'explored'}
                   onToggleExplored={
-                    selected.kind === 'goal' ? undefined : toggleExplored
+                    creationMode || selected.kind === 'goal'
+                      ? undefined
+                      : toggleExplored
                   }
-                  showExplored={selected.kind !== 'goal'}
+                  showExplored={!creationMode && selected.kind !== 'goal'}
                   beforeNext={
-                    showingOverview ? (
+                    !creationMode && showingOverview ? (
                       <LearningPathCommitRemindButton
                         targetKey={learningPathCommitmentKey(slug)}
                         signedIn={Boolean(currentUserId)}
@@ -3429,159 +4296,186 @@ function CommunityLearningPath({
                     </nav>
                   ) : null}
                   <div className={styles.articleIntro}>
-                    {inlineTitleEditing ? (
-                      <div className={styles.titleEditing}>
-                        <div className={styles.titleEditRow}>
-                          <input
-                            ref={inlineTitleRef}
-                            className={styles.titleEditInput}
-                            value={inlineTitleDraft}
-                            onChange={(event) =>
-                              setInlineTitleDraft(event.target.value)
-                            }
-                            onKeyDown={(event) => {
-                              if (event.key === 'Escape') {
-                                event.preventDefault()
-                                cancelInlineTitleEdit()
-                              }
-                              if (event.key === 'Enter') {
-                                event.preventDefault()
-                                saveInlineTitle()
-                              }
-                            }}
-                            aria-label={
-                              showingOverview
-                                ? 'Learning path title'
-                                : 'Topic title'
-                            }
+                    {creationMode &&
+                    canEditPathStructure &&
+                    !showingOverview ? (
+                      <>
+                        <input
+                          className={styles.creationArticleTitleInput}
+                          value={selected.label}
+                          placeholder='Topic title'
+                          aria-label='Topic title'
+                          onChange={(event) =>
+                            renameNodeLabel(selected.id, event.target.value)
+                          }
+                        />
+                        <div className={styles.whyBlock}>
+                          <CreationWhyEditable
+                            key={selected.id}
+                            id={`creation-why-${selected.id}`}
+                            value={selected.why || ''}
+                            onChange={(why) => setNodeWhy(selected.id, why)}
                           />
-                          <span className={styles.whyEditActions}>
-                            <button
-                              type='button'
-                              className={styles.whySaveBtn}
-                              onClick={saveInlineTitle}
-                              disabled={!inlineTitleDraft.trim()}
-                            >
-                              Save
-                            </button>
-                            <button
-                              type='button'
-                              className={styles.whyCancelBtn}
-                              onClick={cancelInlineTitleEdit}
-                              aria-label='Cancel editing title'
-                            >
-                              ×
-                            </button>
-                          </span>
                         </div>
-                      </div>
+                      </>
                     ) : (
-                      <h1
-                        className={
-                          canEditDisplayedTitle
-                            ? `${styles.articleTitle} ${styles.articleTitleEditable}`
-                            : styles.articleTitle
-                        }
-                      >
-                        {showingOverview ? path.title : selected.label}
-                        {canEditDisplayedTitle ? (
-                          <button
-                            type='button'
-                            className={styles.titleEditBtn}
-                            onClick={startInlineTitleEdit}
-                            aria-label={
-                              showingOverview
-                                ? 'Edit learning path title'
-                                : 'Edit topic title'
-                            }
-                            title='Edit title'
-                          >
-                            <PencilIcon />
-                          </button>
-                        ) : null}
-                      </h1>
-                    )}
-                    {!showingOverview ? (
-                      <div
-                        className={
-                          canEditPathStructure
-                            ? `${styles.whyBlock} ${styles.whyBlockEditable}`
-                            : styles.whyBlock
-                        }
-                      >
-                        {inlineWhyEditing ? (
-                          <div className={styles.whyEditing}>
-                            <strong className={styles.whyLead}>
-                              Why is this on the learning path:
-                            </strong>
-                            <textarea
-                              ref={inlineWhyRef}
-                              className={styles.whyEditTextarea}
-                              rows={4}
-                              value={inlineWhyDraft}
-                              onChange={(event) =>
-                                setInlineWhyDraft(event.target.value)
-                              }
-                              onKeyDown={(event) => {
-                                if (event.key === 'Escape') {
-                                  event.preventDefault()
-                                  cancelInlineWhyEdit()
+                      <>
+                        {inlineTitleEditing ? (
+                          <div className={styles.titleEditing}>
+                            <div className={styles.titleEditRow}>
+                              <input
+                                ref={inlineTitleRef}
+                                className={styles.titleEditInput}
+                                value={inlineTitleDraft}
+                                onChange={(event) =>
+                                  setInlineTitleDraft(event.target.value)
                                 }
-                                if (
-                                  event.key === 'Enter' &&
-                                  (event.metaKey || event.ctrlKey)
-                                ) {
-                                  event.preventDefault()
-                                  saveInlineWhy()
+                                onKeyDown={(event) => {
+                                  if (event.key === 'Escape') {
+                                    event.preventDefault()
+                                    cancelInlineTitleEdit()
+                                  }
+                                  if (event.key === 'Enter') {
+                                    event.preventDefault()
+                                    saveInlineTitle()
+                                  }
+                                }}
+                                aria-label={
+                                  showingOverview
+                                    ? 'Learning path title'
+                                    : 'Topic title'
                                 }
-                              }}
-                              aria-label='Why is this on the learning path'
-                              placeholder='Explain why this step belongs on the path…'
-                            />
-                            <span className={styles.whyEditActions}>
-                              <button
-                                type='button'
-                                className={styles.whySaveBtn}
-                                onClick={saveInlineWhy}
-                              >
-                                Save
-                              </button>
-                              <button
-                                type='button'
-                                className={styles.whyCancelBtn}
-                                onClick={cancelInlineWhyEdit}
-                                aria-label='Cancel editing why'
-                              >
-                                ×
-                              </button>
-                            </span>
+                              />
+                              <span className={styles.whyEditActions}>
+                                <button
+                                  type='button'
+                                  className={styles.whySaveBtn}
+                                  onClick={saveInlineTitle}
+                                  disabled={!inlineTitleDraft.trim()}
+                                >
+                                  Save
+                                </button>
+                                <button
+                                  type='button'
+                                  className={styles.whyCancelBtn}
+                                  onClick={cancelInlineTitleEdit}
+                                  aria-label='Cancel editing title'
+                                >
+                                  ×
+                                </button>
+                              </span>
+                            </div>
                           </div>
                         ) : (
-                          <p className={styles.whyCopy}>
-                            <strong className={styles.whyLead}>
-                              Why is this on the learning path:
-                            </strong>{' '}
-                            {selected.why ||
-                              selected.description ||
-                              'A reason has not been written for this step yet.'}
-                            {canEditPathStructure ? (
+                          <h1
+                            className={
+                              canEditDisplayedTitle
+                                ? `${styles.articleTitle} ${styles.articleTitleEditable}`
+                                : styles.articleTitle
+                            }
+                          >
+                            {showingOverview ? path.title : selected.label}
+                            {canEditDisplayedTitle ? (
                               <button
                                 type='button'
-                                className={styles.whyEditBtn}
-                                onClick={startInlineWhyEdit}
-                                aria-label='Edit why this is on the learning path'
-                                title='Edit why'
+                                className={styles.titleEditBtn}
+                                onClick={startInlineTitleEdit}
+                                aria-label={
+                                  showingOverview
+                                    ? 'Edit learning path title'
+                                    : 'Edit topic title'
+                                }
+                                title='Edit title'
                               >
                                 <PencilIcon />
                               </button>
                             ) : null}
-                          </p>
+                          </h1>
                         )}
-                      </div>
-                    ) : null}
+                        {!showingOverview ? (
+                          <div
+                            className={
+                              canEditPathStructure
+                                ? `${styles.whyBlock} ${styles.whyBlockEditable}`
+                                : styles.whyBlock
+                            }
+                          >
+                            {inlineWhyEditing ? (
+                              <div className={styles.whyEditing}>
+                                <strong className={styles.whyLead}>
+                                  Why is this on the learning path:
+                                </strong>
+                                <textarea
+                                  ref={inlineWhyRef}
+                                  className={styles.whyEditTextarea}
+                                  rows={4}
+                                  value={inlineWhyDraft}
+                                  onChange={(event) =>
+                                    setInlineWhyDraft(event.target.value)
+                                  }
+                                  onKeyDown={(event) => {
+                                    if (event.key === 'Escape') {
+                                      event.preventDefault()
+                                      cancelInlineWhyEdit()
+                                    }
+                                    if (
+                                      event.key === 'Enter' &&
+                                      (event.metaKey || event.ctrlKey)
+                                    ) {
+                                      event.preventDefault()
+                                      saveInlineWhy()
+                                    }
+                                  }}
+                                  aria-label='Why is this on the learning path'
+                                  placeholder='Explain why this step belongs on the path…'
+                                />
+                                <span className={styles.whyEditActions}>
+                                  <button
+                                    type='button'
+                                    className={styles.whySaveBtn}
+                                    onClick={saveInlineWhy}
+                                  >
+                                    Save
+                                  </button>
+                                  <button
+                                    type='button'
+                                    className={styles.whyCancelBtn}
+                                    onClick={cancelInlineWhyEdit}
+                                    aria-label='Cancel editing why'
+                                  >
+                                    ×
+                                  </button>
+                                </span>
+                              </div>
+                            ) : (
+                              <p className={styles.whyCopy}>
+                                <strong className={styles.whyLead}>
+                                  Why is this on the learning path:
+                                </strong>{' '}
+                                {selected.why ||
+                                  selected.description ||
+                                  'A reason has not been written for this step yet.'}
+                                {canEditPathStructure ? (
+                                  <button
+                                    type='button'
+                                    className={styles.whyEditBtn}
+                                    onClick={startInlineWhyEdit}
+                                    aria-label='Edit why this is on the learning path'
+                                    title='Edit why'
+                                  >
+                                    <PencilIcon />
+                                  </button>
+                                ) : null}
+                              </p>
+                            )}
+                          </div>
+                        ) : null}
+                      </>
+                    )}
                   </div>
                 </header>
 
+                {creationMode ? null : (
                 <PathContentSection title='Resources'>
                   {listedResources.length === 0 ? (
                     <div className={styles.resourceEmptyBox}>
@@ -3838,6 +4732,7 @@ function CommunityLearningPath({
                     </>
                   )}
                 </PathContentSection>
+                )}
 
                 {showingOverview ? (
                   <PathContentSection title='Recommended Path'>
@@ -3873,15 +4768,58 @@ function CommunityLearningPath({
         </div>
       </div>
 
-      <div className={styles.activitySection}>
-        <CourseActivity
-          coursePageId={learningPathActivityPageId(slug)}
-          courseTitle={path.title}
-          courseUrl={learningPathHref(slug)}
-          activityRefreshNonce={activityRefreshNonce}
-          pathMembers={pathPeople ?? path.circle.members}
-        />
-      </div>
+      {creationMode ? (
+        <div className={styles.creationActions}>
+          <div className={styles.creationActionsInner}>
+            <div className={styles.creationActionsCopy}>
+              <p className={styles.creationIntroLead}>
+                Let&apos;s build the path you will follow.
+              </p>
+              <p className={styles.creationIntroHint}>
+                Fill the outline from your goal, then edit anything that is off
+                — steps, concepts, and why each one is on the path.
+              </p>
+              {fillError ? (
+                <p className={styles.creationError} role='alert'>
+                  {fillError}
+                </p>
+              ) : null}
+              {createError ? (
+                <p className={styles.creationError} role='alert'>
+                  {createError}
+                </p>
+              ) : null}
+            </div>
+            <div className={styles.creationActionsButtons}>
+              <button
+                type='button'
+                className={styles.creationCancelBtn}
+                onClick={() => void router.push(pathsLearningPathsIndexHref())}
+              >
+                Cancel learning path creation
+              </button>
+              <button
+                type='button'
+                className={styles.creationCreateBtn}
+                onClick={() => void handleCreatePath()}
+                disabled={creatingPath}
+              >
+                {creatingPath ? 'Creating…' : 'Create private learning path'}
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className={styles.activitySection}>
+          <CourseActivity
+            coursePageId={learningPathActivityPageId(slug)}
+            courseTitle={path.title}
+            courseUrl={learningPathHref(slug)}
+            activityRefreshNonce={activityRefreshNonce}
+            pathMembers={pathPeople ?? path.circle.members}
+          />
+        </div>
+      )}
 
       {resourceFormOpen ? (
         <div
@@ -4095,12 +5033,25 @@ function CommunityLearningPath({
           </div>
         </div>
       ) : null}
+      {creationMode ? <LearningPathFillOverlay open={filling} /> : null}
     </section>
   )
 }
 
-export function LearningPath({ slug }: { slug: string }) {
-  const seeded = SEEDED_LEARNING_PATHS_BY_SLUG[slug]
+export function LearningPath({
+  slug,
+  creationMode = false,
+  initialGoal = '',
+  initialKind = 'community'
+}: {
+  slug?: string
+  /** Renders the same shell as a draft outline for `/learning-path/new`. */
+  creationMode?: boolean
+  initialGoal?: string
+  initialKind?: LearningPathKind
+}) {
+  const router = useRouter()
+  const seeded = slug ? SEEDED_LEARNING_PATHS_BY_SLUG[slug] : undefined
   const [kind, setKind] = React.useState<LearningPathKind | null>(
     seeded ? 'community' : null
   )
@@ -4108,8 +5059,16 @@ export function LearningPath({ slug }: { slug: string }) {
     'private' | 'missing' | null
   >(null)
   const [joinRequested, setJoinRequested] = React.useState(false)
+  const creationKind: LearningPathKind =
+    initialKind === 'research' ? 'research' : 'community'
+  /** The goal lives in the URL: shallow routing keeps it across re-renders. */
+  const creationGoal =
+    initialGoal.trim() || firstQueryParam(router.query.goal).trim()
+  const [creationGoalDraft, setCreationGoalDraft] = React.useState(creationGoal)
 
   React.useEffect(() => {
+    const currentSlug = slug
+    if (creationMode || !currentSlug) return
     if (seeded) {
       setUnavailable(null)
       setJoinRequested(false)
@@ -4121,7 +5080,7 @@ export function LearningPath({ slug }: { slug: string }) {
     setUnavailable(null)
     setJoinRequested(false)
     void (async () => {
-      const record = await getLearningPathRecord(slug)
+      const record = await getLearningPathRecord(currentSlug)
       if (cancelled) return
       if (
         record?.kind === 'course' ||
@@ -4134,13 +5093,13 @@ export function LearningPath({ slug }: { slug: string }) {
         setKind(parseLearningPathKind(record.kind))
         return
       }
-      const course = await getCourseLearningPathData(slug)
+      const course = await getCourseLearningPathData(currentSlug)
       if (cancelled) return
-      if (course || slug === DEFAULT_COURSE_LEARNING_PATH_SLUG) {
+      if (course || currentSlug === DEFAULT_COURSE_LEARNING_PATH_SLUG) {
         setKind('course')
         return
       }
-      const access = await probeLearningPathAccess(slug)
+      const access = await probeLearningPathAccess(currentSlug)
       if (cancelled) return
       if (access.exists && !access.accessible) {
         setUnavailable('private')
@@ -4148,9 +5107,9 @@ export function LearningPath({ slug }: { slug: string }) {
         return
       }
       const localDraft = readStoredLearningPaths().some(
-        (item) => item.slug === slug
+        (item) => item.slug === currentSlug
       )
-      if (localDraft || isCatalogLearningPathSlug(slug)) {
+      if (localDraft || isCatalogLearningPathSlug(currentSlug)) {
         setKind('community')
         return
       }
@@ -4159,7 +5118,95 @@ export function LearningPath({ slug }: { slug: string }) {
     return () => {
       cancelled = true
     }
-  }, [slug, seeded])
+  }, [slug, seeded, creationMode])
+
+  if (creationMode) {
+    if (!creationGoal) {
+      return (
+        <section className={styles.section} aria-label='New learning path'>
+          <div className={styles.creationGoal}>
+            <div className={styles.creationGoalInner}>
+              <p className={styles.eyebrow}>New learning path</p>
+              <h1 className={styles.creationGoalTitle}>
+                What do you want to learn?
+              </h1>
+              <p className={styles.creationIntroHint}>
+                The path starts from the intention. Work backward into the
+                knowledge that would make you capable of it.
+              </p>
+              <form
+                className={styles.creationGoalForm}
+                onSubmit={(event) => {
+                  event.preventDefault()
+                  const next = creationGoalDraft.trim()
+                  if (!next) return
+                  void router.replace(
+                    {
+                      pathname: `${PATHS_BASE}/learning-path/new`,
+                      query: {
+                        goal: next,
+                        ...(creationKind === 'research'
+                          ? { kind: 'research' }
+                          : {})
+                      }
+                    },
+                    undefined,
+                    { shallow: true }
+                  )
+                }}
+              >
+                <label className={styles.creationGoalLabel}>
+                  <span>Your goal</span>
+                  <textarea
+                    className={styles.creationGoalInput}
+                    value={creationGoalDraft}
+                    onChange={(event) =>
+                      setCreationGoalDraft(event.target.value)
+                    }
+                    placeholder='I want to…'
+                    rows={4}
+                    autoFocus
+                  />
+                </label>
+                <div className={styles.creationGoalActions}>
+                  <button
+                    type='button'
+                    className={styles.creationCancelBtn}
+                    onClick={() => void router.push(pathsLearningPathsIndexHref())}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type='submit'
+                    className={styles.creationCreateBtn}
+                    disabled={!creationGoalDraft.trim()}
+                  >
+                    Continue
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+      )
+    }
+    const creationSlug =
+      slugifyLearningPathName(creationGoal || 'new-path') || 'new-path'
+    return (
+      <CommunityLearningPath
+        key={creationSlug}
+        slug={creationSlug}
+        kicker={creationMode ? 'New Learning Path' : learningPathKicker(creationKind)}
+        creationMode
+        initialGoal={creationGoal}
+        initialKind={creationKind}
+      />
+    )
+  }
+
+  if (!slug) {
+    return <div style={{ padding: '48px var(--home-side)' }}>Loading…</div>
+  }
 
   if (unavailable) {
     return (

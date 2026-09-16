@@ -95,5 +95,95 @@ module.exports = withBundleAnalyzer({
   experimental: {
     workerThreads: false,
     cpus: 1
+  },
+  async redirects() {
+    return [
+      {
+        source: '/learning-path/:path*',
+        destination: '/paths/learning-path/:path*',
+        permanent: true
+      },
+      {
+        source: '/learning-paths',
+        destination: '/paths/learning-paths',
+        permanent: true
+      },
+      {
+        source: '/profile',
+        destination: '/paths/profile',
+        permanent: true
+      },
+      {
+        source: '/profile/:userId',
+        destination: '/paths/profile/:userId',
+        permanent: true
+      },
+      {
+        source: '/community',
+        destination: '/paths/community',
+        permanent: true
+      },
+      {
+        source: '/community-resources',
+        destination: '/paths/community-resources',
+        permanent: true
+      },
+      {
+        source: '/degrees',
+        destination: '/paths/degrees',
+        permanent: true
+      },
+      {
+        source: '/knowledge-graph',
+        destination: '/paths/knowledge-graph',
+        permanent: true
+      },
+      {
+        source: '/field-atlas',
+        destination: '/paths/field-atlas',
+        permanent: true
+      },
+      {
+        source: '/users',
+        destination: '/paths/users',
+        permanent: true
+      },
+      {
+        source: '/all-courses',
+        has: [{ type: 'query', key: 'view', value: 'all' }],
+        destination: '/paths/all-courses?view=all',
+        permanent: false
+      },
+      {
+        source: '/all-courses',
+        has: [{ type: 'query', key: 'view', value: 'learning-paths' }],
+        destination: '/paths/all-courses?view=learning-paths',
+        permanent: false
+      },
+      {
+        source: '/all-courses',
+        has: [{ type: 'query', key: 'view', value: 'paths' }],
+        destination: '/paths/all-courses?view=learning-paths',
+        permanent: false
+      },
+      {
+        source: '/all-courses',
+        has: [{ type: 'query', key: 'view', value: 'research' }],
+        destination: '/paths/all-courses?view=research',
+        permanent: false
+      },
+      {
+        source: '/all-courses',
+        has: [{ type: 'query', key: 'view', value: 'degrees' }],
+        destination: '/paths/all-courses?view=degrees',
+        permanent: false
+      },
+      {
+        source: '/all-courses',
+        has: [{ type: 'query', key: 'topic' }],
+        destination: '/paths/all-courses',
+        permanent: false
+      }
+    ]
   }
 })

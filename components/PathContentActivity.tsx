@@ -36,7 +36,8 @@ export function PathContentActivity({
   onActivityPosted,
   onExportContext,
   footer,
-  viewBarLeading
+  viewBarLeading,
+  hideActivityChrome = false
 }: {
   coursePageId: string
   courseTitle: string
@@ -56,6 +57,8 @@ export function PathContentActivity({
   footer?: React.ReactNode
   /** Rendered first in the sticky action bar (e.g. mobile path outline toggle). */
   viewBarLeading?: React.ReactNode
+  /** Hide Discussions / Your Notes / Context (path creation mode). */
+  hideActivityChrome?: boolean
 }) {
   const [rightPanel, setRightPanel] = React.useState<RightPanel>('none')
   const [annotationCount, setAnnotationCount] = React.useState(0)
@@ -97,7 +100,7 @@ export function PathContentActivity({
   }, [])
 
   React.useEffect(() => {
-    if (!coursePageId || !courseTitle || !sectionId) {
+    if (hideActivityChrome || !coursePageId || !courseTitle || !sectionId) {
       setAnnotationCount(0)
       return
     }
@@ -115,11 +118,13 @@ export function PathContentActivity({
     return () => {
       cancelled = true
     }
-  }, [coursePageId, courseTitle, courseUrl, sectionId])
+  }, [hideActivityChrome, coursePageId, courseTitle, courseUrl, sectionId])
 
-  const showDesktopRightPanel = !isCompactLayout && rightPanel !== 'none'
-  const showMobileRightPanel = isCompactLayout && rightPanel !== 'none'
-  const hideViewBarActions = rightPanel !== 'none'
+  const showDesktopRightPanel =
+    !hideActivityChrome && !isCompactLayout && rightPanel !== 'none'
+  const showMobileRightPanel =
+    !hideActivityChrome && isCompactLayout && rightPanel !== 'none'
+  const hideViewBarActions = hideActivityChrome || rightPanel !== 'none'
 
   React.useEffect(() => {
     if (!showMobileRightPanel) return
@@ -239,12 +244,14 @@ export function PathContentActivity({
             ) : null}
           </div>
         </div>
-        <div
-          className={`${styles.contentBody}${
-            contentClassName ? ` ${contentClassName}` : ''
-          }`}
-        >
-          {children}
+        <div className={styles.contentBody}>
+          <div
+            className={`${styles.contentBodyInner}${
+              contentClassName ? ` ${contentClassName}` : ''
+            }`}
+          >
+            {children}
+          </div>
         </div>
         {footer ? <div className={styles.contentFooter}>{footer}</div> : null}
       </div>

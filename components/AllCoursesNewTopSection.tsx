@@ -5,6 +5,7 @@ import {
   LEARNING_PATH_TOPICS,
   type LearningPathTopicId
 } from '@/lib/learning-path-topic'
+import { pathsCatalogHref } from '@/lib/paths-routes'
 
 import styles from './AllCoursesNewTopSection.module.css'
 import { LearningPathTopicIcon } from './LearningPathTopicIcon'
@@ -20,22 +21,22 @@ const PARTNER_LINKS = [
   {
     label: 'Stanford',
     icon: '/images/home/stanford.png',
-    href: '/all-courses?q=Stanford'
+    href: pathsCatalogHref({ q: 'Stanford' })
   },
   {
     label: 'Harvard',
     icon: '/images/home/harvard-red.png',
-    href: '/all-courses?q=Harvard'
+    href: pathsCatalogHref({ q: 'Harvard' })
   },
   {
     label: 'Waterloo',
     icon: '/images/home/waterloo.png',
-    href: '/all-courses?q=Waterloo'
+    href: pathsCatalogHref({ q: 'Waterloo' })
   },
   {
     label: 'More schools',
     icon: '/images/home/plus-10.png',
-    href: '/all-courses?view=courses'
+    href: pathsCatalogHref({ view: 'courses' })
   }
 ]
 

@@ -391,7 +391,7 @@ erDiagram
 | `learning_path_user_state`     | Per-learner overlay: TipTap notes, extra resources, node status.                                                                                                                                               |
 | `learning_path_pins`           | Per-user pinned **course** syllabi (header pin menu).                                                                                                                                                          |
 | `learning_path_resource_votes` | Upvotes on a resource list item. Independent of sequence. Public + collaborative paths only. `/community` diagrams this (`ResourceVoteSchemaDiagram`).                                                         |
-| `learning_path_commitments`    | Per-user committed flag on a Learning tab item. Profile filter **Committed** (own and public profiles). Reminder cadence is optional (`reminder_frequency` / `reminder_minute` / `reminder_timezone` nullable); a reminder cannot exist without a commitment row. Sending notifications is not built yet. Existing DBs: apply `041_learning_path_commitment_reminders.sql` (creates the table if `030` was never applied). Public read of rows: `052_public_learning_path_commitments_read.sql`; writes stay owner-only. |
+| `learning_path_commitments`    | Per-user committed flag on a Paths tab item. Profile filter **Committed** (own and public profiles). Reminder cadence is optional (`reminder_frequency` / `reminder_minute` / `reminder_timezone` nullable); a reminder cannot exist without a commitment row. Sending notifications is not built yet. Existing DBs: apply `041_learning_path_commitment_reminders.sql` (creates the table if `030` was never applied). Public read of rows: `052_public_learning_path_commitments_read.sql`; writes stay owner-only. |
 | `learning_path_invites`        | Owner-only list of emails invited to co-edit an owned path (private, public, or collaborative). No invitation email is sent. Access is a matching signed-in Coursetexts account (`invited_user_id` or JWT email). Existing DBs: apply `042` + `053` + `054_learning_path_invites_readable_on_path.sql` (readers can list invites for the people sidebar). |
 | `learning_path_join_requests`  | Signed-in visitor asked to join a private path. Email is stored; no email is sent. Owner Invite creates a `learning_path_invites` row and deletes the request. Existing DBs: apply `044_learning_path_join_requests.sql`. |
 
@@ -417,7 +417,7 @@ erDiagram
 
 ## Knowledge
 
-Per-user acquired topics plus a shared catalog of labels, path occurrences, and edges. `/knowledge-graph` shows topics and the learning paths they reoccur in. The profile Knowledge tab stays a list. See [knowledge.md](./knowledge.md).
+Per-user acquired topics plus a shared catalog of labels, path occurrences, and edges. `/knowledge-graph` shows topics and the learning paths they reoccur in. The profile Concepts tab stays a list. See [knowledge.md](./knowledge.md).
 
 ```mermaid
 erDiagram

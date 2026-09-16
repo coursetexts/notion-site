@@ -1,4 +1,7 @@
 import * as React from 'react'
+import Link from 'next/link'
+
+import { pathsCommunityHref } from '@/lib/paths-routes'
 
 import { HomeLearningPathDiagram } from './HomeLearningPathDiagram'
 import styles from './HomeWhatIsLearningPathSection.module.css'
@@ -17,8 +20,21 @@ export function HomeWhatIsLearningPathSection() {
             <span className={styles.headingAccent}>Learning paths.</span>
           </h2>
           <p className={styles.body}>
-          <b>Turn any learning goal into a path you can finish.</b> <br/><br/>
-          Follow an ordered sequence of concepts, use the best community-ranked resources, and keep your notes and progress in one place.
+            <b>Turn any learning goal into a path you can finish.</b> <br />
+   
+            Follow an ordered sequence of concepts, with a list of
+            community-ranked resources attached, and along with your notes and progress in one
+            place.
+          </p>
+          <p className={styles.body}>
+            Coursetexts is a community of learners. Anyone can publish a
+            learning path to help others learn what they have already.
+            The community curates and votes on resources to build the best
+            possible learning experience.{' '} <br /> <br />
+            <Link href={pathsCommunityHref()} legacyBehavior>
+              <a className={styles.bodyLink}>Learn more about our community</a>
+            </Link>
+            .
           </p>
         </div>
 

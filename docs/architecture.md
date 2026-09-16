@@ -2,14 +2,21 @@
 
 ## Big picture
 
-Coursetexts is a Next.js site with four content pillars:
+Coursetexts is a Next.js site with **two product surfaces** on one deploy:
+
+1. **Coursetexts** — open library of official Notion university courses at `/`, `/all-courses`, and `/course/{pageId}`
+2. **Paths by Coursetexts** — community / research / syllabus learning paths, profiles, degrees, Field Atlas, and knowledge graph, all mounted under `/paths/*`
+
+Canonical Paths URLs live in `lib/paths-routes.ts`. Legacy bare routes (`/learning-path/*`, `/profile`, `/community`, `/degrees`, etc.) **301 redirect** into `/paths/…` via `next.config.js`.
+
+Content pillars under that split:
 
 1. **Official Notion courses** — professor course pages from Notion at `/course/{pageId}`; comments, discussions, bookmarks, and notes in Supabase
-2. **Course learning paths** — degree syllabi (topic tree + sequenced resources) stored as `learning_paths` rows with `kind = course`
+2. **Course learning paths** — degree syllabi (topic tree + sequenced resources) stored as `learning_paths` rows with `kind = course` at `/paths/learning-path/{slug}`
 3. **Community / research learning paths** — goal-based maps people publish, keep private, or open for collaboration
 4. **Community / profiles** — users, follows, resource library, Field Atlas
 
-Everything that is **not** a Notion professor course already lives on `learning_paths` and `/learning-path/{slug}`. Official Notion courses are still a separate CMS. A later pass will migrate those onto `learning_paths` too — that work is not started. See [Future](#future-official-notion-courses).
+Everything that is **not** a Notion professor course already lives on `learning_paths` and `/paths/learning-path/{slug}`. Official Notion courses are still a separate CMS. A later pass will migrate those onto `learning_paths` too — that work is not started. See [Future](#future-official-notion-courses).
 
 ```mermaid
 flowchart TB
@@ -44,66 +51,53 @@ flowchart TB
 
 Signed-out users still see catalog content. Writes (notes, path edits, votes) fall back to `localStorage` / `sessionStorage` until sign-in.
 
-## Home (`/`)
+## Coursetexts home (`/`)
 
-Custom landing page (not the raw Notion root). Section order:
+Custom landing for the **courses** product (not the Paths home). Section order:
 
-1. Header
-2. Hero + search — subject chips (Science, Math, Sociology, English) and learning-path topic chips (Languages, Coding, Creative, Making) scroll in a looping marquee beside the school logos; chips filter the home catalog (subjects → university courses, topics → community paths)
-3. Dot-grid of featured Notion courses
-4. **A new educational interface. Learning paths.** — copy plus a looping visual (`HomeLearningPathDiagram`): goal in a box, then connected concepts, then three stacked resources that become a Resource list (faint video / paper / exercise / book icons on the right of each resource), then notes, then a commit/remind → **Josh · Committed** and a Notify badge. Decorative only; it does not create a path. `/community` still uses the static `LearningPathSchemaDiagram`.
-5. **Try learning paths from our community** (catalog paths). Community copy sits to the left of **View all**, with a link to `/community`. Topic filters live in the hero marquee (not a second chip row here).
-6. **A community for self-learners** (`HomeSocialLearningSection`) — CTA **Learn independently, not alone** (profile when signed in, sign-in when not).
-7. **Learn from advanced university courses** (Notion courses, subject chips). The publishing-pipeline copy sits to the left of **View all**.
-8. Donate / footer
+1. Header — brand label **Coursetexts**
+2. Dot-grid of featured Notion courses (`HomeDotGrid`, disclaimer hidden; compact top)
+3. Hero (`CoursesHomeHero`) — “Coursetexts is an open library of advanced course readings.”, search, subject chips (Science, Math, Sociology, English), I’m Feeling Lucky, university-affiliation disclaimer
+4. **Try open courses from top schools.** (`HomeOpenCoursesSection`) — left-aligned title + View All; school filters in a full-width band with **top/bottom dotted borders only** (Stanford / Harvard / Yale / Columbia / Princeton); Notion course card grid → `/all-courses`
+5. Donate / blog / footer
 
-Course cards come from the Notion sitemap in `getStaticProps`. Community path cards come from `listCatalogLearningPaths()` (seeded catalog, merged with any extra rows in `lib/learning-path-seed.ts`).
+Course cards come from the Notion sitemap in `getStaticProps`. Subject chips and search navigate to `/all-courses` with `q` / subject filters.
+
+## Paths home (`/paths`)
+
+The previous Paths-oriented landing (hero with learning-path topic chips, “What is a learning path?”, community catalog grid, social learning CTA) lives at `/paths` (`pages/paths/index.tsx`). Header brand label there is **Paths by Coursetexts**.
 
 ## Site header (`HomeHeader`)
 
-Shared chrome on home, catalog, community, profile, course, and about pages. Desktop nav is **Explore paths** · **Create a path** · **Community** · **About** (plus search). **Explore paths** links to `/all-courses?view=all`; **Community** links to `/community`. Both keep icon + title + description flyouts on hover (as does **About**); the panel left-aligns so each item title lines up with the trigger label.
+Shared chrome. Brand and nav switch on `isPathsProductPathname()`:
 
-- **Explore** dropdown:
+| Surface | Brand | Home href |
+| ------- | ----- | --------- |
+| Coursetexts (`/`, `/all-courses`, `/course/…`) | Coursetexts | `/` |
+| Paths (`/paths/*`) | Paths by Coursetexts | `/paths` |
 
-| Item | Destination |
-| ---- | ----------- |
-| Academic courses | `/all-courses?view=courses` |
-| Research | `/all-courses?view=research` |
-| Goals | `/all-courses?view=learning-paths` |
+On Paths, Explore / Create / Community destinations use `lib/paths-routes.ts` (`/paths/all-courses`, `/paths/learning-path/new`, `/paths/community`, `/paths/profile`, etc.). About items stay on root manifesto / professors / support / blog.
 
-- **Create a path** opens `CreateLearningPathModal` (workflow: describe your goal → editable draft → add resources → save or publish), then `/learning-path/new?goal=`
-- **Community** dropdown:
+## Official All Courses (`/all-courses`)
 
-| Item | Destination |
-| ---- | ----------- |
-| Feed | `/profile?tab=feed` |
+Notion university courses only (`pages/all-courses.tsx` + `AllCoursesOfficial`). Left-aligned hero: title, search, subject chips, school filters, then the course grid. No Discover / Goal-based / Research catalog filters — those live on the Paths catalog.
 
-- **About** dropdown (no `/about` landing):
+## Paths catalog (`/paths/all-courses`)
 
-| Item | Destination |
-| ---- | ----------- |
-| Why Coursetexts | `/manifesto` |
-| For Professors | `/professors` |
-| Blog & Research | `https://blog.coursetexts.org` |
-| Support Coursetexts | `/support` |
-
-Donate is not a top-level nav item; it lives under About. Mobile menu uses the same submenu items.
-
-## All Courses (`/all-courses`)
-
-Above the Guyot title, **All | Goal-based | Academic | Research** is the visible catalog filter (Degrees via `?view=degrees` / promo only). The title follows the selection: **Discover** (default; omit `view`, or `?view=all`), **Goal-based**, **All University Courses**, **Degree Curricula**, or **Research Questions**. Search sits under the title; subject / topic chips and (on Academic) school logos in a pill sit under search. Search `q` is shared. A query with no type filter searches every catalog together: the most goal-relevant result is the **Best match**, then remaining hits are grouped by type (related learning paths, university courses, degree curricula, research questions). Filled `kind=course` syllabi can appear under related learning paths when they match the goal.
+Former unified Discover catalog (moved from `/all-courses`). Above the Guyot title, **All | Goal-based | Academic | Research** is the visible catalog filter (Degrees via `?view=degrees` / promo only). The title follows the selection: **Discover** (default; omit `view`, or `?view=all`), **Goal-based**, **All University Courses**, **Degree Curricula**, or **Research Questions**. Search sits under the title; subject / topic chips and (on Academic) school logos in a pill sit under search. Search `q` is shared. A query with no type filter searches every catalog together: the most goal-relevant result is the **Best match**, then remaining hits are grouped by type without section headings (related learning paths, university courses, research questions). Degree curricula are not on All. Filled `kind=course` syllabi can appear under related learning paths when they match the goal.
 
 **Discover (default)**
 
-1. With a query: best match, then grouped results across learning paths (community + research + matching syllabi), official Notion courses, UG/grad degree curricula, and Field Atlas research questions. The bottom always ends with brown promo cards: **Can't find what you're looking for? Create your own path →** beside **Check out our degrees page** (matches and empty search). Create opens the create-path modal.
-2. With no query: a short browse of each type (paths, university courses, degrees, research). Full syllabus grid stays on University Courses. The create-path promo sits in the learning-paths grid.
+1. With a query: best match, then grouped results across learning paths (community + research + matching syllabi), official Notion courses, and Field Atlas research questions, with no section headings. Degree curricula stay off this view. The bottom always ends with brown promo cards: **Can't find what you're looking for? Create your own path →** beside **Check out our degrees page** (matches and empty search). Create opens the create-path modal.
+2. With no query: a short browse of each type (paths, university courses, research), no section headings. Full syllabus grid and degree curricula stay on Academic. The create-path promo sits in the learning-paths grid.
 
 **University Courses view (`?view=courses`)**
 
 1. Official Notion courses (capped at 14 until the user searches or picks subject chips)
-2. Filled `kind=course` syllabi: every `data/curated-courses/{slug}.json` with a topic tree, merged with `listCourseLearningPaths()` (`is_filled`). Empty catalog stubs stay out. Brown degrees promo in the top-right of that syllabus grid → `/degrees` (new tab)
-3. University-affiliation disclaimer
-4. Divider
+2. Filled `kind=course` syllabi: every `data/curated-courses/{slug}.json` with a topic tree, merged with `listCourseLearningPaths()` (`is_filled`). Empty catalog stubs stay out. Brown degrees promo in the top-right of that syllabus grid → `/paths/degrees` (new tab)
+3. Degree curricula (UG/grad). This is the only catalog view that lists them besides `?view=degrees`.
+4. University-affiliation disclaimer
+5. Divider
 
 **Learning-paths view (`?view=learning-paths`)**
 
@@ -111,37 +105,41 @@ Public `community` and `research` rows via `listNonCourseLearningPaths()` — **
 
 **Degrees / Research views**
 
-`?view=degrees` searches UG/grad curricula. `?view=research` searches Field Atlas research questions (`/field-atlas`). These filters are explicit; homepage search does not set them. A search in either view also ends with the create-path card. University Courses search (`?view=courses&q=`) does too.
+`?view=degrees` searches UG/grad curricula. `?view=research` searches Field Atlas research questions (`/paths/field-atlas`). These filters are explicit; Coursetexts homepage search does not set them. A search in either view also ends with the create-path card. University Courses search (`?view=courses&q=`) does too.
 
-## Community (`/community`)
+## Community (`/paths/community`)
 
 Two explainers, then trending lists.
 
 1. **Learning paths** — copy plus `CommunitySchema` (goal graph). Each step has **Discussions**.
-2. **Community Collab Resources** — copy plus `ResourceVoteSchemaDiagram`: numbered study order (`1 2 3`) is independent of ↑ votes for quality (highest vote is deliberately not on item 1). CTA → `/all-courses?view=learning-paths`.
+2. **Community Collab Resources** — copy plus `ResourceVoteSchemaDiagram`: numbered study order (`1 2 3`) is independent of ↑ votes for quality (highest vote is deliberately not on item 1). CTA → `/paths/all-courses?view=learning-paths`.
 
 ## App surfaces
 
 ```mermaid
 flowchart LR
-  Home["/  Home"]
+  Home["/  Coursetexts home"]
+  OfficialAll["/all-courses  Notion courses"]
   Course["/course/{pageId}  Notion course"]
-  All["/all-courses"]
-  Degrees["/degrees"]
-  LP["/learning-path/{slug}"]
-  LPNew["/learning-path/new"]
-  LPIndex["/learning-paths"]
-  Atlas["/field-atlas"]
-  KnowledgeGraph["/knowledge-graph"]
-  Community["/community"]
-  Resources["/community-resources"]
-  Profile["/profile  /profile/{userId}"]
-  Users["/users"]
+  PathsHome["/paths  Paths home"]
+  All["/paths/all-courses"]
+  Degrees["/paths/degrees"]
+  LP["/paths/learning-path/{slug}"]
+  LPNew["/paths/learning-path/new"]
+  LPIndex["/paths/learning-paths"]
+  Atlas["/paths/field-atlas"]
+  KnowledgeGraph["/paths/knowledge-graph"]
+  Community["/paths/community"]
+  Resources["/paths/community-resources"]
+  Profile["/paths/profile  /paths/profile/{userId}"]
+  Users["/paths/users"]
   Reports["/reports"]
   Signin["/signin  /auth/callback"]
 
   Degrees -->|"syllabus"| LP
-  Home -->|"catalog cards"| LP
+  PathsHome -->|"catalog cards"| LP
+  Home -->|"open courses"| OfficialAll
+  OfficialAll -->|"course cards"| Course
   LPIndex --> LP
   LPNew --> LP
   Atlas -->|"kind=research"| LPNew
@@ -163,26 +161,29 @@ flowchart LR
 
 | Surface                    | Route(s)                                                         | Primary data                                                                                                                                                                                                                                                                                                                                                                                                    |
 | -------------------------- | ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Home                       | `/`                                                              | Notion sitemap + catalog learning paths                                                                                                                                                                                                                                                                                                                                                                         |
+| Coursetexts home           | `/`                                                              | Notion sitemap; `CoursesHomeHero` + `HomeOpenCoursesSection`                                                                                                                                                                                                                                                                                                                                                    |
+| Official course catalog    | `/all-courses`                                                   | Notion courses only; subject + school filters                                                                                                                                                                                                                                                                                                                                                                   |
 | Notion courses             | `/course/{pageId}`                                              | Notion + `courses` / activity / `course_notes`. Shared bottom **StepNavBar**: Previous (hidden on first), **N of M**, **Mark as explored** / **✓ Explored**, **Next →** / **Finish path** on topic sections. On the **General** tab: **Commit & Remind Me** and **Start path** (no Mark as explored). TOC uses the same light-blue stroke check as learning paths when a section is explored. Pin-nav **Continue** uses cached TOC labels, or `POST /api/course-toc` headings when the course has not been opened in this browser. On mobile (≤800px), the TOC is a full-height left drawer opened from **The Course** in the content bar (Discussions / Your Notes row), with a « close control like learning paths. |
-| Catalog browse             | `/all-courses`                                                   | Small **All \| Goal-based \| Academic \| Research** filter above the title (Degrees via URL/promo). Omit `view` (or `?view=all`) for unified Discover: **Best match** then groups by type; bottom promos are create-path + degrees side by side. `?view=courses` Academic: official Notion + filled syllabi. `?view=learning-paths` Goal-based; `?view=research` Research — both end with the create-path card. `?view=degrees` for degree curricula.                                                                                                                                                                                                 |
-| Degrees                    | `/degrees`                                                       | UG / grad JSON                                                                                                                                                                                                                                                                                                                                                                                                  |
-| Course learning path       | `/learning-path/{slug}` (`kind=course`)                          | Same shell; **Overview** (Resources + Recommended Path) then syllabus tree; **Start learning path** on Overview opens the first topic (or Resources); `learning_paths.data` (`curated_*` backup)                                                                                                                                                                                                                                                                                                                                       |
-| Community / research paths | `/learning-paths`, `/learning-path/{slug}`, `/learning-path/new` | `learning_paths` + `learning_path_user_state`. Left outline: **Overview** (Resources only; no Why; **Start learning path** on the step bar), then the accordion topic tree (vertical line for nested steps; light-blue stroke check when explored). Hero: **By {owner}** plus **Collaborators:** (blue names when invited); publisher photo · Public/Open to suggestions/Private · Published; Save/••• chip (bookmark icon). **•••** has Share / Report (hidden on your own path) / Delete / visibility (**Private** · **Public** · **Open to suggestions**) / **Invite editors**, with left icons and a staggered open animation. Owners can **Invite editors** by email on any visibility (no email is sent; access is a matching signed-in address; apply `053`). Owners/invitees edit titles and whys inline; **Edit path** inserts an inline blue title field under or after the topic (or deletes); invitee-added resources show **Added by you**. A private URL you cannot read shows a gate; signed-in visitors can **Request to join**. On Collab, visitors suggest resources (dotted card); the owner **Accept**s them onto the official list. **Context** opens a dialog with the copied LLM prompt (current step, numbered outline with whys, goal) and how to paste it into a chat. Auto-fill shows a watering-plant popup until the outline is ready. Below the path, **Discuss this with others?** sits beside **People on this learning path** (invited collaborators first with `(collaborator)`, then public savers; `054`). Topic threads are **Discussions**. On mobile (≤900px), the outline is a left drawer opened from **The Path** in the topic bar. |
-| Field Atlas                | `/field-atlas`                                                   | Seeded atlas tree (`lib/human-knowledge-atlas-seed.ts`); can start a `kind=research` path |
-| Knowledge graph            | `/knowledge-graph`                                               | Frozen snapshot in `data/knowledge-graph.json`. Page does not call `GET /api/knowledge-graph` (that route returns 410). Rebuild snapshot: `npx tsx scripts/snapshot-knowledge-graph.ts`. LLM clustering is typed but not called yet. |
-| Community explainer        | `/community`                                                     | Learning-path copy + structure diagram; collab-resources copy + vote/order diagram; trending lists                                                                                                                                                                                                                                                                                                              |
+| Paths home                 | `/paths`                                                         | Former Paths landing: hero, learning-path explainer, community catalog                                                                                                                                                                                                                                                                                                                                          |
+| Paths catalog              | `/paths/all-courses`                                             | Small **All \| Goal-based \| Academic \| Research** filter above the title (Degrees via URL/promo). Omit `view` (or `?view=all`) for unified Discover: **Best match** then groups by type with no section headings and no degree curricula; bottom promos are create-path + degrees side by side. `?view=courses` Academic: official Notion, filled syllabi, then degree curricula. `?view=learning-paths` Goal-based; `?view=research` Research — both end with the create-path card. `?view=degrees` for degree curricula only. |
+| Degrees                    | `/paths/degrees`                                                 | UG / grad JSON                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Course learning path       | `/paths/learning-path/{slug}` (`kind=course`)                    | Same shell; **Overview** (Resources + Recommended Path) then syllabus tree; **Start learning path** on Overview opens the first topic (or Resources); `learning_paths.data` (`curated_*` backup)                                                                                                                                                                                                                                                                                                                                       |
+| Community / research paths | `/paths/learning-paths`, `/paths/learning-path/{slug}`, `/paths/learning-path/new` | `learning_paths` + `learning_path_user_state`. Left outline: **Overview** (Resources only; no Why; **Start learning path** on the step bar), then the accordion topic tree (vertical line for nested steps; light-blue stroke check when explored). Hero: **By {owner}** plus **Collaborators:** (blue names when invited); publisher photo · Public/Open to suggestions/Private · Published; Save/••• chip (bookmark icon). **•••** has Share / Report (hidden on your own path) / Delete / visibility (**Private** · **Public** · **Open to suggestions**) / **Invite editors**, with left icons and a staggered open animation. Owners can **Invite editors** by email on any visibility (no email is sent; access is a matching signed-in address; apply `053`). Owners/invitees edit titles and whys inline; **Edit path** inserts an inline blue title field under or after the topic (or deletes); invitee-added resources show **Added by you**. A private URL you cannot read shows a gate; signed-in visitors can **Request to join**. On Collab, visitors suggest resources (dotted card); the owner **Accept**s them onto the official list. **Context** opens a dialog with the copied LLM prompt (current step, numbered outline with whys, goal) and how to paste it into a chat. Auto-fill shows a watering-plant popup until the outline is ready. Below the path, **Discuss this with others?** sits beside **People on this learning path** (invited collaborators first with `(collaborator)`, then public savers; `054`). Topic threads are **Discussions**. On mobile (≤900px), the outline is a left drawer opened from **The Path** in the topic bar. |
+| Field Atlas                | `/paths/field-atlas`                                             | Seeded atlas tree (`lib/human-knowledge-atlas-seed.ts`); can start a `kind=research` path |
+| Knowledge graph            | `/paths/knowledge-graph`                                         | Frozen snapshot in `data/knowledge-graph.json`. Page does not call `GET /api/knowledge-graph` (that route returns 410). Rebuild snapshot: `npx tsx scripts/snapshot-knowledge-graph.ts`. LLM clustering is typed but not called yet. |
+| Community explainer        | `/paths/community`                                               | Learning-path copy + structure diagram; collab-resources copy + vote/order diagram; trending lists                                                                                                                                                                                                                                                                                                              |
 | About                      | `/manifesto`, `/about`, `/process`, `/professors`, `/support`    | Header About dropdown (Why / Professors / Blog / Support). Manifesto is the custom Why page; `/about` and `/process` remain Notion overrides. Blog is `blog.coursetexts.org`.                                                                                                                                                                                                                                    |
-| Resource library           | `/community-resources`                                           | `resources`, `knowledge_components`, `search_community`                                                                                                                                                                                                                                                                                                                                                         |
+| Resource library           | `/paths/community-resources`                                     | `resources`, `knowledge_components`, `search_community`                                                                                                                                                                                                                                                                                                                                                         |
 | Reports                    | `/reports`                                                       | `content_reports`. Open while testing; later `coursetexts.info@gmail.com` only.                                                                                                                                                                                                                                                                                                                                 |
-| Profile / social           | `/profile`, `/profile/{userId}`, `/users`                        | profiles, follows, interests, personal links, owned/saved paths, profile Updates (in Feed). Sidebar: public **bio**; interest chips; **Currently learning** / **Previously learned**. On **your** profile, personal links sit under Previously learned; on **someone else’s**, the links icon sits beside their name. Edit (pencil, own only): bio + learning fields, remove interests, **+ New link** and **Save profile**. Hover Learning cards: own profile shows description + **Continue, Next: {topic}** when available; public profiles show **description only** (no Continue). Public Learning includes a **Committed** filter (read-only badges; needs `052`). Tabs (own): **Learning** → **Knowledge** → **Notes** → **Resources** → \| → **Feed** → **Notifications**. Public omits Notes and Notifications. **Feed**: author-first posts; Updates are plain text (quoted originals are nested cards); comments/discussions lead with a target card then a spine to the actor. **Repost** / **Quote** on Updates (`051`). **Notifications**: unread count badge left of the tab label; new rows use a faint blue background. Covers followed you, liked / reposted / quoted your update, replied, path invites, resource submit/accept, join requests. |
-| Auth                       | `/signin`, `/auth/callback`                                      | Google OAuth. Return to the gated page/section (`sessionStorage` / `localStorage` + `?node=` / `?topic=` / `?notes=1` / `?annotations=1` for Discussions). Callback reads the path once. Fallback `/`, not `/profile`.                                                                                                                                                                                          |
+| Profile / social           | `/paths/profile`, `/paths/profile/{userId}`, `/paths/users`      | profiles, follows, interests, personal links, owned/saved paths, profile Updates (in Feed). Sidebar: public **bio**; interest chips; **Currently learning** / **Previously learned**. On **your** profile, personal links sit under Previously learned; on **someone else’s**, the links icon sits beside their name. Edit (pencil, own only): bio + learning fields, remove interests, **+ New link** and **Save profile**. Hover Paths cards: own profile shows description + **Continue, Next: {topic}** when available; public profiles show **description only** (no Continue). Public Paths includes a **Committed** filter (read-only badges; needs `052`). Tabs (own): **Paths** → **Concepts** → **Notes** → **Resources** → \| → **Feed** → **Notifications**. Public omits Notes and Notifications. **Feed**: author-first posts; Updates are plain text (quoted originals are nested cards); comments/discussions lead with a target card then a spine to the actor. **Repost** / **Quote** on Updates (`051`). **Notifications**: unread count badge left of the tab label; new rows use a faint blue background. Covers followed you, liked / reposted / quoted your update, replied, path invites, resource submit/accept, join requests. |
+| Auth                       | `/signin`, `/auth/callback`                                      | Google OAuth. Return to the gated page/section (`sessionStorage` / `localStorage` + `?node=` / `?topic=` / `?notes=1` / `?annotations=1` for Discussions). Callback reads the path once. Fallback `/`, not `/paths/profile`.                                                                                                                                                                                          |
 
 Legacy URLs:
 
 - `/feed.xml` — not a route; RSS is served at `/feed` only
+- `/learning-path/*`, `/learning-paths`, `/profile`, `/profile/:userId`, `/community`, `/community-resources`, `/degrees`, `/knowledge-graph`, `/field-atlas`, `/users`, and old Discover query shortcuts → **permanent redirects** into `/paths/…` (see `next.config.js`)
 
-Root Notion site pages (`/about`, `/process`, `/why`) are served by `[pageId].tsx` via `site.config.ts` overrides. All other bare slugs at the root (e.g. `/some-course-name`) return **404** — use `/course/{slug}` or `/learning-path/{slug}` instead.
+Root Notion site pages (`/about`, `/process`, `/why`) are served by `[pageId].tsx` via `site.config.ts` overrides. All other bare slugs at the root (e.g. `/some-course-name`) return **404** — use `/course/{slug}` or `/paths/learning-path/{slug}` instead.
 
 ## Route catalog
 
@@ -190,21 +191,23 @@ All user-facing pages (excluding `_app`, `_document`, `_error`, and API handlers
 
 | Route | Status | Rendering | Notes |
 | ----- | ------ | --------- | ----- |
-| `/` | Live | SSG | Custom home; Notion sitemap for course cards |
-| `/all-courses` | Live | Client + server catalog | Unified Discover search; `?view=` filters |
+| `/` | Live | SSG | Coursetexts courses home; Notion sitemap for course cards |
+| `/all-courses` | Live | Client + SSG courses | Official Notion courses only |
+| `/paths` | Live | SSG | Paths by Coursetexts landing |
+| `/paths/all-courses` | Live | Client + server catalog | Unified Discover search; `?view=` filters |
 | `/course/[pageId]` | Live | ISR (Notion) | Official professor courses; `revalidate: 10` |
 | `/about`, `/process`, `/why` | Live | SSR (Notion) | Root Notion overrides via `[pageId].tsx` + `site.config.ts` |
-| `/learning-path/[slug]` | Live | Client + Supabase | Community, research, and course-kind paths |
-| `/learning-path/new` | Live | Client | Outline builder; `?goal=` / `?kind=research` |
-| `/learning-paths` | Live | Client + Supabase | Path catalog |
-| `/degrees` | Live | Client | UG + grad JSON curricula |
-| `/field-atlas` | Live | Static | Research Field Atlas |
-| `/knowledge-graph` | Live | Static | Bundled `data/knowledge-graph.json` snapshot |
-| `/community` | Live | Static | Explainers + trending lists |
-| `/community-resources` | Live | Client + Supabase | Site-wide resource library |
-| `/profile` | Live | Client + Supabase | Own profile (Notes tab); redirects unsigned users to `/signin` |
-| `/profile/[userId]` | Live | Client + Supabase | Public profile view |
-| `/users` | Live | Client + Supabase | User directory |
+| `/paths/learning-path/[slug]` | Live | Client + Supabase | Community, research, and course-kind paths |
+| `/paths/learning-path/new` | Live | Client | Outline builder; `?goal=` / `?kind=research` |
+| `/paths/learning-paths` | Live | Client + Supabase | Path catalog |
+| `/paths/degrees` | Live | Client | UG + grad JSON curricula |
+| `/paths/field-atlas` | Live | Static | Research Field Atlas |
+| `/paths/knowledge-graph` | Live | Static | Bundled `data/knowledge-graph.json` snapshot |
+| `/paths/community` | Live | Static | Explainers + trending lists |
+| `/paths/community-resources` | Live | Client + Supabase | Site-wide resource library |
+| `/paths/profile` | Live | Client + Supabase | Own profile (Notes tab); redirects unsigned users to `/signin` |
+| `/paths/profile/[userId]` | Live | Client + Supabase | Public profile view |
+| `/paths/users` | Live | Client + Supabase | User directory |
 | `/reports` | Live (open) | Client + Supabase | Content reports; public while `REPORTS_DASHBOARD_OPEN` |
 | `/manifesto` | Live | Static | Why Coursetexts (header About menu) |
 | `/professors` | Live | Static | For professors |
@@ -291,13 +294,13 @@ Degree pages link to `/learning-path/{slug}`. The unified route always renders t
 
 Adding a resource on a syllabus node patches `learning_paths.data` and also publishes a row in site-wide `resources` (for `/community-resources`). Catalog course rows stay writable for signed-in users (same as before). `curated_*` tables are not dropped; they are a backup and the migrate/seed source.
 
-## Learning on a profile
+## Paths on a profile
 
-`/profile` **Learning** lists owned, saved, pinned, and official Notion courses. Community/research/course-kind cards show muted byline text under the title: **Created by you · Private** (or Public / Open to suggestions) for paths you made, and **By {name} · Public** for saved paths. Pinned Coursetexts syllabi show **By Coursetexts · Public**. Official Notion courses show **By {professors} · {school} · Public** when the course hero has been opened (professors + school are remembered locally), otherwise **By {school} · Public** or **By Coursetexts · Public**. Action tags stay on the right: Saved, then a muted **% complete** tag when there is progress (hidden at 0%), then **Commit**, then **Notify** on card hover (own profile, committed items only). Frequency uses the site `FormSelect`. Cadence is stored on `learning_path_commitments` (`reminder_frequency`, `reminder_minute`, `reminder_timezone`); sending notifications is not built yet. Own-profile Learning filters are **By you** · **Committed** · **Goals-based** · **Academic** · **Research**. On **someone else’s** profile, Learning filters are **Committed** · **Goals-based** · **Academic** · **Research**; cards show a read-only **Committed** badge when applicable, and hover shows description only (no “Pick up where you left off” / **Continue →**). Public commitment reads need migration `052`. See [learning-paths.md](./learning-paths.md).
+`/paths/profile` **Paths** lists owned, saved, pinned, and official Notion courses. Community/research/course-kind cards show muted byline text under the title: **Created by you · Private** (or Public / Open to suggestions) for paths you made, and **By {name} · Public** for saved paths. Pinned Coursetexts syllabi show **By Coursetexts · Public**. Official Notion courses show **By {professors} · {school} · Public** when the course hero has been opened (professors + school are remembered locally), otherwise **By {school} · Public** or **By Coursetexts · Public**. Action tags stay on the right: Saved, then a muted **% complete** tag when there is progress (hidden at 0%), then **Commit**, then **Notify** on card hover (own profile, committed items only). Frequency uses the site `FormSelect`. Cadence is stored on `learning_path_commitments` (`reminder_frequency`, `reminder_minute`, `reminder_timezone`); sending notifications is not built yet. Own-profile Paths filters are **By you** · **Committed** · **Goals-based** · **Academic** · **Research**. On **someone else’s** profile, Paths filters are **Committed** · **Goals-based** · **Academic** · **Research**; cards show a read-only **Committed** badge when applicable, and hover shows description only (no “Pick up where you left off” / **Continue →**). Public commitment reads need migration `052`. See [learning-paths.md](./learning-paths.md).
 
-## Knowledge on a profile
+## Concepts on a profile
 
-Finishing a community, research, or course path records unique topic labels on `user_knowledge_topics` and may ingest structural edges plus path occurrences into the shared catalog. `/knowledge-graph` maps those topics to the learning paths they reoccur in. Newly explored topics (and finishing the whole map) ask for learner-entered duration and a 0–100% enjoyment rating (`learning_path_ratings`). The Knowledge tab list and the path **What you learned** row are documented in [knowledge.md](./knowledge.md). A daily Gemini job that would add extra catalog edges is **in the repo but not scheduled**. The next LLM step is clustering similar labels across paths.
+Finishing a community, research, or course path records unique topic labels on `user_knowledge_topics` and may ingest structural edges plus path occurrences into the shared catalog. `/paths/knowledge-graph` maps those topics to the learning paths they reoccur in. Newly explored topics (and finishing the whole map) ask for learner-entered duration and a 0–100% enjoyment rating (`learning_path_ratings`). The Concepts tab list and the path **What you learned** row are documented in [knowledge.md](./knowledge.md). A daily Gemini job that would add extra catalog edges is **in the repo but not scheduled**. The next LLM step is clustering similar labels across paths.
 
 ## Notes on a profile
 

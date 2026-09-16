@@ -10,6 +10,7 @@ import {
   type UserDirectoryEntry,
   listUsersDirectory
 } from '@/lib/users-directory-db'
+import { pathsPublicProfileHref, pathsUsersHref } from '@/lib/paths-routes'
 import styles from '@/styles/users.module.css'
 
 const PAGE_SIZE = 24
@@ -24,7 +25,7 @@ function buildUsersQuery(q: {
   if (q.q.trim()) p.set('q', q.q.trim())
   if (q.interest.trim()) p.set('interest', q.interest.trim())
   const s = p.toString()
-  return s ? `/users?${s}` : '/users'
+  return s ? `${pathsUsersHref()}?${s}` : pathsUsersHref()
 }
 
 function paginationItems(
@@ -188,7 +189,7 @@ export default function UsersPage() {
               return (
                 <div key={u.user_id} className={styles.card}>
                   <Link
-                    href={`/profile/${u.user_id}`}
+                    href={pathsPublicProfileHref(u.user_id)}
                     legacyBehavior={false}
                     className={styles.cardTop}
                   >

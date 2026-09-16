@@ -203,7 +203,7 @@ async function listLikeNotifications(
         created_at: row.created_at,
         update_id: row.target_id,
         update_snippet: snippet,
-        profile_href: `/profile/${userId}`,
+        profile_href: `/paths/profile/${userId}`,
         ...actorFromProfile(row.user_id, profiles)
       }
     })
@@ -502,7 +502,7 @@ async function listRepostQuoteNotifications(
         created_at: row.created_at,
         update_id: originalId,
         update_snippet: snippet,
-        profile_href: `/profile/${userId}`,
+        profile_href: `/paths/profile/${userId}`,
         ...actor
       })
     } else if (row.quote_of_id) {
@@ -517,7 +517,7 @@ async function listRepostQuoteNotifications(
         update_id: originalId,
         update_snippet: snippet,
         quote_snippet: quoteSnippet.slice(0, 120),
-        profile_href: `/profile/${userId}`,
+        profile_href: `/paths/profile/${userId}`,
         ...actor
       })
     }

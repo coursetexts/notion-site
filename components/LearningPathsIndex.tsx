@@ -243,7 +243,7 @@ export function LearningPathsIndex() {
                     </p>
                     <h2 className={styles.itemTitle}>
                       <Link
-                        href={`/learning-path/${path.slug}`}
+                        href={`/paths/learning-path/${path.slug}`}
                         className={styles.titleLink}
                       >
                         {path.title}
@@ -294,7 +294,7 @@ export function LearningPathsIndex() {
                 </p>
                 <h2 className={styles.itemTitle}>
                   <Link
-                    href={`/learning-path/${concept.pathSlug}`}
+                    href={`/paths/learning-path/${concept.pathSlug}`}
                     className={styles.titleLink}
                   >
                     {concept.label}

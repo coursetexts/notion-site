@@ -554,7 +554,7 @@ function AtlasLearningPathActions({ goal }: { goal: string }) {
     }
   }, [goal])
 
-  const createHref = `/learning-path/new?goal=${encodeURIComponent(goal)}&kind=research`
+  const createHref = `/paths/learning-path/new?goal=${encodeURIComponent(goal)}&kind=research`
 
   return (
     <div className={styles.startPathWrap}>

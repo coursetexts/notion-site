@@ -37,8 +37,6 @@ import { getMyLinks } from '@/lib/user-links'
 import { PinIcon } from './PinIcon'
 import styles from './PinnedCoursesNav.module.css'
 
-type PinNavTab = 'courses' | 'learning-paths'
-
 type PinNavItem = {
   id: string
   title: string
@@ -58,22 +56,7 @@ const EMPTY_RESUME: NavPinResumeMaps = {
   byOfficialPageId: {}
 }
 
-const PIN_NAV_TABS: {
-  id: PinNavTab
-  label: string
-  empty: string
-}[] = [
-  {
-    id: 'courses',
-    label: 'Saved courses',
-    empty: 'Save a course from its page to see it here.'
-  },
-  {
-    id: 'learning-paths',
-    label: 'Learning paths',
-    empty: 'Create or save a learning path to see it here.'
-  }
-]
+const EMPTY_COPY = 'Save a course or learning path to see it here.'
 
 function sortSavedWithPins(
   items: PinNavItem[],
@@ -111,33 +94,8 @@ function PinNavRow({
   onTogglePinned: (item: PinNavItem) => void
   onNavigate: () => void
 }) {
-  const [hovered, setHovered] = React.useState(false)
-  const [coarsePointer, setCoarsePointer] = React.useState(false)
-
-  React.useEffect(() => {
-    const mq = window.matchMedia('(hover: none)')
-    const sync = () => setCoarsePointer(mq.matches)
-    sync()
-    mq.addEventListener('change', sync)
-    return () => mq.removeEventListener('change', sync)
-  }, [])
-
-  const showResume = coarsePointer || hovered
-
-  function onBlur(event: React.FocusEvent<HTMLLIElement>) {
-    if (!event.currentTarget.contains(event.relatedTarget as Node)) {
-      setHovered(false)
-    }
-  }
-
   return (
-    <li
-      className={pinned ? `${styles.row} ${styles.rowPinned}` : styles.row}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      onFocusCapture={() => setHovered(true)}
-      onBlurCapture={onBlur}
-    >
+    <li className={pinned ? `${styles.row} ${styles.rowPinned}` : styles.row}>
       <div className={styles.rowMain}>
         <Link href={item.href} legacyBehavior>
           <a className={styles.courseLink} onClick={onNavigate}>
@@ -155,8 +113,8 @@ function PinNavRow({
           <PinIcon filled={pinned} size={14} />
         </button>
       </div>
-      {showResume ? (
-        <div className={styles.resume}>
+      <div className={styles.resume}>
+        <div className={styles.resumeInner}>
           {resume ? (
             <p className={styles.resumeCount}>
               {resume.explored} of {resume.total} {resume.unit} explored
@@ -183,14 +141,13 @@ function PinNavRow({
             </Link>
           </div>
         </div>
-      ) : null}
+      </div>
     </li>
   )
 }
 
 export function PinnedCoursesNav() {
   const [open, setOpen] = React.useState(false)
-  const [tab, setTab] = React.useState<PinNavTab>('courses')
   const [coursePins, setCoursePins] = React.useState<
     PinnedCourseLearningPath[]
   >([])
@@ -242,7 +199,7 @@ export function PinnedCoursesNav() {
       const toNavItem = (item: (typeof merged)[number]): PinNavItem => ({
         id: item.id,
         title: item.goal,
-        href: `/learning-path/${item.slug}`,
+        href: `/paths/learning-path/${item.slug}`,
         pinKey: learningPathNavPinKey(item.slug),
         pathSlug: item.slug
       })
@@ -334,22 +291,21 @@ export function PinnedCoursesNav() {
     }
   }, [open, refresh])
 
-  const selected = PIN_NAV_TABS.find((option) => option.id === tab)
   const pinKeySet = React.useMemo(() => new Set(pinKeys), [pinKeys])
   const items: PinNavItem[] = sortSavedWithPins(
-    tab === 'courses'
-      ? [
-          ...officialCourses,
-          ...coursePins.map((pin) => ({
-            id: pin.pinId,
-            title: pin.title,
-            href: courseLearningPathHref(pin.slug),
-            pinKey: learningPathNavPinKey(pin.slug),
-            pathSlug: pin.slug
-          })),
-          ...courseKindPaths
-        ]
-      : [...communityPaths, ...researchPaths],
+    [
+      ...officialCourses,
+      ...coursePins.map((pin) => ({
+        id: pin.pinId,
+        title: pin.title,
+        href: courseLearningPathHref(pin.slug),
+        pinKey: learningPathNavPinKey(pin.slug),
+        pathSlug: pin.slug
+      })),
+      ...courseKindPaths,
+      ...communityPaths,
+      ...researchPaths
+    ],
     pinKeys
   )
 
@@ -365,22 +321,12 @@ export function PinnedCoursesNav() {
     if (!ok) setPinKeys(previous)
   }
 
-  function onTabKeyDown(event: React.KeyboardEvent<HTMLButtonElement>) {
-    if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return
-    event.preventDefault()
-    const next: PinNavTab = tab === 'courses' ? 'learning-paths' : 'courses'
-    setTab(next)
-    const nextId =
-      next === 'courses' ? 'pinned-tab-courses' : 'pinned-tab-paths'
-    document.getElementById(nextId)?.focus()
-  }
-
   return (
     <div className={styles.root} ref={rootRef}>
       <button
         type='button'
         className={`${styles.trigger}${open ? ` ${styles.triggerOpen}` : ''}`}
-        aria-label='Pinned learning'
+        aria-label='Saved learning paths'
         aria-expanded={open}
         aria-haspopup='dialog'
         onClick={() => setOpen((v) => !v)}
@@ -388,50 +334,23 @@ export function PinnedCoursesNav() {
         <PinIcon filled size={18} />
       </button>
       {open && (
-        <div className={styles.menu} role='dialog' aria-label='Saved items'>
-          <div className={styles.tabs} role='tablist' aria-label='Saved items'>
-            {PIN_NAV_TABS.map((option, index) => (
-              <React.Fragment key={option.id}>
-                {index > 0 ? (
-                  <span className={styles.tabPipe} aria-hidden>
-                    |
-                  </span>
-                ) : null}
-                <button
-                  type='button'
-                  role='tab'
-                  id={
-                    option.id === 'courses'
-                      ? 'pinned-tab-courses'
-                      : 'pinned-tab-paths'
-                  }
-                  aria-selected={tab === option.id}
-                  aria-controls='pinned-nav-panel'
-                  className={
-                    tab === option.id
-                      ? `${styles.tab} ${styles.tabActive}`
-                      : styles.tab
-                  }
-                  tabIndex={tab === option.id ? 0 : -1}
-                  onClick={() => setTab(option.id)}
-                  onKeyDown={onTabKeyDown}
-                >
-                  {option.label}
-                </button>
-              </React.Fragment>
-            ))}
-          </div>
+        <div
+          className={styles.menu}
+          role='dialog'
+          aria-label='Saved learning paths'
+        >
+          <h2 className={styles.heading} id='pinned-nav-heading'>
+            Saved learning paths
+          </h2>
           <div
             id='pinned-nav-panel'
-            role='tabpanel'
-            aria-labelledby={
-              tab === 'courses' ? 'pinned-tab-courses' : 'pinned-tab-paths'
-            }
+            role='region'
+            aria-labelledby='pinned-nav-heading'
           >
             {loading ? (
               <p className={styles.empty}>Loading…</p>
             ) : items.length === 0 ? (
-              <p className={styles.empty}>{selected?.empty}</p>
+              <p className={styles.empty}>{EMPTY_COPY}</p>
             ) : (
               <ul className={styles.list}>
                 {items.map((item) => (

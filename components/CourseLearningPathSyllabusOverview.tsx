@@ -76,38 +76,23 @@ export function CourseLearningPathSyllabusOverview({
           </p>
         ) : (
           <ul className={styles.childrenSequence}>
-            {course.topics.map((topic, index) => {
-              const videoCount = countVideos(topic)
-              return (
-                <li key={topic.id}>
-                  <button
-                    type='button'
-                    onClick={() => onSelectTopic(topic.id)}
-                    className={styles.childBtn}
-                  >
-                    <span className={styles.childTitle}>
-                      <span className={styles.navIndex}>{index + 1}.</span>{' '}
-                      {topic.title}
-                    </span>
-                    {videoCount > 0 ? (
-                      <span className={styles.videoCount}>{videoCount}</span>
-                    ) : null}
-                  </button>
-                </li>
-              )
-            })}
+            {course.topics.map((topic, index) => (
+              <li key={topic.id}>
+                <button
+                  type='button'
+                  onClick={() => onSelectTopic(topic.id)}
+                  className={styles.childBtn}
+                >
+                  <span className={styles.childTitle}>
+                    <span className={styles.navIndex}>{index + 1}.</span>{' '}
+                    {topic.title}
+                  </span>
+                </button>
+              </li>
+            ))}
           </ul>
         )}
       </section>
     </article>
   )
-}
-
-function countVideos(node: CourseLearningPathData['topics'][number]): number {
-  const own = node.topicResources?.length ?? 0
-  const child = (node.children ?? []).reduce(
-    (sum, childNode) => sum + countVideos(childNode),
-    0
-  )
-  return own + child
 }

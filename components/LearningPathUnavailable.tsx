@@ -6,6 +6,10 @@ import { useAuthOptional } from '@/contexts/AuthContext'
 import { currentAuthRedirectPath, signInPageHref } from '@/lib/auth-redirect'
 import { requestLearningPathJoin } from '@/lib/learning-path-join-requests-db'
 import { titleFromSlug } from '@/lib/learning-path-slug'
+import {
+  pathsCatalogHref,
+  pathsNewLearningPathHref
+} from '@/lib/paths-routes'
 
 import styles from './LearningPathUnavailable.module.css'
 
@@ -37,9 +41,9 @@ export function LearningPathUnavailable({
   const auth = useAuthOptional()
   const title = titleFromSlug(slug) || slug
   const signedIn = Boolean(auth?.user)
-  const createHref = `/learning-path/new?goal=${encodeURIComponent(
-    `I want to ${title.toLowerCase()}`
-  )}`
+  const createHref = pathsNewLearningPathHref({
+    goal: `I want to ${title.toLowerCase()}`
+  })
   const [requested, setRequested] = React.useState(joinRequested)
   const [busy, setBusy] = React.useState(false)
   const [error, setError] = React.useState<string | null>(null)
@@ -123,7 +127,7 @@ export function LearningPathUnavailable({
                   Sign in
                 </button>
               )}
-              <Link href='/all-courses?view=learning-paths'>
+              <Link href={pathsCatalogHref({ view: 'learning-paths' })}>
                 <a className={styles.secondary}>Browse learning paths</a>
               </Link>
             </div>
@@ -138,7 +142,7 @@ export function LearningPathUnavailable({
               <Link href={createHref}>
                 <a className={styles.primary}>Create this path</a>
               </Link>
-              <Link href='/all-courses?view=learning-paths'>
+              <Link href={pathsCatalogHref({ view: 'learning-paths' })}>
                 <a className={styles.secondary}>Browse learning paths</a>
               </Link>
             </div>

@@ -225,7 +225,7 @@ export default function ReportsPage() {
                               Reported by:{' '}
                             </span>
                             <Link
-                              href={`/profile/${report.reporterId}`}
+                              href={`/paths/profile/${report.reporterId}`}
                               className={styles.profileLink}
                             >
                               {reporterLabel(report)}

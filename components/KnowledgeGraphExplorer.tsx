@@ -294,7 +294,7 @@ export function KnowledgeGraphExplorer() {
                     <ul className={styles.pathList}>
                       {selectedTopic.paths.map((path) => (
                         <li key={path.slug}>
-                          <Link href={`/learning-path/${path.slug}`} legacyBehavior>
+                          <Link href={`/paths/learning-path/${path.slug}`} legacyBehavior>
                             <a className={styles.pathLink}>
                               <span className={styles.pathKicker}>
                                 {learningPathKicker(path.kind)}
@@ -338,7 +338,7 @@ export function KnowledgeGraphExplorer() {
                         ))}
                     </ul>
                     <p className={styles.sideMeta}>
-                      <Link href={`/learning-path/${selectedPath.slug}`}>
+                      <Link href={`/paths/learning-path/${selectedPath.slug}`}>
                         Open learning path
                       </Link>
                     </p>

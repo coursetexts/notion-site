@@ -29,6 +29,7 @@ type AllCoursesNewGridSectionProps = {
     cards: HomeCourseCard[]
   }>
   unifiedReady?: boolean
+  degreeCards?: HomeCourseCard[]
 }
 
 function fallbackCards(): HomeCourseCard[] {
@@ -116,7 +117,7 @@ function DegreesPromoCard() {
       className={styles.degreesPromo}
       title='Check out our degrees page'
       body='See full course track lists for the top 50 undergraduate and graduate degrees.'
-      href='/degrees'
+      href='/paths/degrees'
       buttonLabel='View degrees'
     />
   )
@@ -195,18 +196,20 @@ function ResultGroup({
   label,
   cards,
   emptyMessage,
-  startSlot
+  startSlot,
+  showHeading = true
 }: {
   label: string
   cards: HomeCourseCard[]
   emptyMessage?: string
   startSlot?: React.ReactNode
+  showHeading?: boolean
 }) {
   if (cards.length === 0 && !startSlot) return null
 
   return (
     <div className={styles.resultGroup}>
-      <h2 className={styles.groupHeading}>{label}</h2>
+      {showHeading ? <h2 className={styles.groupHeading}>{label}</h2> : null}
       <CourseCardGrid
         cards={cards}
         emptyMessage={emptyMessage || ''}
@@ -229,7 +232,8 @@ export function AllCoursesNewGridSection({
   unifiedHasQuery = false,
   unifiedBestMatch = null,
   unifiedGroups = [],
-  unifiedReady = true
+  unifiedReady = true,
+  degreeCards = []
 }: AllCoursesNewGridSectionProps) {
   const cards = courses ?? fallbackCards()
   const [createOpen, setCreateOpen] = React.useState(false)
@@ -257,8 +261,8 @@ export function AllCoursesNewGridSection({
             <>
               <div className={styles.emptyCreate}>
                 <p className={styles.emptyCreateText}>
-                  Nothing matched that goal yet. Try a university course, a
-                  degree, or start a learning path.
+                  Nothing matched that goal yet. Try a university course or
+                  start a learning path.
                 </p>
               </div>
               <DiscoverBottomPromos onCreate={openCreate} />
@@ -268,13 +272,16 @@ export function AllCoursesNewGridSection({
               {unifiedBestMatch ? (
                 <BestMatchCard card={unifiedBestMatch} />
               ) : null}
-              {unifiedGroups.map((group) => (
-                <ResultGroup
-                  key={group.kind}
-                  label={group.label}
-                  cards={group.cards}
-                />
-              ))}
+              {unifiedGroups
+                .filter((group) => group.kind !== 'degree')
+                .map((group) => (
+                  <ResultGroup
+                    key={group.kind}
+                    label={group.label}
+                    cards={group.cards}
+                    showHeading={false}
+                  />
+                ))}
               {!unifiedHasQuery ? (
                 <p className={styles.disclaimerText}>
                   Coursetexts has neither sought nor received permission from
@@ -386,6 +393,19 @@ export function AllCoursesNewGridSection({
           descriptionWidth='75%'
           startSlot={searched ? undefined : <DegreesPromoCard />}
         />
+
+        <div className={`${styles.resultGroup} ${styles.academicDegrees}`}>
+          <h2 className={styles.groupHeading}>Degree curricula</h2>
+          <CourseCardGrid
+            cards={degreeCards}
+            emptyMessage={
+              searched
+                ? 'No degree curricula matched your search.'
+                : 'No degree curricula yet.'
+            }
+            descriptionWidth='75%'
+          />
+        </div>
 
         {searched ? <SearchCreatePathCallout onCreate={openCreate} /> : null}
 

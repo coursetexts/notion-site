@@ -3,200 +3,84 @@ import type { GetStaticProps } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
-import {
-  AllCoursesNewGridSection,
-  catalogHitToCard
-} from '@/components/AllCoursesNewGridSection'
-import {
-  AllCoursesNewTopSection,
-  type AllCoursesView
-} from '@/components/AllCoursesNewTopSection'
-import type { HomeCourseCard } from '@/components/HomeCoursesSection'
+import { CourseCardGrid, type HomeCourseCard } from '@/components/HomeCoursesSection'
 import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
-import {
-  type CatalogSearchItem,
-  formatCatalogStats,
-  groupCatalogHits,
-  searchCatalog
-} from '@/lib/catalog-search'
-import type { LearningPathSearchExtras } from '@/lib/catalog-search-index'
-import { listCourseLearningPaths } from '@/lib/course-learning-path-db'
-import { getCourseLearningPathSubject } from '@/lib/course-learning-path-subject'
-import { listNonCourseLearningPaths } from '@/lib/learning-path-db'
-import { learningPathKicker } from '@/lib/learning-path-kind-ui'
-import {
-  type LearningPathTopicId,
-  learningPathTopics,
-  parseLearningPathTopicId
-} from '@/lib/learning-path-topic'
 
 import type { NotionHomeDebugPayload } from './index'
+import styles from '@/components/AllCoursesOfficial.module.css'
 
-function coursePathToCard(path: {
-  id: string
-  slug: string
-  title: string
-  description: string
-  area?: string | null
-}): HomeCourseCard {
-  const subject = getCourseLearningPathSubject(path.slug, path.title, path.area)
-  return {
-    id: path.id,
-    href: `/learning-path/${path.slug}`,
-    meta: `Coursetexts · ${subject.label}`,
-    title: path.title,
-    description: path.description,
-    subjectDegreeId: subject.degreeId
-  }
-}
-
-function mergeCoursePathCards(
-  base: HomeCourseCard[],
-  extra: HomeCourseCard[]
-): HomeCourseCard[] {
-  if (extra.length === 0) return base
-  const byHref = new Map(base.map((card) => [card.href, card]))
-  for (const card of extra) {
-    const prior = byHref.get(card.href)
-    byHref.set(card.href, {
-      ...prior,
-      ...card,
-      subjectDegreeId: card.subjectDegreeId || prior?.subjectDegreeId,
-      statsLine: card.statsLine || prior?.statsLine,
-      communityMark: card.communityMark ?? prior?.communityMark
-    })
-  }
-  return [...byHref.values()].sort((a, b) =>
-    a.title.localeCompare(b.title, undefined, { sensitivity: 'base' })
-  )
-}
-
-function nonCoursePathToCard(
-  path: {
-    id: string
-    slug: string
-    title: string
-    description: string
-    kind: 'community' | 'research' | 'course'
+const SUBJECT_OPTIONS = [
+  {
+    id: 'Science',
+    label: 'Science',
+    icon: '/images/home/science.png'
   },
-  extrasBySlug: Record<string, LearningPathSearchExtras>
-): HomeCourseCard {
-  const extras = extrasBySlug[path.slug]
-  return {
-    id: path.id,
-    href: `/learning-path/${path.slug}`,
-    meta: `Coursetexts · ${learningPathKicker(path.kind)}`,
-    title: path.title,
-    description: path.description,
-    communityMark: true,
-    statsLine: extras ? formatCatalogStats(extras.stats) : undefined
+  {
+    id: 'Math',
+    label: 'Math',
+    icon: '/images/home/math.png'
+  },
+  {
+    id: 'Art',
+    label: 'Art',
+    icon: '/images/home/sociology.png'
+  },
+  {
+    id: 'Sociology',
+    label: 'Sociology',
+    icon: '/images/home/sociology.png'
+  },
+  {
+    id: 'English',
+    label: 'English',
+    icon: '/images/home/english.png'
   }
-}
+] as const
+type HomeSubject = (typeof SUBJECT_OPTIONS)[number]['id']
 
-function learningPathCardSlug(path: HomeCourseCard) {
-  return path.href.split('/').filter(Boolean).pop() || path.id
-}
-
-function parseViewParam(
-  value: string | string[] | undefined,
-  topic: string | string[] | undefined,
-  subjects?: string | string[] | undefined,
-  hasQuery?: boolean
-): AllCoursesView {
-  const raw = Array.isArray(value) ? value[0] || '' : value || ''
-  if (raw === 'learning-paths' || raw === 'paths') return 'learning-paths'
-  if (raw === 'courses' || raw === 'university') return 'courses'
-  if (raw === 'degrees' || raw === 'degree') return 'degrees'
-  if (raw === 'research' || raw === 'questions') return 'research'
-  if (raw === 'all') return 'all'
-  const topicRaw = Array.isArray(topic) ? topic[0] || '' : topic || ''
-  if (topicRaw) return 'learning-paths'
-  const subjectRaw = Array.isArray(subjects)
-    ? subjects.join(',')
-    : subjects || ''
-  if (subjectRaw.trim() && !hasQuery) return 'courses'
-  return 'all'
-}
-
-function universityCourseToItem(course: HomeCourseCard): CatalogSearchItem {
-  return {
-    id: course.id,
-    kind: 'university-course',
-    href: course.href,
-    title: course.title,
-    description: course.description,
-    meta: course.meta,
-    extra: `${course.meta} ${(course.subjects || []).join(' ')}`,
-    subjects: course.subjects
+const SCHOOL_FILTERS = [
+  {
+    id: 'Stanford',
+    label: 'Stanford University',
+    icon: '/images/home/stanford.png'
+  },
+  {
+    id: 'Harvard',
+    label: 'Harvard University',
+    icon: '/images/home/harvard-red.png'
+  },
+  {
+    id: 'Yale',
+    label: 'Yale University',
+    icon: '/images/home/yale.png'
+  },
+  {
+    id: 'Columbia',
+    label: 'Columbia University',
+    icon: '/images/home/columbia.png'
+  },
+  {
+    id: 'Princeton',
+    label: 'Princeton University',
+    icon: '/images/home/princeton.png'
   }
-}
-
-function communityPathToItem(
-  path: HomeCourseCard,
-  extrasBySlug: Record<string, LearningPathSearchExtras>
-): CatalogSearchItem {
-  const slug = learningPathCardSlug(path)
-  const extras = extrasBySlug[slug]
-  return {
-    id: path.id,
-    kind: 'learning-path',
-    href: path.href,
-    title: path.title,
-    description: path.description,
-    meta: path.meta,
-    extra: extras?.extra,
-    relatedTerms: extras?.relatedTerms,
-    stats: extras?.stats,
-    communityMark: true
-  }
-}
-
-function syllabusToItem(path: HomeCourseCard): CatalogSearchItem {
-  return {
-    id: path.id,
-    kind: 'learning-path',
-    href: path.href,
-    title: path.title,
-    description: path.description,
-    meta: path.meta,
-    extra: `${path.title} ${path.description}`,
-    relatedTerms: [path.title],
-    subjectDegreeId: path.subjectDegreeId
-  }
-}
+] as const
 
 type AllCoursesPageProps = {
   courses: HomeCourseCard[]
-  coursePaths?: HomeCourseCard[]
-  learningPaths?: HomeCourseCard[]
-  degrees?: CatalogSearchItem[]
-  research?: CatalogSearchItem[]
-  pathExtrasBySlug?: Record<string, LearningPathSearchExtras>
   notionHomeDebug?: NotionHomeDebugPayload | null
 }
-
-const SUBJECT_OPTIONS = [
-  'Science',
-  'Math',
-  'Art',
-  'Sociology',
-  'English'
-] as const
-type HomeSubject = (typeof SUBJECT_OPTIONS)[number]
 
 function parseSubjectsParam(
   value: string | string[] | undefined
 ): HomeSubject[] {
   const raw = Array.isArray(value) ? value.join(',') : value || ''
-
   if (!raw.trim()) return []
-
   const normalized = raw
     .split(',')
     .map((subject) => subject.trim().toLowerCase())
     .filter(Boolean)
-
   const aliases: Record<string, HomeSubject> = {
     science: 'Science',
     math: 'Math',
@@ -205,20 +89,14 @@ function parseSubjectsParam(
     sociology: 'Sociology',
     english: 'English'
   }
-
   const selected = new Set<HomeSubject>()
-
   for (const subject of normalized) {
     const resolved = aliases[subject]
     if (resolved) selected.add(resolved)
   }
-
-  return SUBJECT_OPTIONS.filter((subject) => selected.has(subject))
-}
-
-function sameSubjects(a: HomeSubject[], b: HomeSubject[]): boolean {
-  if (a.length !== b.length) return false
-  return a.every((subject, index) => subject === b[index])
+  return SUBJECT_OPTIONS.filter((subject) => selected.has(subject.id)).map(
+    (subject) => subject.id
+  )
 }
 
 function matchesCourseSubjects(
@@ -233,11 +111,18 @@ function matchesCourseSubjects(
     Sociology: ['Sociology', 'Art'],
     English: ['English']
   }
-
   return activeSubjects.some((selected) => {
     const matches = subjectMatchMap[selected] || [selected]
     return (course.subjects || []).some((subject) => matches.includes(subject))
   })
+}
+
+function courseMatchesQuery(course: HomeCourseCard, query: string): boolean {
+  const q = query.trim().toLowerCase()
+  if (!q) return true
+  return `${course.title} ${course.meta} ${course.description}`
+    .toLowerCase()
+    .includes(q)
 }
 
 export const getStaticProps: GetStaticProps<AllCoursesPageProps> = async (
@@ -246,94 +131,28 @@ export const getStaticProps: GetStaticProps<AllCoursesPageProps> = async (
   const { getStaticProps: getHomeStaticProps } = await import('./index')
   const home = await getHomeStaticProps(ctx)
   if (!('props' in home)) return home
-
-  const { listFilledCuratedCourseCatalog } = await import(
-    '@/lib/curated-course-catalog'
-  )
-  const {
-    listDegreeCatalogItems,
-    listResearchCatalogItems,
-    listSeededLearningPathExtras
-  } = await import('@/lib/catalog-search-index')
-  const coursePaths = listFilledCuratedCourseCatalog().map(coursePathToCard)
-  const pathExtrasBySlug = listSeededLearningPathExtras()
-  const { SEEDED_LEARNING_PATHS } = await import('@/lib/learning-path-seed')
-  const learningPaths = SEEDED_LEARNING_PATHS.map((path) =>
-    nonCoursePathToCard(
-      {
-        id: path.id || path.slug,
-        slug: path.slug,
-        title: path.title,
-        description: path.summary || path.goal,
-        kind: 'community'
-      },
-      pathExtrasBySlug
-    )
-  )
-
+  const props = home.props as AllCoursesPageProps
   return {
-    ...home,
     props: {
-      ...home.props,
-      coursePaths,
-      learningPaths,
-      degrees: listDegreeCatalogItems(),
-      research: listResearchCatalogItems(),
-      pathExtrasBySlug
-    }
+      courses: props.courses,
+      notionHomeDebug: props.notionHomeDebug ?? null
+    },
+    revalidate: 120
   }
 }
 
-export default function AllCoursesPage({
+export default function OfficialAllCoursesPage({
   courses,
-  coursePaths: initialCoursePaths = [],
-  learningPaths: initialLearningPaths = [],
-  degrees = [],
-  research = [],
-  pathExtrasBySlug = {},
   notionHomeDebug
 }: AllCoursesPageProps) {
   const router = useRouter()
   const [query, setQuery] = React.useState('')
-  const [view, setView] = React.useState<AllCoursesView>('all')
   const [activeSubjects, setActiveSubjects] = React.useState<HomeSubject[]>([])
-  const [activeTopic, setActiveTopic] =
-    React.useState<LearningPathTopicId | null>(null)
-  const [coursePaths, setCoursePaths] =
-    React.useState<HomeCourseCard[]>(initialCoursePaths)
-  const [coursePathsReady, setCoursePathsReady] = React.useState(
-    initialCoursePaths.length > 0
-  )
-  const [learningPaths, setLearningPaths] =
-    React.useState<HomeCourseCard[]>(initialLearningPaths)
-  const [learningPathsReady, setLearningPathsReady] = React.useState(
-    initialLearningPaths.length > 0
-  )
-
-  React.useEffect(() => {
-    let cancelled = false
-    void listCourseLearningPaths()
-      .then((rows) => {
-        if (cancelled) return
-        setCoursePaths((current) =>
-          mergeCoursePathCards(current, rows.map(coursePathToCard))
-        )
-      })
-      .catch(() => {
-        /* Keep the JSON catalog from getStaticProps. */
-      })
-      .finally(() => {
-        if (!cancelled) setCoursePathsReady(true)
-      })
-    return () => {
-      cancelled = true
-    }
-  }, [])
 
   React.useEffect(() => {
     if (notionHomeDebug && typeof window !== 'undefined') {
       console.log(
-        '%c[Coursetexts] Notion home debug (shared getStaticProps with /)',
+        '%c[Coursetexts] Notion home debug (all-courses)',
         'color:#2563eb;font-weight:bold;',
         notionHomeDebug
       )
@@ -341,327 +160,70 @@ export default function AllCoursesPage({
   }, [notionHomeDebug])
 
   React.useEffect(() => {
-    let cancelled = false
-    void listNonCourseLearningPaths()
-      .then((rows) => {
-        if (cancelled) return
-        setLearningPaths((current) =>
-          mergeCoursePathCards(
-            current,
-            rows.map((row) => nonCoursePathToCard(row, pathExtrasBySlug))
-          )
-        )
-      })
-      .catch(() => {
-        /* Keep seeded cards from getStaticProps. */
-      })
-      .finally(() => {
-        if (!cancelled) setLearningPathsReady(true)
-      })
-    return () => {
-      cancelled = true
-    }
-  }, [pathExtrasBySlug])
-
-  React.useEffect(() => {
     if (!router.isReady) return
-
     const urlQuery = Array.isArray(router.query.q)
       ? router.query.q[0] || ''
       : (router.query.q as string | undefined) || ''
     const urlSubjects = parseSubjectsParam(
       router.query.subjects as string | string[] | undefined
     )
-    const urlView = parseViewParam(
-      router.query.view,
-      router.query.topic,
-      router.query.subjects as string | string[] | undefined,
-      Boolean(urlQuery.trim())
-    )
-    const urlTopic =
-      urlView === 'learning-paths'
-        ? parseLearningPathTopicId(router.query.topic)
-        : null
-
-    setQuery((current) => (current === urlQuery ? current : urlQuery))
-    setActiveSubjects((current) =>
-      sameSubjects(current, urlSubjects) ? current : urlSubjects
-    )
-    setActiveTopic((current) => (current === urlTopic ? current : urlTopic))
-    setView((current) => (current === urlView ? current : urlView))
-  }, [
-    router.isReady,
-    router.query.q,
-    router.query.subjects,
-    router.query.topic,
-    router.query.view
-  ])
+    setQuery(urlQuery)
+    setActiveSubjects(urlSubjects)
+  }, [router.isReady, router.query.q, router.query.subjects])
 
   const updateUrl = React.useCallback(
-    (
-      nextQuery: string,
-      nextSubjects: HomeSubject[],
-      nextView: AllCoursesView,
-      nextTopic: LearningPathTopicId | null
-    ) => {
-      if (!router.isReady) return
-
-      const trimmedQuery = nextQuery.trim()
-      const nextRouteQuery: Record<string, string> = {}
-
-      if (trimmedQuery) {
-        nextRouteQuery.q = trimmedQuery
-      }
-
-      if (nextView === 'learning-paths') {
-        nextRouteQuery.view = 'learning-paths'
-        if (nextTopic) nextRouteQuery.topic = nextTopic
-      } else if (nextView === 'courses') {
-        nextRouteQuery.view = 'courses'
-        if (nextSubjects.length > 0) {
-          nextRouteQuery.subjects = nextSubjects.join(',')
-        }
-      } else if (nextView === 'degrees') {
-        nextRouteQuery.view = 'degrees'
-      } else if (nextView === 'research') {
-        nextRouteQuery.view = 'research'
-      } else if (!trimmedQuery) {
-        nextRouteQuery.view = 'all'
-      }
-
+    (next: { q?: string; subjects?: HomeSubject[] }) => {
+      const params = new URLSearchParams()
+      const q = next.q ?? query
+      const subjects = next.subjects ?? activeSubjects
+      if (q.trim()) params.set('q', q.trim())
+      if (subjects.length > 0) params.set('subjects', subjects.join(','))
+      const qs = params.toString()
       void router.replace(
-        {
-          pathname: '/all-courses',
-          query: nextRouteQuery
-        },
+        qs ? `/all-courses?${qs}` : '/all-courses',
         undefined,
         { shallow: true, scroll: false }
       )
     },
-    [router]
+    [activeSubjects, query, router]
   )
 
-  const handleSearchSubmit = React.useCallback(() => {
-    updateUrl(query, activeSubjects, view, activeTopic)
-  }, [activeSubjects, activeTopic, query, updateUrl, view])
-
-  const handleViewChange = React.useCallback(
-    (nextView: AllCoursesView) => {
-      setView(nextView)
-      if (nextView === 'learning-paths') {
-        updateUrl(query, [], nextView, activeTopic)
-        return
-      }
-      setActiveTopic(null)
-      if (nextView !== 'courses') {
-        setActiveSubjects([])
-        updateUrl(query, [], nextView, null)
-        return
-      }
-      updateUrl(query, activeSubjects, nextView, null)
-    },
-    [activeSubjects, activeTopic, query, updateUrl]
-  )
-
-  const handleSubjectToggle = React.useCallback(
-    (subject: string) => {
-      if (!SUBJECT_OPTIONS.includes(subject as HomeSubject)) return
-
-      setActiveSubjects((current) => {
-        const typedSubject = subject as HomeSubject
-        const next = current.includes(typedSubject)
-          ? current.filter((item) => item !== typedSubject)
-          : [...current, typedSubject]
-        const ordered = SUBJECT_OPTIONS.filter((item) => next.includes(item))
-
-        updateUrl(query, ordered, view, null)
-        return ordered
-      })
-    },
-    [query, updateUrl, view]
-  )
-
-  const handleTopicToggle = React.useCallback(
-    (topic: LearningPathTopicId) => {
-      setActiveTopic((current) => {
-        const next = current === topic ? null : topic
-        updateUrl(query, [], 'learning-paths', next)
-        return next
-      })
+  const handleSearchSubmit = React.useCallback(
+    (event: React.FormEvent) => {
+      event.preventDefault()
+      updateUrl({ q: query })
     },
     [query, updateUrl]
   )
 
-  const filteredCourses = React.useMemo(() => {
-    const needle = query.trim().toLowerCase()
+  const handleSubjectToggle = React.useCallback(
+    (subject: HomeSubject) => {
+      const next = activeSubjects.includes(subject)
+        ? activeSubjects.filter((item) => item !== subject)
+        : [...activeSubjects, subject]
+      const ordered = SUBJECT_OPTIONS.filter((item) =>
+        next.includes(item.id)
+      ).map((item) => item.id)
+      setActiveSubjects(ordered)
+      updateUrl({ subjects: ordered })
+    },
+    [activeSubjects, updateUrl]
+  )
 
-    const subset = courses.filter((course) => {
-      if (!matchesCourseSubjects(course, activeSubjects)) return false
-      if (!needle) return true
-      const searchable =
-        `${course.title} ${course.description} ${course.meta}`.toLowerCase()
-      return searchable.includes(needle)
-    })
-
-    if (!needle && activeSubjects.length === 0) {
-      return subset.slice(0, 14)
-    }
-
-    return subset
-  }, [activeSubjects, courses, query])
-
-  const filteredCoursePaths = React.useMemo(() => {
-    const needle = query.trim().toLowerCase()
-    if (!needle) return coursePaths
-    return coursePaths.filter((course) => {
-      const searchable =
-        `${course.title} ${course.description} ${course.meta}`.toLowerCase()
-      return searchable.includes(needle)
-    })
-  }, [coursePaths, query])
-
-  const filteredLearningPaths = React.useMemo(() => {
-    const needle = query.trim().toLowerCase()
-    return learningPaths.filter((path) => {
-      const matchesTopic =
-        activeTopic == null ||
-        learningPathTopics({
-          slug: learningPathCardSlug(path),
-          title: path.title,
-          summary: path.description
-        }).includes(activeTopic)
-      if (!matchesTopic) return false
-      if (!needle) return true
-      const searchable =
-        `${path.title} ${path.description} ${path.meta}`.toLowerCase()
-      return searchable.includes(needle)
-    })
-  }, [activeTopic, learningPaths, query])
-
-  const catalogItems = React.useMemo(() => {
-    const subjectFilteredCourses = courses.filter((course) =>
-      matchesCourseSubjects(course, activeSubjects)
-    )
-    return [
-      ...learningPaths.map((path) =>
-        communityPathToItem(path, pathExtrasBySlug)
+  const filtered = React.useMemo(
+    () =>
+      courses.filter(
+        (course) =>
+          courseMatchesQuery(course, query) &&
+          matchesCourseSubjects(course, activeSubjects)
       ),
-      ...coursePaths.map(syllabusToItem),
-      ...subjectFilteredCourses.map(universityCourseToItem),
-      ...degrees,
-      ...research
-    ]
-  }, [
-    activeSubjects,
-    coursePaths,
-    courses,
-    degrees,
-    learningPaths,
-    pathExtrasBySlug,
-    research
-  ])
-
-  const unified = React.useMemo(() => {
-    const needle = query.trim()
-    if (needle) {
-      return groupCatalogHits(searchCatalog(catalogItems, needle), true)
-    }
-
-    const browsePaths = learningPaths.slice(0, 12)
-    const browseCourses = courses
-      .filter((course) => matchesCourseSubjects(course, activeSubjects))
-      .slice(0, 14)
-    const browseDegrees = degrees.slice(0, 8)
-    const browseResearch = research.slice(0, 4)
-
-    return {
-      bestMatch: null,
-      groups: [
-        browsePaths.length > 0
-          ? {
-              kind: 'learning-path' as const,
-              label: 'Learning paths',
-              hits: browsePaths.map((path) => ({
-                ...communityPathToItem(path, pathExtrasBySlug),
-                score: 0,
-                match: 'query' as const
-              }))
-            }
-          : null,
-        browseCourses.length > 0
-          ? {
-              kind: 'university-course' as const,
-              label: 'University courses',
-              hits: browseCourses.map((course) => ({
-                ...universityCourseToItem(course),
-                score: 0,
-                match: 'query' as const
-              }))
-            }
-          : null,
-        browseDegrees.length > 0
-          ? {
-              kind: 'degree' as const,
-              label: 'Degree curricula',
-              hits: browseDegrees.map((item) => ({
-                ...item,
-                score: 0,
-                match: 'query' as const
-              }))
-            }
-          : null,
-        browseResearch.length > 0
-          ? {
-              kind: 'research' as const,
-              label: 'Research questions',
-              hits: browseResearch.map((item) => ({
-                ...item,
-                score: 0,
-                match: 'query' as const
-              }))
-            }
-          : null
-      ].filter((group): group is NonNullable<typeof group> => group != null)
-    }
-  }, [
-    activeSubjects,
-    catalogItems,
-    courses,
-    degrees,
-    learningPaths,
-    pathExtrasBySlug,
-    query,
-    research
-  ])
-
-  const unifiedGroups = unified.groups.map((group) => ({
-    kind: group.kind,
-    label: group.label,
-    cards: group.hits.map(catalogHitToCard)
-  }))
-
-  const filteredDegrees = React.useMemo(() => {
-    const needle = query.trim()
-    if (!needle) return degrees.slice(0, 24).map(catalogHitToCard)
-    return searchCatalog(degrees, needle).map(catalogHitToCard)
-  }, [degrees, query])
-
-  const filteredResearch = React.useMemo(() => {
-    const needle = query.trim()
-    if (!needle) return research.map(catalogHitToCard)
-    return searchCatalog(research, needle).map(catalogHitToCard)
-  }, [query, research])
-
-  const gridCourses =
-    view === 'degrees'
-      ? filteredDegrees
-      : view === 'research'
-      ? filteredResearch
-      : filteredCourses
+    [activeSubjects, courses, query]
+  )
 
   return (
     <>
       <Head>
+        <title>All Courses | Coursetexts</title>
         <link rel='preconnect' href='https://use.typekit.net' />
         <link rel='preconnect' href='https://p.typekit.net' />
         <link rel='stylesheet' href='https://use.typekit.net/vxh3dki.css' />
@@ -692,49 +254,91 @@ export default function AllCoursesPage({
         }
       >
         <HomeHeader />
-        <section
-          style={{ flex: 1 }}
-          aria-label={
-            view === 'learning-paths'
-              ? 'All learning paths workspace'
-              : view === 'all'
-              ? 'Discover workspace'
-              : view === 'degrees'
-              ? 'Degree curricula workspace'
-              : view === 'research'
-              ? 'Research questions workspace'
-              : 'All courses workspace'
-          }
-        >
-          <AllCoursesNewTopSection
-            query={query}
-            view={view}
-            activeSubjects={activeSubjects}
-            activeTopic={activeTopic}
-            onQueryChange={setQuery}
-            onViewChange={handleViewChange}
-            onSubjectToggle={handleSubjectToggle}
-            onTopicToggle={handleTopicToggle}
-            onSearchSubmit={handleSearchSubmit}
-          />
-          <AllCoursesNewGridSection
-            view={view}
-            courses={gridCourses}
-            coursePaths={filteredCoursePaths}
-            coursePathsReady={coursePathsReady}
-            coursePathQuery={query.trim()}
-            learningPaths={filteredLearningPaths}
-            learningPathsReady={learningPathsReady}
-            topicActive={Boolean(activeTopic)}
-            unifiedHasQuery={Boolean(query.trim())}
-            unifiedBestMatch={
-              unified.bestMatch ? catalogHitToCard(unified.bestMatch) : null
-            }
-            unifiedGroups={unifiedGroups}
-            unifiedReady={
-              view !== 'all' || (learningPathsReady && coursePathsReady)
-            }
-          />
+        <section className={styles.section} aria-label='All courses'>
+          <div className={styles.topBand}>
+            <div className={styles.topContent}>
+              <h1 className={styles.title}>All Courses</h1>
+
+              <form
+                id='all-courses-search'
+                className={styles.searchWrap}
+                onSubmit={handleSearchSubmit}
+              >
+                <input
+                  className={styles.searchInput}
+                  type='search'
+                  value={query}
+                  onChange={(event) => setQuery(event.target.value)}
+                  placeholder='What are you curious about?'
+                  aria-label='Search courses'
+                />
+                <button type='submit' className={styles.searchButton}>
+                  Search
+                </button>
+              </form>
+
+              <div className={styles.subjectRow}>
+                {SUBJECT_OPTIONS.map((subject) => {
+                  const selected = activeSubjects.includes(subject.id)
+                  return (
+                    <button
+                      key={subject.id}
+                      type='button'
+                      className={`${styles.subjectChip}${
+                        selected ? ` ${styles.subjectChipSelected}` : ''
+                      }`}
+                      aria-pressed={selected}
+                      onClick={() => handleSubjectToggle(subject.id)}
+                    >
+                      <img
+                        src={subject.icon}
+                        alt=''
+                        className={styles.subjectIcon}
+                        aria-hidden
+                      />
+                      <span>{subject.label}</span>
+                    </button>
+                  )
+                })}
+              </div>
+
+              <div className={styles.schoolRow}>
+                {SCHOOL_FILTERS.map((school) => (
+                  <button
+                    key={school.id}
+                    type='button'
+                    className={styles.schoolChip}
+                    onClick={() => {
+                      setQuery(school.id)
+                      updateUrl({ q: school.id })
+                    }}
+                  >
+                    <img
+                      src={school.icon}
+                      alt=''
+                      className={styles.schoolIcon}
+                      aria-hidden
+                    />
+                    <span>{school.label}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.gridBand}>
+            <div className={styles.gridContent}>
+              <CourseCardGrid
+                className={styles.courseGridSpacious}
+                cards={filtered}
+                emptyMessage={
+                  query.trim() || activeSubjects.length > 0
+                    ? 'No courses matched your search.'
+                    : 'No courses available yet.'
+                }
+              />
+            </div>
+          </div>
         </section>
         <HomeFooterSection />
       </main>

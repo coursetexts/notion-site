@@ -12,6 +12,7 @@ import {
 import { graduateDegrees } from '@/lib/graduate-degrees'
 import { undergraduateDegrees } from '@/lib/undergraduate-degrees'
 import { name as siteName } from '@/lib/config'
+import { PATHS_BASE } from '@/lib/paths-routes'
 
 function parseDegreeLevel(value: string | string[] | undefined): DegreeLevel {
   const raw = Array.isArray(value) ? value[0] : value
@@ -51,7 +52,7 @@ export default function DegreesPage() {
 
       void router.replace(
         {
-          pathname: '/degrees',
+          pathname: `${PATHS_BASE}/degrees`,
           query: nextRouteQuery
         },
         undefined,

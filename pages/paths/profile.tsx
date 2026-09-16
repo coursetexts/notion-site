@@ -162,9 +162,17 @@ import {
   ownProfileTabSlug,
   parseOwnProfileTabParam
 } from '@/lib/profile-tabs'
+import {
+  PATHS_BASE,
+  pathsCatalogHref,
+  pathsLearningPathHref,
+  pathsProfileHref,
+  pathsPublicProfileHref,
+  pathsUsersHref
+} from '@/lib/paths-routes'
 import styles from '@/styles/profile.module.css'
 
-import { useAuthOptional } from '../contexts/AuthContext'
+import { useAuthOptional } from '@/contexts/AuthContext'
 import {
   emptyNotebookDoc,
   parseStoredNotebookNote,
@@ -817,7 +825,7 @@ export default function ProfilePage() {
       setMainTab(tab)
       const slug = ownProfileTabSlug(tab)
       void router.replace(
-        { pathname: '/profile', query: { tab: slug } },
+        { pathname: `${PATHS_BASE}/profile`, query: { tab: slug } },
         undefined,
         { shallow: true }
       )
@@ -1738,7 +1746,7 @@ export default function ProfilePage() {
     if (!goal) return
     closeLearningPathModal()
     void router.push({
-      pathname: '/learning-path/new',
+      pathname: `${PATHS_BASE}/learning-path/new`,
       query: { goal }
     })
   }
@@ -1913,7 +1921,9 @@ export default function ProfilePage() {
       isLoading
     })
     if (!isLoading && !effectiveUser) {
-      router.replace(`/signin?redirect=${encodeURIComponent('/profile')}`)
+      router.replace(
+        `/signin?redirect=${encodeURIComponent(pathsProfileHref())}`
+      )
     }
   }, [effectiveUser, isLoading, router])
 
@@ -2147,7 +2157,10 @@ export default function ProfilePage() {
                       {profileInterests.map((t) => (
                         <Link
                           key={t}
-                          href={{ pathname: '/users', query: { interest: t } }}
+                          href={{
+                            pathname: pathsUsersHref(),
+                            query: { interest: t }
+                          }}
                           legacyBehavior={false}
                           className={styles.profileInterestTag}
                         >
@@ -2264,7 +2277,7 @@ export default function ProfilePage() {
                         return (
                           <li key={u.user_id} className={styles.userListItem}>
                             <a
-                              href={`/profile/${u.user_id}`}
+                              href={pathsPublicProfileHref(u.user_id)}
                               className={styles.userListLink}
                             >
                               {u.avatar_url ? (
@@ -2330,7 +2343,7 @@ export default function ProfilePage() {
                       return (
                         <li key={u.user_id} className={styles.userListItem}>
                           <a
-                            href={`/profile/${u.user_id}`}
+                            href={pathsPublicProfileHref(u.user_id)}
                             className={styles.userListLink}
                           >
                             {u.avatar_url ? (
@@ -2397,7 +2410,9 @@ export default function ProfilePage() {
                               : request.email}{' '}
                             asked to join{' '}
                             {request.pathSlug ? (
-                              <Link href={`/learning-path/${request.pathSlug}`}>
+                              <Link
+                                href={pathsLearningPathHref(request.pathSlug)}
+                              >
                                 <a className={styles.inlineLink}>
                                   {request.pathTitle}
                                 </a>
@@ -2453,7 +2468,7 @@ export default function ProfilePage() {
                       }
                       onClick={() => selectMainTab('learning-path')}
                     >
-                      Learning
+                      Paths
                     </button>
                     <button
                       type='button'
@@ -2466,7 +2481,7 @@ export default function ProfilePage() {
                       }
                       onClick={() => selectMainTab('knowledge')}
                     >
-                      Knowledge
+                      Concepts
                     </button>
                     <button
                       type='button'
@@ -2818,7 +2833,9 @@ export default function ProfilePage() {
                                   subject={
                                     request.pathSlug ? (
                                       <Link
-                                        href={`/learning-path/${request.pathSlug}`}
+                                        href={pathsLearningPathHref(
+                                          request.pathSlug
+                                        )}
                                       >
                                         <a className={styles.inlineLink}>
                                           {request.pathTitle}
@@ -3823,7 +3840,7 @@ export default function ProfilePage() {
                   <div className={styles.tabPanel}>
                     <div className={styles.tabPanelTop}>
                       <h2 className={styles.mainSerifTitle}>
-                        Learning
+                        Paths
                       </h2>
                       {showAllLearningCards ||
                       goalBasedOnly ||
@@ -3908,9 +3925,19 @@ export default function ProfilePage() {
                         Committed to get reminders when you want to finish it.
                       </p>
                     ) : showAllLearningCards && !hasAnyLearningCards ? (
-                      <p className={styles.placeholder}>
-                        No learning paths or courses yet.
-                      </p>
+                      <div className={styles.learningEmptyPrompt}>
+                        <p className={styles.placeholder}>
+                          You don&apos;t have any learning paths yet.
+                        </p>
+                        <Link
+                          href={pathsCatalogHref({ view: 'all' })}
+                          legacyBehavior
+                        >
+                          <a className={styles.learningEmptyPromptLink}>
+                            Explore learning paths
+                          </a>
+                        </Link>
+                      </div>
                     ) : !hasVisibleLearningCards ? (
                       <p className={styles.placeholder}>
                         No matching learning paths or courses.
@@ -3924,7 +3951,7 @@ export default function ProfilePage() {
                             return (
                               <li key={ownLearningEntryKey(entry)}>
                                 <ProfileLearningPathCard
-                                  href={`/learning-path/${item.slug}`}
+                                  href={pathsLearningPathHref(item.slug)}
                                   title={item.title}
                                   bylineAuthor={COURSETEXTS_BYLINE_AUTHOR}
                                   privacy='public'

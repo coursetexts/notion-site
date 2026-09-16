@@ -48,6 +48,8 @@ interface CourseHeroProps extends CourseHeroData {
   publisherAvatarHref?: string
   /** Replaces the HTML description (e.g. an editable field on owned paths). */
   descriptionSlot?: React.ReactNode
+  /** Replaces the title heading (e.g. an editable field in creation mode). */
+  titleSlot?: React.ReactNode
 }
 
 const COPYRIGHT_TOGGLE_TITLE = '⚖️ Copyright Report'
@@ -517,7 +519,8 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
   publisherAvatarFallback,
   publisherAvatarAlt,
   publisherAvatarHref,
-  descriptionSlot
+  descriptionSlot,
+  titleSlot
 }) => {
   const descriptionRef = React.useRef<HTMLDivElement>(null)
   const [copyrightReport, setCopyrightReport] =
@@ -685,7 +688,7 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
             <div className={styles.courseCode}>{derivedCourseCode}</div>
           ) : null}
         </div>
-        <h1 className={styles.title}>{displayTitle}</h1>
+        {titleSlot ?? <h1 className={styles.title}>{displayTitle}</h1>}
         {instructors.length > 0 ? (
           <div className={styles.instructor}>
             {instructors.map((inst, i) => {

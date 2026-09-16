@@ -29,6 +29,27 @@ export function ProfilePathIcon({ className }: IconProps) {
   )
 }
 
+/** Academic courses — graduation cap. */
+export function ProfileAcademicIcon({ className }: IconProps) {
+  return (
+    <svg {...common} className={className}>
+      <path d='M12 3L2 8l10 5 10-5-10-5z' />
+      <path d='M6 10.5V15c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5' />
+      <path d='M22 8v6' />
+    </svg>
+  )
+}
+
+/** Research — magnifying glass. */
+export function ProfileResearchIcon({ className }: IconProps) {
+  return (
+    <svg {...common} className={className}>
+      <circle cx='11' cy='11' r='7' />
+      <path d='M20 20l-3.5-3.5' />
+    </svg>
+  )
+}
+
 /** Updates — announcement / megaphone. */
 export function ProfileAnnouncementIcon({ className }: IconProps) {
   return (

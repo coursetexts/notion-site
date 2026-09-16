@@ -731,7 +731,7 @@ export function CourseLearningPath({
               reportTarget={{
                 type: 'learning_path',
                 id: course.id || course.slug,
-                url: `/learning-path/${course.slug}`,
+                url: `/paths/learning-path/${course.slug}`,
                 title: course.title
               }}
             />
@@ -803,7 +803,7 @@ export function CourseLearningPath({
             }
             coursePageId={courseLearningPathActivityPageId(course.slug)}
             courseTitle={course.title}
-            courseUrl={`/learning-path/${course.slug}`}
+            courseUrl={`/paths/learning-path/${course.slug}`}
             sectionId={selectedId}
             notesTopicTitle={
               showingOverview
@@ -953,7 +953,7 @@ export function CourseLearningPath({
         <CourseActivity
           coursePageId={courseLearningPathActivityPageId(course.slug)}
           courseTitle={course.title}
-          courseUrl={`/learning-path/${course.slug}`}
+          courseUrl={`/paths/learning-path/${course.slug}`}
           activityRefreshNonce={activityRefreshNonce}
         />
       </div>

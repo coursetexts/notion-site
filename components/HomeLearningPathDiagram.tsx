@@ -14,30 +14,24 @@ function goalForCycle(cycle: number) {
   return GOAL_FILLS[cycle % GOAL_FILLS.length] ?? GOAL_FILLS[0]
 }
 
-const TYPE_START_MS = 900
-const TYPE_MS = 42
-const AFTER_TYPE_MS = 380
-const CONCEPT_APPEAR_MS = 340
-const CONCEPT_ARROW_MS = 300
-const CONCEPT_TAIL_MS = 220
-const RESOURCE_SPACE_MS = 520
-const RESOURCES_MS = 880
-const RESOURCE_SWAP_STEP_MS = 600
-const RESOURCE_SWAP_ANIM_MS = 520
-const RESOURCE_LIST_MS = 520
-const RESOURCE_NUMBER_MS = 380
-const NOTES_MS = 700
-const COMMIT_MS = 520
-const ASK_MS = 420
-const ASK_MENU_MS = 480
-const ASK_CHOOSE_MS = 820
-const ASK_SAVE_MS = 720
-const NOTIFY_MS = 420
-const REMINDER_MS = 520
-const HOLD_MS = 4000
-const FADE_MS = 420
+const TYPE_START_MS = 1350
+const TYPE_MS = 63
+const AFTER_TYPE_MS = 570
+const CONCEPT_APPEAR_MS = 510
+const CONCEPT_ARROW_MS = 450
+const CONCEPT_TAIL_MS = 330
+const RESOURCE_SPACE_MS = 780
+const RESOURCES_MS = 1320
+const RESOURCE_SWAP_STEP_MS = 900
+const RESOURCE_SWAP_ANIM_MS = 780
+const RESOURCE_LIST_MS = 780
+const RESOURCE_NUMBER_MS = 570
+const NOTES_MS = 1050
+const COMMIT_MS = 780
+const COMMIT_PRESS_MS = 630
+const HOLD_MS = 5000
+const FADE_MS = 630
 
-const FREQUENCY_OPTIONS = ['Every day', 'Weekdays', 'Every Monday'] as const
 const REMINDER_LABEL = 'Every day · 7:00 PM'
 
 type Phase =
@@ -48,7 +42,6 @@ type Phase =
   | 'resourceList'
   | 'notes'
   | 'commit'
-  | 'ask'
   | 'notify'
 
 function usePrefersReducedMotion() {
@@ -165,39 +158,6 @@ function BellIcon() {
         stroke='currentColor'
         strokeWidth='1.1'
         strokeLinecap='round'
-      />
-    </svg>
-  )
-}
-
-function ChevronIcon({ open }: { open: boolean }) {
-  return (
-    <svg
-      className={`${styles.chevron}${open ? ` ${styles.chevronOpen}` : ''}`}
-      viewBox='0 0 12 12'
-      fill='none'
-      aria-hidden
-    >
-      <path
-        d='M2.5 4.5L6 8l3.5-3.5'
-        stroke='currentColor'
-        strokeWidth='1.4'
-        strokeLinecap='round'
-        strokeLinejoin='round'
-      />
-    </svg>
-  )
-}
-
-function CheckIcon() {
-  return (
-    <svg className={styles.check} viewBox='0 0 12 12' fill='none' aria-hidden>
-      <path
-        d='M2.5 6.2L5 8.7L9.5 3.5'
-        stroke='currentColor'
-        strokeWidth='1.4'
-        strokeLinecap='round'
-        strokeLinejoin='round'
       />
     </svg>
   )
@@ -474,7 +434,6 @@ function ResourceStack({
         visible ? '' : ` ${styles.resourceQuiet}`
       }`}
     >
-      <span className={styles.resourceListTitle}>Resource list</span>
       {items.map((item) => {
         const visualIndex = ordered.findIndex((entry) => entry.id === item.id)
         const index = visualIndex < 0 ? 0 : visualIndex
@@ -519,7 +478,6 @@ export function HomeLearningPathDiagram({ holdMs = HOLD_MS }: { holdMs?: number 
   const [cycle, setCycle] = React.useState(0)
   const [phase, setPhase] = React.useState<Phase>('goal')
   const [typed, setTyped] = React.useState('')
-  const [askStep, setAskStep] = React.useState(0)
   const [conceptStep, setConceptStep] = React.useState(0)
   const [swapStep, setSwapStep] = React.useState(0)
   const [resourcesNumbered, setResourcesNumbered] = React.useState(false)
@@ -551,7 +509,6 @@ export function HomeLearningPathDiagram({ holdMs = HOLD_MS }: { holdMs?: number 
     if (reduceMotion) {
       setPhase('notify')
       setTyped(goalFillText)
-      setAskStep(0)
       setConceptStep(CONCEPT_STEP_FINAL)
       setSwapStep(RESOURCE_SWAP_COUNT)
       setResourcesNumbered(true)
@@ -578,7 +535,6 @@ export function HomeLearningPathDiagram({ holdMs = HOLD_MS }: { holdMs?: number 
 
     setPhase('goal')
     setTyped('')
-    setAskStep(0)
     setConceptStep(0)
     setSwapStep(0)
     setResourcesNumbered(false)
@@ -601,12 +557,6 @@ export function HomeLearningPathDiagram({ holdMs = HOLD_MS }: { holdMs?: number 
     const tNotes = tResourceList + RESOURCE_LIST_MS + RESOURCE_NUMBER_MS
     const tCommit = tNotes + NOTES_MS
     const tPress = tCommit + COMMIT_MS
-    const tAsk = tPress + ASK_MS
-    const tMenu = tAsk + ASK_MENU_MS
-    const tChoose = tMenu + ASK_CHOOSE_MS
-    const tSave = tChoose + ASK_SAVE_MS
-    const tNotify = tSave + NOTIFY_MS
-    const tReminder = tNotify + REMINDER_MS
 
     at(TYPE_START_MS, () => {
       const started = Date.now()
@@ -642,19 +592,9 @@ export function HomeLearningPathDiagram({ holdMs = HOLD_MS }: { holdMs?: number 
     at(tNotes, () => setPhase('notes'))
     at(tCommit, () => setPhase('commit'))
     at(tPress, () => setCommitPressed(true))
-    at(tAsk, () => {
+    at(tPress + COMMIT_PRESS_MS, () => {
       setCommitPressed(false)
-      setPhase('ask')
-      setAskStep(0)
-    })
-    at(tMenu, () => setAskStep(1))
-    at(tChoose, () => setAskStep(2))
-    at(tSave, () => setAskStep(3))
-    at(tNotify, () => {
       setPhase('notify')
-      setAskStep(0)
-    })
-    at(tReminder, () => {
       setReminderOn(true)
       setHolding(true)
     })
@@ -693,7 +633,6 @@ export function HomeLearningPathDiagram({ holdMs = HOLD_MS }: { holdMs?: number 
     phase === 'resourceList' ||
     phase === 'notes' ||
     phase === 'commit' ||
-    phase === 'ask' ||
     phase === 'notify'
   const resourcesVisible =
     reduceMotion || (showResourceSpace && phase !== 'resourceSpace')
@@ -702,23 +641,16 @@ export function HomeLearningPathDiagram({ holdMs = HOLD_MS }: { holdMs?: number 
     phase === 'resourceList' ||
     phase === 'notes' ||
     phase === 'commit' ||
-    phase === 'ask' ||
     phase === 'notify'
   const numberedResources = reduceMotion || resourcesNumbered
   const showNotes =
     reduceMotion ||
     phase === 'notes' ||
     phase === 'commit' ||
-    phase === 'ask' ||
     phase === 'notify'
-  const showCommit =
-    reduceMotion || phase === 'commit' || phase === 'ask' || phase === 'notify'
-  const showAsk = !reduceMotion && phase === 'ask'
+  const showCommit = reduceMotion || phase === 'commit' || phase === 'notify'
   const showNotify = reduceMotion || phase === 'notify'
   const committed = showNotify
-  const menuOpen = askStep === 1
-  const frequencyChosen = askStep >= 2
-  const savePressed = askStep >= 3
   const showCaret =
     !reduceMotion &&
     phase === 'goal' &&
@@ -848,59 +780,8 @@ export function HomeLearningPathDiagram({ holdMs = HOLD_MS }: { holdMs?: number 
                   }`}
                 >
                   <BellIcon />
-                  <span>{reminderOn ? REMINDER_LABEL : 'Notify'}</span>
+                  <span>{REMINDER_LABEL}</span>
                 </span>
-              ) : null}
-
-              {showAsk ? (
-                <div className={styles.popover}>
-                  <p className={styles.popoverTitle}>
-                    When do you want to learn this?
-                  </p>
-                  <div className={styles.field}>
-                    <span>Frequency</span>
-                    <div
-                      className={`${styles.select}${
-                        menuOpen ? ` ${styles.selectOpen}` : ''
-                      }`}
-                    >
-                      <span
-                        className={`${styles.selectLabel}${
-                          frequencyChosen ? '' : ` ${styles.selectPlaceholder}`
-                        }`}
-                      >
-                        {frequencyChosen ? 'Every day' : 'Choose'}
-                      </span>
-                      <ChevronIcon open={menuOpen} />
-                    </div>
-                    {menuOpen ? (
-                      <div className={styles.menu}>
-                        {FREQUENCY_OPTIONS.map((option, index) => (
-                          <span
-                            key={option}
-                            className={`${styles.option}${
-                              index === 0 ? ` ${styles.optionActive}` : ''
-                            }`}
-                          >
-                            <span>{option}</span>
-                            {index === 0 ? <CheckIcon /> : null}
-                          </span>
-                        ))}
-                      </div>
-                    ) : null}
-                  </div>
-                  <div className={styles.field}>
-                    <span>Time</span>
-                    <span className={styles.time}>7:00 PM</span>
-                  </div>
-                  <span
-                    className={`${styles.save}${
-                      savePressed ? ` ${styles.savePressed}` : ''
-                    }`}
-                  >
-                    Commit & Remind Me
-                  </span>
-                </div>
               ) : null}
             </div>
           </Reveal>

@@ -373,6 +373,28 @@
   line-height: 1.4;
 }
 
+.learningEmptyPrompt {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin-top: 0.35rem;
+}
+
+.learningEmptyPromptLink {
+  font-size: 0.8125rem;
+  line-height: 1.2;
+  color: #25272b;
+  text-decoration: underline;
+  text-decoration-color: #25272b;
+  text-underline-offset: 3px;
+}
+
+.learningEmptyPromptLink:hover,
+.learningEmptyPromptLink:focus-visible {
+  color: #111;
+}
+
 .list {
   list-style: none;
   margin: 0;

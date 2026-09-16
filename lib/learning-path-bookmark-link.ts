@@ -11,10 +11,10 @@ import {
 } from '@/lib/learning-path-seed'
 import { titleFromSlug } from '@/lib/learning-path-slug'
 
-const LEARNING_PATH_PATH_RE = /\/learning-path\/([^/?#]+)/i
+const LEARNING_PATH_PATH_RE = /\/(?:paths\/)?learning-path\/([^/?#]+)/i
 
 export function learningPathHref(slug: string): string {
-  return `/learning-path/${slug}`
+  return `/paths/learning-path/${slug}`
 }
 
 export function learningPathAbsoluteUrl(slug: string, origin: string): string {

@@ -33,7 +33,7 @@ export function subscribeCourseLearningPathPins(listener: () => void): () => voi
 }
 
 function pathForSlug(slug: string): string {
-  return `/learning-path/${slug}`
+  return `/paths/learning-path/${slug}`
 }
 
 type PathJoin = { id: string; slug: string; title: string; kind?: string }

@@ -9,6 +9,7 @@ import {
 } from '@/components/CommunitySchema'
 import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
+import { pathsCatalogHref } from '@/lib/paths-routes'
 
 import styles from './community.module.css'
 
@@ -136,7 +137,7 @@ export default function CommunityPage() {
                   </p>
                 </div>
                 <Link
-                  href='/all-courses?view=learning-paths'
+                  href={pathsCatalogHref({ view: 'learning-paths' })}
                   legacyBehavior
                 >
                   <a className={styles.shareBtn}>Browse all learning paths</a>

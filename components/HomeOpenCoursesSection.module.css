@@ -1,0 +1,200 @@
+.section {
+  width: 100%;
+  background: #fff;
+}
+
+.content {
+  width: min(
+    var(--home-content-max, 1000px),
+    calc(100vw - (var(--home-side, 58px) * 2))
+  );
+  padding: 140px 0 96px;
+  margin: 0 auto;
+}
+
+.headingRow {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: left;
+  text-align: left;
+  min-height: 40px;
+  margin: 0 0 20px;
+}
+
+.openCoursesContainer {
+  width: 70%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.heading {
+  margin: 0;
+  padding: 0 110px;
+  color: #000;
+  text-align: center;
+  font-family: 'Guyot Press', serif;
+  font-weight: 401;
+  font-size: 32px;
+  line-height: 1.28;
+  letter-spacing: 0.0002em;
+  text-align: left;
+}
+
+.viewAllBtn {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  height: 40px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 2px;
+  background: #2c1a0c;
+  color: #fff;
+  font-family: 'Hanken Grotesk', 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+
+.viewAllBtn:hover,
+.viewAllBtn:focus-visible {
+  opacity: 0.92;
+}
+
+.viewAllBtn:focus-visible {
+  outline: 2px solid #0089c4;
+  outline-offset: 2px;
+}
+
+.schoolBox {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 0 64px;
+  padding: 20px 0;
+  border: none;
+  border-top: 1px dotted #d8d8d8;
+  border-bottom: 1px dotted #d8d8d8;
+  border-radius: 0;
+  background: transparent;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 24px;
+  row-gap: 16px;
+}
+
+.schoolChip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  margin: 0;
+  padding: 2px 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  font-family: 'Hanken Grotesk', 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #6b6f78;
+}
+
+.schoolChip:hover,
+.schoolChip:focus-visible {
+  color: #0089c4;
+}
+
+.schoolChipSelected {
+  color: #0089c4;
+}
+
+.schoolChip:focus-visible {
+  outline: 2px solid #0089c4;
+  outline-offset: 2px;
+}
+
+.schoolIconWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #e8e8e8;
+  flex-shrink: 0;
+}
+
+.schoolIcon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.courseGridSpacious {
+  margin-top: 0;
+  column-gap: 40px;
+  row-gap: 56px;
+}
+
+.disclaimer {
+  margin: 56px 0 0;
+  text-align: center;
+  font-family: 'Hanken Grotesk', 'Inter', sans-serif;
+  font-size: 11px;
+  line-height: 16px;
+  color: #9aa0a6;
+}
+
+@media (max-width: 900px) {
+  .heading {
+    font-size: 28px;
+  }
+
+  .schoolBox {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .content {
+    padding: 88px 0 72px;
+  }
+
+  .headingRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .heading {
+    padding: 0;
+    text-align: left;
+    font-size: 26px;
+  }
+
+  .viewAllBtn {
+    position: static;
+    transform: none;
+  }
+
+  .schoolBox {
+    grid-template-columns: 1fr;
+    padding: 16px 0;
+    margin-bottom: 40px;
+  }
+
+  .courseGridSpacious {
+    column-gap: 20px;
+    row-gap: 36px;
+  }
+}

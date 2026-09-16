@@ -52,15 +52,18 @@ type CourseCardGridProps = {
   cards: HomeCourseCard[]
   emptyMessage: string
   descriptionWidth?: React.CSSProperties['width']
+  hideDescription?: boolean
   startSlot?: React.ReactNode
 }
 
 function HomeCourseCardItem({
   course,
-  descriptionWidth
+  descriptionWidth,
+  hideDescription = false
 }: {
   course: HomeCourseCard
   descriptionWidth?: React.CSSProperties['width']
+  hideDescription?: boolean
 }) {
   const schoolLogo = getSchoolLogoForMeta(course.meta)
 
@@ -71,7 +74,11 @@ function HomeCourseCardItem({
   return (
     <Link href={course.href} legacyBehavior>
       <a className={styles.courseCardLink}>
-        <article className={styles.courseCard}>
+        <article
+          className={`${styles.courseCard}${
+            hideDescription ? ` ${styles.courseCardNoDescription}` : ''
+          }`}
+        >
           <div className={styles.courseMetaRow}>
             <span
               className={course.subjectDegreeId ? styles.logoStack : undefined}
@@ -108,12 +115,14 @@ function HomeCourseCardItem({
             <p className={styles.courseStats}>{course.statsLine}</p>
           ) : null}
 
-          <p
-            className={`${styles.courseDescription} ${styles.courseDescriptionTruncated}`}
-            style={descriptionStyle}
-          >
-            {course.description}
-          </p>
+          {hideDescription ? null : (
+            <p
+              className={`${styles.courseDescription} ${styles.courseDescriptionTruncated}`}
+              style={descriptionStyle}
+            >
+              {course.description}
+            </p>
+          )}
         </article>
       </a>
     </Link>
@@ -124,20 +133,27 @@ export function CourseCardGrid({
   cards,
   emptyMessage,
   descriptionWidth,
-  startSlot
-}: CourseCardGridProps) {
+  hideDescription = false,
+  startSlot,
+  className
+}: CourseCardGridProps & { className?: string }) {
   if (cards.length === 0 && !startSlot) {
     return <p className={styles.emptyState}>{emptyMessage}</p>
   }
 
   return (
-    <div className={styles.courseGrid}>
+    <div
+      className={
+        className ? `${styles.courseGrid} ${className}` : styles.courseGrid
+      }
+    >
       {startSlot}
       {cards.map((course) => (
         <HomeCourseCardItem
           key={course.id}
           course={course}
           descriptionWidth={descriptionWidth}
+          hideDescription={hideDescription}
         />
       ))}
     </div>
@@ -145,140 +161,33 @@ export function CourseCardGrid({
 }
 
 type HomeCoursesSectionProps = {
-  courses?: HomeCourseCard[]
+  academicCourses?: HomeCourseCard[]
   activeSubjects?: string[]
   onSubjectToggle?: (subject: string) => void
+  onTopicToggle?: (topic: LearningPathTopicId) => void
   activeTopic?: LearningPathTopicId | null
 }
 
 export function HomeCoursesSection({
-  courses,
+  academicCourses = [],
   activeSubjects = [],
   onSubjectToggle,
+  onTopicToggle,
   activeTopic = null
 }: HomeCoursesSectionProps) {
-  const subjects = [
-    { label: 'Science', icon: '/images/home/science.png' },
-    { label: 'Math', icon: '/images/home/math.png' },
-    {
-      label: 'Sociology',
-      icon: '/images/home/sociology.png'
-    },
-    { label: 'English', icon: '/images/home/english.png' }
-  ]
-
-  const cards =
-    courses == null
-      ? Array.from({ length: 12 }).map((_, index) => ({
-          id: `fallback-${index + 1}`,
-          href: '/',
-          meta: 'Harvard / Fall 2024',
-          title: 'Global & Visual Digital Culture',
-          description:
-            'Investigate digital media as a convergence-point where technical-systems, economic-imperatives, and power-structures collide'
-        }))
-      : courses
-
   return (
     <section className={styles.section}>
       <div className={styles.content}>
-        <HomeLearningPathsSection activeTopic={activeTopic} />
+        <HomeLearningPathsSection
+          academicCourses={academicCourses}
+          activeSubjects={activeSubjects}
+          onSubjectToggle={onSubjectToggle}
+          onTopicToggle={onTopicToggle}
+          activeTopic={activeTopic}
+        />
       </div>
 
       <HomeSocialLearningSection />
-
-      <div className={`${styles.content} ${styles.contentBottom}`}>
-        <div className={styles.headingCopy}>
-          <h2 className={styles.heading}>
-            Learn from advanced university courses.
-          </h2>
-          <p className={styles.headingIntro}>
-            Explore hard-to-find courses from leading universities, published
-            with professors and organized for self-directed learning.
-          </p>
-        </div>
-
-        <div className={styles.subjectGroup}>
-          <div className={styles.dashedRule} />
-
-          <div className={styles.subjectRow}>
-            {subjects.map((subject) => (
-              <button
-                key={subject.label}
-                type='button'
-                className={`${styles.subjectItem} ${
-                  activeSubjects.includes(subject.label)
-                    ? styles.subjectItemActive
-                    : ''
-                }`}
-                onClick={() => onSubjectToggle?.(subject.label)}
-                aria-pressed={activeSubjects.includes(subject.label)}
-              >
-                <span className={styles.subjectIconWrap}>
-                  <img
-                    src={subject.icon}
-                    alt=''
-                    className={styles.subjectIcon}
-                    aria-hidden='true'
-                  />
-                </span>
-                <span className={styles.subjectLabel}>{subject.label}</span>
-              </button>
-            ))}
-          </div>
-
-          <div className={styles.dashedRule} />
-        </div>
-
-        <CourseCardGrid
-          cards={cards}
-          emptyMessage='No courses matched those subjects yet.'
-        />
-
-        <div className={styles.viewAllRow}>
-          <p className={styles.headingSub}>
-            We host common university curriculum learning paths as well as niche graduate courses. We work directly with professors to bring niche, hard-to-find
-            graduate courses online through our{' '}
-            <a
-              href='https://blog.coursetexts.org/automating-copyright-compliance-for-open-courseware'
-              target='_blank'
-              rel='noreferrer'
-              className={styles.headingSubLink}
-            >
-              publishing pipeline
-            </a>
-            . We want to open source courses across every major university.
-            It&apos;s open source, compliant, and really fast!
-          </p>
-          <div className={styles.viewAllBar}>
-            <Link href='/all-courses?view=courses' legacyBehavior>
-              <a
-                className={styles.viewAllBarLink}
-                aria-label='View all courses'
-              >
-                <span className={styles.viewAllText}>View All</span>
-                <span className={styles.viewAllArrowBox} aria-hidden='true'>
-                  <svg
-                    width='14'
-                    height='14'
-                    viewBox='0 0 14 14'
-                    fill='none'
-                    xmlns='http://www.w3.org/2000/svg'
-                  >
-                    <path
-                      d='M5.25 11.375L9.625 7L5.25 2.625'
-                      stroke='#5D534B'
-                      strokeWidth='1.60417'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                    />
-                  </svg>
-                </span>
-              </a>
-            </Link>
-          </div>
-        </div>
-      </div>
     </section>
   )
 }

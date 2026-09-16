@@ -1,5 +1,4 @@
 import * as React from 'react'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import {
@@ -28,39 +27,12 @@ const heroChips: HeroChip[] = [
   }))
 ]
 
-const partnerLinks = [
-  {
-    label: 'Stanford',
-    icon: '/images/home/stanford.png',
-    href: '/all-courses?q=Stanford'
-  },
-  {
-    label: 'Waterloo',
-    icon: '/images/home/waterloo.png',
-    href: '/all-courses?q=Waterloo'
-  },
-  {
-    label: 'Harvard',
-    icon: '/images/home/harvard-red.png',
-    href: '/all-courses?q=Harvard'
-  },
-  {
-    label: 'More schools',
-    icon: '/images/home/plus-10.png',
-    href: '/all-courses?view=courses'
-  }
-]
-
 type HomeHeroProps = {
-  activeSubjects?: string[]
-  onSubjectToggle?: (subject: string) => void
   activeTopic?: LearningPathTopicId | null
   onTopicToggle?: (topic: LearningPathTopicId) => void
 }
 
 export function HomeHero({
-  activeSubjects = [],
-  onSubjectToggle,
   activeTopic = null,
   onTopicToggle
 }: HomeHeroProps) {
@@ -118,18 +90,13 @@ export function HomeHero({
       submitFromButtonRef.current = false
 
       const params = new URLSearchParams()
+      params.set('view', 'all')
 
       if (query.trim()) {
         params.set('q', query.trim())
       }
 
-      if (activeSubjects.length) {
-        params.set('subjects', activeSubjects.join(','))
-      }
-
-      const href = params.toString()
-        ? `/all-courses?${params.toString()}`
-        : '/all-courses'
+      const href = `/paths/all-courses?${params.toString()}`
 
       const navigate = () => {
         void router.push(href)
@@ -143,25 +110,32 @@ export function HomeHero({
 
       navigate()
     },
-    [activeSubjects, query, router, triggerSearchPulse]
+    [query, router, triggerSearchPulse]
+  )
+
+  const openCatalogSearch = React.useCallback(
+    (term: string) => {
+      const params = new URLSearchParams()
+      params.set('view', 'all')
+      params.set('q', term)
+      void router.push(`/paths/all-courses?${params.toString()}`)
+    },
+    [router]
   )
 
   const renderChip = React.useCallback(
     (chip: HeroChip, keySuffix: string) => {
-      const isActive =
-        chip.kind === 'subject'
-          ? activeSubjects.includes(chip.label)
-          : activeTopic === chip.id
+      const isActive = chip.kind === 'topic' && activeTopic === chip.id
 
       return (
         <button
           key={`${chip.kind}-${chip.id}-${keySuffix}`}
           type='button'
           className={`${styles.chip} ${isActive ? styles.chipSelected : ''}`}
-          aria-pressed={isActive}
+          aria-pressed={chip.kind === 'topic' ? isActive : undefined}
           onClick={() => {
             if (chip.kind === 'subject') {
-              onSubjectToggle?.(chip.label)
+              openCatalogSearch(chip.label)
               return
             }
 
@@ -173,7 +147,7 @@ export function HomeHero({
         </button>
       )
     },
-    [activeSubjects, activeTopic, onSubjectToggle, onTopicToggle]
+    [activeTopic, onTopicToggle, openCatalogSearch]
   )
 
   const renderChipRow = React.useCallback(
@@ -233,24 +207,6 @@ export function HomeHero({
               {renderChipRow('a')}
               {renderChipRow('b', true)}
             </div>
-          </div>
-
-          <div className={styles.logoRow} aria-label='Partner schools'>
-            {partnerLinks.map((partner) => (
-              <Link key={partner.label} href={partner.href} legacyBehavior>
-                <a className={styles.logoCircle} title={partner.label}>
-                  <img
-                    src={partner.icon}
-                    alt={partner.label}
-                    className={
-                      partner.label === 'More schools'
-                        ? styles.logoPlusImage
-                        : styles.logoImage
-                    }
-                  />
-                </a>
-              </Link>
-            ))}
           </div>
         </div>
 

@@ -49,7 +49,7 @@ export function ProfileUpdateOriginalEmbed({
           displayName={original.displayName}
           avatarUrl={original.avatarUrl}
         />
-        <Link href={`/profile/${original.userId}`} legacyBehavior>
+        <Link href={`/paths/profile/${original.userId}`} legacyBehavior>
           <a className={styles.updateOriginalAuthor}>{original.displayName}</a>
         </Link>
       </div>

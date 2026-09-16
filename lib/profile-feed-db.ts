@@ -548,7 +548,7 @@ export async function getProfileFeed(
       title,
       body,
       url: (u.url ?? '').trim(),
-      profile_href: `/profile/${u.user_id}`,
+      profile_href: `/paths/profile/${u.user_id}`,
       like_count: 0,
       liked_by_me: false,
       comment_count: 0,

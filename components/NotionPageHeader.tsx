@@ -83,7 +83,9 @@ export const NotionPageHeader: React.FC<{
   const closeBtnRef = React.useRef<HTMLButtonElement>(null)
   const user = auth?.user ?? cached.user
   const isLoggedIn = Boolean(user)
-  const accountHref = isLoggedIn ? '/profile' : signInPageHref(router.asPath)
+  const accountHref = isLoggedIn
+    ? '/paths/profile'
+    : signInPageHref(router.asPath)
 
   function handleAccountClick(event: React.MouseEvent<HTMLAnchorElement>) {
     if (isLoggedIn) return

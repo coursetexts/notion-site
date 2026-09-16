@@ -17,6 +17,9 @@ type HotspotPoint = {
 
 type HomeDotGridProps = {
   courses?: HomeDotGridCourse[]
+  hideDisclaimer?: boolean
+  /** Tighter top spacing when this is the first hero visual under the header. */
+  compactTop?: boolean
 }
 
 type HotspotTarget = HotspotPoint & {
@@ -34,14 +37,22 @@ const HOTSPOT_TARGETS: HotspotTarget[] = [
   { x: 90.5, y: 33, size: 92 } // tree and desk
 ]
 
-export function HomeDotGrid({ courses = [] }: HomeDotGridProps) {
+export function HomeDotGrid({
+  courses = [],
+  hideDisclaimer = false,
+  compactTop = false
+}: HomeDotGridProps) {
   const hotspotCourses = React.useMemo(
     () => courses.slice(0, HOTSPOT_TARGETS.length),
     [courses]
   )
 
   return (
-    <section className={styles.gridBand}>
+    <section
+      className={`${styles.gridBand}${
+        compactTop ? ` ${styles.gridBandCompact}` : ''
+      }`}
+    >
       <div className={styles.content}>
         <div className={styles.heroImageWrap}>
           <img
@@ -82,11 +93,13 @@ export function HomeDotGrid({ courses = [] }: HomeDotGridProps) {
           ) : null}
         </div>
 
-        <p className={styles.disclaimer}>
-          Coursetexts is a registered 501(c)(3) non-profit doing open research
-          on self-learning, educational interfaces, and scaling open source
-          software.
-        </p>
+        {hideDisclaimer ? null : (
+          <p className={styles.disclaimer}>
+            Coursetexts is a registered 501(c)(3) non-profit doing open research
+            on self-learning, educational interfaces, and scaling open source
+            software.
+          </p>
+        )}
       </div>
     </section>
   )

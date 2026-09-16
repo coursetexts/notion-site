@@ -214,10 +214,10 @@ export function CommunitySchema() {
   return (
     <>
       <div className={styles.diagramWrap}>
-        <HomeLearningPathDiagram holdMs={6000} />
+        <HomeLearningPathDiagram holdMs={5000} />
       </div>
       <div className={styles.startPathWrap}>
-        <Link href='/learning-path/new' legacyBehavior>
+        <Link href='/paths/learning-path/new' legacyBehavior>
           <a className={styles.startPathBtn}>
             <svg
               xmlns='http://www.w3.org/2000/svg'

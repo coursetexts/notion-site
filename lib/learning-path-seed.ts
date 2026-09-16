@@ -1718,6 +1718,81 @@ export function emptyLearningPath(
   }
 }
 
+/** Empty draft used on `/learning-path/new` — goal, two blank topics, each with one blank sub-topic. */
+export function starterCreationLearningPath(
+  goal: string,
+  slug = slugifyLearningPathName(goal)
+): LearningPathData {
+  const base = emptyLearningPath(goal, `draft-${slug}`)
+  const goalNode = base.nodes.find((node) => node.kind === 'goal')
+  const goalId = goalNode?.id ?? 'goal'
+  return {
+    ...base,
+    summary: 'What should someone get out of this path? Who is this for?',
+    nodes: [
+      ...base.nodes,
+      {
+        id: 'step-1',
+        label: '',
+        kind: 'milestone',
+        sub: 'Step 1',
+        status: 'exploring',
+        sequence: 1,
+        x: 34,
+        y: 36,
+        description: '',
+        why: '',
+        resources: []
+      },
+      {
+        id: 'step-1-sub',
+        label: '',
+        kind: 'prerequisite',
+        sub: 'Need this',
+        status: 'next',
+        sequence: 1,
+        x: 28,
+        y: 58,
+        description: '',
+        why: '',
+        resources: []
+      },
+      {
+        id: 'step-2',
+        label: '',
+        kind: 'milestone',
+        sub: 'Step 2',
+        status: 'next',
+        sequence: 2,
+        x: 66,
+        y: 36,
+        description: '',
+        why: '',
+        resources: []
+      },
+      {
+        id: 'step-2-sub',
+        label: '',
+        kind: 'prerequisite',
+        sub: 'Need this',
+        status: 'next',
+        sequence: 1,
+        x: 72,
+        y: 58,
+        description: '',
+        why: '',
+        resources: []
+      }
+    ],
+    edges: [
+      { from: goalId, to: 'step-1' },
+      { from: 'step-1', to: 'step-1-sub' },
+      { from: 'step-1', to: 'step-2' },
+      { from: 'step-2', to: 'step-2-sub' }
+    ]
+  }
+}
+
 export function readStoredLearningPaths(): StoredLearningPath[] {
   if (typeof window === 'undefined') return []
   try {

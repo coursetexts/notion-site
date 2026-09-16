@@ -16,9 +16,18 @@ import { ProfileNavDropdown } from './ProfileNavDropdown'
 import styles from './HomeHeader.module.css'
 import { PinnedCoursesNav } from './PinnedCoursesNav'
 import {
+  ProfileAcademicIcon,
   ProfileAnnouncementIcon,
-  ProfilePathIcon
+  ProfilePathIcon,
+  ProfileResearchIcon
 } from '@/components/ProfileTabItemIcons'
+import {
+  isPathsProductPathname,
+  pathsCatalogHref,
+  pathsCommunityHref,
+  pathsHomeHref,
+  pathsProfileHref
+} from '@/lib/paths-routes'
 import {
   OWN_PROFILE_TAB_LINKS,
   ownProfileTabHref
@@ -63,25 +72,6 @@ const navIconProps = {
   'aria-hidden': true as const
 }
 
-function NavAcademicCoursesIcon() {
-  return (
-    <svg {...navIconProps}>
-      <path d='M12 3L2 8l10 5 10-5-10-5z' />
-      <path d='M6 10.5V15c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5' />
-      <path d='M22 8v6' />
-    </svg>
-  )
-}
-
-function NavResearchIcon() {
-  return (
-    <svg {...navIconProps}>
-      <circle cx='11' cy='11' r='7' />
-      <path d='M20 20l-3.5-3.5' />
-    </svg>
-  )
-}
-
 function NavManifestoIcon() {
   return (
     <svg {...navIconProps}>
@@ -123,27 +113,6 @@ function NavSupportIcon() {
   )
 }
 
-const exploreChildren: NavMenuChild[] = [
-  {
-    label: 'Academic courses',
-    description: 'University courses from partner schools and departments.',
-    href: '/all-courses?view=courses',
-    icon: <NavAcademicCoursesIcon />
-  },
-  {
-    label: 'Research',
-    description: 'Research questions and open academic inquiries.',
-    href: '/all-courses?view=research',
-    icon: <NavResearchIcon />
-  },
-  {
-    label: 'Goals',
-    description: 'Community learning paths organized around goals.',
-    href: '/all-courses?view=learning-paths',
-    icon: <ProfilePathIcon />
-  }
-]
-
 const communityChildren: NavMenuChild[] = [
   {
     label: 'Feed',
@@ -179,20 +148,62 @@ const aboutChildren: NavMenuChild[] = [
     description: 'Donation page and explanation of how funding is used.',
     href: '/support',
     icon: <NavSupportIcon />
+  },
+  {
+    label: 'Paths by Coursetexts',
+    description: 'Learning paths, community goals, and structured study.',
+    href: pathsHomeHref(),
+    icon: <ProfilePathIcon />
   }
 ]
 
-const navItems: NavItem[] = [
-  {
-    kind: 'menu',
-    label: 'Explore paths',
-    href: '/all-courses?view=all',
-    children: exploreChildren
-  },
-  { kind: 'action', label: 'Create a path', action: 'create-path' },
-  { kind: 'menu', label: 'Community', href: '/community', children: communityChildren },
+const defaultNavItems: NavItem[] = [
+  { kind: 'link', label: 'All courses', href: '/all-courses' },
+  { kind: 'link', label: 'Paths', href: pathsHomeHref() },
   { kind: 'menu', label: 'About', children: aboutChildren }
 ]
+
+function pathsExploreChildren(): NavMenuChild[] {
+  return [
+    {
+      label: 'Academic courses',
+      description: 'University courses from partner schools and departments.',
+      href: pathsCatalogHref({ view: 'courses' }),
+      icon: <ProfileAcademicIcon />
+    },
+    {
+      label: 'Research',
+      description: 'Research questions and open academic inquiries.',
+      href: pathsCatalogHref({ view: 'research' }),
+      icon: <ProfileResearchIcon />
+    },
+    {
+      label: 'Goals',
+      description: 'Community learning paths organized around goals.',
+      href: pathsCatalogHref({ view: 'learning-paths' }),
+      icon: <ProfilePathIcon />
+    }
+  ]
+}
+
+function pathsNavItems(): NavItem[] {
+  return [
+    {
+      kind: 'menu',
+      label: 'Explore paths',
+      href: pathsCatalogHref({ view: 'all' }),
+      children: pathsExploreChildren()
+    },
+    { kind: 'action', label: 'Create a path', action: 'create-path' },
+    {
+      kind: 'menu',
+      label: 'Community',
+      href: pathsCommunityHref(),
+      children: communityChildren
+    },
+    { kind: 'menu', label: 'About', children: aboutChildren }
+  ]
+}
 
 function NavMenuChildContent({ child }: { child: NavMenuChild }) {
   return (
@@ -395,8 +406,18 @@ export function HomeHeader({
   const cached = React.useMemo(() => getCachedAuth(), [])
   const user = auth?.user ?? cached.user
   const isLoggedIn = Boolean(user)
-  const isOwnProfilePage = router.pathname === '/profile'
-  const accountHref = isLoggedIn ? '/profile' : signInPageHref(router.asPath)
+  const onPaths = isPathsProductPathname(router.pathname)
+  const navItems = React.useMemo(
+    () => (onPaths ? pathsNavItems() : defaultNavItems),
+    [onPaths]
+  )
+  const homeHref = onPaths ? pathsHomeHref() : '/'
+  const brandLabel = onPaths ? 'Paths by Coursetexts' : 'Coursetexts'
+  const isOwnProfilePage =
+    router.pathname === '/profile' || router.pathname === '/paths/profile'
+  const accountHref = isLoggedIn
+    ? pathsProfileHref()
+    : signInPageHref(router.asPath)
   const accountLabel = isLoggedIn ? 'Your Profile' : 'Sign in'
 
   const [menuOpen, setMenuOpen] = React.useState(false)
@@ -435,8 +456,11 @@ export function HomeHeader({
 
   const scrollToSearch = React.useCallback(() => {
     if (focusSearch()) return
-    void router.push('/all-courses#all-courses-search')
-  }, [focusSearch, router])
+    const catalogHref = onPaths
+      ? pathsCatalogHref()
+      : '/all-courses'
+    void router.push(`${catalogHref}#all-courses-search`)
+  }, [focusSearch, onPaths, router])
 
   const openCreatePath = React.useCallback(() => {
     setCreatePathOpen(true)
@@ -509,13 +533,16 @@ export function HomeHeader({
       const q = searchDraft.trim()
       closeMenu()
       if (q) {
-        void router.push(`/all-courses?q=${encodeURIComponent(q)}`)
+        const searchHref = onPaths
+          ? pathsCatalogHref({ q })
+          : `/all-courses?q=${encodeURIComponent(q)}`
+        void router.push(searchHref)
         setSearchDraft('')
         return
       }
       scrollToSearch()
     },
-    [closeMenu, router, scrollToSearch, searchDraft]
+    [closeMenu, onPaths, router, scrollToSearch, searchDraft]
   )
 
   const expandSpring = {
@@ -808,10 +835,10 @@ export function HomeHeader({
       <section className={className} style={cssVars} data-site-header=''>
         <div className={styles.headerArea}>
           <header className={styles.header}>
-            <Link href='/' legacyBehavior>
+            <Link href={homeHref} legacyBehavior>
               <a className={`${styles.brand} ${styles.brandLink}`}>
                 <CoursetextsBookIcon className={styles.brandIcon} />
-                Coursetexts
+                {brandLabel}
               </a>
             </Link>
 

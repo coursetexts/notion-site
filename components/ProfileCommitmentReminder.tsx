@@ -108,7 +108,9 @@ export function ProfileCommitmentReminder({
 
   return (
     <span
-      className={`${styles.learningPathReminderWrap} ${styles.learningPathCommitHover}`}
+      className={`${styles.learningPathReminderWrap}${
+        reminder ? '' : ` ${styles.learningPathCommitHover}`
+      }`}
       ref={wrapRef}
     >
       <button

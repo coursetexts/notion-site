@@ -84,9 +84,9 @@ For a named migration history instead of ad‑hoc snippets, use the Supabase CLI
 | `027_unify_learning_paths.sql` | `kind=course`, `visibility`, `learning_path_pins`, copy notes/pins from curated. Does **not** move official Notion courses onto `learning_paths` (future work). |
 | `028_learning_path_resource_votes.sql` | Upvotes on public/collaborative learning-path resource lists |
 | `029_learning_path_is_filled.sql` | `learning_paths.is_filled` for course syllabi that have a real topic tree |
-| `030_learning_path_commitments.sql` | Per-user committed flags on Learning tab items |
+| `030_learning_path_commitments.sql` | Per-user committed flags on Paths tab items |
 | `034_activity_feed_events.sql` | Suggestion accepted/declined status + `learning_path_progress_events` for the profile feed |
-| `035_user_knowledge_topics.sql` | Profile Knowledge tab: unique completed topics gained from finished learning paths |
+| `035_user_knowledge_topics.sql` | Profile Concepts tab: unique completed topics gained from finished learning paths |
 | `036_knowledge_graph.sql` | Site-wide `knowledge_topics` + `knowledge_topic_edges`. Structural ingest on finish; daily Gemini linking is **implemented but disabled** |
 | `037_content_reports.sql` | User reports for discussions, comments, learning paths, and uploaded resources. `/reports` dashboard (open while testing) |
 | `038_learning_path_ratings.sql` | Topic and path/course enjoyment % (0–100) plus learner-entered duration after marking explored / finishing |
@@ -167,8 +167,8 @@ Community paths: [docs/learning-paths.md](../../docs/learning-paths.md).
 - [ ] `/all-courses` default Discover: `?q=transformers` ranks **Implement a transformer** as Best match, then grouped paths / university courses / degrees / research, and a **Create your own path →** card at the bottom even when there are matches. **University Courses** (`?view=courses`) second grid lists only `kind=course` rows with `is_filled`; degrees promo → `/degrees`
 - [ ] `/all-courses?view=learning-paths`: public community + research only (`listNonCourseLearningPaths`); no `kind=course`; browse shows create-path promo in the grid; any search shows the create-path card at the bottom
 - [ ] `/community`: two explainers (path schema + vote/order diagram); collab CTA → `/community-resources`
-- [ ] Profile Learning tab: filters **Courses** (official Notion or `kind=course`), **Learning paths** (`community`+`research`), **Committed**; Commit tag writes `learning_path_commitments`; **Notify** stores a reminder cadence (`041`, which also creates the table if `030` never ran); muted **% complete** tag sits left of Commit; hover resume + Continue
-- [ ] Profile Knowledge tab: topic list (graph view hidden); finishing a public path upserts catalog topics/structural edges. Daily Gemini cron is **off** ([docs/knowledge.md](../../docs/knowledge.md))
+- [ ] Profile Paths tab: filters **Courses** (official Notion or `kind=course`), **Learning paths** (`community`+`research`), **Committed**; Commit tag writes `learning_path_commitments`; **Notify** stores a reminder cadence (`041`, which also creates the table if `030` never ran); muted **% complete** tag sits left of Commit; hover resume + Continue
+- [ ] Profile Concepts tab: topic list (graph view hidden); finishing a public path upserts catalog topics/structural edges. Daily Gemini cron is **off** ([docs/knowledge.md](../../docs/knowledge.md))
 - [ ] Profile Updates: compose / like / reply from Feed after `050_profile_updates.sql`
 - [ ] Profile Notifications: replies + join requests; opening the tab clears reply unread
 - [ ] `/reports` loads (open while testing). Hover a discussion/comment/resource and send a reason; flag next to the date on a learning-path hero. Row appears on `/reports`. Apply `037_content_reports.sql` first.
