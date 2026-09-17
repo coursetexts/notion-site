@@ -302,6 +302,8 @@ export default function OfficialAllCoursesPage({
                 })}
               </div>
 
+              <div className={styles.filtersRule} aria-hidden />
+
               <div className={styles.schoolRow}>
                 {SCHOOL_FILTERS.map((school) => (
                   <button

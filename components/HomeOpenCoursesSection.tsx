@@ -120,7 +120,7 @@ export function HomeOpenCoursesSection({
           <div className={`${courseStyles.viewAllBar} ${styles.viewAllBar}`}>
             <Link href='/all-courses' legacyBehavior>
               <a
-                className={`${courseStyles.viewAllBarLink} ${styles.viewAllBarLink}`}
+                className={courseStyles.viewAllBarLink}
                 aria-label='View all courses'
               >
                 <span className={courseStyles.viewAllText}>View All</span>
@@ -150,8 +150,10 @@ export function HomeOpenCoursesSection({
         </div>
 
         <p className={styles.disclaimer}>
-          Coursetexts is not affiliated with or endorsed by the universities
-          listed.
+          Coursetexts has neither sought nor received permission from any
+          university to open-source courses that were taught at that university.
+          It is not affiliated with, sponsored by, or endorsed by any
+          university.
         </p>
       </div>
     </section>

@@ -13,7 +13,7 @@ import { Site } from './types'
 // (they're nice for debugging and speed up local dev)
 const uuid = !!includeNotionIdInUrls
 
-/** Site pages that stay at the root (`/why`, `/about`, `/process`). */
+/** Site pages that stay at the root (`/why`, `/process`). */
 function isRootNotionPath(canonicalId: string): boolean {
   return Boolean(pageUrlOverrides[canonicalId] || pageUrlAdditions[canonicalId])
 }

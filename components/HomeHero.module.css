@@ -37,6 +37,10 @@
   letter-spacing: 0.006px;
 }
 
+.titleBreak {
+  display: none;
+}
+
 .description {
   margin: 40px 0 0;
   width: 534px;
@@ -265,6 +269,10 @@
   .titleFree {
     font-size: 40px;
     line-height: 42px;
+  }
+
+  .titleBreak {
+    display: block;
   }
 
   .searchWrap,

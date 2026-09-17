@@ -166,7 +166,9 @@ export function HomeHero({
     <section className={styles.heroWrapper}>
       <div className={styles.heroContent}>
         <h1 className={styles.title}>
-        Learn independently, <br></br><span className={styles.titleFree}>not</span> alone
+          Learn independently,{' '}
+          <br className={styles.titleBreak} />
+          <span className={styles.titleFree}>not</span> alone
         </h1>
 
         <p className={styles.description}>

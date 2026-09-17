@@ -27,7 +27,7 @@ export function HomeWhatIsLearningPathSection() {
             place.
           </p>
           <p className={styles.body}>
-            Coursetexts Paths is a community of learners. Anyone can publish a
+            A community of autodidacts - Anyone can publish a
             learning path to help others learn what they have already.
             The community curates and votes on resources to build the best
             possible learning experience.{' '} <br /> <br />

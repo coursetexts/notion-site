@@ -57,15 +57,15 @@ Custom landing for the **courses** product (not the Paths home). Section order:
 
 1. Header — brand label **Coursetexts**
 2. Dot-grid of featured Notion courses (`HomeDotGrid`, disclaimer hidden; compact top). Furniture sits over a raised class-preview image; the dotted field stops at the furniture shadow so the preview is not clipped.
-3. Hero (`CoursesHomeHero`) — “Coursetexts is an open library of advanced course readings.”, search, subject chips (Science, Math, Sociology, English) with a stacked school-logo row beside them (links into `/all-courses`), I’m Feeling Lucky, university-affiliation disclaimer
-4. **Try open courses from top schools.** (`HomeOpenCoursesSection`) — left-aligned title + View All; school filters in a full-width band with **top/bottom dotted borders only** (Stanford / Harvard / Yale / Columbia / Princeton); Notion course card grid → `/all-courses`. On narrow viewports, school chips use short names (e.g. **Stanford**, not **Stanford University**) and sit on one row with tighter side padding; the bottom View All is centered.
+3. Hero (`CoursesHomeHero`) — “An *open library* of advanced course readings.”, search, subject chips (Science, Math, Sociology, English) with a stacked school-logo row beside them (links into `/all-courses`), I’m Feeling Lucky, university-affiliation disclaimer
+4. **Try open courses from top schools.** (`HomeOpenCoursesSection`) — left-aligned title + View All; school filters in a full-width band with **top/bottom dotted borders only** (Stanford / Harvard / Yale / Columbia / Princeton); Notion course card grid → `/all-courses`. On narrow viewports, school chips use short names (e.g. **Stanford**, not **Stanford University**) and sit on one row with tighter side padding. Bottom **View All** is a full-width top/bottom-ruled bar (label left, chevron box right), with the longer university-affiliation disclaimer centered under it.
 5. Donate / blog / footer
 
 Course cards come from the Notion sitemap in `getStaticProps`. Subject chips and search navigate to `/all-courses` with `q` / subject filters.
 
 ## Paths home (`/paths`)
 
-The previous Paths-oriented landing (hero with learning-path topic chips, “What is a learning path?”, community catalog grid, social learning CTA) lives at `/paths` (`pages/paths/index.tsx`). Header brand label there is **Paths by Coursetexts**. The DotGrid shows the university-affiliation disclaimer with extra space below it before the hero copy.
+The previous Paths-oriented landing (hero with learning-path topic chips, “What is a learning path?”, community catalog grid, social learning CTA) lives at `/paths` (`pages/paths/index.tsx`). Header brand label there is **Paths by Coursetexts**. A thin `PathsHomeBanner` sits under the nav (“Paths is Coursetexts' first experiment…”). The DotGrid shows the university-affiliation disclaimer with extra space below it before the hero copy. Community path cards stay **two columns** on small screens.
 
 ## Site header (`HomeHeader`)
 
@@ -76,11 +76,11 @@ Shared chrome. Brand and nav switch on `isPathsProductPathname()`:
 | Coursetexts (`/`, `/all-courses`, `/course/…`) | Coursetexts | `/` |
 | Paths (`/paths/*`) | Paths by Coursetexts | `/paths` |
 
-On Paths, Explore / Create / Community destinations use `lib/paths-routes.ts` (`/paths/all-courses`, `/paths/learning-path/new`, `/paths/community`, `/paths/profile`, etc.). About items stay on root manifesto / professors / support / blog. The mobile menu shows a single Your Profile link when signed in (no nested profile-tab list).
+On Paths, Explore / Create / Community destinations use `lib/paths-routes.ts` (`/paths/all-courses`, `/paths/learning-path/new`, `/paths/community`, `/paths/profile`, etc.). The **About** nav label links to `/about` (dropdown still lists manifesto / professors / blog / support / Paths). The mobile menu shows a single Your Profile link when signed in (no nested profile-tab list).
 
 ## Official All Courses (`/all-courses`)
 
-Notion university courses only (`pages/all-courses.tsx` + `AllCoursesOfficial`). Left-aligned hero: title, search, subject chips, school filters, then the course grid. School filter labels drop **University** on mobile (same short names as the home open-courses band). No Discover / Goal-based / Research catalog filters — those live on the Paths catalog.
+Notion university courses only (`pages/all-courses.tsx` + `AllCoursesOfficial`). Left-aligned hero: title, search, subject chips, a dotted rule, school filters, then the course grid. School filter labels drop **University** on mobile (same short names as the home open-courses band). No Discover / Goal-based / Research catalog filters — those live on the Paths catalog.
 
 ## Paths catalog (`/paths/all-courses`)
 
@@ -172,7 +172,7 @@ flowchart LR
 | Field Atlas                | `/paths/field-atlas`                                             | Seeded atlas tree (`lib/human-knowledge-atlas-seed.ts`); can start a `kind=research` path |
 | Knowledge graph            | `/paths/knowledge-graph`                                         | Frozen snapshot in `data/knowledge-graph.json`. Page does not call `GET /api/knowledge-graph` (that route returns 410). Rebuild snapshot: `npx tsx scripts/snapshot-knowledge-graph.ts`. LLM clustering is typed but not called yet. |
 | Community explainer        | `/paths/community`                                               | Learning-path copy + structure diagram; collab-resources copy + vote/order diagram; trending lists                                                                                                                                                                                                                                                                                                              |
-| About                      | `/manifesto`, `/about`, `/process`, `/professors`, `/support`    | Header About dropdown (Why / Professors / Blog / Support). Manifesto is the custom Why page; `/about` and `/process` remain Notion overrides. Blog is `blog.coursetexts.org`.                                                                                                                                                                                                                                    |
+| About                      | `/manifesto`, `/about`, `/process`, `/professors`, `/support`    | Header **About** goes to `/about` (dropdown: Why / Professors / Blog / Support / Paths). `/about` is a custom landing + inaugural essay (`pages/about.tsx`); manifesto remains the Why page; `/process` remains a Notion override. Blog is `blog.coursetexts.org`.                                                                                                                                                                                                                                    |
 | Resource library           | `/paths/community-resources`                                     | `resources`, `knowledge_components`, `search_community`                                                                                                                                                                                                                                                                                                                                                         |
 | Reports                    | `/reports`                                                       | `content_reports`. Open while testing; later `coursetexts.info@gmail.com` only.                                                                                                                                                                                                                                                                                                                                 |
 | Profile / social           | `/paths/profile`, `/paths/profile/{userId}`, `/paths/users`      | profiles, follows, interests, personal links, owned/saved paths, profile Updates (in Feed). Sidebar: public **bio**; interest chips; **Currently learning** / **Previously learned**. On **your** profile, personal links sit under Previously learned; on **someone else’s**, the links icon sits beside their name. Edit (pencil, own only): bio + learning fields, remove interests, **+ New link** and **Save profile**. Hover Paths cards: own profile shows description + **Continue, Next: {topic}** when available; public profiles show **description only** (no Continue). Public Paths includes a **Committed** filter (read-only badges; needs `052`). Tabs (own): **Paths** → **Concepts** → **Notes** → **Resources** → \| → **Feed** → **Notifications**. Public omits Notes and Notifications. **Feed**: author-first posts; Updates are plain text (quoted originals are nested cards); comments/discussions lead with a target card then a spine to the actor. **Repost** / **Quote** on Updates (`051`). **Notifications**: unread count badge left of the tab label; new rows use a faint blue background. Covers followed you, liked / reposted / quoted your update, replied, path invites, resource submit/accept, join requests. |
@@ -183,7 +183,7 @@ Legacy URLs:
 - `/feed.xml` — not a route; RSS is served at `/feed` only
 - `/learning-path/*`, `/learning-paths`, `/profile`, `/profile/:userId`, `/community`, `/community-resources`, `/degrees`, `/knowledge-graph`, `/field-atlas`, `/users`, and old Discover query shortcuts → **permanent redirects** into `/paths/…` (see `next.config.js`)
 
-Root Notion site pages (`/about`, `/process`, `/why`) are served by `[pageId].tsx` via `site.config.ts` overrides. All other bare slugs at the root (e.g. `/some-course-name`) return **404** — use `/course/{slug}` or `/paths/learning-path/{slug}` instead.
+Root Notion site pages (`/process`, `/why`) are served by `[pageId].tsx` via `site.config.ts` overrides. `/about` is a custom page (`pages/about.tsx`). All other bare slugs at the root (e.g. `/some-course-name`) return **404** — use `/course/{slug}` or `/paths/learning-path/{slug}` instead.
 
 ## Route catalog
 
@@ -196,7 +196,8 @@ All user-facing pages (excluding `_app`, `_document`, `_error`, and API handlers
 | `/paths` | Live | SSG | Paths by Coursetexts landing |
 | `/paths/all-courses` | Live | Client + server catalog | Unified Discover search; `?view=` filters |
 | `/course/[pageId]` | Live | ISR (Notion) | Official professor courses; `revalidate: 10` |
-| `/about`, `/process`, `/why` | Live | SSR (Notion) | Root Notion overrides via `[pageId].tsx` + `site.config.ts` |
+| `/about` | Live | Static | About landing, product links, inaugural essay |
+| `/process`, `/why` | Live | SSR (Notion) | Root Notion overrides via `[pageId].tsx` + `site.config.ts` |
 | `/paths/learning-path/[slug]` | Live | Client + Supabase | Community, research, and course-kind paths |
 | `/paths/learning-path/new` | Live | Client | Outline builder; `?goal=` / `?kind=research` |
 | `/paths/learning-paths` | Live | Client + Supabase | Path catalog |

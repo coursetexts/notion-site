@@ -151,25 +151,18 @@
 }
 
 .viewAllRow {
-  display: flex;
-  justify-content: center;
-  grid-template-columns: none;
   margin-top: 56px;
+  grid-template-columns: 1fr;
 }
 
 .viewAllBar {
-  grid-column: auto;
-  width: min(320px, 100%);
-  margin-left: 0;
-}
-
-.viewAllBarLink {
-  justify-content: center;
-  gap: 12px;
+  width: 100%;
+  grid-column: 1;
 }
 
 .disclaimer {
-  margin: 56px 0 0;
+  margin: 28px auto 0;
+  max-width: 640px;
   text-align: center;
   font-family: 'Hanken Grotesk', 'Inter', sans-serif;
   font-size: 11px;

@@ -157,7 +157,7 @@ const aboutChildren: NavMenuChild[] = [
 const defaultNavItems: NavItem[] = [
   { kind: 'link', label: 'All courses', href: '/all-courses' },
   { kind: 'link', label: 'Paths', href: pathsHomeHref() },
-  { kind: 'menu', label: 'About', children: aboutChildren }
+  { kind: 'menu', label: 'About', href: '/about', children: aboutChildren }
 ]
 
 function pathsExploreChildren(): NavMenuChild[] {
@@ -198,7 +198,7 @@ function pathsNavItems(): NavItem[] {
       href: pathsCommunityHref(),
       children: communityChildren
     },
-    { kind: 'menu', label: 'About', children: aboutChildren }
+    { kind: 'menu', label: 'About', href: '/about', children: aboutChildren }
   ]
 }
 

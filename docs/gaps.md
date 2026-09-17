@@ -7,7 +7,7 @@ What is **live** vs **partial**, **404**, or **orphaned API** in the current cod
 | URL | Notes |
 | --- | ----- |
 | `/feed.xml` | RSS metadata references this URL, but only `/feed` exists. Subscribers using `/feed.xml` get 404. |
-| Bare root slugs (e.g. `/some-course-name`) | Not a route. Use `/course/{slug}` for Notion courses or `/paths/learning-path/{slug}` for syllabi/paths. Only `/about`, `/process`, and `/why` are valid root Notion overrides. |
+| Bare root slugs (e.g. `/some-course-name`) | Not a route. Use `/course/{slug}` for Notion courses or `/paths/learning-path/{slug}` for syllabi/paths. `/about` is a custom page; `/process` and `/why` are the remaining root Notion overrides. |
 | Former legacy paths (`/undergraduate-degrees`, `/human-knowledge-atlas`, `/curated-course/*`, `/course-learning-path/*`, `/course-videos`, `/c/*`, `/research-field-atlas`, `/notebook/*`) | Removed. Link to `/paths/degrees`, `/paths/field-atlas`, `/paths/learning-path/{slug}`, or `/course/{slug}` directly. |
 | Pre-split Paths URLs (`/learning-path/*`, `/learning-paths`, `/profile`, `/community`, `/degrees`, …) | **301 redirect** into `/paths/…` via `next.config.js`. Prefer `lib/paths-routes.ts` for new links. |
 
@@ -48,7 +48,7 @@ What is **live** vs **partial**, **404**, or **orphaned API** in the current cod
 
 ## Stale static pages (legal)
 
-`pages/privacy-policy.tsx` and `pages/terms-of-service.tsx` still link to old About URLs (`/why`, hardcoded Notion paths). Header About menu uses `/manifesto`, `/about`, `/process`.
+`pages/privacy-policy.tsx` and `pages/terms-of-service.tsx` still link to old About URLs (`/why`, hardcoded Notion paths). Header **About** goes to `/about`; the dropdown still lists manifesto / professors / blog / support.
 
 ## Abandoned experiments (removed from repo)
 

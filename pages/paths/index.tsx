@@ -24,6 +24,7 @@ import { HomeHeader } from '@/components/HomeHeader'
 import { HomeHero } from '@/components/HomeHero'
 // import { HomeLearnSection } from '@/components/HomeLearnSection'
 import { HomeWhatIsLearningPathSection } from '@/components/HomeWhatIsLearningPathSection'
+import { PathsHomeBanner } from '@/components/PathsHomeBanner'
 import { getCourseLearningPathSubject } from '@/lib/course-learning-path-subject'
 import type { LearningPathTopicId } from '@/lib/learning-path-topic'
 import {
@@ -1477,6 +1478,7 @@ export default function HomePage({
         }
       >
         <HomeHeader />
+        <PathsHomeBanner />
         <HomeHero
           activeTopic={activeTopic}
           onTopicToggle={handleTopicToggle}

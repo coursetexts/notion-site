@@ -29,13 +29,18 @@
   letter-spacing: 0.006px;
 }
 
+.titleEm {
+  font-style: italic;
+  font-weight: inherit;
+}
+
 .description {
   margin: 16px 0 0;
   width: 534px;
   max-width: 100%;
   font-family: 'Hanken Grotesk', 'Inter', sans-serif;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 11px;
   line-height: 22px;
   text-align: center;
   color: #37352f;

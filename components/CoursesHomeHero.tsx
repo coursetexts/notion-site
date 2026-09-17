@@ -149,12 +149,13 @@ export function CoursesHomeHero({ courses = [] }: CoursesHomeHeroProps) {
       <section className={styles.heroWrapper}>
         <div className={styles.heroContent}>
           <h1 className={styles.title}>
-            Coursetexts is an open library of <br></br>advanced course readings.
+            An <em className={styles.titleEm}>open library</em> of <br />
+            advanced course readings.
           </h1>
 
           <p className={styles.description}>
-            Coursetexts is a registered 501(c)(3) non-profit doing open research
-            on self-learning, educational interfaces, and scaling open source
+          Coursetexts is a 501(c)(3) non-profit doing open research
+            on <br></br> self-learning, educational interfaces, and scaling open source
             software.
           </p>
 
