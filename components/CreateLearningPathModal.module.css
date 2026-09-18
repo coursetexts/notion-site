@@ -11,7 +11,7 @@
 
 .modal {
   width: 100%;
-  max-width: 460px;
+  max-width: 560px;
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
@@ -23,16 +23,8 @@
 .modalHeader {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 20px;
-}
-
-.modalHeading {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  min-width: 0;
+  justify-content: flex-end;
+  margin-bottom: 4px;
 }
 
 .modalTitle {
@@ -41,15 +33,7 @@
   font-weight: 401;
   line-height: 24px;
   color: #000;
-  margin: 0;
-}
-
-.workflow {
-  font-family: 'Hanken Grotesk', 'Inter', sans-serif;
-  font-size: 13px;
-  line-height: 20px;
-  color: #6b7280;
-  margin: 0;
+  margin: 0 0 16px;
 }
 
 .modalClose {
@@ -153,4 +137,11 @@
 .submitBtn:disabled {
   opacity: 0.4;
   cursor: not-allowed;
+}
+
+@media (max-width: 560px) {
+  .modal {
+    max-width: 100%;
+    padding: 22px 18px;
+  }
 }

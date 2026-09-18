@@ -4,6 +4,7 @@ import type { GetServerSideProps } from 'next'
 
 import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
+import { CreatePathStepper } from '@/components/CreatePathStepper'
 import { LearningPath } from '@/components/LearningPath'
 
 type NewLearningPathPageProps = {
@@ -61,6 +62,10 @@ export default function NewLearningPathPage({
         }
       >
         <HomeHeader />
+        <CreatePathStepper
+          currentStep={initialGoal ? 2 : 1}
+          variant='page'
+        />
         <LearningPath
           creationMode
           initialGoal={initialGoal}

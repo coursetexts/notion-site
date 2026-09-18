@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { useRouter } from 'next/router'
 
+import { CreatePathStepper } from '@/components/CreatePathStepper'
 import { pathsNewLearningPathHref } from '@/lib/paths-routes'
 
 import styles from './CreateLearningPathModal.module.css'
@@ -54,15 +55,6 @@ export function CreateLearningPathModal({
         onMouseDown={(event) => event.stopPropagation()}
       >
         <div className={styles.modalHeader}>
-          <div className={styles.modalHeading}>
-            <h2 id='create-path-title' className={styles.modalTitle}>
-              What do you want to learn?
-            </h2>
-            <p className={styles.workflow}>
-              Describe your goal → receive an editable draft path → add resources
-              → save or publish.
-            </p>
-          </div>
           <button
             type='button'
             className={styles.modalClose}
@@ -72,6 +64,13 @@ export function CreateLearningPathModal({
             ×
           </button>
         </div>
+
+        <CreatePathStepper currentStep={1} variant='modal' />
+
+        <h2 id='create-path-title' className={styles.modalTitle}>
+          What do you want to learn?
+        </h2>
+
         <form className={styles.modalForm} onSubmit={handleCreate}>
           <label className={styles.field}>
             <span className={styles.label}>Your goal</span>

@@ -43,6 +43,7 @@ import {
   normalizeUserLinkUrl,
   userLinkMatchesLearningPathSlug
 } from '@/lib/learning-path-bookmark-link'
+import { markCreatePathFlow } from '@/lib/create-path-flow'
 import {
   learningPathNavPinKey,
   listMyNavPins,
@@ -3650,7 +3651,8 @@ function CommunityLearningPath({
         },
         ...readStoredLearningPaths().filter((row) => row.slug !== nextSlug)
       ])
-      void router.push(learningPathHref(nextSlug))
+      markCreatePathFlow(nextSlug)
+      void router.push(`${learningPathHref(nextSlug)}?node=overview`)
     } catch {
       setCreateError('Could not create this path. Try again.')
       setCreatingPath(false)

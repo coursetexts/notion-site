@@ -1,0 +1,160 @@
+.wrap {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.wrapPage {
+  background: #f3f1ec;
+  border-bottom: 1px solid #ebe8e3;
+  padding: 8px var(--home-side, 58px);
+}
+
+.wrapModal {
+  margin: 0 0 16px;
+  padding: 8px 0;
+  border-top: 1px solid #ebe8e3;
+  border-bottom: 1px solid #ebe8e3;
+  background: transparent;
+}
+
+.list {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  width: min(
+    var(--home-content-max, 960px),
+    calc(100vw - (var(--home-side, 58px) * 2))
+  );
+  display: flex;
+  align-items: center;
+}
+
+.wrapModal .list {
+  width: 100%;
+}
+
+.step {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.step:first-child {
+  flex: 0 1 auto;
+}
+
+.step:not(:first-child) {
+  flex: 1 1 0;
+}
+
+.connector {
+  flex: 1 1 16px;
+  min-width: 12px;
+  height: 1px;
+  margin-right: 4px;
+  background: #d7d8da;
+}
+
+.connectorDone {
+  background: #0089c4;
+}
+
+.marker {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Hanken Grotesk', 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+  border: 1.5px solid #d7d8da;
+  background: #fff;
+  color: #9aa0a6;
+}
+
+.number {
+  display: block;
+}
+
+.check {
+  display: block;
+}
+
+.label {
+  min-width: 0;
+  font-family: 'Hanken Grotesk', 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.25;
+  color: #9aa0a6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stepCurrent .marker {
+  border-color: #2c1a0c;
+  background: #2c1a0c;
+  color: #fff;
+}
+
+.stepCurrent .label {
+  color: #000;
+  font-weight: 500;
+}
+
+.stepDone .marker {
+  border-color: #0089c4;
+  background: #0089c4;
+  color: #fff;
+}
+
+.stepDone .label {
+  color: #0089c4;
+}
+
+.stepUpcoming .marker {
+  border-color: #d7d8da;
+  background: #fff;
+  color: #9aa0a6;
+}
+
+.stepUpcoming .label {
+  color: #9aa0a6;
+}
+
+@media (max-width: 720px) {
+  .wrapPage {
+    padding: 7px 12px;
+  }
+
+  .list {
+    width: 100%;
+  }
+
+  .step {
+    gap: 5px;
+  }
+
+  .marker {
+    width: 16px;
+    height: 16px;
+    font-size: 9px;
+  }
+
+  .label {
+    font-size: 10px;
+  }
+
+  .connector {
+    min-width: 6px;
+    margin-right: 2px;
+  }
+}
