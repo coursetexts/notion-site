@@ -177,6 +177,8 @@ export function HomeCoursesSection({
 }: HomeCoursesSectionProps) {
   return (
     <section className={styles.section}>
+      <HomeSocialLearningSection />
+
       <div className={styles.content}>
         <HomeLearningPathsSection
           academicCourses={academicCourses}
@@ -186,8 +188,6 @@ export function HomeCoursesSection({
           activeTopic={activeTopic}
         />
       </div>
-
-      <HomeSocialLearningSection />
     </section>
   )
 }

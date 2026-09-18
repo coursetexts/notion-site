@@ -186,9 +186,9 @@
   flex-shrink: 0;
   height: 34px;
   padding: 8px 14px;
-  border: 1px solid #d4d4d4;
+  border: 1px solid #b42318;
   background: #fff;
-  color: #25272b;
+  color: #b42318;
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 12px;
@@ -198,8 +198,8 @@
 
 .creationRejectFillBtn:hover:not(:disabled),
 .creationRejectFillBtn:focus-visible:not(:disabled) {
-  border-color: #b42318;
-  color: #b42318;
+  border-color: #912018;
+  color: #912018;
   outline: none;
 }
 

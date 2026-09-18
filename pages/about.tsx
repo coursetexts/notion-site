@@ -225,47 +225,6 @@ export default function AboutPage() {
                 produce research findings within this problem space.
               </p>
 
-              <h2 className={styles.essayHeading}>CourseTexts History</h2>
-              <p>
-                CourseTexts began in 2024 as an open-source publishing pipeline
-                where we allowed professors at MIT, Yale, Princeton, and Harvard
-                to seamlessly upload their course materials and syllabi to be
-                publicly available on our website. We grew out of MIT SOUL, a
-                non-profit student organization at MIT that works to accelerate,
-                experiment with, and build a stronger culture of open education
-                at institutions of higher education.
-              </p>
-              <p>
-                To increase the number of publicly available courses and reduce
-                the friction associated with publishing them, we developed a
-                content pipeline that (1) engaged interested professors to gain
-                consent for publishing their courses; (2) accessed and
-                aggregated course materials, lectures, syllabi, and assignments;
-                (3) processing materials and videos to remove possible copyright
-                infractions. These three processes have connected us with more
-                than 70 professors and made the aggregation and publication of
-                materials (mostly) seamless, an order of magnitude less
-                expensive, and significantly faster. You can read more about the
-                publishing pipeline in{' '}
-                <a
-                  className={styles.inlineLink}
-                  href={BLOG_PIPELINE_URL}
-                  target='_blank'
-                  rel='noreferrer'
-                >
-                  our blog post on the subject
-                </a>
-                .
-              </p>
-              <p>
-                We continue to maintain and offer this publishing pipeline as a
-                core component of our community platform. We believe that
-                first-party open access materials are a useful starting point to
-                demonstrate the bar of content quality we intend to continue
-                curating, both in-house and through community contributions over
-                time.
-              </p>
-
               <h2 className={styles.essayHeading}>
                 How Does CourseTexts Work?
               </h2>
@@ -307,6 +266,11 @@ export default function AboutPage() {
                 initiatives, we primarily focus on more advanced or obscure
                 coursework, such as Superhero Theory and Cartography.
               </p>
+              <div className={styles.essayActions}>
+                <Link href='/' legacyBehavior>
+                  <a className={styles.buttonDark}>Browse the course catalog</a>
+                </Link>
+              </div>
 
               <h3 className={styles.essaySubheading}>Learning Paths</h3>
               <p>
@@ -353,6 +317,52 @@ export default function AboutPage() {
                 learn without, with the free positive externality that using the
                 tools also grows our collective database of learning paths for
                 others to iterate upon.
+              </p>
+              <div className={styles.essayActions}>
+                <Link href='/paths' legacyBehavior>
+                  <a className={styles.buttonDark}>Explore Learning Paths</a>
+                </Link>
+              </div>
+
+              <h2 className={styles.essayHeading}>CourseTexts History</h2>
+              <p>
+                CourseTexts began in 2024 as an open-source publishing pipeline
+                where we allowed professors at MIT, Yale, Princeton, and Harvard
+                to seamlessly upload their course materials and syllabi to be
+                publicly available on our website. We grew out of MIT SOUL, a
+                non-profit student organization at MIT that works to accelerate,
+                experiment with, and build a stronger culture of open education
+                at institutions of higher education.
+              </p>
+              <p>
+                To increase the number of publicly available courses and reduce
+                the friction associated with publishing them, we developed a
+                content pipeline that (1) engaged interested professors to gain
+                consent for publishing their courses; (2) accessed and
+                aggregated course materials, lectures, syllabi, and assignments;
+                (3) processing materials and videos to remove possible copyright
+                infractions. These three processes have connected us with more
+                than 70 professors and made the aggregation and publication of
+                materials (mostly) seamless, an order of magnitude less
+                expensive, and significantly faster. You can read more about the
+                publishing pipeline in{' '}
+                <a
+                  className={styles.inlineLink}
+                  href={BLOG_PIPELINE_URL}
+                  target='_blank'
+                  rel='noreferrer'
+                >
+                  our blog post on the subject
+                </a>
+                .
+              </p>
+              <p>
+                We continue to maintain and offer this publishing pipeline as a
+                core component of our community platform. We believe that
+                first-party open access materials are a useful starting point to
+                demonstrate the bar of content quality we intend to continue
+                curating, both in-house and through community contributions over
+                time.
               </p>
 
               <h2 className={styles.essayHeading}>Acknowledgements</h2>
@@ -407,6 +417,24 @@ export default function AboutPage() {
                 advice.
               </p>
             </article>
+
+            <div className={`${styles.actions} ${styles.actionsEnd}`}>
+              <Link href='/all-courses' legacyBehavior>
+                <a className={styles.button}>Graduate courses library</a>
+              </Link>
+              <Link href='/paths' legacyBehavior>
+                <a className={styles.button}>
+                  Paths, a new educational interface
+                </a>
+              </Link>
+              <a
+                className={styles.button}
+                href={donate || '/support'}
+                {...(donate ? { target: '_blank', rel: 'noreferrer' } : {})}
+              >
+                Donate
+              </a>
+            </div>
           </div>
         </section>
 

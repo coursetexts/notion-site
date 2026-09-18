@@ -145,12 +145,6 @@ const aboutChildren: NavMenuChild[] = [
     description: 'Donation page and explanation of how funding is used.',
     href: '/support',
     icon: <NavSupportIcon />
-  },
-  {
-    label: 'Paths by Coursetexts',
-    description: 'Learning paths, community goals, and structured study.',
-    href: pathsHomeHref(),
-    icon: <ProfilePathIcon />
   }
 ]
 
