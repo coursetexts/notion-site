@@ -575,7 +575,7 @@ export default function CommunityResourcesPage() {
         <title>Community Resources · Coursetexts</title>
         <meta
           name='description'
-          content='Articles, lectures, tools, and papers that helped other learners a concept. Upvote what helps you.'
+          content='Articles, lectures, tools, and papers that helped other learners a topic. Upvote what helps you.'
         />
         <link rel='preconnect' href='https://fonts.googleapis.com' />
         <link
@@ -615,7 +615,7 @@ export default function CommunityResourcesPage() {
               <h1 className={styles.title}>Community Resources</h1>
               <p className={styles.subtitle}>
                 Articles, lectures, tools, and papers that helped other
-                learners a concept. Upvote what helps you.
+                learners a topic. Upvote what helps you.
               </p>
             </header>
 
@@ -709,7 +709,7 @@ export default function CommunityResourcesPage() {
                   className={styles.quietLink}
                   onClick={() => setModal('knowledge')}
                 >
-                  Add a Concept
+                  Add a Topic
                 </button>
                 <button
                   type='button'
@@ -981,7 +981,7 @@ export default function CommunityResourcesPage() {
           </label>
           <label className={styles.field}>
             <span className={styles.label}>
-              Concept tree{' '}
+              Topic tree{' '}
               <span className={styles.labelOptional}>(optional)</span>
             </span>
             <input
@@ -1016,7 +1016,7 @@ export default function CommunityResourcesPage() {
       )}
 
       {modal === 'knowledge' && (
-        <Modal title='Add a Concept' onClose={closeModal}>
+        <Modal title='Add a Topic' onClose={closeModal}>
           <p className={styles.hint}>
             Add one specific idea or skill that someone can learn. This form is
             a preview, so your entry won&apos;t be saved yet.

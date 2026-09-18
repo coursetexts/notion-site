@@ -153,7 +153,7 @@ export function KnowledgeGraphExplorer() {
               checked={includeConcepts}
               onChange={(event) => setIncludeConcepts(event.target.checked)}
             />
-            Include matching concepts
+            Include matching topics
           </label>
         </div>
         <p className={styles.stats}>
@@ -356,7 +356,7 @@ export function KnowledgeGraphExplorer() {
                     {topics.length === 0 ? (
                       <p className={styles.empty}>
                         No recurring topics for this filter. Try search or
-                        include matching concepts.
+                        include matching topics.
                       </p>
                     ) : null}
                   </>

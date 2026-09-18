@@ -10,7 +10,7 @@ export const LEARNING_PATH_PUBLISH_MIN_RESOURCES = 1
 
 /** Defaults written when a node is created without a real reason. */
 export const LEARNING_PATH_PLACEHOLDER_WHYS = new Set([
-  'Steps are the major checkpoints. Concepts sit inside them.',
+  'Steps are the major checkpoints. Topics sit inside them.',
   'You placed this because it sits inside the step.',
   'Go only as deep as the goal requires.'
 ])

@@ -18,7 +18,7 @@ export type OwnProfileTabLink = {
 
 export const OWN_PROFILE_TAB_LINKS: OwnProfileTabLink[] = [
   { id: 'learning-path', slug: 'learning', label: 'Paths' },
-  { id: 'knowledge', slug: 'knowledge', label: 'Concepts' },
+  { id: 'knowledge', slug: 'knowledge', label: 'Topics' },
   { id: 'notes', slug: 'notes', label: 'Notes' },
   { id: 'bookmarks', slug: 'resources', label: 'Resources' },
   { id: 'activity', slug: 'feed', label: 'Feed' },

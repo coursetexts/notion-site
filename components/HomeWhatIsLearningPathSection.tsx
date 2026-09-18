@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 import { pathsCommunityHref } from '@/lib/paths-routes'
 
+import { AutodidactTerm } from './AutodidactTerm'
 import { HomeLearningPathDiagram } from './HomeLearningPathDiagram'
 import styles from './HomeWhatIsLearningPathSection.module.css'
 
@@ -22,12 +23,13 @@ export function HomeWhatIsLearningPathSection() {
           <p className={styles.body}>
             <b>Turn any learning goal into a path you can finish.</b> <br />
    
-            Follow an ordered sequence of concepts, with a list of
+            Follow an ordered sequence of topics, with a list of
             community-ranked resources attached, and along with your notes and progress in one
             place.
           </p>
           <p className={styles.body}>
-            A community of autodidacts - Anyone can publish a
+            A community of <AutodidactTerm>autodidacts</AutodidactTerm> - Anyone
+            can publish a
             learning path to help others learn what they have already.
             The community curates and votes on resources to build the best
             possible learning experience.{' '} <br /> <br />

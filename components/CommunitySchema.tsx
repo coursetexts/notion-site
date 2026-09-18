@@ -105,15 +105,15 @@ export function LearningPathSchemaDiagram() {
           <ArrowDown />
 
           <span className={`${styles.chip} ${styles.chipConcept}`}>
-            Concept
+            Topic
           </span>
           <ArrowRight />
           <span className={`${styles.chip} ${styles.chipConcept}`}>
-            Concept
+            Topic
           </span>
           <ArrowRight />
           <span className={`${styles.chip} ${styles.chipConcept}`}>
-            Concept
+            Topic
           </span>
 
           <ArrowUp />
@@ -169,11 +169,11 @@ export function ResourceVoteSchemaDiagram() {
       <div className={styles.pathBox}>
         <p className={styles.pathLabel}>
           <strong>Topic:</strong>
-          <em> a concept on the path</em>
+          <em> a topic on the path</em>
         </p>
         <div className={styles.voteTopic} aria-hidden>
           <span className={`${styles.chip} ${styles.chipConcept}`}>
-            Concept
+            Topic
           </span>
         </div>
         <div className={styles.voteTopicArrow} aria-hidden>

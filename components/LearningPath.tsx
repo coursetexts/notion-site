@@ -1032,7 +1032,7 @@ function PathOutlineBranch({
           (creationControls
             ? isRoot
               ? 'Topic title'
-              : 'Add a concept…'
+              : 'Add a topic…'
             : item.node.label)
         return (
           <React.Fragment key={item.node.id}>
@@ -1053,8 +1053,8 @@ function PathOutlineBranch({
                 {creationControls?.onRename ? (
                   <PathOutlineInlineLabel
                     value={item.node.label}
-                    placeholder={isRoot ? 'Topic title' : 'Add a concept…'}
-                    ariaLabel={isRoot ? 'Topic title' : 'Concept title'}
+                    placeholder={isRoot ? 'Topic title' : 'Add a topic…'}
+                    ariaLabel={isRoot ? 'Topic title' : 'Topic title'}
                     selected={selected}
                     onFocusSelect={() => onSelect(item.node.id)}
                     onRename={(next) =>
@@ -2638,8 +2638,8 @@ function CommunityLearningPath({
         y: Math.min(88, parent.y + (parent.kind === 'prerequisite' ? 16 : 20)),
         description:
           parent.kind === 'prerequisite'
-            ? 'A finer concept under the parent idea.'
-            : 'A concept this step depends on.',
+            ? 'A finer topic under the parent idea.'
+            : 'A topic this step depends on.',
         why: '',
         resources: []
       }
@@ -4777,7 +4777,7 @@ function CommunityLearningPath({
               </p>
               <p className={styles.creationIntroHint}>
                 Fill the outline from your goal, then edit anything that is off
-                — steps, concepts, and why each one is on the path.
+                — steps, topics, and why each one is on the path.
               </p>
               {fillError ? (
                 <p className={styles.creationError} role='alert'>
@@ -5008,7 +5008,7 @@ function CommunityLearningPath({
                 You are about to delete “{selected.label}”.
                 {nestedToDelete.length > 0
                   ? ` This will also remove ${nestedToDelete.length} nested ${
-                      nestedToDelete.length === 1 ? 'concept' : 'concepts'
+                      nestedToDelete.length === 1 ? 'topic' : 'topics'
                     } underneath it.`
                   : ''}{' '}
                 This cannot be undone.

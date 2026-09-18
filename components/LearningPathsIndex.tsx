@@ -253,7 +253,7 @@ export function LearningPathsIndex() {
                     <p className={styles.meta}>
                       {stats.total === 0
                         ? 'Just started'
-                        : `${stats.explored} of ${stats.total} concepts explored`}
+                        : `${stats.explored} of ${stats.total} topics explored`}
                       <span aria-hidden> · </span>
                       {path.circle.members.length > 0
                         ? `${path.circle.members.length} in the circle`
@@ -270,7 +270,7 @@ export function LearningPathsIndex() {
         <div className={styles.concepts}>
           <div className={styles.bar}>
             <span>
-              <span className={styles.barLabel}>Concepts</span>
+              <span className={styles.barLabel}>Topics</span>
               <span className={styles.barCount}>
                 ({filteredConcepts.length})
               </span>
@@ -278,13 +278,13 @@ export function LearningPathsIndex() {
             <span className={styles.barHint}>Trending now</span>
           </div>
           <p className={styles.conceptsLede}>
-            A concept is an atomic unit a learning path can contain — one idea,
+            A topic is an atomic unit a learning path can contain — one idea,
             only as deep as the goal requires. Attach resources and your notes
-            to a concept, detail which part of the resource helped the concept
+            to a topic, detail which part of the resource helped the topic
             click.
           </p>
           {filteredConcepts.length === 0 ? (
-            <p className={styles.empty}>No matching concepts.</p>
+            <p className={styles.empty}>No matching topics.</p>
           ) : (
           <ul className={styles.conceptGrid}>
             {filteredConcepts.map((concept, index) => (
@@ -316,7 +316,7 @@ export function LearningPathsIndex() {
 
         <div className={styles.invite}>
           <p className={styles.inviteCopy}>
-            Have a goal of your own? Map the concepts you need, how deep to go,
+            Have a goal of your own? Map the topics you need, how deep to go,
             and leave traces for whoever comes next.
           </p>
           <button

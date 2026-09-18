@@ -1030,7 +1030,7 @@ export default function PublicProfilePage() {
                     }
                     onClick={() => setMainTab('knowledge')}
                   >
-                    Concepts
+                    Topics
                   </button>
                   <button
                     type='button'

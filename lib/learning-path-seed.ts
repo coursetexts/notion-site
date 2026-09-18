@@ -1005,7 +1005,7 @@ const SPANISH: LearningPathData = {
       y: 36,
       description:
         'A small, high-frequency vocabulary: pronouns, question words, connectors, and the function words every sentence leans on.',
-      why: 'Steps are the major checkpoints. Concepts sit inside them.',
+      why: 'Steps are the major checkpoints. Topics sit inside them.',
       resources: []
     },
     {
@@ -1059,7 +1059,7 @@ const SPANISH: LearningPathData = {
       y: 36,
       description:
         'Regular present-tense verbs so those 500 words can actually happen now.',
-      why: 'Steps are the major checkpoints. Concepts sit inside them.',
+      why: 'Steps are the major checkpoints. Topics sit inside them.',
       resources: []
     },
     {
@@ -1073,7 +1073,7 @@ const SPANISH: LearningPathData = {
       y: 36,
       description:
         'Greetings, questions, and short exchanges you can use the same day.',
-      why: 'Steps are the major checkpoints. Concepts sit inside them.',
+      why: 'Steps are the major checkpoints. Topics sit inside them.',
       resources: []
     },
     {
@@ -1087,7 +1087,7 @@ const SPANISH: LearningPathData = {
       y: 36,
       description:
         'A wider working vocabulary once the present tense and basic talk are in place.',
-      why: 'Steps are the major checkpoints. Concepts sit inside them.',
+      why: 'Steps are the major checkpoints. Topics sit inside them.',
       resources: []
     }
   ],
@@ -1637,7 +1637,7 @@ export function learningPathFromOutline({
         sequence: conceptIndex + 1,
         x: conceptX,
         y: 58,
-        description: conceptWhy || 'A concept this step depends on.',
+        description: conceptWhy || 'A topic this step depends on.',
         why: conceptWhy,
         resources: []
       })
@@ -1656,7 +1656,7 @@ export function learningPathFromOutline({
           sequence: subIndex + 1,
           x: Math.min(88, Math.max(12, conceptX + subOffset)),
           y: 76,
-          description: subWhy || 'A finer concept under the parent idea.',
+          description: subWhy || 'A finer topic under the parent idea.',
           why: subWhy,
           resources: []
         })
@@ -1671,7 +1671,7 @@ export function learningPathFromOutline({
     goal,
     summary:
       summary?.trim() ||
-      'A path you mapped from the goal: steps as milestones, concepts nested only as deep as you need.',
+      'A path you mapped from the goal: steps as milestones, topics nested only as deep as you need.',
     nodes,
     edges,
     circle: {
@@ -1693,7 +1693,7 @@ export function emptyLearningPath(
     title: title || titleFromSlug(slug),
     goal,
     summary:
-      'A starting map. Add the concepts, skills, and resources you actually need for this goal — and how deep each one has to go.',
+      'A starting map. Add the topics, skills, and resources you actually need for this goal — and how deep each one has to go.',
     nodes: [
       {
         id: 'goal',

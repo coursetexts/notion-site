@@ -239,7 +239,7 @@ function resolveOutlineSelection(
       if (concept.id === matchId) {
         return {
           id: concept.id,
-          label: concept.label.trim() || 'Untitled concept',
+          label: concept.label.trim() || 'Untitled topic',
           why: concept.why ?? ''
         }
       }
@@ -247,7 +247,7 @@ function resolveOutlineSelection(
         if (sub.id === matchId) {
           return {
             id: sub.id,
-            label: sub.label.trim() || 'Untitled sub-concept',
+            label: sub.label.trim() || 'Untitled sub-topic',
             why: sub.why ?? ''
           }
         }
@@ -1032,7 +1032,7 @@ export function LearningPathBuilder({
               </p>
               <p className={styles.llmHint}>
                 Fill the outline from your goal, then edit anything that is off
-                — steps, concepts, and why each one is on the path.
+                — steps, topics, and why each one is on the path.
               </p>
             </div>
 
@@ -1141,8 +1141,8 @@ export function LearningPathBuilder({
                                         event.target.value
                                       )
                                     }
-                                    placeholder='Add a concept…'
-                                    aria-label={`Concept ${
+                                    placeholder='Add a topic…'
+                                    aria-label={`Topic ${
                                       conceptIndex + 1
                                     } in step ${stepIndex + 1}`}
                                   />
@@ -1164,7 +1164,7 @@ export function LearningPathBuilder({
                                     onAddAfter={() =>
                                       addConcept(step.id, concept.id)
                                     }
-                                    label={`Add under or after concept ${
+                                    label={`Add under or after topic ${
                                       conceptIndex + 1
                                     }`}
                                   />
@@ -1174,7 +1174,7 @@ export function LearningPathBuilder({
                                     onClick={() =>
                                       removeConcept(step.id, concept.id)
                                     }
-                                    aria-label='Remove concept'
+                                    aria-label='Remove topic'
                                   >
                                     ×
                                   </button>
@@ -1211,10 +1211,10 @@ export function LearningPathBuilder({
                                                 event.target.value
                                               )
                                             }
-                                            placeholder='Optional sub-concept…'
-                                            aria-label={`Sub-concept ${
+                                            placeholder='Optional sub-topic…'
+                                            aria-label={`Sub-topic ${
                                               subIndex + 1
-                                            } under concept ${
+                                            } under topic ${
                                               conceptIndex + 1
                                             }`}
                                           />
@@ -1237,7 +1237,7 @@ export function LearningPathBuilder({
                                                 sub.id
                                               )
                                             }
-                                            label={`Add after sub-concept ${
+                                            label={`Add after sub-topic ${
                                               subIndex + 1
                                             }`}
                                           />
@@ -1251,7 +1251,7 @@ export function LearningPathBuilder({
                                                 sub.id
                                               )
                                             }
-                                            aria-label='Remove sub-concept'
+                                            aria-label='Remove sub-topic'
                                           >
                                             ×
                                           </button>
@@ -1292,7 +1292,7 @@ export function LearningPathBuilder({
                   </>
                 ) : (
                   <p className={styles.detailEmpty}>
-                    Select a step or concept to write why it belongs on the
+                    Select a step or topic to write why it belongs on the
                     path.
                   </p>
                 )}

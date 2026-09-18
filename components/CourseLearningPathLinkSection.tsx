@@ -209,7 +209,7 @@ export function CourseLearningPathLinkSection({
             <div className={styles.editPanel}>
               <p className={styles.editHint}>
                 Add a link with a suggested order. It will also appear in
-                Community resources, labeled with this topic&apos;s concept
+                Community resources, labeled with this topic&apos;s topic
                 tree.
                 {!dbBacked && (
                   <>

@@ -4,6 +4,8 @@ import Link from 'next/link'
 
 import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
+import { AutodidactTerm } from '@/components/AutodidactTerm'
+import { GlossaryTerm } from '@/components/GlossaryTerm'
 import { discord, donate } from '@/lib/config'
 
 import styles from './about.module.css'
@@ -52,10 +54,19 @@ export default function AboutPage() {
         <section className={styles.section} aria-label='About Coursetexts'>
           <div className={styles.container}>
             <p className={styles.copy}>
-              CourseTexts is a community of learners, a home for pedagogical
-              materials, and an applied learning science lab. We design new
-              interaction paradigms to support learning and metacognitive
-              development.
+              CourseTexts is a community of learners, a home for{' '}
+              <GlossaryTerm term='pedagogicalMaterials'>
+                pedagogical materials
+              </GlossaryTerm>
+              , and an applied learning science lab. We design new{' '}
+              <GlossaryTerm term='interactionParadigms'>
+                interaction paradigms
+              </GlossaryTerm>{' '}
+              to support learning and{' '}
+              <GlossaryTerm term='metacognitiveDevelopment'>
+                metacognitive development
+              </GlossaryTerm>
+              .
             </p>
 
             <div className={styles.actions}>
@@ -83,7 +94,10 @@ export default function AboutPage() {
                 Welcome to CourseTexts! If you&apos;ve found us, you likely care
                 deeply about learning and connecting with other learners.
                 We&apos;re on a journey to foster a{' '}
-                <strong>community for autodidacts</strong> like you who enjoy
+                <strong>
+                  community for <AutodidactTerm>autodidacts</AutodidactTerm>
+                </strong>{' '}
+                like you who enjoy
                 exploring rabbit holes and other personal curiosities outside of
                 the traditional classroom environment.
               </p>
@@ -113,10 +127,19 @@ export default function AboutPage() {
 
               <h2 className={styles.essayHeading}>What is CourseTexts?</h2>
               <p>
-                CourseTexts is a community of learners, a home for pedagogical
-                materials, and an applied learning science lab. We design new
-                interaction paradigms to support learning and metacognitive
-                development.
+                CourseTexts is a community of learners, a home for{' '}
+                <GlossaryTerm term='pedagogicalMaterials'>
+                  pedagogical materials
+                </GlossaryTerm>
+                , and an applied learning science lab. We design new{' '}
+                <GlossaryTerm term='interactionParadigms'>
+                  interaction paradigms
+                </GlossaryTerm>{' '}
+                to support learning and{' '}
+                <GlossaryTerm term='metacognitiveDevelopment'>
+                  metacognitive development
+                </GlossaryTerm>
+                .
               </p>
               <p>
                 Our approach to improving our collective ability of learning to
@@ -124,50 +147,72 @@ export default function AboutPage() {
               </p>
               <p>
                 (1) identifying learning objectives, current knowledge gaps, and
-                the necessary skills to address these conceptual deficiencies;
+                the necessary skills to address these{' '}
+                <GlossaryTerm term='conceptualDeficiencies'>
+                  conceptual deficiencies
+                </GlossaryTerm>
+                ;
               </p>
               <p>
                 (2) reading textbooks, watching videos, listening to lectures,
                 chatting with AI, and solving problems to absorb the intended
-                concepts through expert guidance.
+                topics through expert guidance.
               </p>
               <p>
                 While we observe the second skill to be significantly more
                 prevalent among learners than the first, we identify that the
                 first skill will become increasingly more meaningful in a world
-                where everyone has access to tools-for-thought and other
-                pedagogical mediums that accelerate and extend one&apos;s
-                ability to learn.
+                where everyone has access to tools-for-thought and other{' '}
+                <GlossaryTerm term='pedagogicalMediums'>
+                  pedagogical mediums
+                </GlossaryTerm>{' '}
+                that accelerate and extend one&apos;s ability to learn.
               </p>
               <p className={styles.essayCallout}>
-                We hypothesize that by building foundational computing mediums
+                We hypothesize that by building{' '}
+                <GlossaryTerm term='foundationalComputingMediums'>
+                  foundational computing mediums
+                </GlossaryTerm>{' '}
                 that learners can modify and extend by specifying the behavior
                 of their desired learning tool, we can shift the bottleneck from
                 gathering and retaining information to choosing what to learn
                 and where to learn the information from.
               </p>
               <p>
-                There currently isn&apos;t a place where autodidacts can
-                congregate, exchange resources, decide what and how to learn,
-                and develop their ability to understand and retain knowledge.
-                Many exceptional historical figures—poets, academics, authors,
-                musicians, and scientists—were surrounded by a vibrant
-                intellectual milieu during their adolescence and periods of deep
-                learning. Instead of viewing learning as a means of getting into
-                university, finding a job, or earning a promotion, exceptional
-                children followed their own curiosities, often without
-                institutional barriers, by immersing themselves in an
-                intellectually vivacious community of other learners. This was
-                often done through a mix of private tutoring, conversations with
-                peers, and self-directed learning. The CourseTexts
-                community&apos;s structure mirrors some of these same conditions
-                that are known to incubate intellectual growth.
+                There currently isn&apos;t a place where{' '}
+                <AutodidactTerm>autodidacts</AutodidactTerm> can congregate,
+                exchange resources, decide what and how to learn, and develop
+                their ability to understand and retain knowledge. Many
+                exceptional historical figures—poets, academics, authors,
+                musicians, and scientists—were surrounded by a vibrant{' '}
+                <GlossaryTerm term='intellectualMilieu'>
+                  intellectual milieu
+                </GlossaryTerm>{' '}
+                during their adolescence and periods of deep learning. Instead
+                of viewing learning as a means of getting into university,
+                finding a job, or earning a promotion, exceptional children
+                followed their own curiosities, often without{' '}
+                <GlossaryTerm term='institutionalBarriers'>
+                  institutional barriers
+                </GlossaryTerm>
+                , by immersing themselves in an intellectually{' '}
+                <GlossaryTerm term='vivaciousCommunity'>
+                  vivacious community
+                </GlossaryTerm>{' '}
+                of other learners. This was often done through a mix of private
+                tutoring, conversations with peers, and self-directed learning.
+                The CourseTexts community&apos;s structure mirrors some of these
+                same conditions that are known to incubate intellectual growth.
               </p>
               <p className={styles.essayCallout}>
-                An additional benefit of curating a community of autodidacts is
-                that we can pilot pedagogical and epistemic tools in real time
-                with members of our community, which we feel is an important
-                focus as AI becomes increasingly capable.
+                An additional benefit of curating a community of{' '}
+                <AutodidactTerm>autodidacts</AutodidactTerm> is that we can
+                pilot pedagogical and{' '}
+                <GlossaryTerm term='epistemicTools'>
+                  epistemic tools
+                </GlossaryTerm>{' '}
+                in real time with members of our community, which we feel is an
+                important focus as AI becomes increasingly capable.
               </p>
               <p>
                 One specific example of this is our upcoming experiment to
@@ -237,7 +282,9 @@ export default function AboutPage() {
                 CourseTexts works directly with more than 70 professors across
                 Harvard, Princeton, Yale, Columbia, Stanford, and MIT to open
                 source their course syllabus, materials, assignments, and other
-                resources that are helpful to autodidacts. Only a small fraction
+                resources that are helpful to{' '}
+                <AutodidactTerm>autodidacts</AutodidactTerm>. Only a small
+                fraction
                 of courses at top universities are publicly available today; we
                 want to work towards a world where anyone can learn anything for
                 free from world-class experts, no matter the subject.
@@ -267,7 +314,7 @@ export default function AboutPage() {
                 as LessWrong, Math Stack Exchange, and the Art of Problem
                 Solving to build a community forum where learners and professors
                 can share textbooks, videos, blogs, educators, and other helpful
-                resources for learning different concepts across subjects.
+                resources for learning different topics across subjects.
               </p>
               <p>
                 We recognize that a key challenge in autodidactic learning is

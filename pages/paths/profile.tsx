@@ -2481,7 +2481,7 @@ export default function ProfilePage() {
                       }
                       onClick={() => selectMainTab('knowledge')}
                     >
-                      Concepts
+                      Topics
                     </button>
                     <button
                       type='button'

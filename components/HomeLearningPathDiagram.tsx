@@ -93,7 +93,7 @@ function ConceptChain({ step }: { step: number }) {
           key={`concept-${index}`}
           className={`${styles.chip} ${styles.chipConcept} ${styles.pop}`}
         >
-          Concept
+          Topic
         </span>
       ) : (
         <span key={`concept-${index}`} />
@@ -667,7 +667,7 @@ export function HomeLearningPathDiagram({ holdMs = HOLD_MS }: { holdMs?: number 
     <figure
       ref={rootRef}
       className={styles.layout}
-      aria-label='Animated example of a learning path. A goal becomes connected concepts, with resources that are rearranged into an intentional order before they are numbered, plus notes, then a reminder. Decorative only; it does not create a path.'
+      aria-label='Animated example of a learning path. A goal becomes connected topics, with resources that are rearranged into an intentional order before they are numbered, plus notes, then a reminder. Decorative only; it does not create a path.'
     >
       <div
         className={`${styles.stage}${fading ? ` ${styles.fading}` : ''}`}

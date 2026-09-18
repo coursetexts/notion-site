@@ -20,7 +20,7 @@ export type HomeCourseCard = {
   subjectDegreeId?: string
   /** Graph mark used for community / research learning path cards. */
   communityMark?: boolean
-  /** Optional “7 concepts · 24 resources” line under the title. */
+  /** Optional “7 topics · 24 resources” line under the title. */
   statsLine?: string
 }
 

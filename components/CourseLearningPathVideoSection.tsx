@@ -207,7 +207,7 @@ export function CourseLearningPathVideoSection({
               <p className={styles.editHint}>
                 Add a link with a suggested order. Upvotes do not change
                 that order. Videos also appear in Community resources, labeled
-                with this topic&apos;s concept tree.
+                with this topic&apos;s topic tree.
                 {!dbBacked && (
                   <>
                     {' '}

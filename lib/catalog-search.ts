@@ -275,7 +275,7 @@ export function formatCatalogStats(stats: CatalogHitStats | undefined): string {
   if (!stats) return ''
   const parts: string[] = []
   if (stats.concepts && stats.concepts > 0) {
-    parts.push(`${stats.concepts} concept${stats.concepts === 1 ? '' : 's'}`)
+    parts.push(`${stats.concepts} topic${stats.concepts === 1 ? '' : 's'}`)
   }
   if (stats.resources && stats.resources > 0) {
     parts.push(`${stats.resources} resource${stats.resources === 1 ? '' : 's'}`)

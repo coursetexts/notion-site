@@ -22,7 +22,7 @@ function layoutX(index: number, total: number) {
 function typeSub(type: CourseLearningPathNode['type']): string {
   if (type === 'topic') return 'Topic'
   if (type === 'subtopic') return 'Subtopic'
-  return 'Concept'
+  return 'Topic'
 }
 
 function statusFor(

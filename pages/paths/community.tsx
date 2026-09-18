@@ -20,7 +20,7 @@ export default function CommunityPage() {
         <title>Community Learning Paths · Coursetexts</title>
         <meta
           name='description'
-          content='Learning paths, study circles, frontier questions, and popular degrees and courses from the Coursetexts community.'
+          content='Top trending learning paths of the week from the Coursetexts community.'
         />
         <link rel='preconnect' href='https://fonts.googleapis.com' />
         <link
@@ -75,7 +75,7 @@ export default function CommunityPage() {
                   Thousands of people are teaching themselves new topics,
                   sitting with open questions, and working toward particular
                   goals. Much of that work is figuring out a structure: what to
-                  learn first, which concepts matter, and which resources
+                  learn first, which topics matter, and which resources
                   finally made something click. This community keeps those
                   traces, so the next person can inherit a path that someone
                   else has already worked out.
@@ -111,7 +111,7 @@ export default function CommunityPage() {
                 <div className={styles.collabLede}>
                   <p>
                     A learning path is only as good as the resources on each
-                    concept: the lecture that ordered the ideas, the paper that
+                    topic: the lecture that ordered the ideas, the paper that
                     finally made something click, the problem set that proved you
                     understood it. Those traces usually stay in someone&apos;s
                     tabs.
@@ -131,7 +131,7 @@ export default function CommunityPage() {
                     It is also a place to talk to other people about your goal.
                     Each step has discussions, so you can ask a question, leave a
                     note, or pick up a conversation right where someone else got
-                    stuck - on that concept, not in a scattered chat.
+                    stuck - on that topic, not in a scattered chat.
                   </p>
                   <p>
                   </p>

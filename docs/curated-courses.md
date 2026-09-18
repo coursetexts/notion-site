@@ -65,7 +65,7 @@ flowchart TB
 | `learning_path_pins` | Per-user pinned syllabi (header dropdown). Hover a row for explored/total + **Continue →** to the next node (`?node=`). |
 | `curated_courses` / `curated_course_*` | Backup + migrate/seed source; app does not write these after cutover |
 
-Resources added on a syllabus node also appear in `/community-resources`. They are labeled with a plain-text **concept tree** such as `Linear Algebra --> Linear Systems and Elimination --> Gaussian elimination and row reduction`.
+Resources added on a syllabus node also appear in `/community-resources`. They are labeled with a plain-text **topic tree** such as `Linear Algebra --> Linear Systems and Elimination --> Gaussian elimination and row reduction`.
 
 Comments/bookmarks on the page keep `courses.notion_page_id = 'course-learning-path:{slug}'` so existing threads stay attached.
 

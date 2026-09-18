@@ -10,18 +10,18 @@ import styles from './HomeSocialLearningSection.module.css'
 const features = [
   {
     title: 'Create and follow learning paths',
-    body: 'Turn a goal into an ordered path of concepts, resources, and notes. Follow a path someone else created—or publish your own for others.',
+    body: 'Turn a goal into an ordered path of topics, resources, and notes. Follow a path someone else created—or publish your own for others.',
     image: '/images/home/social-feature-track-progress-ss.png',
     imageAlt: 'Learning path with a goal, outline, and ordered resources'
   },
   {
     title: 'Share what helped',
-    body: 'Add the videos, papers, exercises, and explanations that made a concept click. Vote on resources so the most useful ones rise to the top.',
+    body: 'Add the videos, papers, exercises, and explanations that made a topic click. Vote on resources so the most useful ones rise to the top.',
     image: '/images/home/social-feature-bookshelf-ss.png',
-    imageAlt: 'Learners adding and ranking resources for a concept'
+    imageAlt: 'Learners adding and ranking resources for a topic'
   },
   {
-    title: 'Discuss each concept',
+    title: 'Discuss each topic',
     body: 'Ask questions, share what you learned, and help others when they get stuck—all alongside learners working through the same path.',
     image: '/images/home/social-feature-annotate-ss.png',
     imageAlt: 'Discussion among learners on the same learning path'

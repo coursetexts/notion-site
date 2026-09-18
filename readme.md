@@ -20,7 +20,7 @@ Degree syllabi and community/research paths share `learning_paths` and `/paths/l
 | [Auth](./docs/auth.md)                               | Google OAuth → profiles. Return to the gated page after sign-in.                                       |
 | [Community learning paths](./docs/learning-paths.md) | `/paths/learning-path/{slug}`. Publish only with 1 resource + why per topic. Visitors see public vs collab; outline edits are owner-only. **Export Context** copies an LLM prompt of the path. |
 | [Course learning paths](./docs/curated-courses.md)   | `/paths/learning-path/{slug}`                                                                                |
-| [Knowledge](./docs/knowledge.md)                     | Profile Concepts tab, finish celebration, duration + enjoyment %, shared graph (daily LLM job is off) |
+| [Knowledge](./docs/knowledge.md)                     | Profile Topics tab, finish celebration, duration + enjoyment %, shared graph (daily LLM job is off) |
 | [Migrations](./supabase/migrations/README.md)        | Fresh Supabase setup and seeds                                                                         |
 
 ## Local setup

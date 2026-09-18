@@ -417,7 +417,7 @@ erDiagram
 
 ## Knowledge
 
-Per-user acquired topics plus a shared catalog of labels, path occurrences, and edges. `/knowledge-graph` shows topics and the learning paths they reoccur in. The profile Concepts tab stays a list. See [knowledge.md](./knowledge.md).
+Per-user acquired topics plus a shared catalog of labels, path occurrences, and edges. `/knowledge-graph` shows topics and the learning paths they reoccur in. The profile Topics tab stays a list. See [knowledge.md](./knowledge.md).
 
 ```mermaid
 erDiagram
