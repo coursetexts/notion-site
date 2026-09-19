@@ -162,6 +162,8 @@ import {
   officialResourcesWithOwnerOverlay,
   parseLearningPathKind,
   readStoredLearningPaths,
+  removeLearningPathOfficialResource,
+  removeLearningPathUserResource,
   resolveLearningPath,
   sequenceMarks,
   updateLearningPathOfficialResource,
@@ -1768,6 +1770,8 @@ function CommunityLearningPath({
   const [inlineTitleDraft, setInlineTitleDraft] = React.useState('')
   const inlineTitleRef = React.useRef<HTMLInputElement>(null)
   const [deleteOpen, setDeleteOpen] = React.useState(false)
+  const [deleteResourceConfirmOpen, setDeleteResourceConfirmOpen] =
+    React.useState(false)
   const [addResourceOpen, setAddResourceOpen] = React.useState(false)
   const [editingResourceId, setEditingResourceId] = React.useState<
     string | null
@@ -2000,6 +2004,7 @@ function CommunityLearningPath({
     setInlineWhyEditing(false)
     setInlineWhyDraft('')
     setDeleteOpen(false)
+    setDeleteResourceConfirmOpen(false)
     setOutlineAddDraft(null)
     setNotes({})
     notesRef.current = {}
@@ -3207,6 +3212,7 @@ function CommunityLearningPath({
     setAddResourceOpen(false)
     setEditingResourceId(null)
     setResourceDraft(EMPTY_RESOURCE_DRAFT)
+    setDeleteResourceConfirmOpen(false)
   }
 
   function openEditResource(resource: {
@@ -3223,6 +3229,7 @@ function CommunityLearningPath({
       return
     }
     setAddResourceOpen(false)
+    setDeleteResourceConfirmOpen(false)
     setEditingResourceId(resource.id)
     setResourceDraft({
       title: resource.title,
@@ -3232,6 +3239,90 @@ function CommunityLearningPath({
       why: '',
       sequence: String(resource.sequence)
     })
+  }
+
+  function canEditListedResource(resource: LearningPathListedResource) {
+    if (resource.suggested) return false
+    if (resource.addedByYou || isOwnPath) return true
+    if (
+      isPrivateInvitee &&
+      selected &&
+      selected.resources.some((item) => item.id === resource.id)
+    ) {
+      return true
+    }
+    return false
+  }
+
+  function canDeleteListedResource(resource: LearningPathListedResource) {
+    if (resource.suggested) return false
+    return resource.addedByYou || isOwnPath
+  }
+
+  function requestDeleteEditingResource() {
+    if (!editingResourceId || !selected || !currentUserId) return
+    const listed = listedResources.find((row) => row.id === editingResourceId)
+    if (!listed || !canDeleteListedResource(listed)) return
+    setDeleteResourceConfirmOpen(true)
+  }
+
+  function confirmDeleteEditingResource() {
+    if (!editingResourceId || !selected || !currentUserId) return
+    const listed = listedResources.find((row) => row.id === editingResourceId)
+    if (!listed || !canDeleteListedResource(listed)) {
+      setDeleteResourceConfirmOpen(false)
+      return
+    }
+    const resourceId = editingResourceId
+    const isOfficial = selected.resources.some((item) => item.id === resourceId)
+    const inMine = (userResources[selected.id] ?? []).some(
+      (item) => item.id === resourceId
+    )
+
+    if (isOfficial && (isOwnPath || listed.addedByYou) && canEditPathStructure) {
+      setPath((prev) => {
+        const node = prev.nodes.find((item) => item.id === selected.id)
+        if (!node) return prev
+        const next: LearningPathData = {
+          ...prev,
+          nodes: prev.nodes.map((item) =>
+            item.id === selected.id
+              ? {
+                  ...item,
+                  resources: removeLearningPathOfficialResource(
+                    item.resources,
+                    resourceId
+                  )
+                }
+              : item
+          )
+        }
+        persistGraph(next)
+        pathRef.current = next
+        return next
+      })
+    }
+
+    if (inMine && (listed.addedByYou || isOwnPath)) {
+      setUserResources((prev) => {
+        const current = prev[selected.id] ?? []
+        const nextMine = removeLearningPathUserResource(
+          selected.resources.filter((item) => item.id !== resourceId),
+          current,
+          resourceId
+        )
+        const next = {
+          ...prev,
+          [selected.id]: nextMine
+        }
+        resourcesRef.current = next
+        queueUserStateSave()
+        return next
+      })
+    }
+
+    setDeleteResourceConfirmOpen(false)
+    closeResourceForm()
   }
 
   async function saveUserResource(event: React.FormEvent) {
@@ -3304,6 +3395,49 @@ function CommunityLearningPath({
           ...prev,
           nodes: prev.nodes.map((item) =>
             item.id === selected.id ? { ...item, resources } : item
+          )
+        }
+        persistGraph(next)
+        pathRef.current = next
+        return next
+      })
+      closeResourceForm()
+      return
+    }
+    if (
+      isOwnPath &&
+      editingResourceId &&
+      selected.resources.some((item) => item.id === editingResourceId)
+    ) {
+      const previous = selected.resources.find(
+        (item) => item.id === editingResourceId
+      )
+      const official: LearningPathResource = {
+        id: editingResourceId,
+        kind: resourceDraft.kind,
+        title,
+        source: previous?.source ?? '',
+        href: href || undefined,
+        why: passage,
+        addedByUserId: previous?.addedByUserId ?? currentUserId ?? undefined
+      }
+      setPath((prev) => {
+        const node = prev.nodes.find((item) => item.id === selected.id)
+        if (!node) return prev
+        const next: LearningPathData = {
+          ...prev,
+          nodes: prev.nodes.map((item) =>
+            item.id === selected.id
+              ? {
+                  ...item,
+                  resources: updateLearningPathOfficialResource(
+                    item.resources,
+                    editingResourceId,
+                    official,
+                    placement
+                  )
+                }
+              : item
           )
         }
         persistGraph(next)
@@ -4543,9 +4677,12 @@ function CommunityLearningPath({
                         )
                         const showActionsDivider =
                           Boolean(
-                            resource.suggested || resource.addedByYou
+                            resource.suggested ||
+                              resource.addedByYou ||
+                              isOwnPath
                           ) ||
                           (canVoteOnResources && !resource.suggested)
+                        const canEditResource = canEditListedResource(resource)
                         const helpedText = resourceHelpedText(
                           resource.passage,
                           resource.why
@@ -4651,6 +4788,19 @@ function CommunityLearningPath({
                                     }
                                   />
                                 ) : null}
+                                {canEditResource ? (
+                                  <button
+                                    type='button'
+                                    className={styles.resourceEditBtn}
+                                    onClick={() =>
+                                      openEditResource(resource)
+                                    }
+                                    aria-label='Edit resource'
+                                    title='Edit resource'
+                                  >
+                                    <ResourceEditPencilIcon />
+                                  </button>
+                                ) : null}
                                 <div className={styles.resourceHoverActions}>
                                   {showActionsDivider ? (
                                     <span
@@ -4681,25 +4831,6 @@ function CommunityLearningPath({
                                       void toggleResourceBookmark(resource)
                                     }
                                   />
-                                  {resource.addedByYou ||
-                                  (isPrivateInvitee &&
-                                    !resource.suggested &&
-                                    Boolean(
-                                      selected.resources.some(
-                                        (item) => item.id === resource.id
-                                      )
-                                    )) ? (
-                                    <button
-                                      type='button'
-                                      className={styles.resourceEditBtn}
-                                      onClick={() =>
-                                        openEditResource(resource)
-                                      }
-                                      aria-label='Edit'
-                                    >
-                                      <ResourceEditPencilIcon />
-                                    </button>
-                                  ) : null}
                                 </div>
                               </div>
                             </div>
@@ -4947,6 +5078,19 @@ function CommunityLearningPath({
                 </span>
               </label>
               <div className={styles.modalActions}>
+                {editingResourceId &&
+                listedResources.some(
+                  (row) =>
+                    row.id === editingResourceId && canDeleteListedResource(row)
+                ) ? (
+                  <button
+                    type='button'
+                    className={styles.modalDelete}
+                    onClick={requestDeleteEditingResource}
+                  >
+                    Delete resource
+                  </button>
+                ) : null}
                 <button
                   type='button'
                   className={styles.modalCancel}
@@ -4969,6 +5113,66 @@ function CommunityLearningPath({
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      ) : null}
+
+      {deleteResourceConfirmOpen && editingResourceId ? (
+        <div
+          className={styles.backdrop}
+          role='presentation'
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) {
+              setDeleteResourceConfirmOpen(false)
+            }
+          }}
+        >
+          <div
+            className={styles.modal}
+            role='alertdialog'
+            aria-modal='true'
+            aria-labelledby='delete-resource-title'
+            aria-describedby='delete-resource-warning'
+            onMouseDown={(event) => event.stopPropagation()}
+          >
+            <div className={styles.modalHeader}>
+              <h2 id='delete-resource-title' className={styles.modalTitle}>
+                Delete this resource?
+              </h2>
+              <button
+                type='button'
+                className={styles.modalClose}
+                onClick={() => setDeleteResourceConfirmOpen(false)}
+                aria-label='Close'
+              >
+                ×
+              </button>
+            </div>
+            <div className={styles.modalForm}>
+              <p id='delete-resource-warning' className={styles.deleteWarning}>
+                You are about to delete
+                {resourceDraft.title.trim()
+                  ? ` “${resourceDraft.title.trim()}”`
+                  : ' this resource'}{' '}
+                from the path. This cannot be undone.
+              </p>
+              <div className={styles.modalActions}>
+                <button
+                  type='button'
+                  className={styles.modalCancel}
+                  onClick={() => setDeleteResourceConfirmOpen(false)}
+                >
+                  Keep resource
+                </button>
+                <button
+                  type='button'
+                  className={styles.modalDanger}
+                  onClick={confirmDeleteEditingResource}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       ) : null}

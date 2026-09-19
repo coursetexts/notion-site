@@ -1,7 +1,4 @@
 import * as React from 'react'
-import Link from 'next/link'
-
-import { pathsCommunityHref } from '@/lib/paths-routes'
 
 import { AutodidactTerm } from './AutodidactTerm'
 import { HomeLearningPathDiagram } from './HomeLearningPathDiagram'
@@ -22,21 +19,15 @@ export function HomeWhatIsLearningPathSection() {
           </h2>
           <p className={styles.body}>
             <b>Turn any learning goal into a path you can finish.</b> <br />
-   
             Follow an ordered sequence of topics, with a list of
-            community-ranked resources attached, and along with your notes and progress in one
-            place.
+            community-ranked resources attached, and along with your notes and
+            progress in one place.
           </p>
           <p className={styles.body}>
             A community of <AutodidactTerm>autodidacts</AutodidactTerm> - Anyone
-            can publish a
-            learning path to help others learn what they have already.
-            The community curates and votes on resources to build the best
-            possible learning experience.{' '} <br /> <br />
-            <Link href={pathsCommunityHref()} legacyBehavior>
-              <a className={styles.bodyLink}>Learn more about our community</a>
-            </Link>
-            .
+            can publish a learning path to help others learn what they have
+            already. The community curates and votes on resources to build the
+            best possible learning experience.
           </p>
         </div>
 

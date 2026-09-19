@@ -844,6 +844,21 @@ button.menuNavLink {
   transition: opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
+.menuProfileInner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.unreadDot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #0089c4;
+  flex-shrink: 0;
+}
+
 .menuSignUp:hover,
 .menuSignUp:focus-visible {
   background: #3d2618;

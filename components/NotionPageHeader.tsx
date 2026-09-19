@@ -21,10 +21,8 @@ import {
   rootNotionPageId,
   name as siteName
 } from '@/lib/config'
-import {
-  getUnreadReplyCount,
-  subscribeReplyNotificationUpdates
-} from '@/lib/reply-notifications'
+import { getUnreadProfileNotificationCount } from '@/lib/profile-notifications-db'
+import { subscribeReplyNotificationUpdates } from '@/lib/reply-notifications'
 import {
   OWN_PROFILE_TAB_LINKS,
   ownProfileTabHref
@@ -73,7 +71,7 @@ export const NotionPageHeader: React.FC<{
   const { components, mapPageUrl } = useNotionContext()
   const auth = useAuthOptional()
   const [cached, setCached] = React.useState(getCachedAuth)
-  const [unreadReplies, setUnreadReplies] = React.useState(0)
+  const [unreadNotifications, setUnreadNotifications] = React.useState(0)
   const [menuOpen, setMenuOpen] = React.useState(false)
   const [portalReady, setPortalReady] = React.useState(false)
   const [expandRect, setExpandRect] = React.useState<DOMRect | null>(null)
@@ -101,16 +99,18 @@ export const NotionPageHeader: React.FC<{
   React.useEffect(() => {
     if (navigationStyle === 'default') return
     if (!user) {
-      setUnreadReplies(0)
+      setUnreadNotifications(0)
       return
     }
     let cancelled = false
     const load = async () => {
-      const count = await getUnreadReplyCount(user.id)
-      if (!cancelled) setUnreadReplies(count)
+      const count = await getUnreadProfileNotificationCount(user.id)
+      if (!cancelled) setUnreadNotifications(count)
     }
-    load()
-    const unsub = subscribeReplyNotificationUpdates(load)
+    void load()
+    const unsub = subscribeReplyNotificationUpdates(() => {
+      void load()
+    })
     return () => {
       cancelled = true
       unsub()
@@ -304,13 +304,13 @@ export const NotionPageHeader: React.FC<{
                     >
                       <span className={styles.menuProfileInner}>
                         <span>Profile</span>
-                        {unreadReplies > 0 && (
+                        {unreadNotifications > 0 && (
                           <span
-                            className={styles.profileAlertBadge}
-                            aria-label={`${unreadReplies} unread replies`}
-                          >
-                            {unreadReplies > 99 ? '99+' : unreadReplies}
-                          </span>
+                            className={styles.unreadDot}
+                            aria-label={`${unreadNotifications} unread notification${
+                              unreadNotifications === 1 ? '' : 's'
+                            }`}
+                          />
                         )}
                       </span>
                     </Link>
@@ -322,7 +322,18 @@ export const NotionPageHeader: React.FC<{
                           className={styles.menuProfileTabLink}
                           onClick={() => closeMenu()}
                         >
-                          {tab.label}
+                          <span className={styles.menuProfileTabInner}>
+                            <span>{tab.label}</span>
+                            {tab.id === 'notifications' &&
+                            unreadNotifications > 0 ? (
+                              <span
+                                className={styles.unreadDot}
+                                aria-label={`${unreadNotifications} unread notification${
+                                  unreadNotifications === 1 ? '' : 's'
+                                }`}
+                              />
+                            ) : null}
+                          </span>
                         </Link>
                       ))}
                     </div>
@@ -402,7 +413,7 @@ export const NotionPageHeader: React.FC<{
                 isLoggedIn={isLoggedIn}
                 accountHref={accountHref}
                 accountLabel={isLoggedIn ? 'Profile' : 'Sign in'}
-                unreadCount={unreadReplies}
+                unreadCount={unreadNotifications}
                 onAccountClick={handleAccountClick}
               />
             </div>

@@ -28,6 +28,8 @@ import {
   pathsHomeHref,
   pathsProfileHref
 } from '@/lib/paths-routes'
+import { getUnreadProfileNotificationCount } from '@/lib/profile-notifications-db'
+import { subscribeReplyNotificationUpdates } from '@/lib/reply-notifications'
 import { ownProfileTabHref } from '@/lib/profile-tabs'
 
 type NavMenuChild = {
@@ -340,6 +342,7 @@ function HeaderAccountAction({
   isOwnProfilePage,
   accountHref,
   accountLabel,
+  unreadCount,
   className,
   onNavigate,
   onSignOut
@@ -348,6 +351,7 @@ function HeaderAccountAction({
   isOwnProfilePage: boolean
   accountHref: string
   accountLabel: string
+  unreadCount: number
   className: string
   onNavigate?: () => void
   onSignOut: () => void
@@ -365,6 +369,7 @@ function HeaderAccountAction({
         isLoggedIn
         accountHref={accountHref}
         accountLabel={accountLabel}
+        unreadCount={unreadCount}
         linkClassName={className}
         onNavigate={onNavigate}
       />
@@ -418,6 +423,7 @@ export function HomeHeader({
   const [createPathOpen, setCreatePathOpen] = React.useState(false)
   const [portalReady, setPortalReady] = React.useState(false)
   const [searchDraft, setSearchDraft] = React.useState('')
+  const [unreadNotifications, setUnreadNotifications] = React.useState(0)
   const [expandRect, setExpandRect] = React.useState<DOMRect | null>(null)
   const [collapseRect, setCollapseRect] = React.useState<DOMRect | null>(null)
   const menuBtnRef = React.useRef<HTMLButtonElement>(null)
@@ -460,6 +466,26 @@ export function HomeHeader({
   React.useEffect(() => {
     setPortalReady(true)
   }, [])
+
+  React.useEffect(() => {
+    if (!user) {
+      setUnreadNotifications(0)
+      return
+    }
+    let cancelled = false
+    const load = async () => {
+      const count = await getUnreadProfileNotificationCount(user.id)
+      if (!cancelled) setUnreadNotifications(count)
+    }
+    void load()
+    const unsub = subscribeReplyNotificationUpdates(() => {
+      void load()
+    })
+    return () => {
+      cancelled = true
+      unsub()
+    }
+  }, [user?.id])
 
   React.useEffect(() => {
     if (!menuOpen) {
@@ -780,7 +806,17 @@ export function HomeHeader({
                         className={styles.menuSignUp}
                         onClick={closeMenu}
                       >
-                        {accountLabel}
+                        <span className={styles.menuProfileInner}>
+                          <span>{accountLabel}</span>
+                          {unreadNotifications > 0 ? (
+                            <span
+                              className={styles.unreadDot}
+                              aria-label={`${unreadNotifications} unread notification${
+                                unreadNotifications === 1 ? '' : 's'
+                              }`}
+                            />
+                          ) : null}
+                        </span>
                       </a>
                     </Link>
                   </div>
@@ -790,6 +826,7 @@ export function HomeHeader({
                     isOwnProfilePage={isOwnProfilePage}
                     accountHref={accountHref}
                     accountLabel={accountLabel}
+                    unreadCount={unreadNotifications}
                     className={styles.menuSignUp}
                     onNavigate={closeMenu}
                     onSignOut={() => {
@@ -910,6 +947,7 @@ export function HomeHeader({
                   isOwnProfilePage={isOwnProfilePage}
                   accountHref={accountHref}
                   accountLabel={accountLabel}
+                  unreadCount={unreadNotifications}
                   className={styles.signUp}
                   onSignOut={() => {
                     void handleSignOut()

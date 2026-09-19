@@ -379,7 +379,7 @@ function getSchoolLogo(school: string): [string, string] | null {
   return null
 }
 
-/** Hero meta line. CourseHero splits on `|` into lead · rest, e.g. Public · Published Sep 2026. */
+/** Hero meta line. CourseHero splits on `|` into lead · rest, e.g. Public · Sep 2026. */
 export function formatHeroPublishedDate(
   value?: string | Date | null,
   options?: { visibility?: 'public' | 'collaborative' | 'private' }
@@ -395,15 +395,16 @@ export function formatHeroPublishedDate(
     month: 'short',
     year: 'numeric'
   })
+  if (options?.visibility === 'private') {
+    return `Private | ${monthYear}`
+  }
   const vis =
     options?.visibility === 'collaborative'
       ? 'Open to suggestions'
       : options?.visibility === 'public'
       ? 'Public'
-      : options?.visibility === 'private'
-      ? 'Private'
       : null
-  return vis ? `${vis} | Published ${monthYear}` : `Published | ${monthYear}`
+  return vis ? `${vis} | ${monthYear}` : monthYear
 }
 
 /** Normalize schoolDate: school first, then date. Returns single string or [school, date] for styled dot. */

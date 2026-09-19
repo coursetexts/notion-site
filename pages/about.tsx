@@ -6,6 +6,7 @@ import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
 import { AutodidactTerm } from '@/components/AutodidactTerm'
 import { GlossaryTerm } from '@/components/GlossaryTerm'
+import { LearningPathsTutorialButton } from '@/components/LearningPathsTutorialButton'
 import { discord, donate } from '@/lib/config'
 
 import styles from './about.module.css'
@@ -319,6 +320,7 @@ export default function AboutPage() {
                 others to iterate upon.
               </p>
               <div className={styles.essayActions}>
+                <LearningPathsTutorialButton />
                 <Link href='/paths' legacyBehavior>
                   <a className={styles.buttonDark}>Explore Learning Paths</a>
                 </Link>

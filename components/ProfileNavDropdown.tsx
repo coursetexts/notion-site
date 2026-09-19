@@ -57,6 +57,8 @@ export function ProfileNavDropdown({
   onAccountClick,
   onNavigate
 }: ProfileNavDropdownProps) {
+  const hasUnread = isLoggedIn && unreadCount > 0
+
   const trigger = (
     <Link href={accountHref} legacyBehavior>
       <a
@@ -68,13 +70,13 @@ export function ProfileNavDropdown({
       >
         <span className={styles.triggerInner}>
           <span>{accountLabel}</span>
-          {isLoggedIn && unreadCount > 0 ? (
+          {hasUnread ? (
             <span
-              className={styles.badge}
-              aria-label={`${unreadCount} unread replies`}
-            >
-              {unreadCount > 99 ? '99+' : unreadCount}
-            </span>
+              className={styles.unreadDot}
+              aria-label={`${unreadCount} unread notification${
+                unreadCount === 1 ? '' : 's'
+              }`}
+            />
           ) : null}
         </span>
       </a>
@@ -105,6 +107,14 @@ export function ProfileNavDropdown({
                     <TabIcon id={tab.id} />
                   </span>
                   <span className={styles.dropdownLabel}>{tab.label}</span>
+                  {tab.id === 'notifications' && hasUnread ? (
+                    <span
+                      className={styles.unreadDot}
+                      aria-label={`${unreadCount} unread notification${
+                        unreadCount === 1 ? '' : 's'
+                      }`}
+                    />
+                  ) : null}
                 </a>
               </Link>
             </React.Fragment>

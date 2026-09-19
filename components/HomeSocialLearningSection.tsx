@@ -1,10 +1,6 @@
 import * as React from 'react'
-import Link from 'next/link'
 
-import { getCachedAuth } from '@/lib/auth-cache'
-import { pathsProfileHref } from '@/lib/paths-routes'
-import { useAuthOptional } from '@/contexts/AuthContext'
-
+import { LearningPathsTutorialButton } from './LearningPathsTutorialButton'
 import styles from './HomeSocialLearningSection.module.css'
 
 const features = [
@@ -29,28 +25,17 @@ const features = [
 ] as const
 
 export function HomeSocialLearningSection() {
-  const auth = useAuthOptional()
-  const cached = React.useMemo(() => getCachedAuth(), [])
-  const user = auth?.user ?? cached.user
-  const isLoggedIn = Boolean(user)
-
-  const profileHref = pathsProfileHref()
-  const ctaHref = isLoggedIn
-    ? profileHref
-    : `/signin?redirect=${encodeURIComponent(profileHref)}`
-
   return (
     <section className={styles.section}>
       <div className={styles.content}>
         <div className={styles.intro}>
           <div className={styles.introCopy}>
             <h2 className={styles.heading}>
-              A <span className={styles.headingAccent}>community</span> for self-learners.
+              A <span className={styles.headingAccent}>community</span> for
+              self-learners.
             </h2>
           </div>
-          <Link href={ctaHref} legacyBehavior>
-            <a className={styles.cta}>Learn independently, not alone</a>
-          </Link>
+          <LearningPathsTutorialButton />
           <div className={styles.introRule} aria-hidden />
         </div>
 

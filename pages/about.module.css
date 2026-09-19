@@ -80,6 +80,7 @@
   justify-content: center;
   min-height: 40px;
   padding: 10px 16px;
+  appearance: none;
   border: 1px solid #1f1f1f;
   background: #1f1f1f;
   color: #fff;
@@ -89,6 +90,7 @@
   line-height: 1.2;
   text-decoration: none;
   text-align: center;
+  cursor: pointer;
   transition: border-color 200ms ease, color 200ms ease, background 200ms ease;
 }
 

@@ -222,6 +222,13 @@ export function updateLearningPathOfficialResource(
   )
 }
 
+export function removeLearningPathOfficialResource(
+  resources: LearningPathResource[],
+  id: string
+): LearningPathResource[] {
+  return resources.filter((resource) => resource.id !== id)
+}
+
 /** Show the owner’s unpublished overlay resources as part of the official list. */
 export function officialResourcesWithOwnerOverlay(
   seeded: LearningPathResource[],
@@ -290,6 +297,34 @@ export function updateLearningPathUserResource(
     { ...item, id },
     placement
   )
+}
+
+export function removeLearningPathUserResource(
+  seeded: LearningPathResource[],
+  mine: LearningPathUserResource[],
+  id: string
+): LearningPathUserResource[] {
+  if (!mine.some((resource) => resource.id === id)) return mine
+  const remaining = mine.filter((resource) => resource.id !== id)
+  const listed = mergeLearningPathResources(seeded, remaining)
+  const byId = new Map(remaining.map((resource) => [resource.id, resource]))
+  return listed
+    .filter((row) => row.addedByYou)
+    .map((row) => {
+      const original = byId.get(row.id)
+      if (!original) {
+        return {
+          id: row.id,
+          kind: row.kind,
+          title: row.title,
+          href: row.href,
+          passage: row.passage ?? '',
+          why: row.why,
+          sequence: row.sequence
+        }
+      }
+      return { ...original, sequence: row.sequence }
+    })
 }
 
 export type LearningPathNode = {

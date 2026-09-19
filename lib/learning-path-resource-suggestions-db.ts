@@ -236,9 +236,24 @@ export async function addLearningPathResourceSuggestion(
   const nodeId = input.nodeId.trim()
   if (!title || !nodeId) return null
   const { supabase, userId } = await currentUser()
+
+  let pathId = input.pathId.trim()
+  if (supabase && pathId && !isUuid(pathId)) {
+    const { data: pathRow } = await supabase
+      .from('learning_paths')
+      .select('id')
+      .eq('slug', pathId)
+      .maybeSingle()
+    const resolvedId =
+      pathRow && typeof (pathRow as { id?: unknown }).id === 'string'
+        ? ((pathRow as { id: string }).id as string)
+        : null
+    if (resolvedId && isUuid(resolvedId)) pathId = resolvedId
+  }
+
   const localRow: LearningPathResourceSuggestion = {
     id: `sug_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
-    pathId: input.pathId,
+    pathId,
     nodeId,
     userId: userId ?? '',
     kind: input.kind,
@@ -251,7 +266,7 @@ export async function addLearningPathResourceSuggestion(
     status: 'pending'
   }
 
-  if (!supabase || !userId || !isUuid(input.pathId)) {
+  if (!supabase || !userId || !isUuid(pathId)) {
     writeLocalSuggestions([...readLocalSuggestions(), localRow])
     return localRow
   }
@@ -259,7 +274,7 @@ export async function addLearningPathResourceSuggestion(
   const { data, error } = await supabase
     .from('learning_path_resource_suggestions')
     .insert({
-      path_id: input.pathId,
+      path_id: pathId,
       node_id: nodeId,
       user_id: userId,
       kind: input.kind,

@@ -48,7 +48,7 @@ What is **live** vs **partial**, **404**, or **orphaned API** in the current cod
 
 ## Stale static pages (legal)
 
-`pages/privacy-policy.tsx` and `pages/terms-of-service.tsx` still link to old About URLs (`/why`, hardcoded Notion paths). Header **About** goes to `/about`; the dropdown still lists manifesto / professors / blog / support.
+`pages/privacy-policy.tsx` and `pages/terms-of-service.tsx` still link to old About URLs (`/why`, hardcoded Notion paths). Header **About** goes to `/about`; the dropdown lists manifesto / professors / blog / support.
 
 ## Abandoned experiments (removed from repo)
 

@@ -54,6 +54,15 @@
   grid-row: 1 / span 2;
 }
 
+.degreesPromo {
+  background: #1a3d4a;
+  color: #f4f8f9;
+}
+
+.degreesPromo .promoButton {
+  color: #1a3d4a;
+}
+
 .promoTitle {
   margin: 0;
   font-family: 'Guyot Press', serif;

@@ -1,6 +1,6 @@
 /**
  * Profile Notifications — follows, likes, replies, path invites,
- * and resource-suggestion review / acceptance events.
+ * resource suggestions on your paths, and acceptance of your suggestions.
  */
 import { learningPathHref } from '@/lib/learning-path-bookmark-link'
 import {
@@ -299,19 +299,60 @@ async function listResourceSuggestionNotifications(
   > = Object.fromEntries(myPaths.map((path) => [path.id, path]))
   const myPathIds = myPaths.map((path) => path.id)
 
-  const incomingQuery =
-    myPathIds.length > 0
-      ? supabase
-          .from('learning_path_resource_suggestions')
-          .select('id, user_id, path_id, title, why, status, created_at')
-          .in('path_id', myPathIds)
-          .eq('status', 'pending')
-          .neq('user_id', userId)
-          .order('created_at', { ascending: false })
-          .limit(80)
-      : Promise.resolve({ data: [] as unknown[] })
+  const suggestionSelect =
+    'id, user_id, path_id, title, passage, why, status, created_at'
+  const suggestionSelectMinimal =
+    'id, user_id, path_id, title, why, status, created_at'
 
-  const acceptedQuery = supabase
+  let incoming: Array<{
+    id: string
+    user_id: string
+    path_id: string
+    title: string
+    passage?: string | null
+    why: string | null
+    created_at: string
+  }> = []
+
+  if (myPathIds.length > 0) {
+    // All suggestions on owned paths (not only pending), so owners keep a
+    // lasting notification when someone suggests — same idea as the feed.
+    const first = await supabase
+      .from('learning_path_resource_suggestions')
+      .select(suggestionSelect)
+      .in('path_id', myPathIds)
+      .neq('user_id', userId)
+      .order('created_at', { ascending: false })
+      .limit(80)
+    let data: unknown[] | null = Array.isArray(first.data)
+      ? (first.data as unknown[])
+      : null
+    let error = first.error
+    if (error) {
+      const retry = await supabase
+        .from('learning_path_resource_suggestions')
+        .select(suggestionSelectMinimal)
+        .in('path_id', myPathIds)
+        .neq('user_id', userId)
+        .order('created_at', { ascending: false })
+        .limit(80)
+      data = Array.isArray(retry.data) ? (retry.data as unknown[]) : null
+      error = retry.error
+    }
+    if (!error && data) {
+      incoming = data as Array<{
+        id: string
+        user_id: string
+        path_id: string
+        title: string
+        passage?: string | null
+        why: string | null
+        created_at: string
+      }>
+    }
+  }
+
+  const acceptedQuery = await supabase
     .from('learning_path_resource_suggestions')
     .select(
       'id, user_id, path_id, title, status, created_at, responded_at'
@@ -321,20 +362,7 @@ async function listResourceSuggestionNotifications(
     .order('responded_at', { ascending: false })
     .limit(80)
 
-  const [incomingRes, acceptedRes] = await Promise.all([
-    incomingQuery,
-    acceptedQuery
-  ])
-
-  const incoming = (incomingRes.data || []) as Array<{
-    id: string
-    user_id: string
-    path_id: string
-    title: string
-    why: string | null
-    created_at: string
-  }>
-  const accepted = (acceptedRes.data || []) as Array<{
+  const accepted = (acceptedQuery.data || []) as Array<{
     id: string
     path_id: string
     title: string
@@ -381,6 +409,8 @@ async function listResourceSuggestionNotifications(
   for (const row of incoming) {
     const path = pathById[row.path_id]
     if (!path) continue
+    const body =
+      (row.why || '').trim() || (row.passage || '').trim()
     submitted.push({
       kind: 'resource_submitted',
       id: `sgy-${row.id}`,
@@ -388,7 +418,7 @@ async function listResourceSuggestionNotifications(
       path_title: path.title,
       path_href: learningPathHref(path.slug),
       resource_title: row.title,
-      body: (row.why || '').trim(),
+      body,
       ...actorFromProfile(row.user_id, profiles)
     })
   }
@@ -583,4 +613,11 @@ export async function getProfileNotifications(
         : isNotificationUnread(row.created_at, lastReadAt)
     return { ...row, is_unread }
   })
+}
+
+export async function getUnreadProfileNotificationCount(
+  userId: string
+): Promise<number> {
+  const rows = await getProfileNotifications(userId)
+  return rows.reduce((count, row) => count + (row.is_unread ? 1 : 0), 0)
 }

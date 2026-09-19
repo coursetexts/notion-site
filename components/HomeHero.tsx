@@ -173,7 +173,7 @@ export function HomeHero({
 
         <p className={styles.description}>
         {/* learning paths with the topics, resources, and structure you need to finish what you set out to learn. */}
-          Paths for self-learners — topics, resources, and structure <br />to help you actually finish what you set out to learn.
+          Paths for self-learners — sequenced topics, resources, and structure <br />to help you actually finish what you set out to learn.
           {/* High-quality materials, structure and community to help you <br />actually finish what you set to learn. */}
           {/* or set out to do ?*/}
         </p>

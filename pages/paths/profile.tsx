@@ -2774,7 +2774,7 @@ export default function ProfilePage() {
                                         followerIds,
                                         row.actor_avatar_url
                                       ),
-                                      verb: 'submitted a resource to your path — review it',
+                                      verb: 'suggested a resource on your path',
                                       body: row.resource_title
                                     }
                                   ]}
