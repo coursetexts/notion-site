@@ -85,6 +85,7 @@ import {
   getMyLinks
 } from '@/lib/user-links'
 import {
+  isFieldAtlasHref,
   pathsProfileHref,
   pathsPublicProfileHref
 } from '@/lib/paths-routes'
@@ -305,8 +306,10 @@ export default function PublicProfilePage() {
 
   const filteredPublicSavedLinks = useMemo(
     () =>
-      savedProfileLinks.filter((l) =>
-        linkMatchesBookmarkTagFilter(l, bookmarkTagFilter)
+      savedProfileLinks.filter(
+        (l) =>
+          !isFieldAtlasHref(l.url) &&
+          linkMatchesBookmarkTagFilter(l, bookmarkTagFilter)
       ),
     [savedProfileLinks, bookmarkTagFilter]
   )

@@ -18,8 +18,7 @@ import { PinnedCoursesNav } from './PinnedCoursesNav'
 import {
   ProfileAcademicIcon,
   ProfileAnnouncementIcon,
-  ProfilePathIcon,
-  ProfileResearchIcon
+  ProfilePathIcon
 } from '@/components/ProfileTabItemIcons'
 import {
   isPathsProductPathname,
@@ -163,12 +162,6 @@ function pathsExploreChildren(): NavMenuChild[] {
       description: 'University courses from partner schools and departments.',
       href: pathsCatalogHref({ view: 'courses' }),
       icon: <ProfileAcademicIcon />
-    },
-    {
-      label: 'Research',
-      description: 'Research questions and open academic inquiries.',
-      href: pathsCatalogHref({ view: 'research' }),
-      icon: <ProfileResearchIcon />
     },
     {
       label: 'Goals',

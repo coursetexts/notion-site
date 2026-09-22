@@ -12,5 +12,6 @@ Architecture and data docs for this repo. Diagrams use [Mermaid](https://mermaid
 | [Course learning paths](./curated-courses.md)              | Degree syllabi at `/paths/learning-path/{slug}` (`kind=course`). Outline: **Overview**, then the syllabus tree. **Commit & Remind Me** on Overview. Not Notion professor courses. |
 | [Knowledge](./knowledge.md)                                | `/paths/knowledge-graph` snapshot, profile Topics tab (list), finish celebration, duration + enjoyment %, shared catalog + path occurrences. Profile graph is hidden. Daily LLM cron exists but is **disabled**. Partial/unwired features: [gaps.md](./gaps.md). |
 | [Migrations (SQL)](../supabase/migrations/README.md)       | Fresh DB setup / seed order                                                                                                                                                          |
+| [Semantic learning-path search](./plans/semantic-learning-path-search/README.md) | Implementation plan for paraphrased catalog search: open-source embeddings, lexical match first, vectors in Supabase. Not built yet. |
 
 > `SUPABASE_AUTH_AND_DATA.md` is a pointer only. Prefer this folder.

@@ -54,18 +54,20 @@ export function CreateLearningPathModal({
         aria-labelledby='create-path-title'
         onMouseDown={(event) => event.stopPropagation()}
       >
-        <div className={styles.modalHeader}>
-          <button
-            type='button'
-            className={styles.modalClose}
-            onClick={onClose}
-            aria-label='Close'
-          >
-            ×
-          </button>
-        </div>
-
-        <CreatePathStepper currentStep={1} variant='modal' />
+        <CreatePathStepper
+          currentStep={1}
+          variant='modal'
+          trailing={
+            <button
+              type='button'
+              className={styles.modalClose}
+              onClick={onClose}
+              aria-label='Close'
+            >
+              ×
+            </button>
+          }
+        />
 
         <h2 id='create-path-title' className={styles.modalTitle}>
           What do you want to learn?
@@ -73,12 +75,12 @@ export function CreateLearningPathModal({
 
         <form className={styles.modalForm} onSubmit={handleCreate}>
           <label className={styles.field}>
-            <span className={styles.label}>Your goal</span>
             <textarea
               className={styles.textarea}
               value={draft}
               onChange={(event) => setDraft(event.target.value)}
-              placeholder='I want to…'
+              placeholder='Your goal, I want to...'
+              aria-label='Your goal'
               rows={4}
               autoFocus
             />

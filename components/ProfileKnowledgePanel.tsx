@@ -1,5 +1,6 @@
 import * as React from 'react'
 
+import { AddKnowledgeTopicsModal } from '@/components/AddKnowledgeTopicsModal'
 import { type UserKnowledgeTopic } from '@/lib/user-knowledge-topics-db'
 import { ProfileLightbulbIcon } from '@/components/ProfileTabItemIcons'
 import styles from '@/styles/profile.module.css'
@@ -8,14 +9,19 @@ export function ProfileKnowledgePanel({
   topics,
   loading = false,
   searchId,
-  emptyMessage
+  emptyMessage,
+  canAdd = false,
+  onTopicsChange
 }: {
   topics: UserKnowledgeTopic[]
   loading?: boolean
   searchId: string
   emptyMessage: string
+  canAdd?: boolean
+  onTopicsChange?: (topics: UserKnowledgeTopic[]) => void
 }) {
   const [query, setQuery] = React.useState('')
+  const [addOpen, setAddOpen] = React.useState(false)
 
   const normalized = query.trim().toLowerCase()
   const visible = normalized
@@ -26,6 +32,17 @@ export function ProfileKnowledgePanel({
     <div className={styles.tabPanel}>
       <div className={styles.tabPanelTop}>
         <h2 className={styles.mainSerifTitle}>Topics</h2>
+        {canAdd ? (
+          <div className={styles.tabPanelActions}>
+            <button
+              type='button'
+              className={styles.notebooksCreateBtn}
+              onClick={() => setAddOpen(true)}
+            >
+              Add topics
+            </button>
+          </div>
+        ) : null}
         <div className={styles.tabPanelSearchRow}>
           <div className={styles.panelSearchWrap}>
             <input
@@ -60,6 +77,17 @@ export function ProfileKnowledgePanel({
           ))}
         </ul>
       )}
+      {canAdd ? (
+        <AddKnowledgeTopicsModal
+          open={addOpen}
+          existingLabels={topics.map((topic) => topic.normalizedLabel)}
+          onClose={() => setAddOpen(false)}
+          onAdded={(next) => {
+            onTopicsChange?.(next)
+            setAddOpen(false)
+          }}
+        />
+      ) : null}
     </div>
   )
 }

@@ -340,6 +340,33 @@ export type LearningPathNode = {
   description: string
   why: string
   resources: LearningPathResource[]
+  /**
+   * Optional bullet list of background ideas a layman needs for this topic
+   * that are not already covered earlier on the path.
+   */
+  prerequisites?: string[]
+}
+
+/** Clean prerequisite bullets for display / persistence. */
+export function normalizeLearningPathPrerequisites(
+  value: unknown
+): string[] {
+  if (!Array.isArray(value)) return []
+  const out: string[] = []
+  for (const item of value) {
+    const text =
+      typeof item === 'string'
+        ? item.replace(/\s+/g, ' ').trim()
+        : item && typeof item === 'object' && 'text' in item
+        ? String((item as { text?: unknown }).text ?? '')
+            .replace(/\s+/g, ' ')
+            .trim()
+        : ''
+    if (!text || out.includes(text)) continue
+    out.push(text.slice(0, 240))
+    if (out.length >= 12) break
+  }
+  return out
 }
 
 export type PathMark = {
@@ -423,6 +450,7 @@ export type LearningPathOutlineSubconcept = {
   id: string
   label: string
   why: string
+  prerequisites?: string[]
 }
 
 export type LearningPathOutlineConcept = {
@@ -430,6 +458,7 @@ export type LearningPathOutlineConcept = {
   label: string
   why: string
   subconcepts: LearningPathOutlineSubconcept[]
+  prerequisites?: string[]
 }
 
 export type LearningPathOutlineStep = {
@@ -437,6 +466,7 @@ export type LearningPathOutlineStep = {
   title: string
   why: string
   concepts: LearningPathOutlineConcept[]
+  prerequisites?: string[]
 }
 
 const TRANSFORMERS: LearningPathData = {
@@ -1599,14 +1629,21 @@ export function learningPathFromOutline({
     .map((step) => ({
       title: step.title.trim(),
       why: (step.why ?? '').trim(),
+      prerequisites: normalizeLearningPathPrerequisites(step.prerequisites),
       concepts: step.concepts
         .map((concept) => ({
           label: concept.label.trim(),
           why: (concept.why ?? '').trim(),
+          prerequisites: normalizeLearningPathPrerequisites(
+            concept.prerequisites
+          ),
           subconcepts: concept.subconcepts
             .map((item) => ({
               label: item.label.trim(),
-              why: (item.why ?? '').trim()
+              why: (item.why ?? '').trim(),
+              prerequisites: normalizeLearningPathPrerequisites(
+                item.prerequisites
+              )
             }))
             .filter((item) => item.label)
         }))
@@ -1651,7 +1688,10 @@ export function learningPathFromOutline({
       y: 36,
       description: stepWhy || `A milestone on the way to ${title}.`,
       why: stepWhy,
-      resources: []
+      resources: [],
+      ...(step.prerequisites.length
+        ? { prerequisites: step.prerequisites }
+        : {})
     })
     edges.push({
       from: stepIndex === 0 ? 'goal' : stepIds[stepIndex - 1],
@@ -1674,7 +1714,10 @@ export function learningPathFromOutline({
         y: 58,
         description: conceptWhy || 'A topic this step depends on.',
         why: conceptWhy,
-        resources: []
+        resources: [],
+        ...(concept.prerequisites.length
+          ? { prerequisites: concept.prerequisites }
+          : {})
       })
       edges.push({ from: stepId, to: conceptId })
 
@@ -1693,7 +1736,10 @@ export function learningPathFromOutline({
           y: 76,
           description: subWhy || 'A finer topic under the parent idea.',
           why: subWhy,
-          resources: []
+          resources: [],
+          ...(sub.prerequisites.length
+            ? { prerequisites: sub.prerequisites }
+            : {})
         })
         edges.push({ from: conceptId, to: subId })
       })

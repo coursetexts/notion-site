@@ -164,6 +164,7 @@ import {
 } from '@/lib/profile-tabs'
 import {
   PATHS_BASE,
+  isFieldAtlasHref,
   pathsCatalogHref,
   pathsLearningPathHref,
   pathsProfileHref,
@@ -1121,8 +1122,10 @@ export default function ProfilePage() {
   }, [])
 
   const savedBookmarkRows = useMemo(() => {
-    const rows = userLinks.filter((link) =>
-      linkMatchesBookmarkTagFilter(link, bookmarkTagFilter)
+    const rows = userLinks.filter(
+      (link) =>
+        !isFieldAtlasHref(link.url) &&
+        linkMatchesBookmarkTagFilter(link, bookmarkTagFilter)
     )
     rows.sort((a, b) => b.created_at.localeCompare(a.created_at))
     return rows
@@ -2993,7 +2996,9 @@ export default function ProfilePage() {
                     topics={knowledgeTopics}
                     loading={knowledgeLoading}
                     searchId='profile-knowledge-search'
-                    emptyMessage='Topics you complete on learning paths will show up here.'
+                    emptyMessage='Topics you add, or finish on a learning path, show up here.'
+                    canAdd
+                    onTopicsChange={setKnowledgeTopics}
                   />
                 )}
 

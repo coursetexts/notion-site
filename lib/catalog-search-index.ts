@@ -3,7 +3,6 @@
  * Slim on purpose: the full degree JSON stays out of the client bundle.
  */
 import { graduateDegrees } from '@/lib/graduate-degrees'
-import { ATLAS_QUESTIONS } from '@/lib/human-knowledge-atlas-seed'
 import {
   type LearningPathData,
   SEEDED_LEARNING_PATHS
@@ -85,22 +84,5 @@ export function listDegreeCatalogItems(): CatalogSearchItem[] {
 }
 
 export function listResearchCatalogItems(): CatalogSearchItem[] {
-  const atlas: CatalogSearchItem[] = Object.values(ATLAS_QUESTIONS).map(
-    (question) => ({
-      id: question.id,
-      kind: 'research',
-      href: `/field-atlas?q=${encodeURIComponent(question.id)}`,
-      title: question.title,
-      description: question.posed,
-      meta: `Research · ${question.disciplinePath}`,
-      extra: [
-        question.disciplinePath,
-        ...question.hypotheses.map((hypothesis) => hypothesis.statement),
-        ...question.researchers
-      ].join(' '),
-      communityMark: true
-    })
-  )
-
-  return atlas
+  return []
 }

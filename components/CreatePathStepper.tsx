@@ -4,9 +4,9 @@ import styles from './CreatePathStepper.module.css'
 
 export const CREATE_PATH_STEPS = [
   'Describe your goal',
-  'Receive an editable draft path',
+  'Build a path',
   'Add resources',
-  'Save or publish'
+  'Collaborate or publish'
 ] as const
 
 export type CreatePathStep = 1 | 2 | 3 | 4
@@ -15,11 +15,14 @@ type CreatePathStepperProps = {
   currentStep: CreatePathStep
   /** Full-bleed page strip under the nav vs compact in the modal. */
   variant?: 'page' | 'modal'
+  /** Sits on the same row as the steps (modal close button). */
+  trailing?: React.ReactNode
 }
 
 export function CreatePathStepper({
   currentStep,
-  variant = 'page'
+  variant = 'page',
+  trailing
 }: CreatePathStepperProps) {
   return (
     <nav
@@ -28,6 +31,7 @@ export function CreatePathStepper({
       }`}
       aria-label='Create path steps'
     >
+      <div className={styles.bar}>
       <ol className={styles.list}>
         {CREATE_PATH_STEPS.map((label, index) => {
           const step = (index + 1) as CreatePathStep
@@ -86,6 +90,8 @@ export function CreatePathStepper({
           )
         })}
       </ol>
+      {trailing}
+      </div>
     </nav>
   )
 }

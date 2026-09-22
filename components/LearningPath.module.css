@@ -543,6 +543,16 @@
   overflow: hidden;
 }
 
+/* `/learning-path/new?goal=`: outline's right edge meets the hero description.
+   Hero is `padding-left: 10%`, a 425px title column, then `column-gap: 10%`
+   of the hero content box. The outline starts after the body's 5% padding,
+   and its width is a percentage of the layout (95% of the viewport). */
+@media (min-width: 901px) {
+  .layoutList.layoutCreation .mapPanel {
+    width: calc(14.7368% + 425px - 0.5rem);
+  }
+}
+
 .layoutGraph {
   min-height: 100svh;
   height: 100svh;
@@ -1513,6 +1523,27 @@
 
 .childrenSequence .childTitle {
   white-space: normal;
+}
+
+.prerequisitesCopy {
+  max-width: 900px;
+  width: 100%;
+}
+
+.prerequisitesInlineList {
+  list-style: disc;
+  margin: 0.2rem 0 0;
+  padding: 0 0 0 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  color: #3f3f46;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.prerequisitesInlineList li {
+  padding-left: 0.1rem;
 }
 
 .childBtn {

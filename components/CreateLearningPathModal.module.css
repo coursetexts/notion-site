@@ -20,23 +20,19 @@
   overflow: hidden;
 }
 
-.modalHeader {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-end;
-  margin-bottom: 4px;
-}
-
 .modalTitle {
   font-family: 'Guyot Press', 'Fraunces', serif;
   font-size: 20px;
   font-weight: 401;
   line-height: 24px;
   color: #000;
-  margin: 0 0 16px;
+  margin: 50px 0px 16px 0px;
+  
 }
 
 .modalClose {
+  flex-shrink: 0;
+  align-self: center;
   border: none;
   background: none;
   padding: 0;

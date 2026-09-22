@@ -13,6 +13,7 @@ import {
 import {
   type LearningPathData,
   type PathMark,
+  normalizeLearningPathPrerequisites,
   sequenceMarks
 } from '@/lib/learning-path-seed'
 
@@ -89,6 +90,15 @@ function formatOutline(path: LearningPathData) {
       if (heading) lines.push(heading)
       if (learningPathTopicHasWhy(item.node.why)) {
         lines.push(`Why is this on the learning path: ${item.node.why.trim()}`)
+      }
+      const prerequisites = normalizeLearningPathPrerequisites(
+        item.node.prerequisites
+      )
+      if (prerequisites.length > 0) {
+        lines.push('Prerequisites:')
+        for (const bullet of prerequisites) {
+          lines.push(`- ${bullet}`)
+        }
       }
       lines.push('')
       if (item.children.length > 0) walk(item.children)

@@ -27,6 +27,7 @@ import {
   type LearningPathOutlineConcept,
   type LearningPathOutlineStep,
   learningPathFromOutline,
+  normalizeLearningPathPrerequisites,
   readStoredLearningPaths,
   writeStoredLearningPaths
 } from '@/lib/learning-path-seed'
@@ -219,6 +220,7 @@ function resolveOutlineSelection(
   id: string
   label: string
   why: string
+  prerequisites: string[]
 } | null {
   if (!steps.length) return null
 
@@ -232,7 +234,8 @@ function resolveOutlineSelection(
       return {
         id: step.id,
         label: step.title.trim() || 'Step title',
-        why: step.why ?? ''
+        why: step.why ?? '',
+        prerequisites: normalizeLearningPathPrerequisites(step.prerequisites)
       }
     }
     for (const concept of step.concepts) {
@@ -240,7 +243,10 @@ function resolveOutlineSelection(
         return {
           id: concept.id,
           label: concept.label.trim() || 'Untitled topic',
-          why: concept.why ?? ''
+          why: concept.why ?? '',
+          prerequisites: normalizeLearningPathPrerequisites(
+            concept.prerequisites
+          )
         }
       }
       for (const sub of concept.subconcepts) {
@@ -248,7 +254,10 @@ function resolveOutlineSelection(
           return {
             id: sub.id,
             label: sub.label.trim() || 'Untitled sub-topic',
-            why: sub.why ?? ''
+            why: sub.why ?? '',
+            prerequisites: normalizeLearningPathPrerequisites(
+              sub.prerequisites
+            )
           }
         }
       }
@@ -258,7 +267,8 @@ function resolveOutlineSelection(
   return {
     id: steps[0].id,
     label: steps[0].title.trim() || 'Step title',
-    why: steps[0].why ?? ''
+    why: steps[0].why ?? '',
+    prerequisites: normalizeLearningPathPrerequisites(steps[0].prerequisites)
   }
 }
 
@@ -380,6 +390,15 @@ export function LearningPathBuilder({
   }, [])
 
   const selected = resolveOutlineSelection(steps, selectedId)
+  const [prerequisitesDraft, setPrerequisitesDraft] = React.useState('')
+
+  React.useEffect(() => {
+    if (!selected) {
+      setPrerequisitesDraft('')
+      return
+    }
+    setPrerequisitesDraft(selected.prerequisites.join('\n'))
+  }, [selected?.id])
 
   React.useEffect(() => {
     if (!steps.length) {
@@ -729,6 +748,61 @@ export function LearningPathBuilder({
         for (const sub of concept.subconcepts) {
           if (sub.id === id) {
             setSubconceptWhy(step.id, concept.id, sub.id, why)
+            return
+          }
+        }
+      }
+    }
+  }
+
+  function setSelectedPrerequisites(raw: string) {
+    if (!selected) return
+    setPrerequisitesDraft(raw)
+    const prerequisites = normalizeLearningPathPrerequisites(
+      raw
+        .split(/\n+/)
+        .map((line) => line.replace(/^[-*•]\s*/, '').trim())
+        .filter(Boolean)
+    )
+    const nextValue = prerequisites.length ? prerequisites : undefined
+    const id = selected.id
+    for (const step of steps) {
+      if (step.id === id) {
+        updateStep(step.id, (current) => ({
+          ...current,
+          prerequisites: nextValue
+        }))
+        return
+      }
+      for (const concept of step.concepts) {
+        if (concept.id === id) {
+          updateStep(step.id, (current) => ({
+            ...current,
+            concepts: current.concepts.map((item) =>
+              item.id === concept.id
+                ? { ...item, prerequisites: nextValue }
+                : item
+            )
+          }))
+          return
+        }
+        for (const sub of concept.subconcepts) {
+          if (sub.id === id) {
+            updateStep(step.id, (current) => ({
+              ...current,
+              concepts: current.concepts.map((item) =>
+                item.id === concept.id
+                  ? {
+                      ...item,
+                      subconcepts: item.subconcepts.map((row) =>
+                        row.id === sub.id
+                          ? { ...row, prerequisites: nextValue }
+                          : row
+                      )
+                    }
+                  : item
+              )
+            }))
             return
           }
         }
@@ -1289,6 +1363,26 @@ export function LearningPathBuilder({
                       value={selected.why}
                       onChange={setSelectedWhy}
                     />
+                    <div className={styles.prerequisitesField}>
+                      <p className={styles.prerequisitesLabel}>
+                        Prerequisites
+                      </p>
+                      <p className={styles.prerequisitesHint}>
+                        Background a layman needs that earlier steps on this
+                        path do not already cover. One item per line. Leave blank
+                        if none.
+                      </p>
+                      <textarea
+                        className={styles.prerequisitesTextarea}
+                        rows={4}
+                        value={prerequisitesDraft}
+                        onChange={(event) =>
+                          setSelectedPrerequisites(event.target.value)
+                        }
+                        aria-label='Prerequisites'
+                        placeholder='e.g. High-school algebra'
+                      />
+                    </div>
                   </>
                 ) : (
                   <p className={styles.detailEmpty}>

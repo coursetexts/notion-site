@@ -1,19 +1,23 @@
 import type { LearningPathOutlineStep } from '@/lib/learning-path-seed'
+import { normalizeLearningPathPrerequisites } from '@/lib/learning-path-seed'
 
 export type FilledLearningPathSubconcept = {
   label: string
   why: string
+  prerequisites: string[]
 }
 
 export type FilledLearningPathConcept = {
   label: string
   why: string
+  prerequisites: string[]
   subconcepts: FilledLearningPathSubconcept[]
 }
 
 export type FilledLearningPathStep = {
   title: string
   why: string
+  prerequisites: string[]
   concepts: FilledLearningPathConcept[]
 }
 
@@ -33,6 +37,7 @@ export const LEARNING_PATH_FILL_SYSTEM_PROMPT = [
   '- concepts: the knowledge (topics) that belong inside a step. Short noun-phrase labels.',
   '- subconcepts: optional finer grain under a topic. Omit them unless they clarify what to study.',
   '- why: on every step, concept, and subconcept. 1–2 sentences that say what the thing is and why it belongs on this path for this goal.',
+  '- prerequisites: optional short bullet strings on a step, concept, or subconcept. Background a layman needs in order to understand that item, which is NOT already taught by an earlier step/concept/subconcept on this same path. Prefer an empty array when the path so far already covers what is needed, or when only common-sense literacy is required.',
   '',
   'Rules:',
   '- Return JSON only. No markdown, no commentary.',
@@ -41,6 +46,8 @@ export const LEARNING_PATH_FILL_SYSTEM_PROMPT = [
   '- Use at most 3 subconcepts on a concept, and leave many concepts with none.',
   '- Labels are a few words. No numbering, no trailing periods, no “Week 1” prefixes.',
   '- why must be specific to the item and the goal. Do not write boilerplate such as “this is a checkpoint” or “you placed this because it sits inside the step.”',
+  '- prerequisites bullets are short noun phrases or clauses (not full essays). Do not repeat the item’s own label, do not list later topics on the path, and do not restate topics that appear earlier in the outline.',
+  '- Use 0 to 4 prerequisite bullets per item. Many items should have none.',
   '- Do not invent URLs, courses, authors, or resource lists.',
   '- Do not repeat the goal as a step title.',
   '- Keep the path specific to the stated goal, not a generic intro to the whole field.'
@@ -57,6 +64,10 @@ export const LEARNING_PATH_FILL_RESPONSE_SCHEMA = {
         properties: {
           title: { type: 'string' },
           why: { type: 'string' },
+          prerequisites: {
+            type: 'array',
+            items: { type: 'string' }
+          },
           concepts: {
             type: 'array',
             items: {
@@ -64,23 +75,31 @@ export const LEARNING_PATH_FILL_RESPONSE_SCHEMA = {
               properties: {
                 label: { type: 'string' },
                 why: { type: 'string' },
+                prerequisites: {
+                  type: 'array',
+                  items: { type: 'string' }
+                },
                 subconcepts: {
                   type: 'array',
                   items: {
                     type: 'object',
                     properties: {
                       label: { type: 'string' },
-                      why: { type: 'string' }
+                      why: { type: 'string' },
+                      prerequisites: {
+                        type: 'array',
+                        items: { type: 'string' }
+                      }
                     },
-                    required: ['label', 'why']
+                    required: ['label', 'why', 'prerequisites']
                   }
                 }
               },
-              required: ['label', 'why', 'subconcepts']
+              required: ['label', 'why', 'prerequisites', 'subconcepts']
             }
           }
         },
-        required: ['title', 'why', 'concepts']
+        required: ['title', 'why', 'prerequisites', 'concepts']
       }
     }
   },
@@ -101,7 +120,9 @@ export function buildLearningPathFillUserPrompt(goal: string) {
     goal.trim(),
     '',
     'Respond with JSON of the form:',
-    '{"description": string, "steps": [{"title": string, "why": string, "concepts": [{"label": string, "why": string, "subconcepts": [{"label": string, "why": string}]}]}]}'
+    '{"description": string, "steps": [{"title": string, "why": string, "prerequisites": string[], "concepts": [{"label": string, "why": string, "prerequisites": string[], "subconcepts": [{"label": string, "why": string, "prerequisites": string[]}]}]}]}',
+    '',
+    'For each step, concept, and subconcept, set prerequisites to background a layman still needs that is not already covered earlier on this path. Use [] when nothing extra is needed.'
   ].join('\n')
 }
 
@@ -141,10 +162,17 @@ function readList(value: unknown): unknown[] {
   return Array.isArray(value) ? value : []
 }
 
+function readPrerequisites(record: Record<string, unknown> | null): string[] {
+  if (!record) return []
+  return normalizeLearningPathPrerequisites(
+    record.prerequisites ?? record.prereqs ?? record.background
+  )
+}
+
 function normalizeSubconcept(raw: unknown): FilledLearningPathSubconcept | null {
   if (typeof raw === 'string') {
     const label = clip(raw, MAX_LABEL)
-    return label ? { label, why: '' } : null
+    return label ? { label, why: '', prerequisites: [] } : null
   }
   const record = asRecord(raw)
   const label = clip(
@@ -154,7 +182,8 @@ function normalizeSubconcept(raw: unknown): FilledLearningPathSubconcept | null 
   if (!label) return null
   return {
     label,
-    why: clip(readString(record?.why), MAX_WHY)
+    why: clip(readString(record?.why), MAX_WHY),
+    prerequisites: readPrerequisites(record)
   }
 }
 
@@ -177,6 +206,7 @@ function normalizeConcept(raw: unknown): FilledLearningPathConcept | null {
   return {
     label,
     why: clip(readString(record?.why), MAX_WHY),
+    prerequisites: readPrerequisites(record),
     subconcepts
   }
 }
@@ -196,6 +226,7 @@ function normalizeStep(raw: unknown): FilledLearningPathStep | null {
   return {
     title,
     why: clip(readString(record.why), MAX_WHY),
+    prerequisites: readPrerequisites(record),
     concepts
   }
 }
@@ -225,17 +256,26 @@ export function outlineFromFilledLearningPath(
     id: newId('st'),
     title: step.title,
     why: step.why,
+    ...(step.prerequisites.length
+      ? { prerequisites: step.prerequisites }
+      : {}),
     concepts: step.concepts.map((concept) => ({
       id: newId('c'),
       label: concept.label,
       why: concept.why,
+      ...(concept.prerequisites.length
+        ? { prerequisites: concept.prerequisites }
+        : {}),
       subconcepts: (concept.subconcepts.length > 0
         ? concept.subconcepts
-        : [{ label: '', why: '' }]
+        : [{ label: '', why: '', prerequisites: [] as string[] }]
       ).map((sub) => ({
         id: newId('s'),
         label: sub.label,
-        why: sub.why
+        why: sub.why,
+        ...(sub.prerequisites.length
+          ? { prerequisites: sub.prerequisites }
+          : {})
       }))
     }))
   }))

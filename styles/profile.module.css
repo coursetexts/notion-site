@@ -1553,29 +1553,31 @@
 
 .userLinkRow {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   gap: 0.5rem;
 }
 
 .userLinkRowMain {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.5rem;
   min-width: 0;
   flex: 1;
 }
 
 .userLinkTitleAndDomain {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
   min-width: 0;
   flex: 1;
 }
 
 .userLinkTitleAndDomain .userLinkUrl {
-  flex: 0 1 auto;
+  width: 100%;
+  flex: none;
   text-decoration: underline #9b9b9b;
 }
 
@@ -1644,12 +1646,13 @@
 }
 
 .userLinkDomain {
-  font-size: 0.80rem;
+  display: block;
+  max-width: 100%;
+  font-size: 0.8rem;
   color: #b2b2b2;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 12rem;
   letter-spacing: -0.05px;
 }
 

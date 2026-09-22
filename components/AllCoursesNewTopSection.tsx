@@ -67,7 +67,7 @@ export const ALL_COURSES_VIEW_FILTERS: Record<AllCoursesView, string> = {
 
 /** Catalog filter chips shown above the title (Degrees stays via URL / promo only). */
 export const ALL_COURSES_FILTER_BAR_VIEWS = ALL_COURSES_VIEWS.filter(
-  (view) => view !== 'degrees'
+  (view) => view !== 'degrees' && view !== 'research'
 )
 
 type AllCoursesNewTopSectionProps = {

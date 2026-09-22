@@ -69,6 +69,21 @@ export function pathsFieldAtlasHref(): string {
   return `${PATHS_BASE}/field-atlas`
 }
 
+/** Saved resources and catalog cards should not open the Field Atlas. */
+export function isFieldAtlasHref(href: string): boolean {
+  const trimmed = href.trim()
+  if (!trimmed) return false
+  try {
+    const path = new URL(trimmed, 'https://coursetexts.org').pathname.replace(
+      /\/+$/,
+      ''
+    )
+    return path === '/field-atlas' || path === `${PATHS_BASE}/field-atlas`
+  } catch {
+    return trimmed.includes('field-atlas')
+  }
+}
+
 export function pathsUsersHref(): string {
   return `${PATHS_BASE}/users`
 }

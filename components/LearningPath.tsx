@@ -159,6 +159,7 @@ import {
   isCatalogLearningPathSlug,
   learningPathFromOutline,
   mergeLearningPathResources,
+  normalizeLearningPathPrerequisites,
   officialResourcesWithOwnerOverlay,
   parseLearningPathKind,
   readStoredLearningPaths,
@@ -1766,6 +1767,11 @@ function CommunityLearningPath({
   const [inlineWhyEditing, setInlineWhyEditing] = React.useState(false)
   const [inlineWhyDraft, setInlineWhyDraft] = React.useState('')
   const inlineWhyRef = React.useRef<HTMLTextAreaElement>(null)
+  const [inlinePrerequisitesEditing, setInlinePrerequisitesEditing] =
+    React.useState(false)
+  const [inlinePrerequisitesDraft, setInlinePrerequisitesDraft] =
+    React.useState('')
+  const inlinePrerequisitesRef = React.useRef<HTMLTextAreaElement>(null)
   const [inlineTitleEditing, setInlineTitleEditing] = React.useState(false)
   const [inlineTitleDraft, setInlineTitleDraft] = React.useState('')
   const inlineTitleRef = React.useRef<HTMLInputElement>(null)
@@ -2003,6 +2009,8 @@ function CommunityLearningPath({
     setInlineTitleDraft('')
     setInlineWhyEditing(false)
     setInlineWhyDraft('')
+    setInlinePrerequisitesEditing(false)
+    setInlinePrerequisitesDraft('')
     setDeleteOpen(false)
     setDeleteResourceConfirmOpen(false)
     setOutlineAddDraft(null)
@@ -2444,6 +2452,8 @@ function CommunityLearningPath({
   React.useEffect(() => {
     setInlineWhyEditing(false)
     setInlineWhyDraft('')
+    setInlinePrerequisitesEditing(false)
+    setInlinePrerequisitesDraft('')
     setInlineTitleEditing(false)
     setInlineTitleDraft('')
     setOutlineAddDraft(null)
@@ -2453,6 +2463,11 @@ function CommunityLearningPath({
     if (!inlineWhyEditing) return
     inlineWhyRef.current?.focus()
   }, [inlineWhyEditing])
+
+  React.useEffect(() => {
+    if (!inlinePrerequisitesEditing) return
+    inlinePrerequisitesRef.current?.focus()
+  }, [inlinePrerequisitesEditing])
 
   React.useEffect(() => {
     if (!inlineTitleEditing) return
@@ -2728,6 +2743,51 @@ function CommunityLearningPath({
       queueUserStateSave()
       return next
     })
+  }
+
+  function startInlinePrerequisitesEdit() {
+    if (!canEditPathStructure || !selected || showingOverview) return
+    setInlinePrerequisitesDraft(
+      normalizeLearningPathPrerequisites(selected.prerequisites).join('\n')
+    )
+    setInlinePrerequisitesEditing(true)
+  }
+
+  function cancelInlinePrerequisitesEdit() {
+    setInlinePrerequisitesEditing(false)
+    setInlinePrerequisitesDraft('')
+  }
+
+  function saveInlinePrerequisites() {
+    if (!canEditPathStructure || !selected || showingOverview) return
+    const nextPrerequisites = normalizeLearningPathPrerequisites(
+      inlinePrerequisitesDraft
+        .split(/\n+/)
+        .map((line) => line.replace(/^[-*•]\s*/, '').trim())
+        .filter(Boolean)
+    )
+    const nodeId = selected.id
+    setPath((prev) => {
+      const next: LearningPathData = {
+        ...prev,
+        nodes: prev.nodes.map((item) =>
+          item.id === nodeId
+            ? {
+                ...item,
+                prerequisites: nextPrerequisites.length
+                  ? nextPrerequisites
+                  : undefined
+              }
+            : item
+        )
+      }
+      persistGraph(next)
+      pathRef.current = next
+      queueUserStateSave()
+      return next
+    })
+    setInlinePrerequisitesEditing(false)
+    setInlinePrerequisitesDraft('')
   }
 
   function setPathTitle(title: string) {
@@ -4117,7 +4177,11 @@ function CommunityLearningPath({
       </div>
 
       <div className={`${styles.body} ${styles.bodyList}`}>
-        <div className={`${styles.layout} ${styles.layoutList}`}>
+        <div
+          className={`${styles.layout} ${styles.layoutList}${
+            creationMode ? ` ${styles.layoutCreation}` : ''
+          }`}
+        >
           <aside
             id='learning-path-outline-panel'
             className={`${styles.mobileAside}${
@@ -4187,7 +4251,7 @@ function CommunityLearningPath({
                           onClick={handleRejectFilledPath}
                           disabled={filling}
                         >
-                          Reject this path
+                          Reject
                         </button>
                       </>
                     ) : (
@@ -4608,6 +4672,105 @@ function CommunityLearningPath({
                         ) : null}
                       </>
                     )}
+                    {!showingOverview &&
+                    selected &&
+                    (inlinePrerequisitesEditing ||
+                      normalizeLearningPathPrerequisites(selected.prerequisites)
+                        .length > 0 ||
+                      (canEditPathStructure &&
+                        (!creationMode || Boolean(preFillSnapshot)))) ? (
+                      <div
+                        className={
+                          canEditPathStructure
+                            ? `${styles.whyBlock} ${styles.whyBlockEditable}`
+                            : styles.whyBlock
+                        }
+                      >
+                        {inlinePrerequisitesEditing ? (
+                          <div className={styles.whyEditing}>
+                            <strong className={styles.whyLead}>
+                              Prerequisites:
+                            </strong>
+                            <textarea
+                              ref={inlinePrerequisitesRef}
+                              className={styles.whyEditTextarea}
+                              rows={4}
+                              value={inlinePrerequisitesDraft}
+                              onChange={(event) =>
+                                setInlinePrerequisitesDraft(event.target.value)
+                              }
+                              onKeyDown={(event) => {
+                                if (event.key === 'Escape') {
+                                  event.preventDefault()
+                                  cancelInlinePrerequisitesEdit()
+                                }
+                                if (
+                                  event.key === 'Enter' &&
+                                  (event.metaKey || event.ctrlKey)
+                                ) {
+                                  event.preventDefault()
+                                  saveInlinePrerequisites()
+                                }
+                              }}
+                              aria-label='Prerequisites'
+                              placeholder='One background idea per line…'
+                            />
+                            <span className={styles.whyEditActions}>
+                              <button
+                                type='button'
+                                className={styles.whySaveBtn}
+                                onClick={saveInlinePrerequisites}
+                              >
+                                Save
+                              </button>
+                              <button
+                                type='button'
+                                className={styles.whyCancelBtn}
+                                onClick={cancelInlinePrerequisitesEdit}
+                                aria-label='Cancel editing prerequisites'
+                              >
+                                ×
+                              </button>
+                            </span>
+                          </div>
+                        ) : (
+                          <div className={styles.prerequisitesCopy}>
+                            <p className={styles.whyCopy}>
+                              <strong className={styles.whyLead}>
+                                Prerequisites:
+                              </strong>
+                              {normalizeLearningPathPrerequisites(
+                                selected.prerequisites
+                              ).length === 0
+                                ? ' None listed yet.'
+                                : null}
+                              {canEditPathStructure ? (
+                                <button
+                                  type='button'
+                                  className={styles.whyEditBtn}
+                                  onClick={startInlinePrerequisitesEdit}
+                                  aria-label='Edit prerequisites'
+                                  title='Edit prerequisites'
+                                >
+                                  <PencilIcon />
+                                </button>
+                              ) : null}
+                            </p>
+                            {normalizeLearningPathPrerequisites(
+                              selected.prerequisites
+                            ).length > 0 ? (
+                              <ul className={styles.prerequisitesInlineList}>
+                                {normalizeLearningPathPrerequisites(
+                                  selected.prerequisites
+                                ).map((item) => (
+                                  <li key={item}>{item}</li>
+                                ))}
+                              </ul>
+                            ) : null}
+                          </div>
+                        )}
+                      </div>
+                    ) : null}
                   </div>
                 </header>
 

@@ -12,25 +12,35 @@
 .wrapModal {
   margin: 0 0 16px;
   padding: 8px 0;
-  border-top: 1px solid #ebe8e3;
   border-bottom: 1px solid #ebe8e3;
   background: transparent;
 }
 
-.list {
-  list-style: none;
-  margin: 0 auto;
-  padding: 0;
+.bar {
+  display: flex;
+  align-items: center;
   width: min(
     var(--home-content-max, 960px),
     calc(100vw - (var(--home-side, 58px) * 2))
   );
+  margin: 0 auto;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  min-width: 0;
+  width: 100%;
   display: flex;
   align-items: center;
 }
 
-.wrapModal .list {
+.wrapModal .bar {
   width: 100%;
+  margin: 0;
+  gap: 12px;
 }
 
 .step {
@@ -135,6 +145,7 @@
     padding: 7px 12px;
   }
 
+  .bar,
   .list {
     width: 100%;
   }

@@ -56,7 +56,7 @@ Signed-out users still see catalog content. Writes (notes, path edits, votes) fa
 Custom landing for the **courses** product (not the Paths home). Section order:
 
 1. Header — brand label **Coursetexts**
-2. Dot-grid of featured Notion courses (`HomeDotGrid`, disclaimer hidden; compact top). Furniture sits over a raised class-preview image; the dotted field stops at the furniture shadow so the preview is not clipped.
+2. Dot-grid of featured Notion courses (`HomeDotGrid`, disclaimer hidden; compact top). Furniture sits over a raised class-preview image; the dotted field stops at the furniture shadow so the preview is not clipped. On mobile (≤768px), the dot field stays within the hero width (no `100vw` bleed) and the class preview sits lower so its bottom edge overlaps the furniture band like desktop.
 3. Hero (`CoursesHomeHero`) — “An *open library* of advanced course readings.”, search, subject chips (Science, Math, Sociology, English) with a stacked school-logo row beside them (links into `/all-courses`), I’m Feeling Lucky, university-affiliation disclaimer
 4. **Try open courses from top schools.** (`HomeOpenCoursesSection`) — left-aligned title + View All; school filters in a full-width band with **top/bottom dotted borders only** (Stanford / Harvard / Yale / Columbia / Princeton); Notion course card grid → `/all-courses`. On narrow viewports, school chips use short names (e.g. **Stanford**, not **Stanford University**) and sit on one row with tighter side padding. Bottom **View All** is a full-width top/bottom-ruled bar (label left, chevron box right), with the longer university-affiliation disclaimer centered under it.
 5. Donate / blog / footer
@@ -65,7 +65,7 @@ Course cards come from the Notion sitemap in `getStaticProps`. Subject chips and
 
 ## Paths home (`/paths`)
 
-The Paths landing (hero, “What is a learning path?”, community catalog grid, social learning section) lives at `/paths` (`pages/paths/index.tsx`). Header brand label there is **Paths by Coursetexts**. A thin `PathsHomeBanner` sits under the nav (“Paths is Coursetexts' first experiment…”). The DotGrid shows the university-affiliation disclaimer with extra space below it before the hero copy. Community path cards stay **two columns** on small screens. Under **A community for self-learners.**, a **Learning Paths Tutorial** button (`LearningPathsTutorialButton`) opens an in-page YouTube embed modal (same control as on `/about`).
+The Paths landing (hero, “What is a learning path?”, community catalog grid, social learning section) lives at `/paths` (`pages/paths/index.tsx`). Header brand label there is **Paths by Coursetexts**. A thin `PathsHomeBanner` sits under the nav (“Paths is Coursetexts' first experiment…”). The DotGrid shows the university-affiliation disclaimer with extra space below it before the hero copy; it uses the same mobile overflow and class-preview layout as `/` (see above). Community path cards stay **two columns** on small screens. Under **A community for self-learners.**, a **Learning Paths Tutorial** button (`LearningPathsTutorialButton`) opens an in-page YouTube embed modal (same control as on `/about`).
 
 ## Site header (`HomeHeader`)
 
