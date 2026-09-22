@@ -1,6 +1,6 @@
 # Database
 
-Fresh installs: apply SQL in [`supabase/migrations/`](../supabase/migrations/README.md). Prefer `000_complete_schema.sql` (includes `001`–`030`, `034`–`038`, and `040`, with `rating` already 0–100, plus commitment reminder columns). Existing DBs that already ran an older 1–5 `038` should also apply `039`. Apply `040` so collaborative paths cannot rewrite the outline. Apply `041` for Learn-tab commitments and optional reminder cadence (`041` creates `learning_path_commitments` if `030` was never applied). Apply `042` + `053` for collaborator invites by email (any visibility). Apply `043` so private or unknown learning-path URLs do not render an empty Coursetexts shell. Apply `045` so `/knowledge-graph` can persist topic–path occurrences. If you previously applied `046_official_course_content`, apply `047_revert_official_course_content` to drop those columns. Run `048_drop_community_wall_and_notebooks.sql` to drop legacy Community Wall and standalone notebook tables. Apply `049`–`051` for profile learning summary, Updates, and repost/quote. Apply `052_public_learning_path_commitments_read.sql` so public profiles can list another user’s committed Learning items.
+Fresh installs: apply SQL in [`supabase/migrations/`](../supabase/migrations/README.md). Prefer `000_complete_schema.sql` (includes `001`–`030`, `034`–`038`, and `040`, with `rating` already 0–100, plus commitment reminder columns). Existing DBs that already ran an older 1–5 `038` should also apply `039`. Apply `040` so collaborative paths cannot rewrite the outline. Apply `041` for Learn-tab commitments and optional reminder cadence (`041` creates `learning_path_commitments` if `030` was never applied). Apply `042` + `053` for collaborator invites by email (any visibility). Apply `043` so private or unknown learning-path URLs do not render an empty Coursetexts shell. Apply `045` so `/knowledge-graph` can persist topic–path occurrences. If you previously applied `046_official_course_content`, apply `047_revert_official_course_content` to drop those columns. Run `048_drop_community_wall_and_notebooks.sql` to drop legacy Community Wall and standalone notebook tables. Apply `049`–`051` for profile learning summary, Updates, and repost/quote. Apply `052_public_learning_path_commitments_read.sql` so public profiles can list another user’s committed Learning items. Apply `055`–`057` for semantic catalog search embeddings (learning paths + Notion courses); see [semantic catalog search](./plans/semantic-learning-path-search/README.md).
 
 ## Table groups
 
@@ -195,11 +195,11 @@ The product UI calls `annotations` **Discussions**. Vote `target_type` and repor
 
 ## Resource tables
 
-| Tables                                              | Used by                                                   | Meaning                                                       |
-| --------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------------------- |
-| `resources` + `knowledge_components`                | `/community-resources`                                    | Site-wide library + FTS (`search_community`)                  |
-| `learning_paths.data` (`kind=course`)               | Course learning path syllabus + Resources nav             | Topic tree and sequenced resources                            |
-| `curated_course_*`                                  | Backup / migrate source                                   | Previous syllabus tables (not written by the app after `027`) |
+| Tables                                | Used by                                       | Meaning                                                       |
+| ------------------------------------- | --------------------------------------------- | ------------------------------------------------------------- |
+| `resources` + `knowledge_components`  | `/community-resources`                        | Site-wide library + FTS (`search_community`)                  |
+| `learning_paths.data` (`kind=course`) | Course learning path syllabus + Resources nav | Topic tree and sequenced resources                            |
+| `curated_course_*`                    | Backup / migrate source                       | Previous syllabus tables (not written by the app after `027`) |
 
 ```mermaid
 erDiagram
@@ -380,24 +380,56 @@ erDiagram
   }
 ```
 
-| Column / table                 | Role                                                                                                                                                                                                           |
-| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `is_catalog`                   | Seeded public examples (`owner_id` must be null). User paths must have an owner.                                                                                                                               |
-| `visibility`                   | `private` / `public` / `collaborative`. Catalog rows are `public`. Owned paths may switch from private to public/collab only when every topic has a filled why and at least 1 resource (client gate + modal). |
-| `is_private`                   | Kept in sync with `visibility = 'private'` for one release.                                                                                                                                                    |
-| `kind`                         | `community` (default), `research` (Field Atlas), or `course` (degree syllabus). Official Notion courses are not a kind yet.                                                                                    |
-| `is_filled`                    | Derived for `kind=course`: true when `data.topics` has at least one topic with children. Title-only catalog stubs stay false. The **University Courses** view of `/all-courses` lists only filled course paths. Unified Discover search can still surface a matching syllabus under related learning paths. |
-| `data`                         | Graph JSON (community/research) or `CourseLearningPathData` (course). Community/research outline is owner-only except named invitees (any visibility; `053`); catalog course syllabus JSON stays writable for signed-in users. Official resource objects may include `addedByUserId` (invitee add, or accepted collab suggestion). Existing DBs: apply `040`, `042`, and `053_learning_path_invites_any_visibility.sql`. |
-| `learning_path_user_state`     | Per-learner overlay: TipTap notes, extra resources, node status.                                                                                                                                               |
-| `learning_path_pins`           | Per-user pinned **course** syllabi (header pin menu).                                                                                                                                                          |
-| `learning_path_resource_votes` | Upvotes on a resource list item. Independent of sequence. Public + collaborative paths only. `/community` diagrams this (`ResourceVoteSchemaDiagram`).                                                         |
+| Column / table                 | Role                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `is_catalog`                   | Seeded public examples (`owner_id` must be null). User paths must have an owner.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `visibility`                   | `private` / `public` / `collaborative`. Catalog rows are `public`. Owned paths may switch from private to public/collab only when every topic has a filled why and at least 1 resource (client gate + modal).                                                                                                                                                                                                                                                                                                         |
+| `is_private`                   | Kept in sync with `visibility = 'private'` for one release.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `kind`                         | `community` (default), `research` (Field Atlas), or `course` (degree syllabus). Official Notion courses are not a kind yet.                                                                                                                                                                                                                                                                                                                                                                                           |
+| `is_filled`                    | Derived for `kind=course`: true when `data.topics` has at least one topic with children. Title-only catalog stubs stay false. The **University Courses** view of `/all-courses` lists only filled course paths. Unified Discover search can still surface a matching syllabus under related learning paths.                                                                                                                                                                                                           |
+| `data`                         | Graph JSON (community/research) or `CourseLearningPathData` (course). Community/research outline is owner-only except named invitees (any visibility; `053`); catalog course syllabus JSON stays writable for signed-in users. Official resource objects may include `addedByUserId` (invitee add, or accepted collab suggestion). Existing DBs: apply `040`, `042`, and `053_learning_path_invites_any_visibility.sql`.                                                                                              |
+| `learning_path_user_state`     | Per-learner overlay: TipTap notes, extra resources, node status.                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `learning_path_pins`           | Per-user pinned **course** syllabi (header pin menu).                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `learning_path_resource_votes` | Upvotes on a resource list item. Independent of sequence. Public + collaborative paths only. `/community` diagrams this (`ResourceVoteSchemaDiagram`).                                                                                                                                                                                                                                                                                                                                                                |
 | `learning_path_commitments`    | Per-user committed flag on a Paths tab item. Profile filter **Committed** (own and public profiles). Reminder cadence is optional (`reminder_frequency` / `reminder_minute` / `reminder_timezone` nullable); a reminder cannot exist without a commitment row. Sending notifications is not built yet. Existing DBs: apply `041_learning_path_commitment_reminders.sql` (creates the table if `030` was never applied). Public read of rows: `052_public_learning_path_commitments_read.sql`; writes stay owner-only. |
-| `learning_path_invites`        | Owner-only list of emails invited to co-edit an owned path (private, public, or collaborative). No invitation email is sent. Access is a matching signed-in Coursetexts account (`invited_user_id` or JWT email). Existing DBs: apply `042` + `053` + `054_learning_path_invites_readable_on_path.sql` (readers can list invites for the people sidebar). |
-| `learning_path_join_requests`  | Signed-in visitor asked to join a private path. Email is stored; no email is sent. Owner Invite creates a `learning_path_invites` row and deletes the request. Existing DBs: apply `044_learning_path_join_requests.sql`. |
+| `learning_path_invites`        | Owner-only list of emails invited to co-edit an owned path (private, public, or collaborative). No invitation email is sent. Access is a matching signed-in Coursetexts account (`invited_user_id` or JWT email). Existing DBs: apply `042` + `053` + `054_learning_path_invites_readable_on_path.sql` (readers can list invites for the people sidebar).                                                                                                                                                             |
+| `learning_path_join_requests`  | Signed-in visitor asked to join a private path. Email is stored; no email is sent. Owner Invite creates a `learning_path_invites` row and deletes the request. Existing DBs: apply `044_learning_path_join_requests.sql`.                                                                                                                                                                                                                                                                                             |
 
 Saving someone else’s community path is a `user_links` row whose URL is `/learning-path/{slug}` — not a separate saves table.
 
 Index `learning_paths_public_research_goal_idx` (`026`/`027`) speeds Field Atlas lookup of a public research path by `goal` (`visibility = 'public'`).
+
+## Catalog embeddings (semantic search)
+
+Apply `055`–`057` on existing projects that need paraphrased catalog search. Service role only (RLS on, no anon/authenticated policies). See [semantic catalog search](./plans/semantic-learning-path-search/README.md).
+
+```mermaid
+erDiagram
+  learning_paths ||--o| learning_path_embeddings : path_id
+  learning_path_embeddings {
+    uuid path_id PK
+    text model
+    text content_hash
+    vector384 embedding
+    timestamptz updated_at
+  }
+  notion_course_embeddings {
+    text notion_page_id PK
+    text title
+    text model
+    text content_hash
+    vector384 embedding
+    timestamptz updated_at
+  }
+```
+
+| Object                                                              | Role                                                                                                                                            |
+| ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `learning_path_embeddings`                                          | 384-d vectors for catalog-visible `learning_paths` rows (`055`). Match RPC updated in `056` for any non-private path (filled courses included). |
+| `notion_course_embeddings`                                          | Vectors keyed by Notion page id for official university courses (`057`). No FK to `learning_paths`.                                             |
+| `match_learning_path_embeddings` / `match_notion_course_embeddings` | Cosine nearest neighbors; `execute` granted to `service_role` only.                                                                             |
+
+Backfill: `yarn embed:learning-paths`, `yarn embed:notion-courses` (dry-run / production opt-in documented in the plan README).
 
 ## Social
 
@@ -505,16 +537,16 @@ erDiagram
 
 ## RPCs
 
-| Function                    | Purpose                                       |
-| --------------------------- | --------------------------------------------- |
-| `handle_new_user()`         | Trigger: create `profiles` on signup          |
-| `is_learning_path_invitee(path_id)` | True when the signed-in user’s id or email is on `learning_path_invites` |
-| `learning_path_public_access(slug)` | `{ exists, accessible, visibility, join_requested }` without path contents. Lets a private/unknown URL show a gate instead of an empty shell. Existing DBs: apply `043_learning_path_public_access.sql`; `044` adds `join_requested`. |
-| `request_learning_path_join(slug)` | Signed-in visitor records their email on a private path. Existing DBs: apply `044_learning_path_join_requests.sql`. |
-| `learning_path_owner_overlay_resources(path_id)` | Owner overlay resources JSON for the owner or an invitee |
-| `list_users_directory(...)` | `/users` pagination + interest filter         |
-| `search_community(q, max)`  | FTS over `resources` + `knowledge_components` |
-| `delete_*_votes()`          | Clean polymorphic votes on delete             |
+| Function                                         | Purpose                                                                                                                                                                                                                               |
+| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `handle_new_user()`                              | Trigger: create `profiles` on signup                                                                                                                                                                                                  |
+| `is_learning_path_invitee(path_id)`              | True when the signed-in user’s id or email is on `learning_path_invites`                                                                                                                                                              |
+| `learning_path_public_access(slug)`              | `{ exists, accessible, visibility, join_requested }` without path contents. Lets a private/unknown URL show a gate instead of an empty shell. Existing DBs: apply `043_learning_path_public_access.sql`; `044` adds `join_requested`. |
+| `request_learning_path_join(slug)`               | Signed-in visitor records their email on a private path. Existing DBs: apply `044_learning_path_join_requests.sql`.                                                                                                                   |
+| `learning_path_owner_overlay_resources(path_id)` | Owner overlay resources JSON for the owner or an invitee                                                                                                                                                                              |
+| `list_users_directory(...)`                      | `/users` pagination + interest filter                                                                                                                                                                                                 |
+| `search_community(q, max)`                       | FTS over `resources` + `knowledge_components`                                                                                                                                                                                         |
+| `delete_*_votes()`                               | Clean polymorphic votes on delete                                                                                                                                                                                                     |
 
 ## RLS pattern (summary)
 

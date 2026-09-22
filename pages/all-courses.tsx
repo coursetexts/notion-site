@@ -3,12 +3,24 @@ import type { GetStaticProps } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
-import { CourseCardGrid, type HomeCourseCard } from '@/components/HomeCoursesSection'
+import styles from '@/components/AllCoursesOfficial.module.css'
+import {
+  CourseCardGrid,
+  type HomeCourseCard
+} from '@/components/HomeCoursesSection'
 import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
+import {
+  SEMANTIC_SEARCH_DEBOUNCE_MS,
+  type SemanticCatalogMatch,
+  isSemanticCatalogMatch,
+  normalizeSemanticCatalogMatch,
+  orderCardsBySemanticMatches,
+  shouldApplySemanticResponse,
+  shouldRequestSemanticSearch
+} from '@/lib/semantic-learning-path-search'
 
 import type { NotionHomeDebugPayload } from './index'
-import styles from '@/components/AllCoursesOfficial.module.css'
 
 const SUBJECT_OPTIONS = [
   {
@@ -148,6 +160,10 @@ export default function OfficialAllCoursesPage({
   const router = useRouter()
   const [query, setQuery] = React.useState('')
   const [activeSubjects, setActiveSubjects] = React.useState<HomeSubject[]>([])
+  const [semanticMatches, setSemanticMatches] = React.useState<
+    SemanticCatalogMatch[]
+  >([])
+  const semanticRequestIdRef = React.useRef(0)
 
   React.useEffect(() => {
     if (notionHomeDebug && typeof window !== 'undefined') {
@@ -210,15 +226,88 @@ export default function OfficialAllCoursesPage({
     [activeSubjects, updateUrl]
   )
 
-  const filtered = React.useMemo(
-    () =>
-      courses.filter(
-        (course) =>
-          courseMatchesQuery(course, query) &&
-          matchesCourseSubjects(course, activeSubjects)
-      ),
-    [activeSubjects, courses, query]
-  )
+  React.useEffect(() => {
+    const trimmed = query.trim()
+    if (!shouldRequestSemanticSearch(trimmed)) {
+      semanticRequestIdRef.current += 1
+      setSemanticMatches([])
+      return
+    }
+
+    const requestId = semanticRequestIdRef.current + 1
+    semanticRequestIdRef.current = requestId
+    setSemanticMatches([])
+    const timer = window.setTimeout(() => {
+      void fetch('/api/search-learning-paths', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          query: trimmed,
+          kinds: ['university-course']
+        })
+      })
+        .then(async (response) => {
+          if (!response.ok) {
+            throw new Error(`search-learning-paths ${response.status}`)
+          }
+          return response.json() as Promise<{ matches?: unknown[] }>
+        })
+        .then((payload) => {
+          if (
+            !shouldApplySemanticResponse(
+              requestId,
+              semanticRequestIdRef.current
+            )
+          ) {
+            return
+          }
+          const matches = Array.isArray(payload.matches)
+            ? payload.matches
+                .filter(isSemanticCatalogMatch)
+                .map(normalizeSemanticCatalogMatch)
+                .filter((match) => match.kind === 'university-course')
+            : []
+          setSemanticMatches(matches)
+        })
+        .catch(() => {
+          if (
+            shouldApplySemanticResponse(requestId, semanticRequestIdRef.current)
+          ) {
+            setSemanticMatches([])
+          }
+        })
+    }, SEMANTIC_SEARCH_DEBOUNCE_MS)
+
+    return () => {
+      window.clearTimeout(timer)
+    }
+  }, [query])
+
+  const filtered = React.useMemo(() => {
+    const subjectFiltered = courses.filter((course) =>
+      matchesCourseSubjects(course, activeSubjects)
+    )
+    const needle = query.trim()
+    if (!needle) return subjectFiltered
+
+    const lexicalHits = subjectFiltered.filter((course) =>
+      courseMatchesQuery(course, needle)
+    )
+    if (semanticMatches.length === 0) return lexicalHits
+
+    const ranked = orderCardsBySemanticMatches(subjectFiltered, semanticMatches)
+    const semanticIds = new Set(semanticMatches.map((match) => match.id))
+    const seen = new Set<string>()
+    const out: HomeCourseCard[] = []
+    for (const course of ranked) {
+      if (semanticIds.has(course.id) || courseMatchesQuery(course, needle)) {
+        if (seen.has(course.id)) continue
+        seen.add(course.id)
+        out.push(course)
+      }
+    }
+    return out
+  }, [activeSubjects, courses, query, semanticMatches])
 
   return (
     <>
@@ -321,7 +410,9 @@ export default function OfficialAllCoursesPage({
                       className={styles.schoolIcon}
                       aria-hidden
                     />
-                    <span className={styles.schoolLabelFull}>{school.label}</span>
+                    <span className={styles.schoolLabelFull}>
+                      {school.label}
+                    </span>
                     <span className={styles.schoolLabelShort}>{school.id}</span>
                   </button>
                 ))}

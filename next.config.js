@@ -75,6 +75,17 @@ module.exports = withBundleAnalyzer({
       config.plugins.push(new FixPagesManifestPlugin())
     }
 
+    // @xenova/transformers is ESM-only ("type": "module"). Next 12.3 already
+    // externalizes those imports as import("..."). A commonjs external emits
+    // require() and Node throws ERR_REQUIRE_ESM.
+    // onnxruntime-node is a separate native CJS addon. Keep it external so a
+    // server compile does not bundle its .node binary.
+    if (isServer) {
+      config.externals.push({
+        'onnxruntime-node': 'commonjs onnxruntime-node'
+      })
+    }
+
     return config
   },
   staticPageGenerationTimeout: 600,

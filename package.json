@@ -26,7 +26,11 @@
     "seed:community": "node scripts/seed-community.mjs",
     "seed:curated-courses": "node scripts/seed-curated-courses.mjs",
     "seed:learning-paths": "npx tsx scripts/seed-learning-paths.ts",
-    "migrate:course-learning-paths": "npx tsx scripts/migrate-course-learning-paths.ts"
+    "migrate:course-learning-paths": "npx tsx scripts/migrate-course-learning-paths.ts",
+    "embed:learning-paths": "npx tsx scripts/embed-learning-paths.ts",
+    "embed:notion-courses": "npx tsx scripts/embed-notion-courses.ts",
+    "embed:notion-courses:dry": "npx tsx scripts/embed-notion-courses.ts --dry-run",
+    "test:semantic-learning-path-search": "npx tsx --test lib/semantic-learning-path-search.test.ts lib/learning-path-catalog-visibility.test.ts lib/notion-course-embedding-text.test.ts"
   },
   "dependencies": {
     "@fisch0920/use-dark-mode": "^2.4.0",
@@ -50,6 +54,7 @@
     "@types/node": "^18.8.5",
     "@types/react": "^18.0.21",
     "@vercel/og": "^0.0.19",
+    "@xenova/transformers": "^2.17.2",
     "classnames": "^2.3.1",
     "date-fns": "^2.28.0",
     "dotenv": "^17.3.1",

@@ -30,10 +30,18 @@ import {
   learningPathTopics,
   parseLearningPathTopicId
 } from '@/lib/learning-path-topic'
+import { PATHS_BASE, pathsLearningPathHref } from '@/lib/paths-routes'
 import {
-  PATHS_BASE,
-  pathsLearningPathHref
-} from '@/lib/paths-routes'
+  SEMANTIC_SEARCH_DEBOUNCE_MS,
+  type SemanticCatalogMatch,
+  findCardForSemanticMatch,
+  isSemanticCatalogMatch,
+  mergeSemanticCatalogSearch,
+  normalizeSemanticCatalogMatch,
+  orderCardsBySemanticMatches,
+  shouldApplySemanticResponse,
+  shouldRequestSemanticSearch
+} from '@/lib/semantic-learning-path-search'
 
 import type { NotionHomeDebugPayload } from './index'
 
@@ -313,6 +321,10 @@ export default function AllCoursesPage({
   const [learningPathsReady, setLearningPathsReady] = React.useState(
     initialLearningPaths.length > 0
   )
+  const [semanticMatches, setSemanticMatches] = React.useState<
+    SemanticCatalogMatch[]
+  >([])
+  const semanticRequestIdRef = React.useRef(0)
 
   React.useEffect(() => {
     let cancelled = false
@@ -524,24 +536,6 @@ export default function AllCoursesPage({
     })
   }, [coursePaths, query])
 
-  const filteredLearningPaths = React.useMemo(() => {
-    const needle = query.trim().toLowerCase()
-    return learningPaths.filter((path) => {
-      const matchesTopic =
-        activeTopic == null ||
-        learningPathTopics({
-          slug: learningPathCardSlug(path),
-          title: path.title,
-          summary: path.description
-        }).includes(activeTopic)
-      if (!matchesTopic) return false
-      if (!needle) return true
-      const searchable =
-        `${path.title} ${path.description} ${path.meta}`.toLowerCase()
-      return searchable.includes(needle)
-    })
-  }, [activeTopic, learningPaths, query])
-
   const catalogItems = React.useMemo(() => {
     const subjectFilteredCourses = courses.filter((course) =>
       matchesCourseSubjects(course, activeSubjects)
@@ -563,10 +557,115 @@ export default function AllCoursesPage({
     research
   ])
 
+  React.useEffect(() => {
+    const trimmed = query.trim()
+    if (!shouldRequestSemanticSearch(trimmed)) {
+      semanticRequestIdRef.current += 1
+      setSemanticMatches([])
+      return
+    }
+
+    const requestId = semanticRequestIdRef.current + 1
+    semanticRequestIdRef.current = requestId
+    setSemanticMatches([])
+    const timer = window.setTimeout(() => {
+      void fetch('/api/search-learning-paths', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          query: trimmed,
+          kinds: ['learning-path', 'university-course']
+        })
+      })
+        .then(async (response) => {
+          if (!response.ok) {
+            throw new Error(`search-learning-paths ${response.status}`)
+          }
+          return response.json() as Promise<{
+            matches?: unknown[]
+          }>
+        })
+        .then((payload) => {
+          if (
+            !shouldApplySemanticResponse(
+              requestId,
+              semanticRequestIdRef.current
+            )
+          ) {
+            return
+          }
+          const matches = Array.isArray(payload.matches)
+            ? payload.matches
+                .filter(isSemanticCatalogMatch)
+                .map(normalizeSemanticCatalogMatch)
+            : []
+          setSemanticMatches(matches)
+        })
+        .catch(() => {
+          if (
+            shouldApplySemanticResponse(requestId, semanticRequestIdRef.current)
+          ) {
+            setSemanticMatches([])
+          }
+        })
+    }, SEMANTIC_SEARCH_DEBOUNCE_MS)
+
+    return () => {
+      window.clearTimeout(timer)
+    }
+  }, [query])
+
+  const filteredLearningPaths = React.useMemo(() => {
+    const needle = query.trim().toLowerCase()
+    const filtered = learningPaths.filter((path) => {
+      const matchesTopic =
+        activeTopic == null ||
+        learningPathTopics({
+          slug: learningPathCardSlug(path),
+          title: path.title,
+          summary: path.description
+        }).includes(activeTopic)
+      if (!matchesTopic) return false
+      if (!needle) return true
+      const searchable =
+        `${path.title} ${path.description} ${path.meta}`.toLowerCase()
+      return searchable.includes(needle)
+    })
+    const pathMatches = semanticMatches.filter(
+      (match) => match.kind === 'learning-path'
+    )
+    return orderCardsBySemanticMatches(filtered, pathMatches)
+  }, [activeTopic, learningPaths, query, semanticMatches])
+
   const unified = React.useMemo(() => {
     const needle = query.trim()
     if (needle) {
-      return groupCatalogHits(searchCatalog(catalogItems, needle), true)
+      const lexical = groupCatalogHits(
+        searchCatalog(catalogItems, needle),
+        true
+      )
+      if (semanticMatches.length === 0) return lexical
+
+      const coursePathIds = new Set(coursePaths.map((path) => path.id))
+      const coursePathHrefs = new Set(coursePaths.map((path) => path.href))
+      const loadedPathCards = [...learningPaths, ...coursePaths]
+      const loadedCourseCards = courses.filter((course) =>
+        matchesCourseSubjects(course, activeSubjects)
+      )
+
+      return mergeSemanticCatalogSearch(lexical, semanticMatches, (match) => {
+        if (match.kind === 'university-course') {
+          const card = findCardForSemanticMatch(match, loadedCourseCards)
+          if (!card) return null
+          return universityCourseToItem(card)
+        }
+        const card = findCardForSemanticMatch(match, loadedPathCards)
+        if (!card) return null
+        if (coursePathIds.has(card.id) || coursePathHrefs.has(card.href)) {
+          return syllabusToItem(card)
+        }
+        return communityPathToItem(card, pathExtrasBySlug)
+      })
     }
 
     const browsePaths = learningPaths.slice(0, 12)
@@ -616,11 +715,13 @@ export default function AllCoursesPage({
   }, [
     activeSubjects,
     catalogItems,
+    coursePaths,
     courses,
     learningPaths,
     pathExtrasBySlug,
     query,
-    research
+    research,
+    semanticMatches
   ])
 
   const unifiedGroups = unified.groups.map((group) => ({
