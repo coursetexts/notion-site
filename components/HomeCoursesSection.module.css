@@ -278,6 +278,10 @@
   overflow: hidden;
 }
 
+.subjectIconSolo {
+  margin-left: 0;
+}
+
 .subjectIconSvg {
   display: block;
   width: 12px;

@@ -77,7 +77,7 @@ function locationSentence(path: LearningPathData, selectedId: string) {
   )}. I am on the step ${quote(here)} ${insides}.`
 }
 
-function formatOutline(path: LearningPathData) {
+export function formatLearningPathOutlineText(path: LearningPathData) {
   const marks = sequenceMarks(path)
   const tree = outlineTreeWithoutGoal(visibleTree(path, path.nodes))
   const lines: string[] = []
@@ -119,7 +119,7 @@ export function formatLearningPathExportContext({
 }): string {
   const goal = (path.goal || path.title).trim()
   const summary = path.summary.trim()
-  const outline = formatOutline(path)
+  const outline = formatLearningPathOutlineText(path)
   const parts = [
     locationSentence(path, selectedId),
     '',

@@ -51,7 +51,10 @@ import {
   subscribeNavPins
 } from '@/lib/nav-pins-db'
 import { learningPathCommitmentKey } from '@/lib/learning-path-commitments-db'
-import { formatLearningPathExportContext } from '@/lib/learning-path-export-context'
+import {
+  formatLearningPathExportContext,
+  formatLearningPathOutlineText
+} from '@/lib/learning-path-export-context'
 import {
   type FilledLearningPath,
   outlineFromFilledLearningPath
@@ -196,6 +199,7 @@ import { addLink, deleteLink, getMyLinks } from '@/lib/user-links'
 import heroStyles from './CourseHero.module.css'
 import styles from './LearningPath.module.css'
 import { LearningPathFillOverlay } from './LearningPathFillOverlay'
+import { LearningPathFillRetryModal } from './LearningPathFillRetryModal'
 import { LearningPathFinishedModal } from './LearningPathFinishedModal'
 import { LearningPathInviteModal } from './LearningPathInviteModal'
 import { LearningPathDeleteModal } from './LearningPathDeleteModal'
@@ -1847,6 +1851,7 @@ function CommunityLearningPath({
   const [userStateReady, setUserStateReady] = React.useState(false)
   const [filling, setFilling] = React.useState(false)
   const [fillError, setFillError] = React.useState<string | null>(null)
+  const [retryFillOpen, setRetryFillOpen] = React.useState(false)
   const [preFillSnapshot, setPreFillSnapshot] = React.useState<{
     path: LearningPathData
     selectedId: string
@@ -2447,6 +2452,43 @@ function CommunityLearningPath({
       return
     }
     if (nextNode) selectNodeKeepingScroll(nextNode.id)
+  }
+
+  function renderStepNavBar() {
+    if (showingKnowledge || !selected) return null
+    return (
+      <StepNavBar
+        current={stepCurrent}
+        total={Math.max(stepTotal, 1)}
+        hasPrevious={!showingOverview}
+        isLastStep={!creationMode && isLastOutlineStep}
+        onPrevious={goStepPrevious}
+        onNext={
+          showingOverview && outlineOrder.length === 0
+            ? undefined
+            : goStepNext
+        }
+        nextLabel={
+          showingOverview ? LEARNING_PATH_START_LABEL : undefined
+        }
+        explored={selected.status === 'explored'}
+        onToggleExplored={
+          creationMode || selected.kind === 'goal'
+            ? undefined
+            : toggleExplored
+        }
+        showExplored={!creationMode && selected.kind !== 'goal'}
+        beforeNext={
+          !creationMode && showingOverview ? (
+            <LearningPathCommitRemindButton
+              targetKey={learningPathCommitmentKey(slug)}
+              signedIn={Boolean(currentUserId)}
+              onSignIn={() => requestSignIn()}
+            />
+          ) : null
+        }
+      />
+    )
   }
 
   React.useEffect(() => {
@@ -3714,12 +3756,24 @@ function CommunityLearningPath({
 
   const creationGoal = (initialGoal.trim() || path.goal).trim()
 
-  async function handleFillPath() {
+  async function handleFillPath(changes?: string) {
     if (!creationGoal || filling) return
     if (!currentUserId) {
       requestSignIn()
       return
     }
+    const revision = changes?.trim() ?? ''
+    const currentPath = pathRef.current
+    const currentOutline = revision
+      ? [
+          currentPath.summary.trim()
+            ? `Description: ${currentPath.summary.trim()}`
+            : '',
+          formatLearningPathOutlineText(currentPath)
+        ]
+          .filter(Boolean)
+          .join('\n\n')
+      : ''
     setFilling(true)
     setFillError(null)
     try {
@@ -3739,7 +3793,10 @@ function CommunityLearningPath({
           'Content-Type': 'application/json',
           Authorization: `Bearer ${accessToken}`
         },
-        body: JSON.stringify({ goal: creationGoal })
+        body: JSON.stringify({
+          goal: creationGoal,
+          ...(revision ? { changes: revision, currentOutline } : {})
+        })
       })
       const payload = (await response.json()) as FilledLearningPath & {
         error?: string
@@ -4234,12 +4291,12 @@ function CommunityLearningPath({
                         <button
                           type='button'
                           className={styles.creationFillBtn}
-                          onClick={() => void handleFillPath()}
+                          onClick={() => setRetryFillOpen(true)}
                           disabled={filling || !currentUserId}
                           aria-busy={filling}
                           title={
                             currentUserId
-                              ? undefined
+                              ? 'Say what should change, then generate again'
                               : 'Sign in to fill out this path'
                           }
                         >
@@ -4434,41 +4491,7 @@ function CommunityLearningPath({
                       selectedId
                     })
             }
-            footer={
-              showingKnowledge || !selected ? null : (
-                <StepNavBar
-                  current={stepCurrent}
-                  total={Math.max(stepTotal, 1)}
-                  hasPrevious={!showingOverview}
-                  isLastStep={!creationMode && isLastOutlineStep}
-                  onPrevious={goStepPrevious}
-                  onNext={
-                    showingOverview && outlineOrder.length === 0
-                      ? undefined
-                      : goStepNext
-                  }
-                  nextLabel={
-                    showingOverview ? LEARNING_PATH_START_LABEL : undefined
-                  }
-                  explored={selected.status === 'explored'}
-                  onToggleExplored={
-                    creationMode || selected.kind === 'goal'
-                      ? undefined
-                      : toggleExplored
-                  }
-                  showExplored={!creationMode && selected.kind !== 'goal'}
-                  beforeNext={
-                    !creationMode && showingOverview ? (
-                      <LearningPathCommitRemindButton
-                        targetKey={learningPathCommitmentKey(slug)}
-                        signedIn={Boolean(currentUserId)}
-                        onSignIn={() => requestSignIn()}
-                      />
-                    ) : null
-                  }
-                />
-              )
-            }
+            footer={creationMode ? null : renderStepNavBar()}
           >
             {showingKnowledge ? (
               <LearningPathLearnedPanel
@@ -4477,6 +4500,7 @@ function CommunityLearningPath({
                 onSelectTopic={selectNode}
               />
             ) : selected ? (
+              <>
               <article className={`${styles.article} ${styles.topicArticle}`}>
                 <header className={styles.articleHeader}>
                   {!showingOverview && selectedParent ? (
@@ -5059,6 +5083,10 @@ function CommunityLearningPath({
                   </PathContentSection>
                 ) : null}
               </article>
+              {creationMode ? (
+                <div className={styles.creationStepNav}>{renderStepNavBar()}</div>
+              ) : null}
+              </>
             ) : null}
           </PathContentActivity>
         </div>
@@ -5401,6 +5429,19 @@ function CommunityLearningPath({
             </div>
           </div>
         </div>
+      ) : null}
+      {creationMode ? (
+        <LearningPathFillRetryModal
+          open={retryFillOpen}
+          onClose={() => {
+            if (filling) return
+            setRetryFillOpen(false)
+          }}
+          onSubmit={(changes) => {
+            setRetryFillOpen(false)
+            void handleFillPath(changes)
+          }}
+        />
       ) : null}
       {creationMode ? <LearningPathFillOverlay open={filling} /> : null}
     </section>

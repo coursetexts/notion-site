@@ -2102,6 +2102,10 @@
   max-width: 50rem;
 }
 
+.creationStepNav {
+  margin-top: 2rem;
+}
+
 @media (max-width: 800px) {
   .detailContent {
     padding: 1.5rem 1.25rem 2rem;

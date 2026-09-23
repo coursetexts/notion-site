@@ -113,17 +113,36 @@ const MAX_LABEL = 120
 const MAX_DESCRIPTION = 800
 const MAX_WHY = 420
 
-export function buildLearningPathFillUserPrompt(goal: string) {
-  return [
+export function buildLearningPathFillUserPrompt(
+  goal: string,
+  revision?: { changes?: string; currentOutline?: string }
+) {
+  const changes = revision?.changes?.trim() ?? ''
+  const currentOutline = revision?.currentOutline?.trim() ?? ''
+  const lines = [
     'Fill the learning-path form for this goal:',
     '',
-    goal.trim(),
+    goal.trim()
+  ]
+  if (changes) {
+    lines.push(
+      '',
+      'The learner already generated a path and wants another version.',
+      'Apply the notes below. Keep parts they did not ask to change.'
+    )
+    if (currentOutline) {
+      lines.push('', 'Current path:', currentOutline)
+    }
+    lines.push('', 'What they want changed:', changes)
+  }
+  lines.push(
     '',
     'Respond with JSON of the form:',
     '{"description": string, "steps": [{"title": string, "why": string, "prerequisites": string[], "concepts": [{"label": string, "why": string, "prerequisites": string[], "subconcepts": [{"label": string, "why": string, "prerequisites": string[]}]}]}]}',
     '',
     'For each step, concept, and subconcept, set prerequisites to background a layman still needs that is not already covered earlier on this path. Use [] when nothing extra is needed.'
-  ].join('\n')
+  )
+  return lines.join('\n')
 }
 
 export function extractJsonObject(text: string): unknown {

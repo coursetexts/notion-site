@@ -34,10 +34,29 @@ type GeminiGenerateContentResponse = {
   }
 }
 
+const MAX_FILL_CHANGES = 2000
+const MAX_FILL_OUTLINE = 12000
+
 function readGoal(body: unknown) {
   if (!body || typeof body !== 'object') return ''
   const goal = (body as { goal?: unknown }).goal
   return typeof goal === 'string' ? goal.trim() : ''
+}
+
+function readFillRevision(body: unknown) {
+  if (!body || typeof body !== 'object') {
+    return { changes: '', currentOutline: '' }
+  }
+  const record = body as { changes?: unknown; currentOutline?: unknown }
+  const changes =
+    typeof record.changes === 'string'
+      ? record.changes.trim().slice(0, MAX_FILL_CHANGES)
+      : ''
+  const currentOutline =
+    typeof record.currentOutline === 'string'
+      ? record.currentOutline.trim().slice(0, MAX_FILL_OUTLINE)
+      : ''
+  return { changes, currentOutline }
 }
 
 function textFromGemini(data: GeminiGenerateContentResponse) {
@@ -70,7 +89,8 @@ async function generateFill(
   apiKey: string,
   model: string,
   goal: string,
-  withSchema: boolean
+  withSchema: boolean,
+  revision?: { changes?: string; currentOutline?: string }
 ) {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(
     model
@@ -89,7 +109,7 @@ async function generateFill(
         contents: [
           {
             role: 'user',
-            parts: [{ text: buildLearningPathFillUserPrompt(goal) }]
+            parts: [{ text: buildLearningPathFillUserPrompt(goal, revision) }]
           }
         ],
         generationConfig: {
@@ -144,14 +164,15 @@ export default async function handler(
   }
 
   const model = process.env.GEMINI_MODEL || 'gemini-2.5-flash'
+  const revision = readFillRevision(req.body)
 
   try {
     let completion: GeminiGenerateContentResponse
     try {
-      completion = await generateFill(apiKey, model, goal, true)
+      completion = await generateFill(apiKey, model, goal, true, revision)
     } catch (error: unknown) {
       if (statusFromGotError(error) !== 400) throw error
-      completion = await generateFill(apiKey, model, goal, false)
+      completion = await generateFill(apiKey, model, goal, false, revision)
     }
 
     if (completion.promptFeedback?.blockReason) {

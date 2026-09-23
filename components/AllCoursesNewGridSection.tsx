@@ -178,11 +178,7 @@ function BestMatchCard({ card }: { card: HomeCourseCard }) {
         <article className={styles.bestMatch}>
           <p className={styles.bestMatchKicker}>Best match</p>
           <h2 className={styles.bestMatchTitle}>{card.title}</h2>
-          {card.statsLine ? (
-            <p className={styles.bestMatchStats}>{card.statsLine}</p>
-          ) : (
-            <p className={styles.bestMatchMeta}>{card.meta}</p>
-          )}
+          <p className={styles.bestMatchMeta}>{card.meta}</p>
           {card.description ? (
             <p className={styles.bestMatchDescription}>{card.description}</p>
           ) : null}

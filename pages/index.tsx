@@ -109,7 +109,7 @@ function coursePathToHomeCard(path: {
   return {
     id: path.id,
     href: `/paths/learning-path/${path.slug}`,
-    meta: `Coursetexts · ${subject.label}`,
+    meta: subject.label,
     title: path.title,
     description: path.description,
     subjects: homeSubjectsForAcademic(

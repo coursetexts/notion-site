@@ -20,7 +20,6 @@ export type HomeCourseCard = {
   subjectDegreeId?: string
   /** Graph mark used for community / research learning path cards. */
   communityMark?: boolean
-  /** Optional “7 topics · 24 resources” line under the title. */
   statsLine?: string
 }
 
@@ -80,9 +79,13 @@ function HomeCourseCardItem({
           }`}
         >
           <div className={styles.courseMetaRow}>
-            <span
-              className={course.subjectDegreeId ? styles.logoStack : undefined}
-            >
+            {course.subjectDegreeId ? (
+              <DegreeCardIcon
+                degreeId={course.subjectDegreeId}
+                className={`${styles.subjectIcon} ${styles.subjectIconSolo}`}
+                iconClassName={styles.subjectIconSvg}
+              />
+            ) : (
               <span className={styles.schoolLogoWrap}>
                 {course.communityMark ? (
                   <CommunityPathMark />
@@ -94,14 +97,7 @@ function HomeCourseCardItem({
                   />
                 )}
               </span>
-              {course.subjectDegreeId ? (
-                <DegreeCardIcon
-                  degreeId={course.subjectDegreeId}
-                  className={styles.subjectIcon}
-                  iconClassName={styles.subjectIconSvg}
-                />
-              ) : null}
-            </span>
+            )}
             <span className={styles.courseMetaText}>{course.meta}</span>
           </div>
 
@@ -110,10 +106,6 @@ function HomeCourseCardItem({
           >
             {course.title}
           </h3>
-
-          {course.statsLine ? (
-            <p className={styles.courseStats}>{course.statsLine}</p>
-          ) : null}
 
           {hideDescription ? null : (
             <p

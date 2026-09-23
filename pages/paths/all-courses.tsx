@@ -56,7 +56,7 @@ function coursePathToCard(path: {
   return {
     id: path.id,
     href: pathsLearningPathHref(path.slug),
-    meta: `Coursetexts · ${subject.label}`,
+    meta: subject.label,
     title: path.title,
     description: path.description,
     subjectDegreeId: subject.degreeId
@@ -98,7 +98,7 @@ function nonCoursePathToCard(
   return {
     id: path.id,
     href: pathsLearningPathHref(path.slug),
-    meta: `Coursetexts · ${learningPathKicker(path.kind)}`,
+    meta: learningPathKicker(path.kind),
     title: path.title,
     description: path.description,
     communityMark: true,
