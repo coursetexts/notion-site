@@ -1,6 +1,7 @@
 /**
  * Build the embedding input string for a Notion university course card.
  */
+import { appendRelatedTermsToEmbeddingText } from '@/lib/catalog-related-terms'
 
 export type NotionCourseEmbeddingTextInput = {
   title?: string | null
@@ -13,7 +14,8 @@ export type NotionCourseEmbeddingTextInput = {
  * Format: `{title}. {description}. {meta}. Topics: {subjects}`
  */
 export function notionCourseEmbeddingText(
-  course: NotionCourseEmbeddingTextInput
+  course: NotionCourseEmbeddingTextInput,
+  relatedTerms?: string[]
 ): string {
   const title = (course.title ?? '').trim()
   const description = (course.description ?? '').trim()
@@ -21,5 +23,8 @@ export function notionCourseEmbeddingText(
   const subjects = (course.subjects || [])
     .map((subject) => (typeof subject === 'string' ? subject.trim() : ''))
     .filter(Boolean)
-  return `${title}. ${description}. ${meta}. Topics: ${subjects.join(', ')}`
+  return appendRelatedTermsToEmbeddingText(
+    `${title}. ${description}. ${meta}. Topics: ${subjects.join(', ')}`,
+    relatedTerms
+  )
 }

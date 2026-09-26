@@ -143,7 +143,11 @@ describe('learningPathEmbeddingText', () => {
         summary: 'Attention and training',
         nodes: [
           { kind: 'goal', label: 'Implement a transformer' },
-          { kind: 'concept', label: 'Attention' },
+          {
+            kind: 'concept',
+            label: 'Attention',
+            description: 'QKV and softmax'
+          },
           { kind: 'concept', label: '' },
           { kind: 'milestone', label: 'Train a tiny model' }
         ]
@@ -151,7 +155,7 @@ describe('learningPathEmbeddingText', () => {
     })
     assert.equal(
       text,
-      'Transformers. Implement a transformer. Attention and training. Topics: Attention, Train a tiny model'
+      'Transformers. Implement a transformer. Attention and training. Topics: Attention: QKV and softmax, Train a tiny model'
     )
   })
 
@@ -169,6 +173,7 @@ describe('learningPathEmbeddingText', () => {
             id: 't1',
             type: 'topic',
             title: 'Systems',
+            description: 'Solve linear systems',
             children: [
               {
                 id: 'c1',
@@ -185,7 +190,7 @@ describe('learningPathEmbeddingText', () => {
     })
     assert.equal(
       text,
-      'Linear Algebra. Vectors and matrices. Topics: Systems, Echelon form'
+      'Linear Algebra. Vectors and matrices. Topics: Systems: Solve linear systems, Echelon form'
     )
     assert.equal(text.includes('Skip me'), false)
   })

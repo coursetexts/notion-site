@@ -338,8 +338,8 @@ export function AllCoursesNewGridSection({
             cards={cards}
             emptyMessage={
               searched
-                ? 'No degree curricula matched your search.'
-                : 'No degree curricula yet.'
+                ? 'No degrees matched your search.'
+                : 'No degrees yet.'
             }
             descriptionWidth='75%'
             startSlot={searched ? undefined : <DegreesPromoCard />}
@@ -391,13 +391,13 @@ export function AllCoursesNewGridSection({
         />
 
         <div className={`${styles.resultGroup} ${styles.academicDegrees}`}>
-          <h2 className={styles.groupHeading}>Degree curricula</h2>
+          <h2 className={styles.groupHeading}>Degrees</h2>
           <CourseCardGrid
             cards={degreeCards}
             emptyMessage={
               searched
-                ? 'No degree curricula matched your search.'
-                : 'No degree curricula yet.'
+                ? 'No degrees matched your search.'
+                : 'No degrees yet.'
             }
             descriptionWidth='75%'
           />

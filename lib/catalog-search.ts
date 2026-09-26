@@ -3,6 +3,7 @@
  * university courses, degree curricula, and research questions, then
  * surface the best match and group the rest by type.
  */
+import { synonymsForNormalizedQuery } from '@/lib/catalog-search-synonyms'
 
 export const CATALOG_RESULT_KINDS = [
   'learning-path',
@@ -85,20 +86,6 @@ const SCHOOL_TOKENS = new Set([
   'cambridge'
 ])
 
-/** Extra related terms for a few high-intent learning goals. */
-const TOKEN_EXPANSIONS: Record<string, string[]> = {
-  transformer: [
-    'attention',
-    'language model',
-    'nlp',
-    'deep learning',
-    'neural',
-    'machine learning'
-  ],
-  nlp: ['language model', 'transformer', 'natural language'],
-  llm: ['language model', 'transformer', 'deep learning']
-}
-
 const QUERY_MATCH_PER_GROUP = 12
 const RELATED_ONLY_PER_GROUP = 4
 
@@ -150,13 +137,21 @@ function uniqueStrings(values: string[]): string[] {
 }
 
 export function queryExpansionTerms(query: string): string[] {
-  const terms: string[] = []
-  for (const token of catalogTokens(query)) {
-    const extras = TOKEN_EXPANSIONS[token]
-    if (!extras) continue
-    terms.push(...extras)
-  }
-  return uniqueStrings(terms)
+  return uniqueStrings(
+    synonymsForNormalizedQuery(
+      normalizeCatalogText(query),
+      catalogTokens(query)
+    )
+  )
+}
+
+/** Query text sent to the embedding model (original + synonym phrases). */
+export function expandCatalogQueryForEmbedding(query: string): string {
+  const trimmed = query.trim()
+  if (!trimmed) return ''
+  const extras = queryExpansionTerms(trimmed)
+  if (extras.length === 0) return trimmed
+  return `${trimmed} ${extras.join(' ')}`
 }
 
 function fieldScore(
@@ -212,8 +207,9 @@ export function scoreCatalogItem(
   const meta = fieldScore(queryNorm, queryTokens, item.meta, 18)
   const extra = fieldScore(queryNorm, queryTokens, item.extra, 14)
   const base = title + goal + description + meta + extra
-  if (base <= 0) return 0
-  return base + kindBoost(item.kind, queryTokens)
+  const synonym = relatedTermScore(item, queryExpansionTerms(trimmed))
+  if (base <= 0 && synonym <= 0) return 0
+  return (base > 0 ? base : synonym) + kindBoost(item.kind, queryTokens)
 }
 
 function relatedTermScore(item: CatalogSearchItem, terms: string[]): number {
@@ -222,7 +218,9 @@ function relatedTermScore(item: CatalogSearchItem, terms: string[]): number {
   const haystacks = [
     title,
     normalizeCatalogText(item.goal || ''),
-    normalizeCatalogText(item.meta || '')
+    normalizeCatalogText(item.description || ''),
+    normalizeCatalogText(item.meta || ''),
+    normalizeCatalogText(item.extra || '')
   ].filter(Boolean)
 
   let best = 0

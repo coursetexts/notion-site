@@ -131,7 +131,20 @@ function parseViewParam(
   return 'all'
 }
 
-function universityCourseToItem(course: HomeCourseCard): CatalogSearchItem {
+function withRelatedTerms(
+  extra: string | undefined,
+  terms: string[] | undefined
+): string | undefined {
+  const cleaned = (terms || []).map((term) => term.trim()).filter(Boolean)
+  if (cleaned.length === 0) return extra
+  if (!extra?.trim()) return cleaned.join(' ')
+  return `${extra} ${cleaned.join(' ')}`
+}
+
+function universityCourseToItem(
+  course: HomeCourseCard,
+  relatedTerms?: string[]
+): CatalogSearchItem {
   return {
     id: course.id,
     kind: 'university-course',
@@ -139,17 +152,24 @@ function universityCourseToItem(course: HomeCourseCard): CatalogSearchItem {
     title: course.title,
     description: course.description,
     meta: course.meta,
-    extra: `${course.meta} ${(course.subjects || []).join(' ')}`,
+    extra: withRelatedTerms(
+      `${course.meta} ${(course.subjects || []).join(' ')}`,
+      relatedTerms
+    ),
+    relatedTerms,
     subjects: course.subjects
   }
 }
 
 function communityPathToItem(
   path: HomeCourseCard,
-  extrasBySlug: Record<string, LearningPathSearchExtras>
+  extrasBySlug: Record<string, LearningPathSearchExtras>,
+  relatedTermsByItemId: Record<string, string[]> = {}
 ): CatalogSearchItem {
   const slug = learningPathCardSlug(path)
   const extras = extrasBySlug[slug]
+  const related =
+    relatedTermsByItemId[path.id] || relatedTermsByItemId[slug] || []
   return {
     id: path.id,
     kind: 'learning-path',
@@ -157,14 +177,20 @@ function communityPathToItem(
     title: path.title,
     description: path.description,
     meta: path.meta,
-    extra: extras?.extra,
-    relatedTerms: extras?.relatedTerms,
+    extra: withRelatedTerms(extras?.extra, related),
+    relatedTerms: [...(extras?.relatedTerms || []), ...related],
     stats: extras?.stats,
     communityMark: true
   }
 }
 
-function syllabusToItem(path: HomeCourseCard): CatalogSearchItem {
+function syllabusToItem(
+  path: HomeCourseCard,
+  relatedTermsByItemId: Record<string, string[]> = {}
+): CatalogSearchItem {
+  const slug = learningPathCardSlug(path)
+  const related =
+    relatedTermsByItemId[path.id] || relatedTermsByItemId[slug] || []
   return {
     id: path.id,
     kind: 'learning-path',
@@ -172,8 +198,8 @@ function syllabusToItem(path: HomeCourseCard): CatalogSearchItem {
     title: path.title,
     description: path.description,
     meta: path.meta,
-    extra: `${path.title} ${path.description}`,
-    relatedTerms: [path.title],
+    extra: withRelatedTerms(`${path.title} ${path.description}`, related),
+    relatedTerms: [path.title, ...related],
     subjectDegreeId: path.subjectDegreeId
   }
 }
@@ -185,6 +211,7 @@ type AllCoursesPageProps = {
   degrees?: CatalogSearchItem[]
   research?: CatalogSearchItem[]
   pathExtrasBySlug?: Record<string, LearningPathSearchExtras>
+  relatedTermsByItemId?: Record<string, string[]>
   notionHomeDebug?: NotionHomeDebugPayload | null
 }
 
@@ -269,6 +296,14 @@ export const getStaticProps: GetStaticProps<AllCoursesPageProps> = async (
   } = await import('@/lib/catalog-search-index')
   const coursePaths = listFilledCuratedCourseCatalog().map(coursePathToCard)
   const pathExtrasBySlug = listSeededLearningPathExtras()
+  const { listCatalogRelatedTermsByKind } = await import(
+    '@/lib/catalog-related-terms-db'
+  )
+  const [pathTerms, courseTerms] = await Promise.all([
+    listCatalogRelatedTermsByKind('learning-path'),
+    listCatalogRelatedTermsByKind('university-course')
+  ])
+  const relatedTermsByItemId = { ...pathTerms, ...courseTerms }
   const { SEEDED_LEARNING_PATHS } = await import('@/lib/learning-path-seed')
   const learningPaths = SEEDED_LEARNING_PATHS.map((path) =>
     nonCoursePathToCard(
@@ -291,7 +326,8 @@ export const getStaticProps: GetStaticProps<AllCoursesPageProps> = async (
       learningPaths,
       degrees: listDegreeCatalogItems(),
       research: listResearchCatalogItems(),
-      pathExtrasBySlug
+      pathExtrasBySlug,
+      relatedTermsByItemId
     }
   }
 }
@@ -303,6 +339,7 @@ export default function AllCoursesPage({
   degrees = [],
   research = [],
   pathExtrasBySlug = {},
+  relatedTermsByItemId = {},
   notionHomeDebug
 }: AllCoursesPageProps) {
   const router = useRouter()
@@ -542,10 +579,14 @@ export default function AllCoursesPage({
     )
     return [
       ...learningPaths.map((path) =>
-        communityPathToItem(path, pathExtrasBySlug)
+        communityPathToItem(path, pathExtrasBySlug, relatedTermsByItemId)
       ),
-      ...coursePaths.map(syllabusToItem),
-      ...subjectFilteredCourses.map(universityCourseToItem),
+      ...coursePaths.map((path) =>
+        syllabusToItem(path, relatedTermsByItemId)
+      ),
+      ...subjectFilteredCourses.map((course) =>
+        universityCourseToItem(course, relatedTermsByItemId[course.id])
+      ),
       ...research
     ]
   }, [
@@ -554,6 +595,7 @@ export default function AllCoursesPage({
     courses,
     learningPaths,
     pathExtrasBySlug,
+    relatedTermsByItemId,
     research
   ])
 
@@ -657,14 +699,21 @@ export default function AllCoursesPage({
         if (match.kind === 'university-course') {
           const card = findCardForSemanticMatch(match, loadedCourseCards)
           if (!card) return null
-          return universityCourseToItem(card)
-        }
-        const card = findCardForSemanticMatch(match, loadedPathCards)
-        if (!card) return null
-        if (coursePathIds.has(card.id) || coursePathHrefs.has(card.href)) {
-          return syllabusToItem(card)
-        }
-        return communityPathToItem(card, pathExtrasBySlug)
+            return universityCourseToItem(
+              card,
+              relatedTermsByItemId[card.id]
+            )
+          }
+          const card = findCardForSemanticMatch(match, loadedPathCards)
+          if (!card) return null
+          if (coursePathIds.has(card.id) || coursePathHrefs.has(card.href)) {
+            return syllabusToItem(card, relatedTermsByItemId)
+          }
+          return communityPathToItem(
+            card,
+            pathExtrasBySlug,
+            relatedTermsByItemId
+          )
       })
     }
 
@@ -682,7 +731,11 @@ export default function AllCoursesPage({
               kind: 'learning-path' as const,
               label: 'Learning paths',
               hits: browsePaths.map((path) => ({
-                ...communityPathToItem(path, pathExtrasBySlug),
+                ...communityPathToItem(
+                  path,
+                  pathExtrasBySlug,
+                  relatedTermsByItemId
+                ),
                 score: 0,
                 match: 'query' as const
               }))
@@ -693,7 +746,10 @@ export default function AllCoursesPage({
               kind: 'university-course' as const,
               label: 'University courses',
               hits: browseCourses.map((course) => ({
-                ...universityCourseToItem(course),
+                ...universityCourseToItem(
+                  course,
+                  relatedTermsByItemId[course.id]
+                ),
                 score: 0,
                 match: 'query' as const
               }))
@@ -720,6 +776,7 @@ export default function AllCoursesPage({
     learningPaths,
     pathExtrasBySlug,
     query,
+    relatedTermsByItemId,
     research,
     semanticMatches
   ])

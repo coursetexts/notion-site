@@ -104,11 +104,36 @@ function formatVector(values: number[]): string {
   return `[${values.join(',')}]`
 }
 
+async function fetchRelatedTerms(): Promise<Map<string, string[]>> {
+  const map = new Map<string, string[]>()
+  for (let from = 0; ; from += PAGE_SIZE) {
+    const to = from + PAGE_SIZE - 1
+    const { data, error } = await admin
+      .from('catalog_related_terms')
+      .select('item_id, terms')
+      .eq('item_kind', 'learning-path')
+      .range(from, to)
+    if (error) break
+    const page = data || []
+    for (const row of page) {
+      if (typeof row.item_id === 'string' && Array.isArray(row.terms)) {
+        map.set(
+          row.item_id,
+          row.terms.filter((term): term is string => typeof term === 'string')
+        )
+      }
+    }
+    if (page.length < PAGE_SIZE) break
+  }
+  return map
+}
+
 function wouldSkipUnchanged(
   row: PathRow,
-  existing: Map<string, EmbeddingRow>
+  existing: Map<string, EmbeddingRow>,
+  relatedTerms: Map<string, string[]>
 ): boolean {
-  const text = learningPathEmbeddingText(row)
+  const text = learningPathEmbeddingText(row, relatedTerms.get(row.id))
   const contentHash = learningPathEmbeddingHash(text)
   const prior = existing.get(row.id)
   return Boolean(
@@ -213,6 +238,7 @@ async function run() {
   const eligible = allRows.filter(isCatalogVisibleLearningPath)
   const eligibleIds = new Set(eligible.map((row) => row.id))
   const existing = await fetchExistingEmbeddings()
+  const relatedTerms = await fetchRelatedTerms()
 
   const staleIds = [...existing.keys()].filter((id) => !eligibleIds.has(id))
 
@@ -222,7 +248,7 @@ async function run() {
     const byKind: Record<string, number> = {}
     for (const row of eligible) {
       byKind[row.kind || 'unknown'] = (byKind[row.kind || 'unknown'] || 0) + 1
-      if (wouldSkipUnchanged(row, existing)) {
+      if (wouldSkipUnchanged(row, existing, relatedTerms)) {
         wouldSkip += 1
       } else {
         wouldEmbed += 1
@@ -254,7 +280,7 @@ async function run() {
     const row = eligible[i]
     const label = `${row.slug || row.id} (${row.kind})`
     try {
-      const text = learningPathEmbeddingText(row)
+      const text = learningPathEmbeddingText(row, relatedTerms.get(row.id))
       const contentHash = learningPathEmbeddingHash(text)
       const prior = existing.get(row.id)
       if (

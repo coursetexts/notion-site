@@ -53,7 +53,7 @@ export const ALL_COURSES_VIEW_LABELS: Record<AllCoursesView, string> = {
   all: 'All Learning Paths',
   courses: 'All University Courses',
   'learning-paths': 'Goal-based',
-  degrees: 'Degree Curricula',
+  degrees: 'Degrees',
   research: 'Research Questions'
 }
 

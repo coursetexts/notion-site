@@ -81,6 +81,7 @@ const SCHOOL_FILTERS = [
 
 type AllCoursesPageProps = {
   courses: HomeCourseCard[]
+  relatedTermsByItemId?: Record<string, string[]>
   notionHomeDebug?: NotionHomeDebugPayload | null
 }
 
@@ -129,10 +130,14 @@ function matchesCourseSubjects(
   })
 }
 
-function courseMatchesQuery(course: HomeCourseCard, query: string): boolean {
+function courseMatchesQuery(
+  course: HomeCourseCard,
+  query: string,
+  relatedTerms: string[] = []
+): boolean {
   const q = query.trim().toLowerCase()
   if (!q) return true
-  return `${course.title} ${course.meta} ${course.description}`
+  return `${course.title} ${course.meta} ${course.description} ${relatedTerms.join(' ')}`
     .toLowerCase()
     .includes(q)
 }
@@ -144,9 +149,16 @@ export const getStaticProps: GetStaticProps<AllCoursesPageProps> = async (
   const home = await getHomeStaticProps(ctx)
   if (!('props' in home)) return home
   const props = home.props as AllCoursesPageProps
+  const { listCatalogRelatedTermsByKind } = await import(
+    '@/lib/catalog-related-terms-db'
+  )
+  const relatedTermsByItemId = await listCatalogRelatedTermsByKind(
+    'university-course'
+  )
   return {
     props: {
       courses: props.courses,
+      relatedTermsByItemId,
       notionHomeDebug: props.notionHomeDebug ?? null
     },
     revalidate: 120
@@ -155,6 +167,7 @@ export const getStaticProps: GetStaticProps<AllCoursesPageProps> = async (
 
 export default function OfficialAllCoursesPage({
   courses,
+  relatedTermsByItemId = {},
   notionHomeDebug
 }: AllCoursesPageProps) {
   const router = useRouter()
@@ -291,7 +304,7 @@ export default function OfficialAllCoursesPage({
     if (!needle) return subjectFiltered
 
     const lexicalHits = subjectFiltered.filter((course) =>
-      courseMatchesQuery(course, needle)
+      courseMatchesQuery(course, needle, relatedTermsByItemId[course.id])
     )
     if (semanticMatches.length === 0) return lexicalHits
 
@@ -300,14 +313,17 @@ export default function OfficialAllCoursesPage({
     const seen = new Set<string>()
     const out: HomeCourseCard[] = []
     for (const course of ranked) {
-      if (semanticIds.has(course.id) || courseMatchesQuery(course, needle)) {
+      if (
+        semanticIds.has(course.id) ||
+        courseMatchesQuery(course, needle, relatedTermsByItemId[course.id])
+      ) {
         if (seen.has(course.id)) continue
         seen.add(course.id)
         out.push(course)
       }
     }
     return out
-  }, [activeSubjects, courses, query, semanticMatches])
+  }, [activeSubjects, courses, query, relatedTermsByItemId, semanticMatches])
 
   return (
     <>

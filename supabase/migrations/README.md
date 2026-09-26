@@ -105,6 +105,10 @@ For a named migration history instead of ad‑hoc snippets, use the Supabase CLI
 | `052_public_learning_path_commitments_read.sql` | Public SELECT on `learning_path_commitments` so other profiles can show **Committed**. |
 | `053_learning_path_invites_any_visibility.sql` | Owner invites + invitee outline edits on public/collaborative paths (not only private). |
 | `054_learning_path_invites_readable_on_path.sql` | Anyone who can read a path can SELECT its invites (people sidebar collaborators). |
+| `055_learning_path_embeddings.sql` | pgvector embeddings for catalog-visible learning paths + match RPC |
+| `056_match_catalog_visible_learning_path_embeddings.sql` | Match any catalog-visible path (not community/research-only) |
+| `057_notion_course_embeddings.sql` | Notion page-id embeddings + `match_notion_course_embeddings` |
+| `058_catalog_related_terms.sql` | Gemini search aliases for catalog items (public SELECT) |
 
 **Fresh project:** paste `000_complete_schema.sql` once (includes `001`–`014`, `017`–`030`, `034`–`038`, `040`, and commitment reminder columns). Skip `015`/`016` unless you already had old table names.
 

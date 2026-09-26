@@ -30,7 +30,9 @@
     "embed:learning-paths": "npx tsx scripts/embed-learning-paths.ts",
     "embed:notion-courses": "npx tsx scripts/embed-notion-courses.ts",
     "embed:notion-courses:dry": "npx tsx scripts/embed-notion-courses.ts --dry-run",
-    "test:semantic-learning-path-search": "npx tsx --test lib/semantic-learning-path-search.test.ts lib/learning-path-catalog-visibility.test.ts lib/notion-course-embedding-text.test.ts"
+    "embed:related-terms": "NODE_ENV=production npx tsx scripts/embed-catalog-related-terms.ts",
+    "embed:related-terms:dry": "NODE_ENV=production npx tsx scripts/embed-catalog-related-terms.ts --dry-run",
+    "test:semantic-learning-path-search": "npx tsx --test lib/semantic-learning-path-search.test.ts lib/learning-path-catalog-visibility.test.ts lib/notion-course-embedding-text.test.ts lib/catalog-search-synonyms.test.ts lib/catalog-related-terms.test.ts"
   },
   "dependencies": {
     "@fisch0920/use-dark-mode": "^2.4.0",

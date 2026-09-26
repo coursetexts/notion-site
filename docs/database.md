@@ -1,6 +1,6 @@
 # Database
 
-Fresh installs: apply SQL in [`supabase/migrations/`](../supabase/migrations/README.md). Prefer `000_complete_schema.sql` (includes `001`–`030`, `034`–`038`, and `040`, with `rating` already 0–100, plus commitment reminder columns). Existing DBs that already ran an older 1–5 `038` should also apply `039`. Apply `040` so collaborative paths cannot rewrite the outline. Apply `041` for Learn-tab commitments and optional reminder cadence (`041` creates `learning_path_commitments` if `030` was never applied). Apply `042` + `053` for collaborator invites by email (any visibility). Apply `043` so private or unknown learning-path URLs do not render an empty Coursetexts shell. Apply `045` so `/knowledge-graph` can persist topic–path occurrences. If you previously applied `046_official_course_content`, apply `047_revert_official_course_content` to drop those columns. Run `048_drop_community_wall_and_notebooks.sql` to drop legacy Community Wall and standalone notebook tables. Apply `049`–`051` for profile learning summary, Updates, and repost/quote. Apply `052_public_learning_path_commitments_read.sql` so public profiles can list another user’s committed Learning items. Apply `055`–`057` for semantic catalog search embeddings (learning paths + Notion courses); see [semantic catalog search](./plans/semantic-learning-path-search/README.md).
+Fresh installs: apply SQL in [`supabase/migrations/`](../supabase/migrations/README.md). Prefer `000_complete_schema.sql` (includes `001`–`030`, `034`–`038`, and `040`, with `rating` already 0–100, plus commitment reminder columns). Existing DBs that already ran an older 1–5 `038` should also apply `039`. Apply `040` so collaborative paths cannot rewrite the outline. Apply `041` for Learn-tab commitments and optional reminder cadence (`041` creates `learning_path_commitments` if `030` was never applied). Apply `042` + `053` for collaborator invites by email (any visibility). Apply `043` so private or unknown learning-path URLs do not render an empty Coursetexts shell. Apply `045` so `/knowledge-graph` can persist topic–path occurrences. If you previously applied `046_official_course_content`, apply `047_revert_official_course_content` to drop those columns. Run `048_drop_community_wall_and_notebooks.sql` to drop legacy Community Wall and standalone notebook tables. Apply `049`–`051` for profile learning summary, Updates, and repost/quote. Apply `052_public_learning_path_commitments_read.sql` so public profiles can list another user’s committed Learning items. Apply `055`–`058` for semantic catalog search embeddings (learning paths + Notion courses) and Gemini related-search phrases; see [semantic catalog search](./plans/semantic-learning-path-search/README.md).
 
 ## Table groups
 
@@ -401,7 +401,7 @@ Index `learning_paths_public_research_goal_idx` (`026`/`027`) speeds Field Atlas
 
 ## Catalog embeddings (semantic search)
 
-Apply `055`–`057` on existing projects that need paraphrased catalog search. Service role only (RLS on, no anon/authenticated policies). See [semantic catalog search](./plans/semantic-learning-path-search/README.md).
+Apply `055`–`058` on existing projects that need paraphrased catalog search. Embedding tables are service role only (RLS on, no anon/authenticated policies). Related-term aliases (`058`) are public SELECT. See [semantic catalog search](./plans/semantic-learning-path-search/README.md).
 
 ```mermaid
 erDiagram
@@ -428,8 +428,9 @@ erDiagram
 | `learning_path_embeddings`                                          | 384-d vectors for catalog-visible `learning_paths` rows (`055`). Match RPC updated in `056` for any non-private path (filled courses included). |
 | `notion_course_embeddings`                                          | Vectors keyed by Notion page id for official university courses (`057`). No FK to `learning_paths`.                                             |
 | `match_learning_path_embeddings` / `match_notion_course_embeddings` | Cosine nearest neighbors; `execute` granted to `service_role` only.                                                                             |
+| `catalog_related_terms`                                             | Gemini search aliases keyed by `item_kind` + `item_id` (`058`). Public SELECT; writes via service role.                                         |
 
-Backfill: `yarn embed:learning-paths`, `yarn embed:notion-courses` (dry-run / production opt-in documented in the plan README).
+Backfill: `yarn embed:related-terms` (Gemini aliases, then re-embed), or `yarn embed:learning-paths` / `yarn embed:notion-courses` (dry-run / production opt-in documented in the plan README).
 
 ## Social
 

@@ -1,6 +1,8 @@
 import { type FeatureExtractionPipeline, pipeline } from '@xenova/transformers'
 import { createHash } from 'crypto'
 
+import { expandCatalogQueryForEmbedding } from '@/lib/catalog-search'
+
 export const LEARNING_PATH_EMBED_MODEL = 'Xenova/bge-small-en-v1.5'
 export const LEARNING_PATH_EMBED_DIM = 384
 const QUERY_PREFIX = 'Represent this sentence for searching relevant passages: '
@@ -26,5 +28,5 @@ export function embedLearningPathText(embeddingText: string) {
 }
 
 export function embedLearningPathQuery(query: string) {
-  return embed(`${QUERY_PREFIX}${query}`)
+  return embed(`${QUERY_PREFIX}${expandCatalogQueryForEmbedding(query)}`)
 }
