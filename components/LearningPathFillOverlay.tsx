@@ -5,7 +5,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 
 import styles from './LearningPathFillOverlay.module.css'
 
-const FILL_MESSAGES = ['Watering your path.', 'Creating your steps.'] as const
+const FILL_MESSAGES = ['Generating an outline...'] as const
 
 export function LearningPathFillOverlay({ open }: { open: boolean }) {
   const reduceMotion = useReducedMotion()

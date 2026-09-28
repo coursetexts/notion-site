@@ -19,6 +19,17 @@
   letter-spacing: -0.005em;
 }
 
+.link {
+  color: #0089c4;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.link:hover,
+.link:focus-visible {
+  opacity: 0.85;
+}
+
 @media (max-width: 720px) {
   .banner {
     padding: 9px 16px;

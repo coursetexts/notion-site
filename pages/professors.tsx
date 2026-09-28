@@ -50,20 +50,38 @@ export default function ProfessorsPage() {
             <h1 id='professors-title' className={styles.title}>
               For Professors
             </h1>
-            <p className={styles.lede}>
-              Contribute materials or publish a course.
-            </p>
             <div className={styles.body}>
               <p>
-                Coursetexts works with professors to publish advanced course
-                notes as open, durable texts. We handle partnership, permissions,
-                licensing, and provenance so students can read the material
-                without a paywall or a decaying LMS.
+                Are you a professor who has created a course curriculum or have
+                taught a course? We on the Coursetexts team would love to allow
+                learners from all around the world to learn from your expertise!
               </p>
               <p>
-                If you would like us to open-source lecture notes, problem sets,
-                or a full course, write to us. We will walk through rights,
-                attribution, and how the course would appear on the site.
+                We have worked directly with over 50 professors from
+                universities such as Harvard and Yale to open-access their course
+                materials. You can see examples of previous courses we&apos;ve
+                open-accessed{' '}
+                <Link href='/all-courses' legacyBehavior>
+                  <a className={styles.inlineLink}>here</a>
+                </Link>
+                .
+              </p>
+              <p>
+                CourseTexts handles permissions, licensing, distribution,
+                attribution, and copyright protection for you. Open-accessing a
+                course can take less than an hour of your time to benefit
+                thousands of students and self-learners.
+              </p>
+              <p>
+                If you&apos;d like to know more, please reach out to our team by
+                emailing{' '}
+                <a
+                  className={styles.inlineLink}
+                  href='mailto:coursetexts.info@gmail.com'
+                >
+                  coursetexts.info@gmail.com
+                </a>
+                !
               </p>
             </div>
             <div className={styles.actions}>

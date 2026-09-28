@@ -60,7 +60,9 @@ export function ProfileKnowledgePanel({
       {loading ? (
         <p className={styles.placeholder}>Loading…</p>
       ) : topics.length === 0 ? (
-        <p className={styles.placeholder}>{emptyMessage}</p>
+        emptyMessage ? (
+          <p className={styles.placeholder}>{emptyMessage}</p>
+        ) : null
       ) : visible.length === 0 ? (
         <p className={styles.placeholder}>No matching topics.</p>
       ) : (

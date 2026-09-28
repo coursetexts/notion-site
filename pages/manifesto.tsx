@@ -1,68 +1,45 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import React from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 
+import { AutodidactTerm } from '@/components/AutodidactTerm'
+import { GlossaryTerm } from '@/components/GlossaryTerm'
 import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
+import { LearningPathsTutorialButton } from '@/components/LearningPathsTutorialButton'
+import { discord, donate } from '@/lib/config'
 import styles from '@/styles/manifesto.module.css'
 
 const tocItems = [
   { href: '#introduction', label: 'Introduction' },
-  { href: '#why-ocw', label: 'Why OCW' },
-  { href: '#institutional-freedom', label: 'Institutional Freedom' }
+  { href: '#what-is-coursetexts', label: 'What is CourseTexts?' },
+  { href: '#how-it-works', label: 'How Does CourseTexts Work?' },
+  { href: '#history', label: 'CourseTexts History' },
+  { href: '#acknowledgements', label: 'Acknowledgements' }
 ]
 
-const principles = [
-  {
-    title: 'Knowledge is a public good, not a gated asset.',
-    body: 'The best teaching shouldn’t be trapped behind logins, paywalls, or brittle interfaces. Graduate-level and “frontier” material is too often passed around as private notes, Canvas exports, and half-forgotten lecture videos. We work to pull these materials into the open internet and keep them usable.'
-  },
-  {
-    title: 'Self-directed doesn’t mean solitary.',
-    body: 'Many of the most curious people are learning outside of the status quo. The communities that shaped the Coursetexts team (like Socratica, Hacklodge, and Interact) didn’t just provide resources. They showed us what was possible. We want Coursetexts to carry a wondrous and encouraging feeling via shared materials, shared questions, and visible traces of other minds.'
-  },
-  {
-    title: 'Universities are partners.',
-    body: "We respect professors' rights immensely, and work within their constraints. The goal is to give their best work a longer, wider life, with consent, credit, and context."
-  },
-  {
-    title: 'Learning software should be evergreen.',
-    body: 'When education companies optimize for growth and revenue, experience quality usually collapses. Coursetexts is “forever green”: we are fully volunteer run, our north star is better learning, and we will never monetize.'
-  },
-  {
-    title: 'Open by default, careful by principle.',
-    body: 'When we put materials on the internet, we assume they will be scraped, remixed, and fed into models. We will not sell private course data to labs, and we will be honest with professors about the tradeoffs of open-source. When we ask professors for consent to put their course up, they default to the Creative Commons BY-NC-SA 4.0 license (this is the standard one that OCW uses).'
-  },
-  {
-    title: 'Curiosity is an end in itself.',
-    body: 'We are building for people just like ourselves, whose greatest fear is losing their curiosity. Coursetexts aims to help more people, students, dropouts, working engineers, retirees, find it natural to keep seriously and unseriously learning hard things and making multidisciplinary connections for the rest of their lives.'
-  }
-]
+const BLOG_PIPELINE_URL =
+  'https://blog.coursetexts.org/automating-copyright-compliance-for-open-courseware'
 
-const lookingForwardCards = [
-  {
-    image: '/images/manifesto/left-bookcase.png',
-    text: 'The internet library is a living repository for humans.'
-  },
-  {
-    image: '/images/manifesto/middle-brain.png',
-    text: 'Your brain is your most complex organ, structured with folds that dramatically increase surface area.'
-  },
-  {
-    image: '/images/manifesto/right-origami.png',
-    text: 'Coursecrane increases the nourishing educational surface area of your exposure, with world-class material that should be public.'
-  }
-] as const
-
-const gratitudeCopy =
-  "Coursetexts is 100% volunteer-run and nonprofit, led by student volunteers from MIT, Harvard, Waterloo, Laurier, and Purdue. We're grateful to Michael Nielsen and the Institute for their grant support, and to Lawrence Lessig and Peter Suber for their advisorship. If you want to collaborate, we'd love to hear from you."
-
-const manifestoNotes = [
-  '[1] MIT OpenCourseWare annual operating cost (~$2.7M for 2,300+ courses) from MIT OCW fundraising pages. Cited figure is total operational cost including infrastructure, publishing, and rights clearance staffing, not a per-image clearance rate. Source: ocw.mit.edu/give. The $1,170/course/year figure is a simple division; actual per-course clearance labor varies significantly by discipline (art history >> computer science).',
-  `[2] MIT OCW's own FAQ states that course packs containing proprietary content "cannot be provided under our license." Source: mitocw.zendesk.com.`,
-  '17 U.S.C. § 107 (fair use). Campbell v. Acuff-Rose Music, Inc., 510 U.S. 569 (1994), the decision that established transformativeness as the primary analytical lens for factor 1 analysis.',
-  'Article was written in collaboration with Aileen Luo.'
-] as const
+function ExternalLink({
+  href,
+  children
+}: {
+  href: string
+  children: React.ReactNode
+}) {
+  return (
+    <a
+      className={styles.inlineLink}
+      href={href}
+      target='_blank'
+      rel='noreferrer'
+    >
+      {children}
+    </a>
+  )
+}
 
 function ArrowLeftIcon() {
   return (
@@ -134,47 +111,6 @@ function Reveal({ children, className, delay = 0 }: RevealProps) {
   )
 }
 
-function ManifestoArticleFooter() {
-  return (
-    <div className={styles.articleFooter}>
-      <div className={styles.articleFooterTop} />
-      <div className={styles.articleFooterTopSecondary} />
-
-      <div className={styles.articleFooterBody}>
-        <div className={styles.articleFooterIdentity}>
-          <div className={styles.articleFooterAuthorRow}>
-            <img
-              alt='Coursetexts Engineering Team'
-              className={styles.articleFooterAvatar}
-              height={38}
-              src='/images/manifesto/blog-team.png'
-              width={38}
-            />
-            <p className={styles.articleFooterName}>
-              Coursetexts Engineering Team
-            </p>
-          </div>
-
-          <a
-            className={styles.articleFooterButton}
-            href='https://coursetexts.org/why'
-            rel='noreferrer'
-            target='_blank'
-          >
-            Learn More
-          </a>
-        </div>
-
-        <p className={styles.articleFooterDescription}>
-          {gratitudeCopy}
-        </p>
-      </div>
-
-      <div className={styles.articleFooterBottom} />
-    </div>
-  )
-}
-
 const homeChromeVars = {
   '--home-side': 'clamp(20px, 4.03vw, 58px)',
   '--home-main-max': '1324px',
@@ -212,8 +148,8 @@ export default function ManifestoPage() {
     if (navigator.share) {
       try {
         await navigator.share({
-          title: 'The Coursecrane Manifesto',
-          text: 'The Coursecrane Manifesto',
+          title: 'Why Coursetexts',
+          text: 'Why Coursetexts',
           url
         })
         return
@@ -257,9 +193,9 @@ export default function ManifestoPage() {
   return (
     <>
       <Head>
-        <title>The Coursecrane Manifesto | Coursetexts</title>
+        <title>Why Coursetexts | Coursetexts</title>
         <meta
-          content='Curated knowledge exists in extraordinary abundance, but the best of it still stays locked away.'
+          content='Coursetexts is a community of learners, a home for pedagogical materials, and an applied learning science lab.'
           name='description'
         />
         <link rel='preconnect' href='https://use.typekit.net' />
@@ -330,25 +266,24 @@ export default function ManifestoPage() {
                 <article className={styles.article}>
                 <Reveal>
                   <div className={styles.headingRow}>
-                    <h1 className={styles.title}>The Coursecrane Manifesto</h1>
-                    <span className={styles.dateBadge}>March 19, 2026</span>
+                    <h1 className={styles.title}>Why Coursetexts</h1>
                   </div>
 
                   <blockquote className={styles.quoteBlock}>
                     <p>
-                      &quot;When I was in high school, I searched everywhere for
-                      materials on the physics of MRI. Every course I found was
-                      aimed at medical students, high-level overviews, nothing
-                      deeper.
-                    </p>
-                    <p>
-                      Years later, I landed at Harvard and finally took a class
-                      on how MRIs work. The lecture notes were incredible, but
-                      only accessible to those in the class.
-                    </p>
-                    <p>
-                      I would have done anything to have had those notes be
-                      available in high school [1].&quot;
+                      CourseTexts is a community of learners, a home for{' '}
+                      <GlossaryTerm term='pedagogicalMaterials'>
+                        pedagogical materials
+                      </GlossaryTerm>
+                      , and an applied learning science lab. We design new{' '}
+                      <GlossaryTerm term='interactionParadigms'>
+                        interaction paradigms
+                      </GlossaryTerm>{' '}
+                      to support learning and{' '}
+                      <GlossaryTerm term='metacognitiveDevelopment'>
+                        metacognitive development
+                      </GlossaryTerm>
+                      .
                     </p>
                   </blockquote>
                 </Reveal>
@@ -356,42 +291,279 @@ export default function ManifestoPage() {
                 <Reveal delay={0.05}>
                   <section className={styles.lead} id='introduction'>
                     <p>
-                      Curated knowledge exists in extraordinary abundance, at
-                      universities across the world. The problem is that the
-                      best of it stays locked inside Canvas exports, private
-                      lecture notes, and course videos that expire when the
-                      semester ends.
+                      Welcome to CourseTexts! If you&apos;ve found us, you
+                      likely care deeply about learning and connecting with
+                      other learners. We&apos;re on a journey to foster a{' '}
+                      <strong>
+                        community for{' '}
+                        <AutodidactTerm>autodidacts</AutodidactTerm>
+                      </strong>{' '}
+                      like you who enjoy exploring rabbit holes and other
+                      personal curiosities outside of the traditional classroom
+                      environment.
                     </p>
                     <p>
-                      Only a small fraction of courses at universities are
-                      publicly available. We want to live in a world where
-                      anyone can learn higher-level subjects for free,
-                      especially advanced and niche courses for which there are
-                      no online equivalents.
+                      In this inaugural essay, we outline what we hope to
+                      achieve with CourseTexts, provide a bit of relevant
+                      history about the organization, and open up some
+                      discussion about where we&apos;re headed next.
                     </p>
+                    <p>
+                      We hope you&apos;ll join us in our journey, whether it be
+                      as a{' '}
+                      <Link href='/signin' legacyBehavior>
+                        <a className={styles.inlineLink}>fellow learner</a>
+                      </Link>{' '}
+                      or{' '}
+                      <ExternalLink
+                        href={discord || 'https://discord.gg/6xBECjtC55'}
+                      >
+                        contributor
+                      </ExternalLink>
+                      !
+                    </p>
+                    <p className={styles.signoff}>—The CourseTexts team</p>
                   </section>
                 </Reveal>
 
                 <Reveal delay={0.08}>
-                  <section className={styles.contentSection} id='why-ocw'>
+                  <section
+                    className={styles.contentSection}
+                    id='what-is-coursetexts'
+                  >
                     <h2 className={styles.sectionHeading}>
-                      Professors spend lifetimes writing and distilling research
-                      into digestible, teachable chunks.
+                      What is CourseTexts?
                     </h2>
                     <p className={styles.bodyText}>
-                      Access to their life&apos;s work ends for students when a
-                      login expires. Coursecrane is the infrastructure for
-                      bridging the gap between lifelong learners and the heavy
-                      gates that must be pushed past to acquire institutional
-                      knowledge.
+                      CourseTexts is a community of learners, a home for{' '}
+                      <GlossaryTerm term='pedagogicalMaterials'>
+                        pedagogical materials
+                      </GlossaryTerm>
+                      , and an applied learning science lab. We design new{' '}
+                      <GlossaryTerm term='interactionParadigms'>
+                        interaction paradigms
+                      </GlossaryTerm>{' '}
+                      to support learning and{' '}
+                      <GlossaryTerm term='metacognitiveDevelopment'>
+                        metacognitive development
+                      </GlossaryTerm>
+                      .
                     </p>
+                    <p className={styles.bodyText}>
+                      Our approach to improving our collective ability of
+                      learning to learn decomposes the problem into two separate
+                      subskills:
+                    </p>
+                    <p className={styles.bodyText}>
+                      (1) identifying learning objectives, current knowledge
+                      gaps, and the necessary skills to address these{' '}
+                      <GlossaryTerm term='conceptualDeficiencies'>
+                        conceptual deficiencies
+                      </GlossaryTerm>
+                      ;
+                    </p>
+                    <p className={styles.bodyText}>
+                      (2) reading textbooks, watching videos, listening to
+                      lectures, chatting with AI, and solving problems to absorb
+                      the intended topics through expert guidance.
+                    </p>
+                    <p className={styles.bodyText}>
+                      While we observe the second skill to be significantly more
+                      prevalent among learners than the first, we identify that
+                      the first skill will become increasingly more meaningful
+                      in a world where everyone has access to tools-for-thought
+                      and other{' '}
+                      <GlossaryTerm term='pedagogicalMediums'>
+                        pedagogical mediums
+                      </GlossaryTerm>{' '}
+                      that accelerate and extend one&apos;s ability to learn.
+                    </p>
+                    <blockquote className={styles.quoteBlock}>
+                      <p>
+                        We hypothesize that by building{' '}
+                        <GlossaryTerm term='foundationalComputingMediums'>
+                          foundational computing mediums
+                        </GlossaryTerm>{' '}
+                        that learners can modify and extend by specifying the
+                        behavior of their desired learning tool, we can shift
+                        the bottleneck from gathering and retaining information
+                        to choosing what to learn and where to learn the
+                        information from.
+                      </p>
+                    </blockquote>
+                    <p className={styles.bodyText}>
+                      There currently isn&apos;t a place where{' '}
+                      <AutodidactTerm>autodidacts</AutodidactTerm> can
+                      congregate, exchange resources, decide what and how to
+                      learn, and develop their ability to understand and retain
+                      knowledge. Many exceptional historical figures—poets,
+                      academics, authors, musicians, and scientists—were
+                      surrounded by a vibrant{' '}
+                      <GlossaryTerm term='intellectualMilieu'>
+                        intellectual milieu
+                      </GlossaryTerm>{' '}
+                      during their adolescence and periods of deep learning.
+                      Instead of viewing learning as a means of getting into
+                      university, finding a job, or earning a promotion,
+                      exceptional children followed their own curiosities, often
+                      without{' '}
+                      <GlossaryTerm term='institutionalBarriers'>
+                        institutional barriers
+                      </GlossaryTerm>
+                      , by immersing themselves in an intellectually{' '}
+                      <GlossaryTerm term='vivaciousCommunity'>
+                        vivacious community
+                      </GlossaryTerm>{' '}
+                      of other learners. This was often done through a mix of
+                      private tutoring, conversations with peers, and
+                      self-directed learning. The CourseTexts community&apos;s
+                      structure mirrors some of these same conditions that are
+                      known to incubate intellectual growth.
+                    </p>
+                    <blockquote className={styles.quoteBlock}>
+                      <p>
+                        An additional benefit of curating a community of{' '}
+                        <AutodidactTerm>autodidacts</AutodidactTerm> is that we
+                        can pilot pedagogical and{' '}
+                        <GlossaryTerm term='epistemicTools'>
+                          epistemic tools
+                        </GlossaryTerm>{' '}
+                        in real time with members of our community, which we
+                        feel is an important focus as AI becomes increasingly
+                        capable.
+                      </p>
+                    </blockquote>
+                    <p className={styles.bodyText}>
+                      One specific example of this is our upcoming experiment to
+                      encode Learning Paths: nonconventional progression through
+                      resources that have allowed a successful self-learner to
+                      achieve a goal such as learning a language or
+                      understanding a famous mathematical proof. Once we&apos;re
+                      more established, we intend to evolve the platform,
+                      community, data, and associated feedback into the
+                      foundations for a learning science laboratory to produce
+                      research findings within this problem space.
+                    </p>
+                  </section>
+                </Reveal>
+
+                <Reveal delay={0.1}>
+                  <section className={styles.contentSection} id='how-it-works'>
+                    <h2 className={styles.sectionHeading}>
+                      How Does CourseTexts Work?
+                    </h2>
+                    <p className={styles.bodyText}>
+                      CourseTexts currently supports learners and educators
+                      through two primary interfaces: the Course Catalog and the
+                      Learning Paths community. We intend to expand our scope of
+                      offerings through further explorations and experiments in
+                      upcoming releases.
+                    </p>
+
+                    <h3 className={styles.subHeading}>The Course Catalog</h3>
+                    <p className={styles.bodyText}>
+                      CourseTexts works directly with more than 70 professors
+                      across Harvard, Princeton, Yale, Columbia, Stanford, and
+                      MIT to open source their course syllabus, materials,
+                      assignments, and other resources that are helpful to{' '}
+                      <AutodidactTerm>autodidacts</AutodidactTerm>. Only a small
+                      fraction of courses at top universities are publicly
+                      available today; we want to work towards a world where
+                      anyone can learn anything for free from world-class
+                      experts, no matter the subject.
+                    </p>
+                    <p className={styles.bodyText}>
+                      After speaking with some professors, we learned that one
+                      of the primary reasons for not publishing their courses
+                      publicly is that it takes too much time. Many of the
+                      bottlenecks to open sourcing courses revolve around
+                      copyright concerns and the friction associated with
+                      transferring materials from Canvas to an open source
+                      medium, like MIT OpenCourseWare.
+                    </p>
+                    <p className={styles.bodyText}>
+                      We solved this problem for professors and course staff by
+                      creating a copyright and publication pipeline that
+                      connects directly to their Canvas courses, removes
+                      copyrighted sources, and uploads the materials approved by
+                      the professors to CourseTexts. Because many lower-division
+                      and introductory courses have already been made publicly
+                      available through past initiatives, we primarily focus on
+                      more advanced or obscure coursework, such as Superhero
+                      Theory and Cartography.
+                    </p>
+                    <div className={styles.articleActions}>
+                      <Link href='/' legacyBehavior>
+                        <a className={styles.primaryActionButton}>
+                          Browse the course catalog
+                        </a>
+                      </Link>
+                    </div>
+
+                    <h3 className={styles.subHeading}>Learning Paths</h3>
+                    <p className={styles.bodyText}>
+                      We draw inspiration from existing intellectual communities
+                      such as LessWrong, Math Stack Exchange, and the Art of
+                      Problem Solving to build a community forum where learners
+                      and professors can share textbooks, videos, blogs,
+                      educators, and other helpful resources for learning
+                      different topics across subjects.
+                    </p>
+                    <p className={styles.bodyText}>
+                      We recognize that a key challenge in autodidactic learning
+                      is knowing what to learn and where to learn it from:
+                      notably, subfields have nuanced prerequisites and not all
+                      learning materials offer the same level of rigor and
+                      intuition. Hence, instead of creating a list of resources
+                      for all courses, we have aggregated some resources that we
+                      have previously used to learn and will crowdsource
+                      additional resources and advice from members of our
+                      community.
+                    </p>
+                    <p className={styles.bodyText}>
+                      We have structured the CourseTexts Community around two
+                      primary contributions:
+                    </p>
+                    <p className={styles.bodyText}>
+                      1. Building prerequisite/corerequisite dependency trees at
+                      a granular level for the topics within a course or
+                      learning resource.
+                    </p>
+                    <p className={styles.bodyText}>
+                      2. Curating resources that have previously been successful
+                      for autodidactic learning. Instead of using AI to
+                      aggregate resources, we are creating an environment that
+                      makes it seamless for all community members to share
+                      insights from past engagements with learning materials.
+                    </p>
+                    <p className={styles.bodyText}>
+                      Our primary goal of the Forum is to facilitate the
+                      structure and growth of a comprehensive mapping of
+                      learning paths to encode the journeys that past learners
+                      successfully went through to accomplish their learning
+                      goals in a way that prospective learners can reproduce. We
+                      aim to accomplish this by creating a platform that is
+                      primarily beneficial to learners themselves through
+                      personalized tools and aids we won&apos;t be able to learn
+                      without, with the free positive externality that using the
+                      tools also grows our collective database of learning paths
+                      for others to iterate upon.
+                    </p>
+                    <div className={styles.articleActions}>
+                      <LearningPathsTutorialButton />
+                      <Link href='/paths' legacyBehavior>
+                        <a className={styles.primaryActionButton}>
+                          Explore Learning Paths
+                        </a>
+                      </Link>
+                    </div>
                   </section>
                 </Reveal>
 
                 <Reveal delay={0.12}>
                   <section
                     className={`${styles.contentSection} ${styles.birdRow}`}
-                    id='institutional-freedom'
+                    id='history'
                   >
                     <img
                       alt=''
@@ -402,13 +574,139 @@ export default function ManifestoPage() {
                       width={1232}
                     />
                     <h2 className={styles.sectionHeading}>
-                      Institutional freedom should not be a prerequisite for
-                      deep learning.
+                      CourseTexts History
                     </h2>
-                    <p className={styles.sectionSubtext}>
-                      The point is not to replace modern learning platforms. It
-                      is to lower the global barrier to publishing online and
-                      raise the collective ceiling of online learning.
+                    <p className={styles.bodyText}>
+                      CourseTexts began in 2024 as an open-source publishing
+                      pipeline where we allowed professors at MIT, Yale,
+                      Princeton, and Harvard to seamlessly upload their course
+                      materials and syllabi to be publicly available on our
+                      website. We grew out of MIT SOUL, a non-profit student
+                      organization at MIT that works to accelerate, experiment
+                      with, and build a stronger culture of open education at
+                      institutions of higher education.
+                    </p>
+                    <p className={styles.bodyText}>
+                      To increase the number of publicly available courses and
+                      reduce the friction associated with publishing them, we
+                      developed a content pipeline that (1) engaged interested
+                      professors to gain consent for publishing their courses;
+                      (2) accessed and aggregated course materials, lectures,
+                      syllabi, and assignments; (3) processing materials and
+                      videos to remove possible copyright infractions. These
+                      three processes have connected us with more than 70
+                      professors and made the aggregation and publication of
+                      materials (mostly) seamless, an order of magnitude less
+                      expensive, and significantly faster. You can read more
+                      about the publishing pipeline in{' '}
+                      <ExternalLink href={BLOG_PIPELINE_URL}>
+                        our blog post on the subject
+                      </ExternalLink>
+                      .
+                    </p>
+                    <p className={styles.bodyText}>
+                      We continue to maintain and offer this publishing pipeline
+                      as a core component of our community platform. We believe
+                      that first-party open access materials are a useful
+                      starting point to demonstrate the bar of content quality
+                      we intend to continue curating, both in-house and through
+                      community contributions over time.
+                    </p>
+                  </section>
+                </Reveal>
+
+                <Reveal delay={0.12}>
+                  <section
+                    className={styles.contentSection}
+                    id='acknowledgements'
+                  >
+                    <h2 className={styles.sectionHeading}>Acknowledgements</h2>
+                    <p className={styles.bodyText}>
+                      Coursetexts was founded by{' '}
+                      <ExternalLink href='https://selena.fyi/'>
+                        Selena
+                      </ExternalLink>{' '}
+                      and{' '}
+                      <ExternalLink href='http://aayushg.com/'>
+                        Aayush
+                      </ExternalLink>
+                      . It is now maintained by{' '}
+                      <ExternalLink href='https://x.com/eeshau'>
+                        Eesha
+                      </ExternalLink>
+                      ,{' '}
+                      <ExternalLink href='https://hudsonmp.github.io/'>
+                        Hudson
+                      </ExternalLink>
+                      , and{' '}
+                      <ExternalLink href='https://bencuan.me'>Ben</ExternalLink>
+                      .
+                    </p>
+                    <p className={styles.bodyText}>
+                      Thank you also to{' '}
+                      <ExternalLink href='https://www.jeremiahvuong.com/'>
+                        Jeremiah
+                      </ExternalLink>
+                      ,{' '}
+                      <ExternalLink href='https://abrandenberger.github.io/'>
+                        Anna
+                      </ExternalLink>
+                      ,{' '}
+                      <ExternalLink href='https://github.com/genthegreat'>
+                        Ezra
+                      </ExternalLink>
+                      ,{' '}
+                      <ExternalLink href='https://liamhz.com/'>Liam</ExternalLink>
+                      ,{' '}
+                      <ExternalLink href='https://github.com/bert0rm'>
+                        Rigo
+                      </ExternalLink>
+                      ,{' '}
+                      <ExternalLink href='https://www.linkedin.com/in/milo-cress-4279a0193'>
+                        Milo
+                      </ExternalLink>
+                      ,{' '}
+                      <ExternalLink href='https://www.linkedin.com/in/edwardkangafe/'>
+                        Edward
+                      </ExternalLink>
+                      ,{' '}
+                      <ExternalLink href='https://rhotter.com/'>
+                        Raffi
+                      </ExternalLink>
+                      ,{' '}
+                      <ExternalLink href='https://www.linkedin.com/in/ashay-athalye-842605172/'>
+                        Ashay
+                      </ExternalLink>
+                      ,{' '}
+                      <ExternalLink href='https://aileenis.online'>
+                        Aileen
+                      </ExternalLink>
+                      , Advikaa, Cherish, Akshith, Yassine, and Josh for their
+                      past (and future!) contributions.
+                    </p>
+                    <p className={styles.bodyText}>
+                      We&apos;re a 501(c)3 nonprofit fiscally sponsored by Hack
+                      Club, and{' '}
+                      <ExternalLink href={donate || '/support'}>
+                        donations are tax deductible
+                      </ExternalLink>
+                      .
+                    </p>
+                    <p className={styles.bodyText}>
+                      We&apos;re generously advised by professors{' '}
+                      <ExternalLink href='https://hls.harvard.edu/faculty/lawrence-lessig/'>
+                        Lawrence Lessig
+                      </ExternalLink>
+                      ,{' '}
+                      <ExternalLink href='https://library.harvard.edu/staff/peter-suber'>
+                        Peter Suber
+                      </ExternalLink>
+                      , and{' '}
+                      <ExternalLink href='https://tsl.mit.edu/team/justin-reich/'>
+                        Justin Reich
+                      </ExternalLink>
+                      . Thank you also to Brewster Kahle, Adam D&apos;Angelo,
+                      and Michael Nielsen for their support and advice.
                     </p>
                   </section>
                 </Reveal>
@@ -424,280 +722,46 @@ export default function ManifestoPage() {
                     />
                   </div>
                 </Reveal>
+                <Reveal className={styles.manifestoEndSection} delay={0.05}>
+                  <div className={styles.manifestoEndActions}>
+                    <button
+                      type='button'
+                      onClick={shareLink}
+                      className={styles.shareButton}
+                    >
+                      <ShareIcon />
+                      <span className={styles.shareButtonText}>
+                        Share article
+                      </span>
+                    </button>
+
+                    <div className={styles.actionButtonGroup}>
+                      <Link href='/all-courses' legacyBehavior>
+                        <a className={styles.secondaryActionButton}>
+                          Graduate courses library
+                        </a>
+                      </Link>
+                      <Link href='/paths' legacyBehavior>
+                        <a className={styles.secondaryActionButton}>
+                          Paths, a new educational interface
+                        </a>
+                      </Link>
+                      <a
+                        className={styles.primaryActionButton}
+                        href={donate || '/support'}
+                        {...(donate
+                          ? { target: '_blank', rel: 'noreferrer' }
+                          : {})}
+                      >
+                        Donate
+                      </a>
+                    </div>
+                  </div>
+                </Reveal>
               </article>
               </div>
             </div>
           </main>
-
-          <section
-            className={`${styles.legacySection} ${styles.noisySection}`}
-          >
-            <div className={styles.legacyTop}>
-              <Reveal className={styles.legacyTopInner}>
-                <h2 className={styles.legacyHeadline}>
-                  <em>Cranetexts</em> began as Coursetexts, a free, open
-                  library of Harvard lecture notes.
-                </h2>
-              </Reveal>
-            </div>
-
-            <div className={styles.legacyBottom}>
-              <Reveal className={styles.legacyInner}>
-                <div className={styles.legacyLead}>
-                  <p className={styles.bottomText}>
-                    By crowdsourcing their lecture notes, a group of 6 friends
-                    from Harvard and MIT found a way to help make current
-                    knowledge available to all curious people on the internet.
-                  </p>
-                </div>
-
-                <img
-                  alt='White origami crane'
-                  className={styles.legacyCrane}
-                  height={928}
-                  src='/images/manifesto/crane-white.png'
-                  width={1232}
-                />
-
-                <div className={styles.legacyClosing}>
-                  <h2 className={styles.sectionHeading}>
-                    Their initial dream continues with us, in 2026.
-                  </h2>
-                  <p className={styles.bottomSmall}>
-                    Our goal is not to replace edX, Canvas, or other learning
-                    initiatives. Coursetexts should complement them by lowering
-                    the global barrier to publishing online and raising the
-                    collective ceiling of online learning.
-                  </p>
-                </div>
-              </Reveal>
-            </div>
-          </section>
-
-          <section className={styles.ocwSection} aria-labelledby='ocw-title'>
-            <Reveal className={styles.ocwIntro}>
-              <p className={styles.sectionHeading}>
-                The average OpenCourseWare course, while extremely
-                comprehensive, dates back to 2008.
-              </p>
-
-              <div className={styles.ocwSplit}>
-                <div className={styles.ocwImageWrap}>
-                  <img
-                    alt=''
-                    aria-hidden='true'
-                    className={styles.ocwCube}
-                    height={146}
-                    src='/images/manifesto/averagehouse.png'
-                    width={155}
-                  />
-                </div>
-
-                <div className={styles.ocwAsideText}>
-                  <p>
-                    The culture around textbook publishing creates materials
-                    that are old and prohibitively expensive.
-                  </p>
-                  <p>
-                    Digitized courses that can exist online don&apos;t, not
-                    because professors are unwilling, but because publishing
-                    takes too much time.
-                  </p>
-                </div>
-              </div>
-            </Reveal>
-
-            <Reveal className={styles.ocwBand}>
-              <div className={styles.ocwBandInner}>
-                <div className={styles.ocwImageWrap}>
-                  <img
-                    alt=''
-                    aria-hidden='true'
-                    className={styles.ocwDesk}
-                    height={145}
-                    src='/images/manifesto/desk.png'
-                    width={155}
-                  />
-                </div>
-
-                <div className={styles.ocwBandCopy}>
-                  <h2 className={styles.sectionHeading} id='ocw-title'>
-                    MIT OpenCourseWare runs on roughly $2.7M per year to
-                    maintain 2,300+ courses, about $1,170 per course annually.
-                  </h2>
-                  <p className={styles.bodyText}>
-                    Our tools aim to lower this cost by converting an existing
-                    Canvas site to a public page in minutes, licensed under
-                    Creative Commons BY-NC-SA 4.0. Professors keep control by
-                    reviewing, approving, and retaining credit with a fraction
-                    of the projected time commitment.
-                  </p>
-                </div>
-              </div>
-            </Reveal>
-          </section>
-
-          <section
-            className={`${styles.principlesSection} ${styles.noisySection}`}
-            aria-labelledby='principles-title'
-          >
-            <Reveal className={styles.principlesInner}>
-              <img
-                alt='Open doorway in a painted landscape'
-                className={styles.principlesImage}
-                height={373}
-                src='/images/manifesto/doorway.png'
-                width={560}
-              />
-
-              <div className={styles.principlesContent}>
-                <h2 className={styles.principlesTitle} id='principles-title'>
-                  Our Principles
-                </h2>
-
-                <ol className={styles.principlesList}>
-                  {principles.map((principle, index) => (
-                    <li key={principle.title} className={styles.principleItem}>
-                      <p className={styles.principleTitle}>
-                        {index + 1}. {principle.title}
-                      </p>
-                      <p className={styles.principleBody}>{principle.body}</p>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            </Reveal>
-          </section>
-
-          <section
-            className={styles.lookingForwardSection}
-            aria-labelledby='looking-forward-title'
-          >
-            <div className={styles.lookingForwardInner}>
-              <Reveal>
-                <h2
-                  className={styles.lookingForwardTitle}
-                  id='looking-forward-title'
-                >
-                  Looking forward
-                </h2>
-
-                <img
-                  alt='Origami crane in flight'
-                  className={styles.lookingForwardHero}
-                  height={505}
-                  src='/images/manifesto/end-image.png'
-                  width={670}
-                />
-              </Reveal>
-
-              <Reveal className={styles.lookingForwardCopy} delay={0.05}>
-                <p>
-                  The internet and the age of LLMs have made knowledge
-                  plentiful. Why hasn&apos;t genuine learning followed the
-                  Cambrian explosion in information? Our earlier theory of
-                  change assumed that{' '}
-                  <a
-                    href='https://blog.aayushg.com/education/'
-                    rel='noreferrer'
-                    target='_blank'
-                  >
-                    advanced material
-                  </a>{' '}
-                  was the bottleneck for driven self-learners. Under that
-                  theory of change, we focused on graduate-level STEM material.
-                  Our current theory of change is that motivation and navigation
-                  are more common bottlenecks for many self-directed learners,
-                  not just access to advanced material, per se.
-                </p>
-                <p>
-                  The internet has more content than anyone can consume. What it
-                  starves for is legibility. A course outline can be a path
-                  through ideas, experiments, and questions. Our job is to make
-                  these stubby internet paths navigable: searchable,
-                  annotatable, expandable, and remixable.
-                </p>
-              </Reveal>
-
-              <div className={styles.lookingForwardCards}>
-                {lookingForwardCards.map((card, index) => (
-                  <Reveal
-                    key={card.text}
-                    className={styles.lookingForwardCard}
-                    delay={0.07 * (index + 1)}
-                  >
-                    <div className={styles.lookingForwardCardImageWrap}>
-                      <img
-                        alt=''
-                        aria-hidden='true'
-                        className={styles.lookingForwardCardImage}
-                        src={card.image}
-                      />
-                    </div>
-                    <p className={styles.lookingForwardCardText}>{card.text}</p>
-                  </Reveal>
-                ))}
-              </div>
-
-              <Reveal className={styles.manifestoEndSection} delay={0.12}>
-                <div className={styles.manifestoEndActions}>
-                  <button
-                    type='button'
-                    onClick={shareLink}
-                    className={styles.shareButton}
-                  >
-                    <ShareIcon />
-                    <span className={styles.shareButtonText}>Share article</span>
-                  </button>
-
-                  <div className={styles.actionButtonGroup}>
-                    <button
-                      type='button'
-                      onClick={() =>
-                        window.open(
-                          'mailto:coursetexts.info@gmail.com',
-                          '_blank',
-                          'noopener,noreferrer'
-                        )
-                      }
-                      className={styles.primaryActionButton}
-                    >
-                      Email Us
-                    </button>
-                    <button
-                      type='button'
-                      onClick={copyLink}
-                      className={styles.secondaryActionButton}
-                    >
-                      Copy link
-                    </button>
-                  </div>
-                </div>
-
-                <div className={styles.thankYouCard}>
-                  <p className={styles.thankYouTitle}>
-                    Thank you for reading with us.
-                  </p>
-                  <p className={styles.thankYouBody}>{gratitudeCopy}</p>
-                </div>
-
-                <div className={styles.manifestoNotes}>
-                  {manifestoNotes.map((note, index) => (
-                    <div key={note} className={styles.manifestoNoteItem}>
-                      <span className={styles.manifestoNoteNumber}>
-                        {index + 1}.
-                      </span>
-                      <p className={styles.manifestoNoteText}>{note}</p>
-                    </div>
-                  ))}
-                </div>
-              </Reveal>
-
-              <Reveal delay={0.16}>
-                <ManifestoArticleFooter />
-              </Reveal>
-            </div>
-          </section>
 
           <div className={styles.footerWrap}>
             <HomeFooterSection />

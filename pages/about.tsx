@@ -25,6 +25,25 @@ const homeChromeVars = {
 const BLOG_PIPELINE_URL =
   'https://blog.coursetexts.org/automating-copyright-compliance-for-open-courseware'
 
+function ExternalLink({
+  href,
+  children
+}: {
+  href: string
+  children: React.ReactNode
+}) {
+  return (
+    <a
+      className={styles.inlineLink}
+      href={href}
+      target='_blank'
+      rel='noreferrer'
+    >
+      {children}
+    </a>
+  )
+}
+
 export default function AboutPage() {
   return (
     <>
@@ -369,54 +388,74 @@ export default function AboutPage() {
 
               <h2 className={styles.essayHeading}>Acknowledgements</h2>
               <p>
-                CourseTexts was founded by Aayush and Selena and is now
-                maintained by Eesha, Hudson, Ben, and Aayush. We&apos;d like to
-                thank all past (and future!) contributors, including Aileen,
-                Advikaa, Cherish, Akshith, Yassine, and Josh. If you&apos;d like
-                to join our team of volunteers as a contributor, please{' '}
-                <a
-                  className={styles.inlineLink}
-                  href={discord || 'https://discord.gg/6xBECjtC55'}
-                  target='_blank'
-                  rel='noreferrer'
-                >
-                  join our Discord
-                </a>{' '}
-                and say hi!
+                Coursetexts was founded by{' '}
+                <ExternalLink href='https://selena.fyi/'>Selena</ExternalLink>{' '}
+                and{' '}
+                <ExternalLink href='http://aayushg.com/'>Aayush</ExternalLink>
+                . It is now maintained by{' '}
+                <ExternalLink href='https://x.com/eeshau'>Eesha</ExternalLink>,{' '}
+                <ExternalLink href='https://hudsonmp.github.io/'>
+                  Hudson
+                </ExternalLink>
+                , and{' '}
+                <ExternalLink href='https://bencuan.me'>Ben</ExternalLink>.
               </p>
               <p>
-                We&apos;re grateful for support from Michael Nielsen, Hack Club,
-                The Institute, Austin Chen, and other financial contributors. If
-                you&apos;d like to support our work, please consider making a
-                tax-deductible{' '}
-                <a
-                  className={styles.inlineLink}
-                  href={donate || '/support'}
-                  {...(donate ? { target: '_blank', rel: 'noreferrer' } : {})}
-                >
-                  donation here
-                </a>
+                Thank you also to{' '}
+                <ExternalLink href='https://www.jeremiahvuong.com/'>
+                  Jeremiah
+                </ExternalLink>
+                ,{' '}
+                <ExternalLink href='https://abrandenberger.github.io/'>
+                  Anna
+                </ExternalLink>
+                ,{' '}
+                <ExternalLink href='https://github.com/genthegreat'>
+                  Ezra
+                </ExternalLink>
+                , <ExternalLink href='https://liamhz.com/'>Liam</ExternalLink>,{' '}
+                <ExternalLink href='https://github.com/bert0rm'>Rigo</ExternalLink>
+                ,{' '}
+                <ExternalLink href='https://www.linkedin.com/in/milo-cress-4279a0193'>
+                  Milo
+                </ExternalLink>
+                ,{' '}
+                <ExternalLink href='https://www.linkedin.com/in/edwardkangafe/'>
+                  Edward
+                </ExternalLink>
+                , <ExternalLink href='https://rhotter.com/'>Raffi</ExternalLink>
+                ,{' '}
+                <ExternalLink href='https://www.linkedin.com/in/ashay-athalye-842605172/'>
+                  Ashay
+                </ExternalLink>
+                ,{' '}
+                <ExternalLink href='https://aileenis.online'>Aileen</ExternalLink>
+                , Advikaa, Cherish, Akshith, Yassine, and Josh for their past (and
+                future!) contributions.
+              </p>
+              <p>
+                We&apos;re a 501(c)3 nonprofit fiscally sponsored by Hack Club,
+                and{' '}
+                <ExternalLink href={donate || '/support'}>
+                  donations are tax deductible
+                </ExternalLink>
                 .
               </p>
-
-              <h2 className={styles.essayHeading}>
-                Who is the Coursetexts team?
-              </h2>
               <p>
-                Coursetexts is a small team led by students from Harvard and
-                MIT. Here&apos;s more on Selena and Aayush. Thank you also to
-                Jeremiah, Eesha, Anna, Ezra, Liam, Rigo, Milo, Edward, Raffi and
-                Ashay for their contributions.
-              </p>
-              <p>
-                We&apos;re a 501(c)(3) nonprofit fiscally sponsored by Hack
-                Club, and donations are tax deductible.
-              </p>
-              <p>
-                We&apos;re generously advised by professors Lawrence Lessig,
-                Peter Suber, and Justin Reich. Thank you also to Brewster Kahle,
-                Adam D&apos;Angelo, and Michael Nielsen for their support and
-                advice.
+                We&apos;re generously advised by professors{' '}
+                <ExternalLink href='https://hls.harvard.edu/faculty/lawrence-lessig/'>
+                  Lawrence Lessig
+                </ExternalLink>
+                ,{' '}
+                <ExternalLink href='https://library.harvard.edu/staff/peter-suber'>
+                  Peter Suber
+                </ExternalLink>
+                , and{' '}
+                <ExternalLink href='https://tsl.mit.edu/team/justin-reich/'>
+                  Justin Reich
+                </ExternalLink>
+                . Thank you also to Brewster Kahle, Adam D&apos;Angelo, and
+                Michael Nielsen for their support and advice.
               </p>
             </article>
 

@@ -49,6 +49,17 @@
   color: #37352f;
 }
 
+.inlineLink {
+  color: #0089c4;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.inlineLink:hover,
+.inlineLink:focus-visible {
+  opacity: 0.85;
+}
+
 .actions {
   display: flex;
   flex-wrap: wrap;

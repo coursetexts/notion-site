@@ -92,6 +92,17 @@ function NavProfessorsIcon() {
   )
 }
 
+function NavTeamIcon() {
+  return (
+    <svg {...navIconProps}>
+      <circle cx='9' cy='8' r='3' />
+      <path d='M3 19a6 6 0 0 1 12 0' />
+      <circle cx='17' cy='9' r='2.5' />
+      <path d='M15.5 14.2A5 5 0 0 1 21 19' />
+    </svg>
+  )
+}
+
 function NavBlogIcon() {
   return (
     <svg {...navIconProps}>
@@ -133,6 +144,12 @@ const aboutChildren: NavMenuChild[] = [
     description: 'Contribute materials or publish a course.',
     href: '/professors',
     icon: <NavProfessorsIcon />
+  },
+  {
+    label: 'Team',
+    description: 'About us, and how you can join as a contributor',
+    href: '/team',
+    icon: <NavTeamIcon />
   },
   {
     label: 'Blog & Research',

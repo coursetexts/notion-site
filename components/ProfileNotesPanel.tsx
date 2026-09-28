@@ -224,11 +224,7 @@ export function ProfileNotesPanel({
       </div>
       {loading ? (
         <p className={styles.placeholder}>Loading…</p>
-      ) : notes.length === 0 ? (
-        <p className={styles.placeholder}>
-          Notes you write on course and learning-path topics will show up here.
-        </p>
-      ) : visible.length === 0 ? (
+      ) : notes.length === 0 ? null : visible.length === 0 ? (
         <p className={styles.placeholder}>No matching notes.</p>
       ) : (
         <ul className={styles.notebooksList}>

@@ -2190,17 +2190,6 @@ export default function ProfilePage() {
                       }
                     />
                   ) : null}
-                  {!bioText &&
-                  !profileSummary.learning_now &&
-                  !profileSummary.learning_learned &&
-                  profileInterests.length === 0 &&
-                  personalLinks.length === 0 &&
-                  !isEditingProfile ? (
-                    <p className={styles.sidebarMetaPreviewEmpty}>
-                      Your bio, what you are learning, interests, and links will
-                      appear here.
-                    </p>
-                  ) : null}
                 </div>
                 {!isEditingProfile ? (
                   <ProfilePublicSummary
@@ -2572,10 +2561,7 @@ export default function ProfilePage() {
                     {activityLoading ? (
                       <p className={styles.placeholder}>Loading…</p>
                     ) : profileNotifications.length === 0 ? (
-                      <p className={styles.placeholder}>
-                        No notifications yet. Follows, likes, replies, path
-                        invites, and resource reviews will show up here.
-                      </p>
+                      <p className={styles.placeholder}>No notifications yet.</p>
                     ) : visibleNotificationRows.length === 0 ? (
                       <p className={styles.placeholder}>
                         No matching notifications.
@@ -2996,7 +2982,7 @@ export default function ProfilePage() {
                     topics={knowledgeTopics}
                     loading={knowledgeLoading}
                     searchId='profile-knowledge-search'
-                    emptyMessage='Topics you add, or finish on a learning path, show up here.'
+                    emptyMessage=''
                     canAdd
                     onTopicsChange={setKnowledgeTopics}
                   />
@@ -3264,7 +3250,7 @@ export default function ProfilePage() {
                         <p className={styles.placeholder}>Loading links…</p>
                       ) : savedBookmarkRows.length === 0 ? (
                         <p className={styles.placeholder}>
-                          No saved resources yet. Add one with + New Link.
+                          Add a new resource with the New Link button.
                         </p>
                       ) : visibleBookmarkRows.length === 0 ? (
                         <p className={styles.placeholder}>
@@ -3610,9 +3596,8 @@ export default function ProfilePage() {
                         <>
                           {feedItems.length === 0 ? (
                             <p className={styles.placeholder}>
-                              Nothing from people you follow yet. Follow others
-                              to see their updates, comments, discussions,
-                              bookmarks, new learning paths, and progress.
+                              Nothing yet! Follow your friends to keep up with
+                              their contributions and learning progress.
                             </p>
                           ) : visibleActivityFeedRows.length === 0 ? (
                             <p className={styles.placeholder}>

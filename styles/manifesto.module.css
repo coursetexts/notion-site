@@ -272,6 +272,45 @@
   margin-top: 24px;
 }
 
+.subHeading {
+  margin: 44px 0 0;
+  font-family: 'Guyot Press', serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-style: italic;
+  font-weight: 400;
+  color: #000;
+}
+
+.inlineLink {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.inlineLink:hover,
+.inlineLink:focus-visible {
+  color: #0089c4;
+}
+
+.lead .signoff {
+  color: #5c5f66;
+  font-style: italic;
+}
+
+.articleActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.articleActions a,
+.actionButtonGroup a {
+  text-decoration: none;
+}
+
 .birdRow {
   margin-top: 66px;
 }
@@ -642,7 +681,7 @@
 }
 
 .manifestoEndSection {
-  padding-top: 128px;
+  padding: 96px 0 120px;
 }
 
 .manifestoEndActions {
