@@ -125,7 +125,7 @@ import {
   type LearningPathResourceVoteSummary,
   getLearningPathResourceVoteSummaries,
   learningPathResourceVoteKey,
-  setLearningPathResourceUpvote
+  setLearningPathResourceVote
 } from '@/lib/learning-path-resource-votes-db'
 import {
   LEARNING_PATH_KNOWLEDGE_SECTION_ID,
@@ -221,6 +221,34 @@ const RESOURCE_KIND_OPTIONS = RESOURCE_KINDS.map((kind) => ({
   value: kind,
   label: kind.charAt(0).toUpperCase() + kind.slice(1)
 }))
+
+function ResourceInfoIcon() {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='13'
+      height='13'
+      viewBox='0 0 14 14'
+      fill='none'
+      aria-hidden
+    >
+      <circle
+        cx='7'
+        cy='7'
+        r='5.4'
+        stroke='currentColor'
+        strokeWidth='1.2'
+      />
+      <path
+        d='M7 6.4V10'
+        stroke='currentColor'
+        strokeWidth='1.2'
+        strokeLinecap='round'
+      />
+      <circle cx='7' cy='4.35' r='0.7' fill='currentColor' />
+    </svg>
+  )
+}
 
 function ResourceEditPencilIcon() {
   return (
@@ -321,44 +349,66 @@ function ResourceUpvoteIcon() {
   )
 }
 
+function ResourceDownvoteIcon() {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='11'
+      height='11'
+      viewBox='0 0 16 16'
+      fill='none'
+      aria-hidden
+    >
+      <path
+        d='M13.4626 5.80625C13.4243 5.71525 13.36 5.63761 13.2777 5.58311C13.1954 5.52861 13.0988 5.49969 13.0001 5.5H3.0001C2.90139 5.49969 2.80479 5.52861 2.72249 5.58311C2.64018 5.63761 2.57585 5.71525 2.5376 5.80625C2.50158 5.89861 2.49244 5.99927 2.51124 6.09661C2.53004 6.19394 2.57602 6.28396 2.64385 6.35625L7.64385 11.3563C7.73942 11.4487 7.86716 11.5003 8.0001 11.5003C8.13304 11.5003 8.26078 11.4487 8.35635 11.3563L13.3563 6.35625C13.4242 6.28396 13.4702 6.19394 13.489 6.09661C13.5078 5.99927 13.4986 5.89861 13.4626 5.80625Z'
+        fill='currentColor'
+      />
+    </svg>
+  )
+}
+
 function ResourceVoteControl({
   score,
-  userVoted,
+  userVote,
   disabled,
   signedIn,
-  onToggle
+  onVote
 }: {
   score: number
-  userVoted: boolean
+  userVote: 1 | -1 | null
   disabled: boolean
   signedIn: boolean
-  onToggle: () => void
+  onVote: (value: 1 | -1 | null) => void
 }) {
+  const upOn = userVote === 1
+  const downOn = userVote === -1
   return (
-    <button
-      type='button'
-      className={`${styles.resourceVoteBtn}${
-        userVoted ? ` ${styles.resourceVoteBtnOn}` : ''
-      }`}
-      onClick={onToggle}
-      disabled={disabled}
-      aria-pressed={userVoted}
-      aria-label={
-        userVoted
-          ? 'Remove upvote'
-          : signedIn
-          ? 'Upvote this resource'
-          : 'Sign in to upvote this resource'
-      }
-      title={
-        userVoted
-          ? 'Remove upvote'
-          : signedIn
-          ? 'Upvote — does not change list order'
-          : 'Sign in to upvote'
-      }
-    >
-      <ResourceUpvoteIcon />
+    <div className={styles.resourceVote}>
+      <button
+        type='button'
+        className={`${styles.resourceVoteBtn}${
+          upOn ? ` ${styles.resourceVoteBtnOn}` : ''
+        }`}
+        onClick={() => onVote(upOn ? null : 1)}
+        disabled={disabled}
+        aria-pressed={upOn}
+        aria-label={
+          upOn
+            ? 'Remove upvote'
+            : signedIn
+            ? 'Upvote this resource'
+            : 'Sign in to upvote this resource'
+        }
+        title={
+          upOn
+            ? 'Remove upvote'
+            : signedIn
+            ? 'Upvote — does not change list order'
+            : 'Sign in to upvote'
+        }
+      >
+        <ResourceUpvoteIcon />
+      </button>
       <span
         className={styles.resourceVoteCount}
         aria-live='polite'
@@ -366,7 +416,32 @@ function ResourceVoteControl({
       >
         {score}
       </span>
-    </button>
+      <button
+        type='button'
+        className={`${styles.resourceVoteBtn}${
+          downOn ? ` ${styles.resourceVoteBtnOn}` : ''
+        }`}
+        onClick={() => onVote(downOn ? null : -1)}
+        disabled={disabled}
+        aria-pressed={downOn}
+        aria-label={
+          downOn
+            ? 'Remove downvote'
+            : signedIn
+            ? 'Downvote this resource'
+            : 'Sign in to downvote this resource'
+        }
+        title={
+          downOn
+            ? 'Remove downvote'
+            : signedIn
+            ? 'Downvote — does not change list order'
+            : 'Sign in to downvote'
+        }
+      >
+        <ResourceDownvoteIcon />
+      </button>
+    </div>
   )
 }
 
@@ -1786,6 +1861,9 @@ function CommunityLearningPath({
   const [editingResourceId, setEditingResourceId] = React.useState<
     string | null
   >(null)
+  const [openResourceHelpIds, setOpenResourceHelpIds] = React.useState<
+    Record<string, boolean>
+  >({})
   const [resourceDraft, setResourceDraft] = React.useState(EMPTY_RESOURCE_DRAFT)
   const [pathOwnerId, setPathOwnerId] = React.useState<string | null>(null)
   const [creatorName, setCreatorName] = React.useState<string | null>(null)
@@ -3659,7 +3737,10 @@ function CommunityLearningPath({
     )
   }
 
-  async function toggleResourceUpvote(resourceId: string) {
+  async function setResourceVote(
+    resourceId: string,
+    value: 1 | -1 | null
+  ) {
     if (!currentUserId) {
       requestSignIn()
       return
@@ -3675,34 +3756,35 @@ function CommunityLearningPath({
     }
     if (!isLearningPathRowUuid(id)) {
       window.alert(
-        'Could not save your upvote. This path is not in the database yet.'
+        'Could not save your vote. This path is not in the database yet.'
       )
       return
     }
     const key = learningPathResourceVoteKey(nodeId, resourceId)
-    const current = resourceVotes[key] ?? { score: 0, userVoted: false }
-    const nextVoted = !current.userVoted
+    const current = resourceVotes[key] ?? { score: 0, userVote: null }
+    const previousVote = current.userVote ?? 0
+    const nextVote = value ?? 0
     const optimistic: LearningPathResourceVoteSummary = {
-      score: Math.max(0, current.score + (nextVoted ? 1 : -1)),
-      userVoted: nextVoted
+      score: current.score - previousVote + nextVote,
+      userVote: value
     }
     setVotingResourceId(resourceId)
     setResourceVotes((prev) => ({ ...prev, [key]: optimistic }))
     try {
-      const score = await setLearningPathResourceUpvote(
+      const score = await setLearningPathResourceVote(
         id,
         nodeId,
         resourceId,
-        nextVoted
+        value
       )
       if (score == null) {
         setResourceVotes((prev) => ({ ...prev, [key]: current }))
-        window.alert('Could not save your upvote. Try signing in again.')
+        window.alert('Could not save your vote. Try signing in again.')
         return
       }
       setResourceVotes((prev) => ({
         ...prev,
-        [key]: { score, userVoted: nextVoted }
+        [key]: { score, userVote: value }
       }))
     } finally {
       setVotingResourceId(null)
@@ -4848,7 +4930,7 @@ function CommunityLearningPath({
                             ]
                           : undefined
                         const voteScore = vote?.score ?? 0
-                        const userVoted = Boolean(vote?.userVoted)
+                        const userVote = vote?.userVote ?? null
                         const bookmarkUrl = learningPathResourceBookmarkUrl({
                           slug: path.slug,
                           nodeId: selected.id,
@@ -4862,13 +4944,6 @@ function CommunityLearningPath({
                         const bookmarkSaved = Boolean(
                           savedLinkByUrl[normalizeUserLinkUrl(bookmarkUrl)]
                         )
-                        const showActionsDivider =
-                          Boolean(
-                            resource.suggested ||
-                              resource.addedByYou ||
-                              isOwnPath
-                          ) ||
-                          (canVoteOnResources && !resource.suggested)
                         const canEditResource = canEditListedResource(resource)
                         const helpedText = resourceHelpedText(
                           resource.passage,
@@ -4912,7 +4987,10 @@ function CommunityLearningPath({
                                     {kindLabel}
                                   </p>
                                   {title}
-                                  {helpedText ? (
+                                  {helpedText &&
+                                  openResourceHelpIds[
+                                    `${selected.id}:${resource.id}`
+                                  ] ? (
                                     <p className={styles.resourcePassage}>
                                       The part that helped and why:{' '}
                                       {helpedText}
@@ -4965,35 +5043,29 @@ function CommunityLearningPath({
                                 {canVoteOnResources && !resource.suggested ? (
                                   <ResourceVoteControl
                                     score={voteScore}
-                                    userVoted={userVoted}
+                                    userVote={userVote}
                                     disabled={
                                       votingResourceId === resource.id
                                     }
                                     signedIn={Boolean(currentUserId)}
-                                    onToggle={() =>
-                                      void toggleResourceUpvote(resource.id)
+                                    onVote={(value) =>
+                                      void setResourceVote(resource.id, value)
                                     }
                                   />
                                 ) : null}
-                                {canEditResource ? (
-                                  <button
-                                    type='button'
-                                    className={styles.resourceEditBtn}
-                                    onClick={() =>
-                                      openEditResource(resource)
-                                    }
-                                    aria-label='Edit resource'
-                                    title='Edit resource'
-                                  >
-                                    <ResourceEditPencilIcon />
-                                  </button>
-                                ) : null}
                                 <div className={styles.resourceHoverActions}>
-                                  {showActionsDivider ? (
-                                    <span
-                                      className={styles.resourceActionsDivider}
-                                      aria-hidden
-                                    />
+                                  {canEditResource ? (
+                                    <button
+                                      type='button'
+                                      className={styles.resourceEditBtn}
+                                      onClick={() =>
+                                        openEditResource(resource)
+                                      }
+                                      aria-label='Edit resource'
+                                      title='Edit resource'
+                                    >
+                                      <ResourceEditPencilIcon />
+                                    </button>
                                   ) : null}
                                   <ReportButton
                                     target={{
@@ -5018,6 +5090,40 @@ function CommunityLearningPath({
                                       void toggleResourceBookmark(resource)
                                     }
                                   />
+                                  {helpedText ? (
+                                    <button
+                                      type='button'
+                                      className={`${styles.resourceEditBtn}${
+                                        openResourceHelpIds[
+                                          `${selected.id}:${resource.id}`
+                                        ]
+                                          ? ` ${styles.resourceVoteBtnOn}`
+                                          : ''
+                                      }`}
+                                      aria-expanded={Boolean(
+                                        openResourceHelpIds[
+                                          `${selected.id}:${resource.id}`
+                                        ]
+                                      )}
+                                      aria-label={
+                                        openResourceHelpIds[
+                                          `${selected.id}:${resource.id}`
+                                        ]
+                                          ? 'Hide what helped and why'
+                                          : 'What part helped and why'
+                                      }
+                                      title='What part helped and why'
+                                      onClick={() => {
+                                        const key = `${selected.id}:${resource.id}`
+                                        setOpenResourceHelpIds((prev) => ({
+                                          ...prev,
+                                          [key]: !prev[key]
+                                        }))
+                                      }}
+                                    >
+                                      <ResourceInfoIcon />
+                                    </button>
+                                  ) : null}
                                 </div>
                               </div>
                             </div>

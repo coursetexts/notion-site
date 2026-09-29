@@ -5,6 +5,7 @@ import {
   LEARNING_PATH_TOPICS,
   type LearningPathTopicId
 } from '@/lib/learning-path-topic'
+import { pathsCatalogHref } from '@/lib/paths-routes'
 
 import styles from './HomeHero.module.css'
 
@@ -89,14 +90,10 @@ export function HomeHero({
       const fromSearchButton = submitFromButtonRef.current
       submitFromButtonRef.current = false
 
-      const params = new URLSearchParams()
-      params.set('view', 'all')
-
-      if (query.trim()) {
-        params.set('q', query.trim())
-      }
-
-      const href = `/paths/all-courses?${params.toString()}`
+      const href = pathsCatalogHref({
+        view: 'all',
+        q: query.trim() || undefined
+      })
 
       const navigate = () => {
         void router.push(href)
@@ -115,10 +112,7 @@ export function HomeHero({
 
   const openCatalogSearch = React.useCallback(
     (term: string) => {
-      const params = new URLSearchParams()
-      params.set('view', 'all')
-      params.set('q', term)
-      void router.push(`/paths/all-courses?${params.toString()}`)
+      void router.push(pathsCatalogHref({ view: 'all', q: term }))
     },
     [router]
   )

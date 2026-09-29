@@ -2404,6 +2404,13 @@
   color: #0089c4;
 }
 
+.resourceVote {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
 .resourceVoteBtn {
   display: inline-flex;
   align-items: center;
@@ -2482,13 +2489,6 @@
   .resourceHoverActions {
     display: inline-flex;
   }
-}
-
-.resourceActionsDivider {
-  width: 1px;
-  height: 16px;
-  flex-shrink: 0;
-  background: #e6e6e6;
 }
 
 .resourceEditBtn {
@@ -2620,25 +2620,6 @@ a.resourceTitle:focus-visible {
   line-height: 1.4;
   color: #000;
   white-space: pre-wrap;
-}
-
-.resourcePassage,
-.resourceWhy {
-  display: none;
-}
-
-.resource:hover .resourcePassage,
-.resource:hover .resourceWhy,
-.resource:focus-within .resourcePassage,
-.resource:focus-within .resourceWhy {
-  display: block;
-}
-
-@media (hover: none) {
-  .resourcePassage,
-  .resourceWhy {
-    display: block;
-  }
 }
 
 @media (max-width: 700px) {

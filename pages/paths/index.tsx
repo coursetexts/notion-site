@@ -1377,7 +1377,7 @@ export default function HomePage({
 
     void router.replace(
       {
-        pathname: `${PATHS_BASE}/all-courses`,
+        pathname: `${PATHS_BASE}/all-paths`,
         query: nextQuery
       },
       undefined,

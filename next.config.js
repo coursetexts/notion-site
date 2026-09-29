@@ -160,40 +160,69 @@ module.exports = withBundleAnalyzer({
         permanent: true
       },
       {
-        source: '/all-courses',
-        has: [{ type: 'query', key: 'view', value: 'all' }],
-        destination: '/paths/all-courses?view=all',
-        permanent: false
+        source: '/paths/all-courses',
+        has: [{ type: 'query', key: 'view', value: 'courses' }],
+        destination: '/paths/all-paths?view=academic',
+        permanent: true
       },
       {
-        source: '/all-courses',
+        source: '/paths/all-courses',
+        has: [{ type: 'query', key: 'view', value: 'university' }],
+        destination: '/paths/all-paths?view=academic',
+        permanent: true
+      },
+      {
+        source: '/paths/all-courses',
+        has: [{ type: 'query', key: 'view', value: 'academic' }],
+        destination: '/paths/all-paths?view=academic',
+        permanent: true
+      },
+      {
+        source: '/paths/all-courses',
         has: [{ type: 'query', key: 'view', value: 'learning-paths' }],
-        destination: '/paths/all-courses?view=learning-paths',
-        permanent: false
+        destination: '/paths/all-paths?view=goals',
+        permanent: true
       },
       {
-        source: '/all-courses',
+        source: '/paths/all-courses',
         has: [{ type: 'query', key: 'view', value: 'paths' }],
-        destination: '/paths/all-courses?view=learning-paths',
-        permanent: false
+        destination: '/paths/all-paths?view=goals',
+        permanent: true
       },
       {
-        source: '/all-courses',
+        source: '/paths/all-courses',
+        has: [{ type: 'query', key: 'view', value: 'goals' }],
+        destination: '/paths/all-paths?view=goals',
+        permanent: true
+      },
+      {
+        source: '/paths/all-courses',
+        has: [{ type: 'query', key: 'view', value: 'all' }],
+        destination: '/paths/all-paths?view=all',
+        permanent: true
+      },
+      {
+        source: '/paths/all-courses',
         has: [{ type: 'query', key: 'view', value: 'research' }],
-        destination: '/paths/all-courses?view=research',
-        permanent: false
+        destination: '/paths/all-paths?view=research',
+        permanent: true
       },
       {
-        source: '/all-courses',
+        source: '/paths/all-courses',
         has: [{ type: 'query', key: 'view', value: 'degrees' }],
-        destination: '/paths/all-courses?view=degrees',
-        permanent: false
+        destination: '/paths/all-paths?view=degrees',
+        permanent: true
       },
       {
-        source: '/all-courses',
+        source: '/paths/all-courses',
         has: [{ type: 'query', key: 'topic' }],
-        destination: '/paths/all-courses',
-        permanent: false
+        destination: '/paths/all-paths?view=goals',
+        permanent: true
+      },
+      {
+        source: '/paths/all-courses',
+        destination: '/paths/all-paths?view=all',
+        permanent: true
       }
     ]
   }

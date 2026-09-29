@@ -2219,9 +2219,12 @@ create table if not exists public.learning_path_resource_votes (
   path_id uuid not null references public.learning_paths (id) on delete cascade,
   node_id text not null,
   resource_id text not null,
+  value smallint not null default 1,
   created_at timestamptz not null default now(),
   constraint learning_path_resource_votes_user_target_key
-    unique (user_id, path_id, node_id, resource_id)
+    unique (user_id, path_id, node_id, resource_id),
+  constraint learning_path_resource_votes_value_ck
+    check (value in (1, -1))
 );
 
 create index if not exists learning_path_resource_votes_target_idx
@@ -2250,6 +2253,21 @@ drop policy if exists "Users can upvote public learning path resources"
   on public.learning_path_resource_votes;
 create policy "Users can upvote public learning path resources"
   on public.learning_path_resource_votes for insert
+  with check (
+    auth.uid() = user_id
+    and exists (
+      select 1
+      from public.learning_paths p
+      where p.id = path_id
+        and p.visibility in ('public', 'collaborative')
+    )
+  );
+
+drop policy if exists "Users can update own learning path resource votes"
+  on public.learning_path_resource_votes;
+create policy "Users can update own learning path resource votes"
+  on public.learning_path_resource_votes for update
+  using (auth.uid() = user_id)
   with check (
     auth.uid() = user_id
     and exists (
@@ -2850,9 +2868,17 @@ alter table public.content_reports enable row level security;
 
 drop policy if exists "Anyone can read content reports"
   on public.content_reports;
-create policy "Anyone can read content reports"
+drop policy if exists "Admins can read content reports"
+  on public.content_reports;
+create policy "Admins can read content reports"
   on public.content_reports for select
-  using (true);
+  using (
+    lower(trim(coalesce(auth.jwt() ->> 'email', ''))) in (
+      'eeshaulh@gmail.com',
+      'admin@bencuan.me',
+      'coursetexts.info@gmail.com'
+    )
+  );
 
 drop policy if exists "Users can insert own content reports"
   on public.content_reports;

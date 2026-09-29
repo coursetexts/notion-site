@@ -1,11 +1,9 @@
 import * as React from 'react'
-import Link from 'next/link'
 
 import {
   LEARNING_PATH_TOPICS,
   type LearningPathTopicId
 } from '@/lib/learning-path-topic'
-import { pathsCatalogHref } from '@/lib/paths-routes'
 
 import styles from './AllCoursesNewTopSection.module.css'
 import { LearningPathTopicIcon } from './LearningPathTopicIcon'
@@ -17,33 +15,10 @@ const SUBJECTS = [
   { label: 'English', icon: '/images/home/english.png' }
 ]
 
-const PARTNER_LINKS = [
-  {
-    label: 'Stanford',
-    icon: '/images/home/stanford.png',
-    href: pathsCatalogHref({ q: 'Stanford' })
-  },
-  {
-    label: 'Harvard',
-    icon: '/images/home/harvard-red.png',
-    href: pathsCatalogHref({ q: 'Harvard' })
-  },
-  {
-    label: 'Waterloo',
-    icon: '/images/home/waterloo.png',
-    href: pathsCatalogHref({ q: 'Waterloo' })
-  },
-  {
-    label: 'More schools',
-    icon: '/images/home/plus-10.png',
-    href: pathsCatalogHref({ view: 'courses' })
-  }
-]
-
 export const ALL_COURSES_VIEWS = [
   'all',
-  'learning-paths',
-  'courses',
+  'goals',
+  'academic',
   'degrees',
   'research'
 ] as const
@@ -51,16 +26,16 @@ export type AllCoursesView = (typeof ALL_COURSES_VIEWS)[number]
 
 export const ALL_COURSES_VIEW_LABELS: Record<AllCoursesView, string> = {
   all: 'All Learning Paths',
-  courses: 'All University Courses',
-  'learning-paths': 'Goal-based',
+  academic: 'Academic',
+  goals: 'Goal-based',
   degrees: 'Degrees',
   research: 'Research Questions'
 }
 
 export const ALL_COURSES_VIEW_FILTERS: Record<AllCoursesView, string> = {
   all: 'All',
-  'learning-paths': 'Goal-based',
-  courses: 'Academic',
+  goals: 'Goal-based',
+  academic: 'Academic',
   degrees: 'Degrees',
   research: 'Research'
 }
@@ -73,11 +48,11 @@ export const ALL_COURSES_FILTER_BAR_VIEWS = ALL_COURSES_VIEWS.filter(
 type AllCoursesNewTopSectionProps = {
   query: string
   view: AllCoursesView
-  activeSubjects: string[]
+  activeSubjects?: string[]
   activeTopic?: LearningPathTopicId | null
   onQueryChange: (value: string) => void
   onViewChange: (view: AllCoursesView) => void
-  onSubjectToggle: (subject: string) => void
+  onSubjectToggle?: (subject: string) => void
   onTopicToggle?: (topic: LearningPathTopicId) => void
   onSearchSubmit: () => void
 }
@@ -85,7 +60,7 @@ type AllCoursesNewTopSectionProps = {
 export function AllCoursesNewTopSection({
   query,
   view,
-  activeSubjects,
+  activeSubjects = [],
   activeTopic = null,
   onQueryChange,
   onViewChange,
@@ -96,11 +71,8 @@ export function AllCoursesNewTopSection({
   const [isSearchPulse, setIsSearchPulse] = React.useState(false)
   const pulseTimeoutRef = React.useRef<number | null>(null)
   const submitFromButtonRef = React.useRef(false)
-  const showCourseFilters = view === 'courses'
-  const showPathFilters = view === 'learning-paths'
-  const showPartnerLogos = view === 'courses'
-  const showBelowSearch =
-    showPathFilters || showCourseFilters || showPartnerLogos
+  const showPathFilters = view === 'goals'
+  const showCourseFilters = view === 'academic'
 
   React.useEffect(() => {
     return () => {
@@ -216,7 +188,7 @@ export function AllCoursesNewTopSection({
         </button>
       </form>
 
-      {showBelowSearch ? (
+      {showPathFilters || showCourseFilters ? (
         <div className={styles.filtersRow}>
           {showPathFilters ? (
             <div className={styles.subjectRow}>
@@ -253,7 +225,7 @@ export function AllCoursesNewTopSection({
                       ? styles.subjectItemActive
                       : ''
                   }`}
-                  onClick={() => onSubjectToggle(subject.label)}
+                  onClick={() => onSubjectToggle?.(subject.label)}
                   aria-pressed={activeSubjects.includes(subject.label)}
                 >
                   <span className={styles.subjectIconWrap}>
@@ -266,26 +238,6 @@ export function AllCoursesNewTopSection({
                   </span>
                   <span className={styles.subjectLabel}>{subject.label}</span>
                 </button>
-              ))}
-            </div>
-          ) : null}
-
-          {showPartnerLogos ? (
-            <div className={styles.logoPill} aria-label='Partner schools'>
-              {PARTNER_LINKS.map((partner) => (
-                <Link key={partner.label} href={partner.href} legacyBehavior>
-                  <a className={styles.logoCircle} title={partner.label}>
-                    <img
-                      src={partner.icon}
-                      alt={partner.label}
-                      className={
-                        partner.label === 'More schools'
-                          ? styles.logoPlusImage
-                          : styles.logoImage
-                      }
-                    />
-                  </a>
-                </Link>
               ))}
             </div>
           ) : null}

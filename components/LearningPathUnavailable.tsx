@@ -127,7 +127,7 @@ export function LearningPathUnavailable({
                   Sign in
                 </button>
               )}
-              <Link href={pathsCatalogHref({ view: 'learning-paths' })}>
+              <Link href={pathsCatalogHref({ view: 'goals' })}>
                 <a className={styles.secondary}>Browse learning paths</a>
               </Link>
             </div>
@@ -142,7 +142,7 @@ export function LearningPathUnavailable({
               <Link href={createHref}>
                 <a className={styles.primary}>Create this path</a>
               </Link>
-              <Link href={pathsCatalogHref({ view: 'learning-paths' })}>
+              <Link href={pathsCatalogHref({ view: 'goals' })}>
                 <a className={styles.secondary}>Browse learning paths</a>
               </Link>
             </div>

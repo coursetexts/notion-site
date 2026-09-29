@@ -177,13 +177,13 @@ function pathsExploreChildren(): NavMenuChild[] {
     {
       label: 'Academic courses',
       description: 'University courses from partner schools and departments.',
-      href: pathsCatalogHref({ view: 'courses' }),
+      href: pathsCatalogHref({ view: 'academic' }),
       icon: <ProfileAcademicIcon />
     },
     {
       label: 'Goals',
       description: 'Community learning paths organized around goals.',
-      href: pathsCatalogHref({ view: 'learning-paths' }),
+      href: pathsCatalogHref({ view: 'goals' }),
       icon: <ProfilePathIcon />
     }
   ]

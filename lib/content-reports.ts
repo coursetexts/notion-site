@@ -1,10 +1,15 @@
-export const REPORTS_ADMIN_EMAIL = 'coursetexts.info@gmail.com'
+/** Signed-in emails that may open `/reports`. Keep in sync with migration 059. */
+export const REPORTS_ADMIN_EMAILS = [
+  'eeshaulh@gmail.com',
+  'admin@bencuan.me',
+  'coursetexts.info@gmail.com'
+] as const
 
 /**
- * Leave true while testing `/reports`. Flip to false to require
- * REPORTS_ADMIN_EMAIL.
+ * When true, anyone can open `/reports`. Leave false so only
+ * REPORTS_ADMIN_EMAILS can view the dashboard.
  */
-export const REPORTS_DASHBOARD_OPEN = true
+export const REPORTS_DASHBOARD_OPEN = false
 
 export const CONTENT_REPORT_TYPES = [
   'annotation',
@@ -44,9 +49,9 @@ export function canViewReportsDashboard(
   email: string | undefined | null
 ): boolean {
   if (REPORTS_DASHBOARD_OPEN) return true
-  return (
-    (email || '').trim().toLowerCase() === REPORTS_ADMIN_EMAIL.toLowerCase()
-  )
+  const normalized = (email || '').trim().toLowerCase()
+  if (!normalized) return false
+  return REPORTS_ADMIN_EMAILS.some((allowed) => allowed === normalized)
 }
 
 export function absoluteContentUrl(pathOrUrl: string): string {

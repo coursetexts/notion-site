@@ -137,7 +137,7 @@ export default function CommunityPage() {
                   </p>
                 </div>
                 <Link
-                  href={pathsCatalogHref({ view: 'learning-paths' })}
+                  href={pathsCatalogHref({ view: 'goals' })}
                   legacyBehavior
                 >
                   <a className={styles.shareBtn}>Browse all learning paths</a>

@@ -10,7 +10,6 @@ import { name as siteName } from '@/lib/config'
 import {
   type ContentReport,
   type ContentReportTargetType,
-  REPORTS_ADMIN_EMAIL,
   REPORTS_DASHBOARD_OPEN,
   canViewReportsDashboard,
   contentReportTypeLabel
@@ -132,7 +131,7 @@ export default function ReportsPage() {
               comments, learning paths, and uploaded resources.
               {REPORTS_DASHBOARD_OPEN
                 ? ' This page is open while we test it.'
-                : ` Only ${REPORTS_ADMIN_EMAIL} can view this page.`}
+                : ' Only Coursetexts admins can view this page.'}
             </p>
           </section>
 

@@ -30,6 +30,7 @@ type AllCoursesNewGridSectionProps = {
   }>
   unifiedReady?: boolean
   degreeCards?: HomeCourseCard[]
+  subjectsActive?: boolean
 }
 
 function fallbackCards(): HomeCourseCard[] {
@@ -43,9 +44,15 @@ function fallbackCards(): HomeCourseCard[] {
   }))
 }
 
-function coursePathEmptyMessage(ready: boolean, query: string): string {
+function coursePathEmptyMessage(
+  ready: boolean,
+  query: string,
+  subjectsActive: boolean
+): string {
   if (!ready) return 'Loading course learning paths…'
-  if (query.trim()) return 'No course learning paths matched your search.'
+  if (query.trim() || subjectsActive) {
+    return 'No course learning paths matched your search.'
+  }
   return 'No filled course learning paths yet.'
 }
 
@@ -229,14 +236,15 @@ export function AllCoursesNewGridSection({
   unifiedBestMatch = null,
   unifiedGroups = [],
   unifiedReady = true,
-  degreeCards = []
+  degreeCards = [],
+  subjectsActive = false
 }: AllCoursesNewGridSectionProps) {
   const cards = courses ?? fallbackCards()
   const [createOpen, setCreateOpen] = React.useState(false)
   const closeCreate = React.useCallback(() => setCreateOpen(false), [])
   const openCreate = React.useCallback(() => setCreateOpen(true), [])
   const noLearningPathMatches =
-    view === 'learning-paths' &&
+    view === 'goals' &&
     learningPathsReady &&
     learningPaths.length === 0 &&
     (Boolean(coursePathQuery.trim()) || topicActive)
@@ -257,8 +265,7 @@ export function AllCoursesNewGridSection({
             <>
               <div className={styles.emptyCreate}>
                 <p className={styles.emptyCreateText}>
-                  Nothing matched that goal yet. Try a university course or
-                  start a learning path.
+                  Nothing matched that goal yet. Start a learning path.
                 </p>
               </div>
               <DiscoverBottomPromos onCreate={openCreate} />
@@ -269,7 +276,11 @@ export function AllCoursesNewGridSection({
                 <BestMatchCard card={unifiedBestMatch} />
               ) : null}
               {unifiedGroups
-                .filter((group) => group.kind !== 'degree')
+                .filter(
+                  (group) =>
+                    group.kind !== 'degree' &&
+                    group.kind !== 'university-course'
+                )
                 .map((group) => (
                   <ResultGroup
                     key={group.kind}
@@ -278,14 +289,6 @@ export function AllCoursesNewGridSection({
                     showHeading={false}
                   />
                 ))}
-              {!unifiedHasQuery ? (
-                <p className={styles.disclaimerText}>
-                  Coursetexts has neither sought nor received permission from
-                  any university to open-source courses that were taught at that
-                  university. It is not affiliated with, sponsored by, or
-                  endorsed by any university.
-                </p>
-              ) : null}
               <DiscoverBottomPromos onCreate={openCreate} />
             </>
           )}
@@ -295,7 +298,7 @@ export function AllCoursesNewGridSection({
     )
   }
 
-  if (view === 'learning-paths') {
+  if (view === 'goals') {
     return (
       <section className={styles.section}>
         <div className={styles.content}>
@@ -375,16 +378,11 @@ export function AllCoursesNewGridSection({
     <section className={styles.section}>
       <div className={styles.content}>
         <CourseCardGrid
-          cards={cards}
-          emptyMessage='No university courses matched your search.'
-          descriptionWidth='75%'
-        />
-
-        <CourseCardGrid
           cards={coursePaths}
           emptyMessage={coursePathEmptyMessage(
             coursePathsReady,
-            coursePathQuery
+            coursePathQuery,
+            subjectsActive
           )}
           descriptionWidth='75%'
           startSlot={searched ? undefined : <DegreesPromoCard />}
@@ -395,7 +393,7 @@ export function AllCoursesNewGridSection({
           <CourseCardGrid
             cards={degreeCards}
             emptyMessage={
-              searched
+              searched || subjectsActive
                 ? 'No degrees matched your search.'
                 : 'No degrees yet.'
             }
@@ -404,13 +402,6 @@ export function AllCoursesNewGridSection({
         </div>
 
         {searched ? <SearchCreatePathCallout onCreate={openCreate} /> : null}
-
-        <p className={styles.disclaimerText}>
-          Coursetexts has neither sought nor received permission from any
-          university to open-source courses that were taught at that university.
-          It is not affiliated with, sponsored by, or endorsed by any
-          university.
-        </p>
 
         <div className={styles.sectionDivider} role='separator' />
       </div>

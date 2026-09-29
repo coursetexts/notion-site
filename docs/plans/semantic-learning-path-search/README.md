@@ -7,7 +7,7 @@ Shipped. Paraphrased search over catalog-visible learning paths and Notion unive
 | Page                                                      | Semantic sources                                                                        |
 | --------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | [`/all-courses`](../../pages/all-courses.tsx)             | Notion university courses only (`kinds: ['university-course']`)                         |
-| [`/paths/all-courses`](../../pages/paths/all-courses.tsx) | Learning paths **and** Notion courses (`kinds: ['learning-path', 'university-course']`) |
+| [`/paths/all-paths`](../../pages/paths/all-paths.tsx) | Learning paths only (`kinds: ['learning-path']`). `/paths/all-courses` redirects here. |
 
 Lexical search (`lib/catalog-search.ts`) still runs in the browser. Degrees and Field Atlas research questions stay lexical-only.
 

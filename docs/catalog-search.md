@@ -34,7 +34,7 @@ You type  →  word match shows immediately
 | Page | What semantic search can return |
 | ---- | -------------------------------- |
 | `/all-courses` | Official Notion university courses only |
-| `/paths/all-courses` | Learning paths **and** Notion courses |
+| `/paths/all-paths` | Learning paths only (`kinds: ['learning-path']`). Official Notion courses are not on this page. |
 
 Degree curricula and Field Atlas questions are still word-match only.
 

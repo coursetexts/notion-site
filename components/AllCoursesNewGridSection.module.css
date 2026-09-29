@@ -22,19 +22,6 @@
   border-top: 1px solid var(--outline, #e6e6e6);
 }
 
-.disclaimerText {
-  margin: 80px auto 0;
-  max-width: 487px;
-  text-align: center;
-  font-family: 'Hanken Grotesk', sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 10px;
-  line-height: 14px;
-  letter-spacing: -0.0004em;
-  color: var(--midGrey, #37352f);
-}
-
 .promoCard {
   display: flex;
   flex-direction: column;

@@ -16,7 +16,7 @@ export function pathsCatalogHref(
     }
   }
   const qs = params.toString()
-  return qs ? `${PATHS_BASE}/all-courses?${qs}` : `${PATHS_BASE}/all-courses`
+  return qs ? `${PATHS_BASE}/all-paths?${qs}` : `${PATHS_BASE}/all-paths`
 }
 
 export function pathsLearningPathHref(slug: string): string {

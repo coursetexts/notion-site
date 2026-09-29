@@ -6,7 +6,7 @@
  * kind / tag is not an eligibility gate. Private or hidden paths never are.
  *
  * Course rows with is_filled = false are empty catalog stubs: they are not
- * shown as Learning Path cards on /paths/all-courses, so they are not
+ * shown as Learning Path cards on /paths/all-paths, so they are not
  * catalog-visible Learning Paths.
  */
 
