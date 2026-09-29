@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { createPortal } from 'react-dom'
 
 import { pathResourceReportId } from '@/lib/content-reports'
 import {
@@ -67,6 +68,14 @@ interface CourseLearningPathNodeResourcesProps {
   nodeId: string
   items: CourseLearningPathTopicResource[]
   headingId?: string
+  /** Section title. Topic pages keep "Resources". */
+  heading?: string
+  /** Omit the section title when the page already names the list. */
+  hideHeading?: boolean
+  /** Show only the add button when the section already has other cards. */
+  quietEmpty?: boolean
+  /** Kind selected when the add form opens. */
+  defaultKind?: CourseLearningPathTopicResourceKind
   dbBacked?: boolean
   signedIn?: boolean
   onSignIn?: () => void
@@ -82,6 +91,10 @@ export function CourseLearningPathNodeResources({
   nodeId,
   items,
   headingId = 'topic-resources-heading',
+  heading = 'Resources',
+  hideHeading = false,
+  quietEmpty = false,
+  defaultKind = 'article',
   dbBacked = false,
   signedIn = false,
   onSignIn,
@@ -92,9 +105,13 @@ export function CourseLearningPathNodeResources({
 }: CourseLearningPathNodeResourcesProps) {
   const [adding, setAdding] = React.useState(false)
   const [editingId, setEditingId] = React.useState<string | null>(null)
-  const [draft, setDraft] = React.useState(EMPTY_DRAFT)
+  const [draft, setDraft] = React.useState({ ...EMPTY_DRAFT, kind: defaultKind })
   const [formError, setFormError] = React.useState<string | null>(null)
   const [submitting, setSubmitting] = React.useState(false)
+
+  function blankDraft() {
+    return { ...EMPTY_DRAFT, kind: defaultKind }
+  }
 
   const formOpen = adding || Boolean(editingId)
   const maxPlacement = editingId ? Math.max(items.length, 1) : items.length + 1
@@ -105,9 +122,9 @@ export function CourseLearningPathNodeResources({
   React.useEffect(() => {
     setAdding(false)
     setEditingId(null)
-    setDraft(EMPTY_DRAFT)
+    setDraft({ ...EMPTY_DRAFT, kind: defaultKind })
     setFormError(null)
-  }, [nodeId])
+  }, [nodeId, defaultKind])
 
   React.useEffect(() => {
     if (!signedIn) {
@@ -124,12 +141,29 @@ export function CourseLearningPathNodeResources({
     }
   }, [draft.sequence, maxPlacement])
 
+  React.useEffect(() => {
+    if (!formOpen) return
+    const prevOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    function onKey(event: KeyboardEvent) {
+      if (event.key === 'Escape') resetFormRef.current()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = prevOverflow
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [formOpen])
+
   function resetForm() {
     setAdding(false)
     setEditingId(null)
-    setDraft(EMPTY_DRAFT)
+    setDraft(blankDraft())
     setFormError(null)
   }
+
+  const resetFormRef = React.useRef(resetForm)
+  resetFormRef.current = resetForm
 
   function openEdit(resource: CourseLearningPathTopicResource) {
     if (!signedIn) {
@@ -237,16 +271,18 @@ export function CourseLearningPathNodeResources({
   return (
     <section
       className={styles.topicResourcesSection}
-      aria-labelledby={headingId}
+      aria-labelledby={hideHeading ? undefined : headingId}
     >
-      <div className={`${styles.videosHeader} ${styles.videosHeaderPlain}`}>
-        <h2 id={headingId} className={styles.videosTitle}>
-          Resources
-        </h2>
-      </div>
+      {hideHeading ? null : (
+        <div className={`${styles.videosHeader} ${styles.videosHeaderPlain}`}>
+          <h2 id={headingId} className={styles.videosTitle}>
+            {heading}
+          </h2>
+        </div>
+      )}
 
       <div className={styles.topicResourcesBody}>
-          {items.length === 0 ? (
+          {items.length === 0 && !quietEmpty ? (
             <div className={styles.topicResourcesEmptyBox}>
               <p className={styles.topicResourcesEmpty}>
                 Nothing here yet. When something makes this click, add it in the
@@ -266,7 +302,7 @@ export function CourseLearningPathNodeResources({
                   }
                   setAdding(true)
                   setEditingId(null)
-                  setDraft(EMPTY_DRAFT)
+                  setDraft(blankDraft())
                   setFormError(null)
                 }}
               >
@@ -275,6 +311,7 @@ export function CourseLearningPathNodeResources({
             </div>
           ) : (
             <>
+            {items.length > 0 ? (
             <ol className={styles.topicResourceList}>
               {items.map((resource) => {
                 const helpedText = resourceHelpedText(
@@ -352,6 +389,7 @@ export function CourseLearningPathNodeResources({
                 )
               })}
             </ol>
+            ) : null}
             <button
               type='button'
               className={`${styles.addResourceBtn}${
@@ -366,7 +404,7 @@ export function CourseLearningPathNodeResources({
                 }
                 setAdding(true)
                 setEditingId(null)
-                setDraft(EMPTY_DRAFT)
+                setDraft(blankDraft())
                 setFormError(null)
               }}
             >
@@ -376,151 +414,165 @@ export function CourseLearningPathNodeResources({
           )}
         </div>
 
-      {formOpen ? (
-        <div
-          className={styles.resourceModalBackdrop}
-          role='presentation'
-          onMouseDown={(event) => {
-            if (event.target === event.currentTarget) resetForm()
-          }}
-        >
-          <div
-            className={styles.resourceModal}
-            role='dialog'
-            aria-modal='true'
-            aria-labelledby='topic-resource-form-title'
-            onMouseDown={(event) => event.stopPropagation()}
-          >
-            <div className={styles.resourceModalHeader}>
-              <h2
-                id='topic-resource-form-title'
-                className={styles.resourceModalTitle}
+      {formOpen && typeof document !== 'undefined'
+        ? createPortal(
+            <div
+              className={styles.resourceModalBackdrop}
+              role='presentation'
+              onMouseDown={(event) => {
+                if (event.target === event.currentTarget) resetForm()
+              }}
+            >
+              <div
+                className={styles.resourceModal}
+                role='dialog'
+                aria-modal='true'
+                aria-labelledby='topic-resource-form-title'
+                onMouseDown={(event) => event.stopPropagation()}
               >
-                {editingId ? 'Edit resource' : 'Add a resource'}
-              </h2>
-              <button
-                type='button'
-                className={styles.resourceModalClose}
-                onClick={resetForm}
-                aria-label='Close'
-              >
-                ×
-              </button>
-            </div>
-            <form className={styles.resourceModalForm} onSubmit={handleSubmit}>
-              <label className={styles.topicResourceLabel}>
-                Title
-                <input
-                  className={styles.topicResourceInput}
-                  value={draft.title}
-                  onChange={(event) =>
-                    setDraft((prev) => ({ ...prev, title: event.target.value }))
-                  }
-                  placeholder='The Illustrated Transformer'
-                  required
-                  autoFocus
-                />
-              </label>
-              <label className={styles.topicResourceLabel}>
-                URL
-                <input
-                  className={styles.topicResourceInput}
-                  type='url'
-                  value={draft.url}
-                  onChange={(event) =>
-                    setDraft((prev) => ({ ...prev, url: event.target.value }))
-                  }
-                  placeholder='https://…'
-                />
-              </label>
-              <div className={styles.topicResourceLabel}>
-                <span id='topic-resource-type-label'>Type</span>
-                <FormSelect<CourseLearningPathTopicResourceKind>
-                  labelledBy='topic-resource-type-label'
-                  value={draft.kind}
-                  options={RESOURCE_KIND_OPTIONS}
-                  onChange={(kind) =>
-                    setDraft((prev) => ({
-                      ...prev,
-                      kind
-                    }))
-                  }
-                />
-              </div>
-              <label className={styles.topicResourceLabel}>
-                What part of this helped? Why did it help
-                <textarea
-                  className={styles.topicResourceNote}
-                  rows={3}
-                  value={draft.passage}
-                  onChange={(event) =>
-                    setDraft((prev) => ({
-                      ...prev,
-                      passage: event.target.value
-                    }))
-                  }
-                  placeholder='e.g. the QKV diagram, 12:40–14:10 — it made attention click'
-                  required
-                />
-              </label>
-              <label className={styles.topicResourceLabel}>
-                Suggested order
-                <span className={styles.placementRow}>
-                  <input
-                    className={`${styles.topicResourceInput} ${styles.placementInput}`}
-                    type='number'
-                    inputMode='numeric'
-                    min={1}
-                    max={maxPlacement}
-                    step={1}
-                    value={draft.sequence}
-                    onChange={(event) =>
-                      setDraft((prev) => ({
-                        ...prev,
-                        sequence: event.target.value
-                      }))
-                    }
-                    placeholder={String(maxPlacement)}
-                  />
-                  <span className={styles.placementHint}>
-                    1–{maxPlacement}
-                    {items.length === 0
-                      ? ' (first resource)'
-                      : editingId
-                      ? ` · current ${editingResource?.position ?? ''}`
-                      : ` · blank = end (${maxPlacement})`}
-                  </span>
-                </span>
-              </label>
-              {formError ? (
-                <p className={styles.formError}>{formError}</p>
-              ) : null}
-              <div className={styles.topicResourceFormActions}>
-                <button
-                  type='button'
-                  className={styles.topicResourceCancel}
-                  onClick={resetForm}
+                <div className={styles.resourceModalHeader}>
+                  <h2
+                    id='topic-resource-form-title'
+                    className={styles.resourceModalTitle}
+                  >
+                    {editingId ? 'Edit resource' : 'Add a resource'}
+                  </h2>
+                  <button
+                    type='button'
+                    className={styles.resourceModalClose}
+                    onClick={resetForm}
+                    aria-label='Close'
+                  >
+                    ×
+                  </button>
+                </div>
+                <form
+                  className={styles.resourceModalForm}
+                  onSubmit={handleSubmit}
                 >
-                  Cancel
-                </button>
-                <button
-                  type='submit'
-                  className={styles.topicResourceSubmit}
-                  disabled={
-                    submitting || !draft.title.trim() || !draft.passage.trim()
-                  }
-                >
-                  {submitting
-                    ? 'Saving…'
-                    : editingId
-                    ? 'Save changes'
-                    : 'Save resource'}
-                </button>
+                  <label className={styles.topicResourceLabel}>
+                    Title
+                    <input
+                      className={styles.topicResourceInput}
+                      value={draft.title}
+                      onChange={(event) =>
+                        setDraft((prev) => ({
+                          ...prev,
+                          title: event.target.value
+                        }))
+                      }
+                      placeholder='The Illustrated Transformer'
+                      required
+                      autoFocus
+                    />
+                  </label>
+                  <label className={styles.topicResourceLabel}>
+                    URL
+                    <input
+                      className={styles.topicResourceInput}
+                      type='url'
+                      value={draft.url}
+                      onChange={(event) =>
+                        setDraft((prev) => ({
+                          ...prev,
+                          url: event.target.value
+                        }))
+                      }
+                      placeholder='https://…'
+                    />
+                  </label>
+                  <div className={styles.topicResourceLabel}>
+                    <span id='topic-resource-type-label'>Type</span>
+                    <FormSelect<CourseLearningPathTopicResourceKind>
+                      labelledBy='topic-resource-type-label'
+                      value={draft.kind}
+                      options={RESOURCE_KIND_OPTIONS}
+                      onChange={(kind) =>
+                        setDraft((prev) => ({
+                          ...prev,
+                          kind
+                        }))
+                      }
+                    />
+                  </div>
+                  <label className={styles.topicResourceLabel}>
+                    What part of this helped? Why did it help
+                    <textarea
+                      className={styles.topicResourceNote}
+                      rows={3}
+                      value={draft.passage}
+                      onChange={(event) =>
+                        setDraft((prev) => ({
+                          ...prev,
+                          passage: event.target.value
+                        }))
+                      }
+                      placeholder='e.g. the QKV diagram, 12:40–14:10 — it made attention click'
+                      required
+                    />
+                  </label>
+                  <label className={styles.topicResourceLabel}>
+                    Suggested order
+                    <span className={styles.placementRow}>
+                      <input
+                        className={`${styles.topicResourceInput} ${styles.placementInput}`}
+                        type='number'
+                        inputMode='numeric'
+                        min={1}
+                        max={maxPlacement}
+                        step={1}
+                        value={draft.sequence}
+                        onChange={(event) =>
+                          setDraft((prev) => ({
+                            ...prev,
+                            sequence: event.target.value
+                          }))
+                        }
+                        placeholder={String(maxPlacement)}
+                      />
+                      <span className={styles.placementHint}>
+                        1–{maxPlacement}
+                        {items.length === 0
+                          ? ' (first resource)'
+                          : editingId
+                          ? ` · current ${editingResource?.position ?? ''}`
+                          : ` · blank = end (${maxPlacement})`}
+                      </span>
+                    </span>
+                  </label>
+                  {formError ? (
+                    <p className={styles.formError}>{formError}</p>
+                  ) : null}
+                  <div className={styles.topicResourceFormActions}>
+                    <button
+                      type='button'
+                      className={styles.topicResourceCancel}
+                      onClick={resetForm}
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type='submit'
+                      className={styles.topicResourceSubmit}
+                      disabled={
+                        submitting ||
+                        !draft.title.trim() ||
+                        !draft.passage.trim()
+                      }
+                    >
+                      {submitting
+                        ? 'Saving…'
+                        : editingId
+                        ? 'Save changes'
+                        : 'Save resource'}
+                    </button>
+                  </div>
+                </form>
               </div>
-            </form>
-          </div>
-        </div>
-      ) : null}
+            </div>,
+            document.body
+          )
+        : null}
     </section>
   )
 }

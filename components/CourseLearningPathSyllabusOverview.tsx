@@ -51,6 +51,7 @@ export function CourseLearningPathSyllabusOverview({
         nodeId={notesNodeId}
         items={topicResources}
         headingId='overview-resources-heading'
+        heading='Introductory Resources'
         dbBacked={dbBacked}
         signedIn={signedIn}
         onSignIn={onSignIn}

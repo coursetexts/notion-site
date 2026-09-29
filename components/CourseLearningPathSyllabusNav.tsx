@@ -1,15 +1,14 @@
 import * as React from 'react'
 
 import {
+  COURSE_LEARNING_PATH_GENERAL_RESOURCES_LABEL,
   COURSE_LEARNING_PATH_KNOWLEDGE_SECTION_ID,
   COURSE_LEARNING_PATH_RESOURCES_SECTION_ID,
   COURSE_LEARNING_PATH_RESOURCE_SECTIONS,
   COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID,
-  type CourseLearningPathResourceSection,
   isCourseLearningPathKnowledgeSelection,
   isCourseLearningPathOverviewSelection,
-  isCourseLearningPathResourceSelection,
-  resourcesForSection
+  isCourseLearningPathResourceSelection
 } from '@/lib/course-learning-path-resources'
 import type {
   CourseLearningPathData,
@@ -102,18 +101,14 @@ export function CourseLearningPathSyllabusNav({
       matchesQuery('knowledge', query) ||
       matchesQuery('learned', query) ||
       learnedTopics.some((topic) => matchesQuery(topic.label, query)))
-  const matchingResourceSections = searching
-    ? COURSE_LEARNING_PATH_RESOURCE_SECTIONS.filter(
-        (section) =>
-          matchesQuery('Resources', query) || matchesQuery(section.label, query)
-      )
-    : COURSE_LEARNING_PATH_RESOURCE_SECTIONS
+  const resourceSectionMatch = COURSE_LEARNING_PATH_RESOURCE_SECTIONS.some(
+    (section) => matchesQuery(section.label, query)
+  )
   const showResources =
     !searching ||
+    matchesQuery(COURSE_LEARNING_PATH_GENERAL_RESOURCES_LABEL, query) ||
     matchesQuery('Resources', query) ||
-    matchingResourceSections.length > 0
-  const resourcesOpen =
-    searching || expanded.has(COURSE_LEARNING_PATH_RESOURCES_SECTION_ID)
+    resourceSectionMatch
   const resourceSelected = isCourseLearningPathResourceSelection(selectedId)
   const overviewSelected = isCourseLearningPathOverviewSelection(selectedId)
   const knowledgeSelected = isCourseLearningPathKnowledgeSelection(selectedId)
@@ -141,31 +136,67 @@ export function CourseLearningPathSyllabusNav({
       {noMatches ? (
         <p className={styles.navSyllabusEmpty}>No matching topics.</p>
       ) : null}
-      {showOverview ? (
-        <div
-          className={`${styles.navPanelSection} ${styles.navOverviewSection}`}
-        >
+      {showOverview || showResources ? (
+        <div className={styles.navSectionGroup}>
+          {showOverview ? (
+            <div
+              className={`${styles.navPanelSection} ${styles.navOverviewSection}`}
+            >
+              <div
+                className={`${styles.navRow}${
+                  overviewSelected ? ` ${styles.navRowSelected}` : ''
+                }`}
+                style={{ paddingLeft: 4 }}
+              >
+                <button
+                  type='button'
+                  onClick={() =>
+                    onSelect(COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID)
+                  }
+                  aria-current={overviewSelected ? 'true' : undefined}
+                  className={styles.navSelect}
+                >
+                  <span
+                    className={`${styles.navTitle} ${styles.navTitleTopic}${
+                      overviewSelected ? ` ${styles.navTitleSelected}` : ''
+                    }`}
+                  >
+                    {LEARNING_PATH_OVERVIEW_LABEL}
+                  </span>
+                </button>
+              </div>
+            </div>
+          ) : null}
+
+          {showResources ? (
+            <div
+              className={`${styles.navPanelSection} ${styles.navGeneralResourcesSection}`}
+            >
           <div
             className={`${styles.navRow}${
-              overviewSelected ? ` ${styles.navRowSelected}` : ''
+              resourceSelected ? ` ${styles.navRowSelected}` : ''
             }`}
             style={{ paddingLeft: 4 }}
           >
             <button
               type='button'
-              onClick={() => onSelect(COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID)}
-              aria-current={overviewSelected ? 'true' : undefined}
+              onClick={() =>
+                onSelect(COURSE_LEARNING_PATH_RESOURCES_SECTION_ID)
+              }
+              aria-current={resourceSelected ? 'true' : undefined}
               className={styles.navSelect}
             >
               <span
                 className={`${styles.navTitle} ${styles.navTitleTopic}${
-                  overviewSelected ? ` ${styles.navTitleSelected}` : ''
+                  resourceSelected ? ` ${styles.navTitleSelected}` : ''
                 }`}
               >
-                {LEARNING_PATH_OVERVIEW_LABEL}
+                {COURSE_LEARNING_PATH_GENERAL_RESOURCES_LABEL}
               </span>
             </button>
           </div>
+        </div>
+          ) : null}
         </div>
       ) : null}
 
@@ -188,76 +219,6 @@ export function CourseLearningPathSyllabusNav({
         </ol>
       ) : !searching && course.topics.length === 0 ? (
         <p className={styles.navSyllabusEmpty}>Syllabus topics coming soon.</p>
-      ) : null}
-
-      {showResources ? (
-        <div className={styles.navPanelSection}>
-          <div
-            className={`${styles.navRow}${
-              resourceSelected ? ` ${styles.navRowSelected}` : ''
-            }`}
-            style={{ paddingLeft: 4 }}
-          >
-            <button
-              type='button'
-              onClick={() =>
-                onToggle(COURSE_LEARNING_PATH_RESOURCES_SECTION_ID)
-              }
-              aria-label={
-                resourcesOpen ? 'Collapse Resources' : 'Expand Resources'
-              }
-              aria-expanded={resourcesOpen}
-              className={styles.chevronBtn}
-            >
-              <ChevronIcon
-                className={`${styles.chevronIcon}${
-                  resourcesOpen ? ` ${styles.chevronOpen}` : ''
-                }`}
-              />
-            </button>
-            <button
-              type='button'
-              onClick={() => {
-                if (!resourcesOpen)
-                  onToggle(COURSE_LEARNING_PATH_RESOURCES_SECTION_ID)
-                const first =
-                  matchingResourceSections[0] ??
-                  COURSE_LEARNING_PATH_RESOURCE_SECTIONS[0]
-                onSelect(first.id)
-              }}
-              className={styles.navSelect}
-            >
-              <span
-                className={`${styles.navTitle} ${styles.navTitleTopic}${
-                  resourceSelected ? ` ${styles.navTitleSelected}` : ''
-                }`}
-              >
-                Resources
-              </span>
-              {(course.resources?.length ?? 0) > 0 ? (
-                <span className={styles.videoCount}>
-                  {course.resources!.length}
-                </span>
-              ) : null}
-            </button>
-          </div>
-
-          {resourcesOpen ? (
-            <ol className={styles.navList}>
-              {matchingResourceSections.map((section) => (
-                <ResourceNavItem
-                  key={section.id}
-                  section={section}
-                  count={
-                    resourcesForSection(course.resources, section.kind).length
-                  }
-                  selectedId={selectedId}
-                  onSelect={onSelect}
-                />
-              ))}
-            </ol>
-          ) : null}
-        </div>
       ) : null}
 
       {showKnowledge ? (
@@ -293,49 +254,6 @@ export function CourseLearningPathSyllabusNav({
         </div>
       ) : null}
     </nav>
-  )
-}
-
-function ResourceNavItem({
-  section,
-  count,
-  selectedId,
-  onSelect
-}: {
-  section: CourseLearningPathResourceSection
-  count: number
-  selectedId: string
-  onSelect: (id: string) => void
-}) {
-  const isSelected = selectedId === section.id
-
-  return (
-    <li>
-      <div
-        className={`${styles.navRow}${
-          isSelected ? ` ${styles.navRowSelected}` : ''
-        }`}
-        style={{ paddingLeft: 8 }}
-      >
-        <button
-          type='button'
-          onClick={() => onSelect(section.id)}
-          aria-current={isSelected ? 'true' : undefined}
-          className={styles.navSelect}
-        >
-          <span
-            className={`${styles.navTitle}${
-              isSelected ? ` ${styles.navTitleSelected}` : ''
-            }`}
-          >
-            {section.label}
-          </span>
-          {count > 0 ? (
-            <span className={styles.videoCount}>{count}</span>
-          ) : null}
-        </button>
-      </div>
-    </li>
   )
 }
 
@@ -436,26 +354,6 @@ function NavItem({
         </ol>
       )}
     </li>
-  )
-}
-
-function ChevronIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      xmlns='http://www.w3.org/2000/svg'
-      viewBox='0 0 16 16'
-      fill='none'
-      aria-hidden
-    >
-      <path
-        d='M6 3.5L10.5 8L6 12.5'
-        stroke='currentColor'
-        strokeWidth='1.4'
-        strokeLinecap='round'
-        strokeLinejoin='round'
-      />
-    </svg>
   )
 }
 

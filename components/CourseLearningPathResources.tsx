@@ -2,51 +2,118 @@ import * as React from 'react'
 
 import styles from './CourseLearningPath.module.css'
 import {
-  getCourseLearningPathResourceSection,
+  COURSE_LEARNING_PATH_GENERAL_RESOURCES_LABEL,
+  COURSE_LEARNING_PATH_RESOURCE_SECTIONS,
   resourcesForSection
 } from '@/lib/course-learning-path-resources'
-import { isResourceUrl, type CourseResource } from '@/lib/undergraduate-degrees'
+import type {
+  CourseLearningPathTopicResource,
+  CourseLearningPathTopicResourceKind
+} from '@/lib/course-learning-path-types'
+import {
+  isResourceUrl,
+  type CourseResource,
+  type CourseResourceKind
+} from '@/lib/undergraduate-degrees'
+
+import {
+  CourseLearningPathNodeResources,
+  type CourseLearningPathTopicResourceInput
+} from './CourseLearningPathNodeResources'
 
 interface CourseLearningPathResourcesProps {
-  selectedId: string
   resources: CourseResource[] | undefined
+  addedByKind?: Partial<
+    Record<CourseResourceKind, CourseLearningPathTopicResource[]>
+  >
   courseTitle: string
+  courseSlug: string
+  dbBacked?: boolean
+  signedIn?: boolean
+  onSignIn?: () => void
+  onAddTopicResource?: (
+    input: CourseLearningPathTopicResourceInput
+  ) => Promise<boolean>
+  onUpdateTopicResource?: (
+    input: CourseLearningPathTopicResourceInput & { resourceId: string }
+  ) => Promise<boolean>
+}
+
+function defaultKindForSection(
+  kind: CourseResourceKind
+): CourseLearningPathTopicResourceKind {
+  if (kind === 'textbook') return 'book'
+  if (kind === 'youtube') return 'video'
+  return 'article'
 }
 
 export function CourseLearningPathResources({
-  selectedId,
   resources,
-  courseTitle
+  addedByKind,
+  courseTitle,
+  courseSlug,
+  dbBacked = false,
+  signedIn = false,
+  onSignIn,
+  onAddTopicResource,
+  onUpdateTopicResource
 }: CourseLearningPathResourcesProps) {
-  const section = getCourseLearningPathResourceSection(selectedId)
-  if (!section) return null
-
-  const items = resourcesForSection(resources, section.kind)
-
   return (
     <article className={styles.article}>
       <header className={styles.articleHeader}>
-        <span className={styles.typeBadge}>Resources</span>
-        <h1 className={styles.articleTitle}>{section.label}</h1>
+        <span className={styles.typeBadge}>
+          {COURSE_LEARNING_PATH_GENERAL_RESOURCES_LABEL}
+        </span>
+        <h1 className={styles.articleTitle}>
+          {COURSE_LEARNING_PATH_GENERAL_RESOURCES_LABEL}
+        </h1>
         <p className={styles.articleDesc}>
-          Recommended {section.label.toLowerCase()} for {courseTitle}.
+          Recommended textbooks, websites, and video channels for {courseTitle}.
         </p>
       </header>
 
-      {items.length === 0 ? (
-        <p className={styles.resourcesEmpty}>
-          No {section.label.toLowerCase()} listed for this course yet.
-        </p>
-      ) : (
-        <ul className={styles.courseResourcesList}>
-          {items.map((resource, index) => (
-            <ResourceCard
-              key={`${section.kind}-${index}-${resource.title}`}
-              resource={resource}
+      {COURSE_LEARNING_PATH_RESOURCE_SECTIONS.map((section) => {
+        const items = resourcesForSection(resources, section.kind)
+        const added = addedByKind?.[section.kind] ?? []
+        return (
+          <section
+            key={section.id}
+            className={styles.generalResourceGroup}
+            aria-labelledby={`${section.id}-heading`}
+          >
+            <div className={`${styles.videosHeader} ${styles.videosHeaderPlain}`}>
+              <h2 id={`${section.id}-heading`} className={styles.videosTitle}>
+                {section.label}
+              </h2>
+            </div>
+            {items.length > 0 ? (
+              <ul className={styles.courseResourcesList}>
+                {items.map((resource, index) => (
+                  <ResourceCard
+                    key={`${section.kind}-${index}-${resource.title}`}
+                    resource={resource}
+                  />
+                ))}
+              </ul>
+            ) : null}
+            <CourseLearningPathNodeResources
+              nodeId={section.id}
+              items={added}
+              headingId={`${section.id}-resources-heading`}
+              hideHeading
+              quietEmpty={items.length > 0}
+              defaultKind={defaultKindForSection(section.kind)}
+              dbBacked={dbBacked}
+              signedIn={signedIn}
+              onSignIn={onSignIn}
+              pathSlug={courseSlug}
+              pathTitle={courseTitle}
+              onAdd={onAddTopicResource}
+              onUpdate={onUpdateTopicResource}
             />
-          ))}
-        </ul>
-      )}
+          </section>
+        )
+      })}
     </article>
   )
 }

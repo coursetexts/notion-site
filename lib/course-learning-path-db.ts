@@ -22,6 +22,7 @@ import {
   insertVideoAtPlacement,
   courseLearningPathIsFilled,
   isCourseLearningPathPayload,
+  mapCourseLearningPathGeneralResourceTopicResources,
   mapCourseLearningPathMentalMapTopicResources,
   mapCourseLearningPathNodeTopicResources,
   mergeCourseLearningPathLegacyResources,
@@ -30,6 +31,10 @@ import {
   sortCourseLearningPathLinks,
   sortCourseLearningPathTopicResources
 } from './course-learning-path-types'
+import {
+  COURSE_LEARNING_PATH_GENERAL_RESOURCES_LABEL,
+  getCourseLearningPathResourceSection
+} from './course-learning-path-resources'
 import { LEARNING_PATH_MENTAL_MAP_LABEL } from './learning-path-sections'
 import { getSupabaseClient } from './supabase'
 import {
@@ -720,6 +725,10 @@ function conceptTreeFromCourse(
   if (nodeId === course.mentalMapNodeId) {
     return `${course.title} --> ${LEARNING_PATH_MENTAL_MAP_LABEL}`
   }
+  const resourceSection = getCourseLearningPathResourceSection(nodeId)
+  if (resourceSection) {
+    return `${course.title} --> ${COURSE_LEARNING_PATH_GENERAL_RESOURCES_LABEL} --> ${resourceSection.label}`
+  }
   function walk(
     nodes: CourseLearningPathNode[],
     trail: string[]
@@ -1161,8 +1170,15 @@ async function mutateCourseTopicResources(
       data = asCoursePayload(row.id, curated)
     }
   }
+  const resourceSection = getCourseLearningPathResourceSection(nodeId)
   const isMental = nodeId === data.mentalMapNodeId
-  const next = isMental
+  const next = resourceSection
+    ? mapCourseLearningPathGeneralResourceTopicResources(
+        data,
+        resourceSection.kind,
+        updater
+      )
+    : isMental
     ? mapCourseLearningPathMentalMapTopicResources(data, updater)
     : mapCourseLearningPathNodeTopicResources(data, nodeId, updater)
   const ok = await saveCoursePathData(supabase, row.id, next)
@@ -1176,6 +1192,12 @@ function orderedTopicResourcesFromCourse(
   if (nodeId === course.mentalMapNodeId) {
     return sortCourseLearningPathTopicResources(
       course.mentalMapTopicResources ?? []
+    )
+  }
+  const resourceSection = getCourseLearningPathResourceSection(nodeId)
+  if (resourceSection) {
+    return sortCourseLearningPathTopicResources(
+      course.generalResourceTopicResources?.[resourceSection.kind] ?? []
     )
   }
   function find(

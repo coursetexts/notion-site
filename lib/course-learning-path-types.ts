@@ -1,5 +1,8 @@
 /** Shared types for the course-learning-path syllabus + curated video library. */
-import type { CourseResource } from '@/lib/undergraduate-degrees'
+import type {
+  CourseResource,
+  CourseResourceKind
+} from '@/lib/undergraduate-degrees'
 
 export type CourseLearningPathNodeType = 'topic' | 'subtopic' | 'concept'
 
@@ -77,6 +80,10 @@ export interface CourseLearningPathData {
   topics: CourseLearningPathNode[]
   /** Degrees-page curated resources (textbooks, websites, channels). */
   resources?: CourseResource[]
+  /** Learner-added cards on General Resources sections, keyed by section kind. */
+  generalResourceTopicResources?: Partial<
+    Record<CourseResourceKind, CourseLearningPathTopicResource[]>
+  >
   /** True when loaded from Supabase (mutations can persist). */
   dbBacked?: boolean
   /** Course-level videos on the Overview page. */
@@ -354,6 +361,25 @@ export function mapCourseLearningPathNodeTopicResources(
     })
   }
   return { ...course, topics: mapNodes(course.topics) }
+}
+
+export function mapCourseLearningPathGeneralResourceTopicResources(
+  course: CourseLearningPathData,
+  kind: CourseResourceKind,
+  updater: (
+    items: CourseLearningPathTopicResource[]
+  ) => CourseLearningPathTopicResource[]
+): CourseLearningPathData {
+  const current = { ...(course.generalResourceTopicResources ?? {}) }
+  const next = sortCourseLearningPathTopicResources(updater(current[kind] ?? []))
+  if (next.length) current[kind] = next
+  else delete current[kind]
+  return {
+    ...course,
+    generalResourceTopicResources: Object.keys(current).length
+      ? current
+      : undefined
+  }
 }
 
 export function mapCourseLearningPathMentalMapTopicResources(

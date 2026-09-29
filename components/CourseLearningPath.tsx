@@ -16,12 +16,14 @@ import {
   writeCourseLearningPathExplored
 } from '@/lib/course-learning-path-progress'
 import {
+  COURSE_LEARNING_PATH_GENERAL_RESOURCES_LABEL,
   COURSE_LEARNING_PATH_KNOWLEDGE_SECTION_ID,
   COURSE_LEARNING_PATH_MENTAL_MAP_SECTION_ID,
   COURSE_LEARNING_PATH_RESOURCES_SECTION_ID,
   COURSE_LEARNING_PATH_RESOURCE_SECTIONS,
   COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID,
   canonicalizeCourseLearningPathSectionId,
+  getCourseLearningPathResourceSection,
   getCourseLearningPathResourcesBySlug,
   isCourseLearningPathKnowledgeSelection,
   isCourseLearningPathOverviewSelection,
@@ -40,6 +42,7 @@ import {
   flattenCourseLearningPathNodes,
   formatCourseLearningPathConceptTree,
   insertTopicResourceAtPlacement,
+  mapCourseLearningPathGeneralResourceTopicResources,
   mapCourseLearningPathMentalMapTopicResources,
   mapCourseLearningPathNodeTopicResources,
   moveTopicResourceToPlacement
@@ -137,10 +140,10 @@ function initialCourseSelection(course: CourseLearningPathData): string {
   if (isCourseLearningPathOverviewSelection(node)) {
     return COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID
   }
-  if (
-    isCourseLearningPathResourceSelection(node) ||
-    isCourseLearningPathKnowledgeSelection(node)
-  ) {
+  if (isCourseLearningPathResourceSelection(node)) {
+    return COURSE_LEARNING_PATH_RESOURCES_SECTION_ID
+  }
+  if (isCourseLearningPathKnowledgeSelection(node)) {
     return node
   }
   const index = buildCourseLearningPathIndex(course)
@@ -424,8 +427,9 @@ export function CourseLearningPath({
         handleNext(first.id)
         return
       }
-      const firstResource = COURSE_LEARNING_PATH_RESOURCE_SECTIONS[0]
-      if (firstResource) handleSelect(firstResource.id)
+      if (COURSE_LEARNING_PATH_RESOURCE_SECTIONS.length > 0) {
+        handleSelect(COURSE_LEARNING_PATH_RESOURCES_SECTION_ID)
+      }
       return
     }
     const next = outlineOrder[topicIndex + 1]
@@ -451,6 +455,50 @@ export function CourseLearningPath({
     suggestedPlacement?: number
   }): Promise<boolean> {
     if (!course) return false
+
+    const resourceSection = getCourseLearningPathResourceSection(input.nodeId)
+    if (resourceSection) {
+      const current =
+        course.generalResourceTopicResources?.[resourceSection.kind] ?? []
+      const conceptTree = `${course.title} --> ${COURSE_LEARNING_PATH_GENERAL_RESOURCES_LABEL} --> ${resourceSection.label}`
+      if (course.dbBacked) {
+        const result = await addCourseLearningPathTopicResource(
+          {
+            ...input,
+            conceptTree,
+            courseSlug: course.slug
+          },
+          current
+        )
+        if (!result) return false
+        setCourse((prev) =>
+          prev
+            ? mapCourseLearningPathGeneralResourceTopicResources(
+                prev,
+                resourceSection.kind,
+                () => result.ordered
+              )
+            : prev
+        )
+        return true
+      }
+      const local = createLocalCourseLearningPathTopicResource(input)
+      setCourse((prev) =>
+        prev
+          ? mapCourseLearningPathGeneralResourceTopicResources(
+              prev,
+              resourceSection.kind,
+              (items) =>
+                insertTopicResourceAtPlacement(
+                  items,
+                  local,
+                  input.suggestedPlacement ?? current.length + 1
+                )
+            )
+          : prev
+      )
+      return true
+    }
 
     if (isMentalMapVideoNodeId(input.nodeId)) {
       const current = course.mentalMapTopicResources ?? []
@@ -567,6 +615,44 @@ export function CourseLearningPath({
         input.resourceId,
         input.suggestedPlacement ?? current.position
       )
+    }
+
+    const resourceSection = getCourseLearningPathResourceSection(input.nodeId)
+    if (resourceSection) {
+      const current =
+        course.generalResourceTopicResources?.[resourceSection.kind] ?? []
+      const conceptTree = `${course.title} --> ${COURSE_LEARNING_PATH_GENERAL_RESOURCES_LABEL} --> ${resourceSection.label}`
+      if (course.dbBacked) {
+        const result = await updateCourseLearningPathTopicResource(
+          {
+            ...input,
+            conceptTree,
+            courseSlug: course.slug
+          },
+          current
+        )
+        if (!result) return false
+        setCourse((prev) =>
+          prev
+            ? mapCourseLearningPathGeneralResourceTopicResources(
+                prev,
+                resourceSection.kind,
+                () => result.ordered
+              )
+            : prev
+        )
+        return true
+      }
+      setCourse((prev) =>
+        prev
+          ? mapCourseLearningPathGeneralResourceTopicResources(
+              prev,
+              resourceSection.kind,
+              applyLocal
+            )
+          : prev
+      )
+      return true
     }
 
     if (isMentalMapVideoNodeId(input.nodeId)) {
@@ -811,7 +897,7 @@ export function CourseLearningPath({
                 : showingKnowledge
                 ? 'What you learned'
                 : showingResources
-                ? 'Resources'
+                ? COURSE_LEARNING_PATH_GENERAL_RESOURCES_LABEL
                 : entry?.node.title ?? course.title
             }
             notesEditor={
@@ -819,7 +905,13 @@ export function CourseLearningPath({
                 nodeId={selectedId}
                 courseSlug={course.slug}
                 fallbackNodeIds={
-                  showingOverview ? OVERVIEW_NOTE_FALLBACK_IDS : undefined
+                  showingOverview
+                    ? OVERVIEW_NOTE_FALLBACK_IDS
+                    : showingResources
+                    ? COURSE_LEARNING_PATH_RESOURCE_SECTIONS.map(
+                        (section) => section.id
+                      )
+                    : undefined
                 }
                 topicTitle={
                   showingOverview
@@ -827,7 +919,7 @@ export function CourseLearningPath({
                     : showingKnowledge
                     ? 'What you learned'
                     : showingResources
-                    ? 'Resources'
+                    ? COURSE_LEARNING_PATH_GENERAL_RESOURCES_LABEL
                     : entry?.node.title
                 }
                 signedIn={Boolean(auth?.user)}
@@ -907,9 +999,19 @@ export function CourseLearningPath({
               />
             ) : showingResources ? (
               <CourseLearningPathResources
-                selectedId={selectedId}
                 resources={course.resources}
+                addedByKind={course.generalResourceTopicResources}
                 courseTitle={course.title}
+                courseSlug={course.slug}
+                dbBacked={Boolean(course.dbBacked)}
+                signedIn={Boolean(auth?.user)}
+                onSignIn={() =>
+                  auth?.signInWithGoogle(
+                    currentAuthRedirectPath({ node: selectedId })
+                  )
+                }
+                onAddTopicResource={handleAddTopicResource}
+                onUpdateTopicResource={handleUpdateTopicResource}
               />
             ) : entry ? (
               <CourseLearningPathTopicContent

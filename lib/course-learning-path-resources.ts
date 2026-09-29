@@ -41,6 +41,9 @@ export const COURSE_LEARNING_PATH_RESOURCE_SECTIONS: readonly CourseLearningPath
 
 export const COURSE_LEARNING_PATH_RESOURCES_SECTION_ID = 'resources'
 
+/** Left-nav label for textbooks, websites, and video channels. */
+export const COURSE_LEARNING_PATH_GENERAL_RESOURCES_LABEL = 'General Resources'
+
 /** Canonical left-nav / main-panel id for course Overview (`syllabus:overview`). */
 export const COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID = 'syllabus:overview'
 
@@ -51,8 +54,11 @@ export const COURSE_LEARNING_PATH_MENTAL_MAP_SECTION_ID = 'mental-map'
 export const COURSE_LEARNING_PATH_KNOWLEDGE_SECTION_ID = 'knowledge-gained'
 
 export function isCourseLearningPathResourceSelection(id: string): boolean {
-  return COURSE_LEARNING_PATH_RESOURCE_SECTIONS.some(
-    (section) => section.id === id
+  return (
+    id === COURSE_LEARNING_PATH_RESOURCES_SECTION_ID ||
+    COURSE_LEARNING_PATH_RESOURCE_SECTIONS.some(
+      (section) => section.id === id
+    )
   )
 }
 
@@ -73,9 +79,13 @@ export function isCourseLearningPathOverviewSelection(id: string): boolean {
 }
 
 export function canonicalizeCourseLearningPathSectionId(id: string): string {
-  return isCourseLearningPathOverviewSelection(id)
-    ? COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID
-    : id
+  if (isCourseLearningPathOverviewSelection(id)) {
+    return COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID
+  }
+  if (isCourseLearningPathResourceSelection(id)) {
+    return COURSE_LEARNING_PATH_RESOURCES_SECTION_ID
+  }
+  return id
 }
 
 export function isCourseLearningPathKnowledgeSelection(id: string): boolean {
