@@ -701,7 +701,7 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
       .slice(0, 10)
   }, [comments, annotations])
 
-  const showPathPeople = pathMembers !== undefined
+  const showPathPeople = pathMembers !== undefined && pathMembers.length > 0
 
   if (!coursePageId || !courseTitle) {
     return (
@@ -1136,33 +1136,27 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
               <h3 className={styles.pathPeopleTitle}>
                 People on this learning path
               </h3>
-              {pathMembers.length > 0 ? (
-                <ul className={styles.pathMemberList}>
-                  {pathMembers.map((member) => (
-                    <li
-                      key={`${member.role ?? 'member'}-${member.userId ?? member.initials}-${member.name}`}
-                      className={styles.pathMember}
-                    >
-                      <span className={styles.pathMemberAvatar} aria-hidden>
-                        {member.initials}
-                      </span>
-                      <span className={styles.pathMemberName}>
-                        {member.name}
-                        {member.role === 'collaborator' ? (
-                          <span className={styles.pathMemberRole}>
-                            {' '}
-                            (collaborator)
-                          </span>
-                        ) : null}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className={styles.pathPeopleEmpty}>
-                  No one on this path yet.
-                </p>
-              )}
+              <ul className={styles.pathMemberList}>
+                {pathMembers.map((member) => (
+                  <li
+                    key={`${member.role ?? 'member'}-${member.userId ?? member.initials}-${member.name}`}
+                    className={styles.pathMember}
+                  >
+                    <span className={styles.pathMemberAvatar} aria-hidden>
+                      {member.initials}
+                    </span>
+                    <span className={styles.pathMemberName}>
+                      {member.name}
+                      {member.role === 'collaborator' ? (
+                        <span className={styles.pathMemberRole}>
+                          {' '}
+                          (collaborator)
+                        </span>
+                      ) : null}
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </aside>
         ) : participants.length > 0 ? (

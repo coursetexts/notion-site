@@ -61,9 +61,6 @@ export function CourseLearningPathResources({
   return (
     <article className={styles.article}>
       <header className={styles.articleHeader}>
-        <span className={styles.typeBadge}>
-          {COURSE_LEARNING_PATH_GENERAL_RESOURCES_LABEL}
-        </span>
         <h1 className={styles.articleTitle}>
           {COURSE_LEARNING_PATH_GENERAL_RESOURCES_LABEL}
         </h1>

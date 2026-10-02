@@ -426,6 +426,10 @@ export type LearningPathData = {
   circle: LearningPathCircle
   /** ISO timestamp from learning_paths.created_at or first local save. */
   createdAt?: string
+  /** Owner-curated cards on General Resources, keyed by section kind. */
+  generalResources?: Partial<
+    Record<'textbook' | 'website' | 'youtube', LearningPathResource[]>
+  >
 }
 
 export type StoredLearningPath = {

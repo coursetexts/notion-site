@@ -1169,6 +1169,29 @@
   border-bottom: 1px solid #e6e6e6;
 }
 
+.navSectionGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.navOverviewSection {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.navGeneralResourcesSection {
+  margin: 0;
+  padding: 0;
+  border-top: none;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.navSectionGroup + .pathList,
+.navSectionGroup + .pathListEmpty {
+  margin-top: 0;
+}
+
 .creationEditPathSlot {
   display: flex;
   align-items: center;
@@ -1222,7 +1245,7 @@
   gap: 8px;
   flex: 1;
   min-width: 0;
-  padding: 6px 8px 6px 0;
+  padding: 11px 8px 11px 0;
   border: none;
   background: transparent;
   text-align: left;
@@ -1232,7 +1255,7 @@
 }
 
 .navSelectNoDot {
-  padding-left: 8px;
+  padding-left: 0;
 }
 
 .navTitle {

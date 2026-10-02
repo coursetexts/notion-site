@@ -128,17 +128,23 @@ import {
   setLearningPathResourceVote
 } from '@/lib/learning-path-resource-votes-db'
 import {
+  LEARNING_PATH_GENERAL_RESOURCES_LABEL,
   LEARNING_PATH_KNOWLEDGE_SECTION_ID,
   LEARNING_PATH_MENTAL_MAP_SECTION_ID,
   LEARNING_PATH_OVERVIEW_LABEL,
   LEARNING_PATH_OVERVIEW_SECTION_ID,
+  LEARNING_PATH_RESOURCE_SECTIONS,
+  LEARNING_PATH_RESOURCES_SECTION_ID,
   LEARNING_PATH_START_LABEL,
   LEARNING_PATH_RECOMMENDED_SECTION_ID,
   canonicalizeLearningPathSectionId,
+  getLearningPathResourceSection,
   isLearningPathKnowledgeSelection,
   isLearningPathOverviewSelection,
+  isLearningPathResourceSelection,
   isLearningPathSectionSelection,
-  outlineTreeWithoutGoal
+  outlineTreeWithoutGoal,
+  type LearningPathResourceSection
 } from '@/lib/learning-path-sections'
 import {
   ensureUniqueSlug,
@@ -201,6 +207,7 @@ import styles from './LearningPath.module.css'
 import { LearningPathFillOverlay } from './LearningPathFillOverlay'
 import { LearningPathFillRetryModal } from './LearningPathFillRetryModal'
 import { LearningPathFinishedModal } from './LearningPathFinishedModal'
+import { LearningPathGeneralResources } from './LearningPathGeneralResources'
 import { LearningPathInviteModal } from './LearningPathInviteModal'
 import { LearningPathDeleteModal } from './LearningPathDeleteModal'
 import { LearningPathLearnedPanel } from './LearningPathLearnedPanel'
@@ -1858,6 +1865,9 @@ function CommunityLearningPath({
   const [deleteResourceConfirmOpen, setDeleteResourceConfirmOpen] =
     React.useState(false)
   const [addResourceOpen, setAddResourceOpen] = React.useState(false)
+  const [resourceScopeId, setResourceScopeId] = React.useState<string | null>(
+    null
+  )
   const [editingResourceId, setEditingResourceId] = React.useState<
     string | null
   >(null)
@@ -2364,6 +2374,7 @@ function CommunityLearningPath({
   const goalNode =
     path.nodes.find((node) => node.kind === 'goal') ?? path.nodes[0]
   const showingOverview = isLearningPathOverviewSelection(selectedId)
+  const showingResources = isLearningPathResourceSelection(selectedId)
   const showingKnowledge = isLearningPathKnowledgeSelection(selectedId)
   const pathFinished = isLearningPathFinished(path)
   const learnedTopics = React.useMemo(
@@ -2371,11 +2382,16 @@ function CommunityLearningPath({
     [path]
   )
   const selected =
-    showingKnowledge
+    showingKnowledge || showingResources
       ? null
       : showingOverview
       ? goalNode ?? null
       : (selectedId ? nodeById[selectedId] : null) ?? null
+  const activeResourceSection = resourceScopeId
+    ? getLearningPathResourceSection(resourceScopeId)
+    : null
+  const activeResourceScopeId =
+    resourceScopeId ?? (showingResources ? null : selected?.id ?? null)
 
   const coreSteps = React.useMemo(
     () =>
@@ -2398,6 +2414,16 @@ function CommunityLearningPath({
       'general approach'.includes(outlineQuery) ||
       path.title.toLowerCase().includes(outlineQuery) ||
       (goalNode?.label ?? '').toLowerCase().includes(outlineQuery))
+  const showResourcesNav =
+    !creationMode &&
+    (!searching ||
+      LEARNING_PATH_GENERAL_RESOURCES_LABEL.toLowerCase().includes(
+        outlineQuery
+      ) ||
+      'resources'.includes(outlineQuery) ||
+      LEARNING_PATH_RESOURCE_SECTIONS.some((section) =>
+        section.label.toLowerCase().includes(outlineQuery)
+      ))
   const showKnowledgeNav =
     pathFinished &&
     (!searching ||
@@ -2410,16 +2436,22 @@ function CommunityLearningPath({
   const outlineNoMatches =
     searching &&
     !showOverviewNav &&
+    !showResourcesNav &&
     !showKnowledgeNav &&
     filteredTree.length === 0
   const selectedMark = selected ? marks[selected.id] : undefined
   const selectedParent = selectedMark?.parentId
     ? nodeById[selectedMark.parentId]
     : null
-  const myResources = selected ? userResources[selected.id] ?? [] : []
-  const nodeSuggestions = selected
+  const officialResourcesForScope = activeResourceSection
+    ? path.generalResources?.[activeResourceSection.kind] ?? []
+    : selected?.resources ?? []
+  const myResources = activeResourceScopeId
+    ? userResources[activeResourceScopeId] ?? []
+    : []
+  const nodeSuggestions = activeResourceScopeId
     ? resourceSuggestions
-        .filter((row) => row.nodeId === selected.id)
+        .filter((row) => row.nodeId === activeResourceScopeId)
         .map((row) => ({
           id: row.id,
           kind: row.kind,
@@ -2431,19 +2463,53 @@ function CommunityLearningPath({
           suggestedByYou: Boolean(currentUserId && row.userId === currentUserId)
         }))
     : []
-  const listedResources = selected
-    ? mergeLearningPathResources(
-        isPrivateInvitee
-          ? officialResourcesWithOwnerOverlay(
-              selected.resources,
-              ownerOverlayResources[selected.id] ?? []
-            )
-          : selected.resources,
-        myResources,
-        nodeSuggestions,
+  const listedResources =
+    activeResourceScopeId != null
+      ? mergeLearningPathResources(
+          isPrivateInvitee && !activeResourceSection
+            ? officialResourcesWithOwnerOverlay(
+                officialResourcesForScope,
+                ownerOverlayResources[activeResourceScopeId] ?? []
+              )
+            : officialResourcesForScope,
+          myResources,
+          nodeSuggestions,
+          currentUserId
+        )
+      : []
+  const generalResourcesBySectionId = React.useMemo(() => {
+    const out: Record<string, LearningPathListedResource[]> = {}
+    for (const section of LEARNING_PATH_RESOURCE_SECTIONS) {
+      const official = path.generalResources?.[section.kind] ?? []
+      const mine = userResources[section.id] ?? []
+      const suggestions = resourceSuggestions
+        .filter((row) => row.nodeId === section.id)
+        .map((row) => ({
+          id: row.id,
+          kind: row.kind,
+          title: row.title,
+          href: row.href,
+          passage: row.passage,
+          why: row.why,
+          sequence: row.sequence,
+          suggestedByYou: Boolean(
+            currentUserId && row.userId === currentUserId
+          )
+        }))
+      out[section.id] = mergeLearningPathResources(
+        official,
+        mine,
+        suggestions,
         currentUserId
       )
-    : []
+    }
+    return out
+  }, [
+    currentUserId,
+    path.generalResources,
+    resourceSuggestions,
+    userResources
+  ])
   const resourceFormOpen = addResourceOpen || Boolean(editingResourceId)
   const resourcePlacementMax =
     resourceFormOpen && editingResourceId
@@ -2481,6 +2547,7 @@ function CommunityLearningPath({
     replaceSearchParams({ node: next })
     setAddResourceOpen(false)
     setEditingResourceId(null)
+    setResourceScopeId(null)
     setResourceDraft(EMPTY_RESOURCE_DRAFT)
     setMobileOutlineOpen(false)
   }
@@ -2533,7 +2600,7 @@ function CommunityLearningPath({
   }
 
   function renderStepNavBar() {
-    if (showingKnowledge || !selected) return null
+    if (showingKnowledge || showingResources || !selected) return null
     return (
       <StepNavBar
         current={stepCurrent}
@@ -3391,8 +3458,61 @@ function CommunityLearningPath({
   function closeResourceForm() {
     setAddResourceOpen(false)
     setEditingResourceId(null)
+    setResourceScopeId(null)
     setResourceDraft(EMPTY_RESOURCE_DRAFT)
     setDeleteResourceConfirmOpen(false)
+  }
+
+  function openGeneralResourceAdd(
+    section: LearningPathResourceSection,
+    defaultKind: LearningPathResourceKind
+  ) {
+    if (!currentUserId) {
+      requestSignIn()
+      return
+    }
+    setResourceScopeId(section.id)
+    setEditingResourceId(null)
+    setResourceDraft({ ...EMPTY_RESOURCE_DRAFT, kind: defaultKind })
+    setAddResourceOpen(true)
+  }
+
+  function openGeneralResourceEdit(
+    section: LearningPathResourceSection,
+    resource: LearningPathListedResource
+  ) {
+    if (!currentUserId) {
+      requestSignIn()
+      return
+    }
+    setResourceScopeId(section.id)
+    setAddResourceOpen(false)
+    setDeleteResourceConfirmOpen(false)
+    setEditingResourceId(resource.id)
+    setResourceDraft({
+      title: resource.title,
+      href: resource.href ?? '',
+      kind: resource.kind,
+      passage: resourceHelpedText(resource.passage, resource.why),
+      why: '',
+      sequence: String(resource.sequence)
+    })
+  }
+
+  function mapPathGeneralResources(
+    prev: LearningPathData,
+    kind: LearningPathResourceSection['kind'],
+    resources: LearningPathResource[]
+  ): LearningPathData {
+    const nextGeneral = { ...(prev.generalResources ?? {}) }
+    if (resources.length) nextGeneral[kind] = resources
+    else delete nextGeneral[kind]
+    return {
+      ...prev,
+      generalResources: Object.keys(nextGeneral).length
+        ? nextGeneral
+        : undefined
+    }
   }
 
   function openEditResource(resource: {
@@ -3408,6 +3528,7 @@ function CommunityLearningPath({
       requestSignIn()
       return
     }
+    setResourceScopeId(null)
     setAddResourceOpen(false)
     setDeleteResourceConfirmOpen(false)
     setEditingResourceId(resource.id)
@@ -3424,12 +3545,17 @@ function CommunityLearningPath({
   function canEditListedResource(resource: LearningPathListedResource) {
     if (resource.suggested) return false
     if (resource.addedByYou || isOwnPath) return true
-    if (
-      isPrivateInvitee &&
-      selected &&
-      selected.resources.some((item) => item.id === resource.id)
-    ) {
-      return true
+    if (isPrivateInvitee) {
+      if (
+        selected &&
+        selected.resources.some((item) => item.id === resource.id)
+      ) {
+        return true
+      }
+      const generalOfficial = Object.values(path.generalResources ?? {}).flat()
+      if (generalOfficial.some((item) => item.id === resource.id)) {
+        return true
+      }
     }
     return false
   }
@@ -3440,20 +3566,72 @@ function CommunityLearningPath({
   }
 
   function requestDeleteEditingResource() {
-    if (!editingResourceId || !selected || !currentUserId) return
+    if (!editingResourceId || !activeResourceScopeId || !currentUserId) return
     const listed = listedResources.find((row) => row.id === editingResourceId)
     if (!listed || !canDeleteListedResource(listed)) return
     setDeleteResourceConfirmOpen(true)
   }
 
   function confirmDeleteEditingResource() {
-    if (!editingResourceId || !selected || !currentUserId) return
+    if (!editingResourceId || !activeResourceScopeId || !currentUserId) return
     const listed = listedResources.find((row) => row.id === editingResourceId)
     if (!listed || !canDeleteListedResource(listed)) {
       setDeleteResourceConfirmOpen(false)
       return
     }
     const resourceId = editingResourceId
+    const scopeId = activeResourceScopeId
+
+    if (activeResourceSection) {
+      const kind = activeResourceSection.kind
+      const officialList = path.generalResources?.[kind] ?? []
+      const isOfficial = officialList.some((item) => item.id === resourceId)
+      const inMine = (userResources[scopeId] ?? []).some(
+        (item) => item.id === resourceId
+      )
+
+      if (
+        isOfficial &&
+        (isOwnPath || listed.addedByYou) &&
+        canEditPathStructure
+      ) {
+        setPath((prev) => {
+          const current = prev.generalResources?.[kind] ?? []
+          const next = mapPathGeneralResources(
+            prev,
+            kind,
+            removeLearningPathOfficialResource(current, resourceId)
+          )
+          persistGraph(next)
+          pathRef.current = next
+          return next
+        })
+      }
+
+      if (inMine && (listed.addedByYou || isOwnPath)) {
+        setUserResources((prev) => {
+          const current = prev[scopeId] ?? []
+          const nextMine = removeLearningPathUserResource(
+            officialList.filter((item) => item.id !== resourceId),
+            current,
+            resourceId
+          )
+          const next = {
+            ...prev,
+            [scopeId]: nextMine
+          }
+          resourcesRef.current = next
+          queueUserStateSave()
+          return next
+        })
+      }
+
+      setDeleteResourceConfirmOpen(false)
+      closeResourceForm()
+      return
+    }
+
+    if (!selected) return
     const isOfficial = selected.resources.some((item) => item.id === resourceId)
     const inMine = (userResources[selected.id] ?? []).some(
       (item) => item.id === resourceId
@@ -3511,7 +3689,6 @@ function CommunityLearningPath({
       requestSignIn()
       return
     }
-    if (!selected) return
     const title = resourceDraft.title.trim()
     const passage = resourceDraft.passage.trim()
     if (!title || !passage) return
@@ -3524,6 +3701,112 @@ function CommunityLearningPath({
               ?.sequence ?? listedResources.length
           : listedResources.length + 1
         : rawPlacement
+
+    if (activeResourceSection && activeResourceScopeId) {
+      const scopeId = activeResourceScopeId
+      const kind = activeResourceSection.kind
+      const officialList = path.generalResources?.[kind] ?? []
+      if (canSuggestResources && !editingResourceId) {
+        const created = await addLearningPathResourceSuggestion({
+          pathId: pathRowId ?? path.slug,
+          nodeId: scopeId,
+          kind: resourceDraft.kind,
+          title,
+          href: href || undefined,
+          passage,
+          why: '',
+          sequence: placement
+        })
+        if (!created) {
+          window.alert('Could not send this suggestion. Try signing in again.')
+          return
+        }
+        setResourceSuggestions((prev) => [...prev, created])
+        closeResourceForm()
+        return
+      }
+      if (
+        (isPrivateInvitee || isOwnPath) &&
+        (!editingResourceId ||
+          officialList.some((item) => item.id === editingResourceId))
+      ) {
+        const previous = editingResourceId
+          ? officialList.find((item) => item.id === editingResourceId)
+          : undefined
+        if (
+          editingResourceId &&
+          !previous &&
+          !(userResources[scopeId] ?? []).some(
+            (item) => item.id === editingResourceId
+          )
+        ) {
+          // fall through to user-resource update below
+        } else if (!editingResourceId || previous) {
+          const official: LearningPathResource = {
+            id: editingResourceId ?? newId('r'),
+            kind: resourceDraft.kind,
+            title,
+            source: previous?.source ?? '',
+            href: href || undefined,
+            why: passage,
+            addedByUserId: previous?.addedByUserId ?? currentUserId ?? undefined
+          }
+          setPath((prev) => {
+            const current = prev.generalResources?.[kind] ?? []
+            const resources = editingResourceId
+              ? updateLearningPathOfficialResource(
+                  current,
+                  editingResourceId,
+                  official,
+                  placement
+                )
+              : insertLearningPathOfficialResource(current, official, placement)
+            const next = mapPathGeneralResources(prev, kind, resources)
+            persistGraph(next)
+            pathRef.current = next
+            return next
+          })
+          closeResourceForm()
+          return
+        }
+      }
+      const item: Omit<LearningPathUserResource, 'sequence'> = {
+        id: editingResourceId ?? newId('ur'),
+        kind: resourceDraft.kind,
+        title,
+        href: href || undefined,
+        passage,
+        why: ''
+      }
+      setUserResources((prev) => {
+        const current = prev[scopeId] ?? []
+        const nextMine = editingResourceId
+          ? updateLearningPathUserResource(
+              officialList,
+              current,
+              editingResourceId,
+              item,
+              placement
+            )
+          : insertLearningPathUserResource(
+              officialList,
+              current,
+              item,
+              placement
+            )
+        const next = {
+          ...prev,
+          [scopeId]: nextMine
+        }
+        resourcesRef.current = next
+        queueUserStateSave()
+        return next
+      })
+      closeResourceForm()
+      return
+    }
+
+    if (!selected) return
     if (canSuggestResources && !editingResourceId) {
       const created = await addLearningPathResourceSuggestion({
         pathId: pathRowId ?? path.slug,
@@ -4343,15 +4626,34 @@ function CommunityLearningPath({
                 {outlineNoMatches ? (
                   <p className={styles.pathListEmpty}>No matching steps.</p>
                 ) : null}
-                {showOverviewNav ? (
-                  <div className={styles.navPanelSection}>
-                    <PathSectionRow
-                      label={LEARNING_PATH_OVERVIEW_LABEL}
-                      selected={showingOverview}
-                      onSelect={() =>
-                        selectNode(LEARNING_PATH_OVERVIEW_SECTION_ID)
-                      }
-                    />
+                {showOverviewNav || showResourcesNav ? (
+                  <div className={styles.navSectionGroup}>
+                    {showOverviewNav ? (
+                      <div
+                        className={`${styles.navPanelSection} ${styles.navOverviewSection}`}
+                      >
+                        <PathSectionRow
+                          label={LEARNING_PATH_OVERVIEW_LABEL}
+                          selected={showingOverview}
+                          onSelect={() =>
+                            selectNode(LEARNING_PATH_OVERVIEW_SECTION_ID)
+                          }
+                        />
+                      </div>
+                    ) : null}
+                    {showResourcesNav ? (
+                      <div
+                        className={`${styles.navPanelSection} ${styles.navGeneralResourcesSection}`}
+                      >
+                        <PathSectionRow
+                          label={LEARNING_PATH_GENERAL_RESOURCES_LABEL}
+                          selected={showingResources}
+                          onSelect={() =>
+                            selectNode(LEARNING_PATH_RESOURCES_SECTION_ID)
+                          }
+                        />
+                      </div>
+                    ) : null}
                   </div>
                 ) : null}
                 {creationMode && canEditPathStructure ? (
@@ -4527,6 +4829,8 @@ function CommunityLearningPath({
             notesTopicTitle={
               showingOverview
                 ? LEARNING_PATH_OVERVIEW_LABEL
+                : showingResources
+                ? LEARNING_PATH_GENERAL_RESOURCES_LABEL
                 : showingKnowledge
                 ? 'What you learned'
                 : selected?.label ?? path.title
@@ -4550,6 +4854,8 @@ function CommunityLearningPath({
                   expandTopic={
                     showingOverview
                       ? LEARNING_PATH_OVERVIEW_LABEL
+                      : showingResources
+                      ? LEARNING_PATH_GENERAL_RESOURCES_LABEL
                       : showingKnowledge
                       ? 'What you learned'
                       : selected?.label
@@ -4580,6 +4886,16 @@ function CommunityLearningPath({
                 pathTitle={path.title}
                 topics={learnedTopics}
                 onSelectTopic={selectNode}
+              />
+            ) : showingResources ? (
+              <LearningPathGeneralResources
+                pathTitle={path.title}
+                resourcesBySectionId={generalResourcesBySectionId}
+                signedIn={Boolean(currentUserId)}
+                onSignIn={() => requestSignIn()}
+                onAdd={openGeneralResourceAdd}
+                onEdit={openGeneralResourceEdit}
+                canEditResource={canEditListedResource}
               />
             ) : selected ? (
               <>
@@ -4881,7 +5197,11 @@ function CommunityLearningPath({
                 </header>
 
                 {creationMode ? null : (
-                <PathContentSection title='Resources'>
+                <PathContentSection
+                  title={
+                    showingOverview ? 'Introductory Resources' : 'Resources'
+                  }
+                >
                   {listedResources.length === 0 ? (
                     <div className={styles.resourceEmptyBox}>
                       <p className={styles.resourceEmpty}>
@@ -5040,19 +5360,6 @@ function CommunityLearningPath({
                                     {isOwnPath ? 'Dismiss' : 'Withdraw'}
                                   </button>
                                 ) : null}
-                                {canVoteOnResources && !resource.suggested ? (
-                                  <ResourceVoteControl
-                                    score={voteScore}
-                                    userVote={userVote}
-                                    disabled={
-                                      votingResourceId === resource.id
-                                    }
-                                    signedIn={Boolean(currentUserId)}
-                                    onVote={(value) =>
-                                      void setResourceVote(resource.id, value)
-                                    }
-                                  />
-                                ) : null}
                                 <div className={styles.resourceHoverActions}>
                                   {canEditResource ? (
                                     <button
@@ -5125,6 +5432,19 @@ function CommunityLearningPath({
                                     </button>
                                   ) : null}
                                 </div>
+                                {canVoteOnResources && !resource.suggested ? (
+                                  <ResourceVoteControl
+                                    score={voteScore}
+                                    userVote={userVote}
+                                    disabled={
+                                      votingResourceId === resource.id
+                                    }
+                                    signedIn={Boolean(currentUserId)}
+                                    onVote={(value) =>
+                                      void setResourceVote(resource.id, value)
+                                    }
+                                  />
+                                ) : null}
                               </div>
                             </div>
                           </li>
