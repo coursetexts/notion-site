@@ -24,7 +24,6 @@ import type { LearningPathSearchExtras } from '@/lib/catalog-search-index'
 import { listCourseLearningPaths } from '@/lib/course-learning-path-db'
 import { getCourseLearningPathSubject } from '@/lib/course-learning-path-subject'
 import { listNonCourseLearningPaths } from '@/lib/learning-path-db'
-import { learningPathKicker } from '@/lib/learning-path-kind-ui'
 import {
   type LearningPathTopicId,
   learningPathTopics,
@@ -172,7 +171,7 @@ function nonCoursePathToCard(
   return {
     id: path.id,
     href: pathsLearningPathHref(path.slug),
-    meta: learningPathKicker(path.kind),
+    meta: '',
     title: path.title,
     description: path.description,
     communityMark: true,

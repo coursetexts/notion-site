@@ -3,11 +3,16 @@
  * Data comes from degrees-page curriculum JSON (textbook / website / youtube).
  */
 import { graduateDegrees } from '@/lib/graduate-degrees'
+import type {
+  CourseLearningPathTopicResource,
+  CourseLearningPathTopicResourceKind
+} from '@/lib/course-learning-path-types'
 import { isLearningPathOverviewSelection } from '@/lib/learning-path-sections'
 import {
   type CourseResource,
   type CourseResourceKind,
   getCourseLearningPathSlug,
+  isResourceUrl,
   undergraduateDegrees
 } from '@/lib/undergraduate-degrees'
 
@@ -139,4 +144,76 @@ export function resourcesForSection(
   kind: CourseLearningPathResourceSectionKind
 ): CourseResource[] {
   return (resources ?? []).filter((r) => r.kind === kind)
+}
+
+/** Stable id so votes/bookmarks survive remounts for degrees-page curated rows. */
+export function curatedGeneralResourceId(
+  kind: CourseLearningPathResourceSectionKind,
+  index: number,
+  title: string
+): string {
+  const slug = title
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 48)
+  return `curated:${kind}:${index}:${slug || 'resource'}`
+}
+
+export function isCuratedGeneralResourceId(id: string): boolean {
+  return id.startsWith('curated:')
+}
+
+function topicKindForResourceSection(
+  kind: CourseLearningPathResourceSectionKind
+): CourseLearningPathTopicResourceKind {
+  if (kind === 'textbook') return 'book'
+  if (kind === 'youtube') return 'video'
+  return 'article'
+}
+
+/**
+ * Migrate degrees-page curriculum resources into path topic-resource cards:
+ * description → passage ("The part that helped and why"), keep list order.
+ */
+export function courseCurriculumResourcesToTopicResources(
+  resources: CourseResource[],
+  kind: CourseLearningPathResourceSectionKind
+): CourseLearningPathTopicResource[] {
+  const topicKind = topicKindForResourceSection(kind)
+  return resources.map((resource, index) => {
+    const link = resource.linkOrSite.trim()
+    const description = resource.description.trim()
+    const url = isResourceUrl(link) ? link : undefined
+    // Non-URL linkOrSite is a publisher/source — keep it with the helped text.
+    const passage = [!url && link ? link : '', description]
+      .map((part) => part.trim())
+      .filter(Boolean)
+      .join('\n\n')
+    return {
+      id: curatedGeneralResourceId(kind, index, resource.title),
+      kind: topicKind,
+      position: index + 1,
+      title: resource.title.trim() || 'Untitled resource',
+      url,
+      passage: passage || undefined
+    }
+  })
+}
+
+/** Curated curriculum cards first, then learner-added — one numbered list. */
+export function mergeGeneralResourceTopicLists(
+  curated: CourseLearningPathTopicResource[],
+  added: CourseLearningPathTopicResource[]
+): CourseLearningPathTopicResource[] {
+  const curatedIds = new Set(curated.map((item) => item.id))
+  const extras = added.filter((item) => !curatedIds.has(item.id))
+  return [
+    ...curated.map((item, index) => ({ ...item, position: index + 1 })),
+    ...extras.map((item, index) => ({
+      ...item,
+      position: curated.length + index + 1
+    }))
+  ]
 }

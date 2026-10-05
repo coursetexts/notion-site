@@ -1003,6 +1003,7 @@ export function CourseLearningPath({
                 addedByKind={course.generalResourceTopicResources}
                 courseTitle={course.title}
                 courseSlug={course.slug}
+                pathId={course.id}
                 dbBacked={Boolean(course.dbBacked)}
                 signedIn={Boolean(auth?.user)}
                 onSignIn={() =>
@@ -1026,6 +1027,7 @@ export function CourseLearningPath({
                 }
                 onAddTopicResource={handleAddTopicResource}
                 onUpdateTopicResource={handleUpdateTopicResource}
+                pathId={course.id}
                 pathSlug={course.slug}
                 pathTitle={course.title}
               />

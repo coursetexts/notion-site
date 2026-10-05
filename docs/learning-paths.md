@@ -39,9 +39,10 @@ Profile tabs also include **Knowledge** (acquired topics) and **Notes** (your pr
 
 ## Left outline (community / research)
 
-1. **Overview** — combined General Approach + Recommended Path (`?node=overview`). Resources only; no **Why is this on the learning path**. A 1px hairline sits under this row (none above it). **Commit & Remind Me** sits on the bottom step bar next to **Start learning path** (first topic, or Resources when the syllabus has no topics yet).
-2. The topic tree. Top-level steps are accordion rows (chevron on the right). Nested steps sit on a vertical hairline. A light-blue stroke check appears on the right when a parent or child is `explored`.
-3. **What you learned** — only after the path is finished
+1. **Overview** — combined General Approach + Recommended Path (`?node=overview`). **Introductory Resources** only; no **Why is this on the learning path**. A 1px hairline sits under this row (none above it). **Commit & Remind Me** sits on the bottom step bar next to **Start learning path** (first topic, or General Resources when the syllabus has no topics yet).
+2. **General Resources** — left-nav tab under Overview (`?node=resources`). Sections for Core Textbooks, Websites and Open Resources, and Video Channels. Owner/invitee cards live on `data.generalResources` (keyed by section kind); learners can also add personal overlay cards. Same resource card chrome as topics (sequence, kind, vote, bookmark, report, info for “The part that helped and why”).
+3. The topic tree. Top-level steps are accordion rows (chevron on the right). Nested steps sit on a vertical hairline. A light-blue stroke check appears on the right when a parent or child is `explored`.
+4. **What you learned** — only after the path is finished
 
 The topic bar has **Discussions** (table `annotations`; `?annotations=1` or `?discussions=1`) and **Your Notes**. On mobile (≤900px), **The Path** opens the outline drawer (same as community paths and official Notion courses’ **The Course**). In the notes side panel, **Export PDF** is under the toolbar **…** menu. Searching the outline for “mental map” or “general approach” still finds **Overview**. Course syllabi use the same **Overview** tab and accordion/check treatment (see [curated-courses.md](./curated-courses.md)).
 
@@ -110,6 +111,8 @@ Community / research:
             sub   still stored (seeded “Need this” / “As deep as you need”
                   are hidden in the outline and on the map)
   edges[]   from, to
+  generalResources?  optional Partial<textbook|website|youtube → resource[]>
+            for the General Resources outline tab
   circle    name, description, members[] (seed fallback; live UI loads
             invited collaborators then public savers via
             listLearningPathPeople — apply `054`)
@@ -164,7 +167,7 @@ Course catalog pages have no privacy toggle. Owned community/research paths use 
 
 **Context** (topic bar, next to Discussions / Your Notes) opens a dialog that copies a prompt for an external LLM and explains to paste it into ChatGPT, Claude, or similar so the model knows where you are on the path. The prompt includes the current step and its parents, the numbered outline with each topic’s why and any prerequisites bullets, then the goal and summary. Each outline row keeps the mark on the same line as the title (`1 Title`, `a) Title`, `i) Title`). Empty and placeholder whys are omitted. Course syllabi do not show this button.
 
-Resource votes live in `learning_path_resource_votes` and **do not change sequence**. The number in the list is still the study order. Each card shows an up arrow, a score (upvotes minus downvotes), and a down arrow. Clicking the active arrow clears the vote; clicking the other switches it. Any signed-in user can vote on a `public` or `collaborative` path — the control stays enabled except while a vote is saving. Apply `028_learning_path_resource_votes.sql`, then `060_learning_path_resource_downvotes.sql`, on existing databases. “The part that helped and why” opens from an information icon to the right of the bookmark (same hover row as edit, report, and bookmark). `/community` explains the upvote side with a schema diagram (`ResourceVoteSchemaDiagram`): sequence `1 2 3` vs ↑ votes, and the highest vote count is deliberately not on item 1.
+Resource votes live in `learning_path_resource_votes` and **do not change sequence**. The number in the list is still the study order. Each card shows an up arrow, a score (upvotes minus downvotes), and a down arrow — votes sit to the right of the info icon. Clicking the active arrow clears the vote; clicking the other switches it. Any signed-in user can vote on a `public` or `collaborative` path — the control stays enabled except while a vote is saving. Course syllabi use the same vote / bookmark / info chrome on topic resources and on **General Resources** (including migrated curriculum cards). Apply `028_learning_path_resource_votes.sql`, then `060_learning_path_resource_downvotes.sql`, on existing databases. “The part that helped and why” opens from an information icon to the right of the bookmark (same hover row as edit, report, and bookmark). `/community` explains the upvote side with a schema diagram (`ResourceVoteSchemaDiagram`): sequence `1 2 3` vs ↑ votes, and the highest vote count is deliberately not on item 1.
 
 ## Activity
 

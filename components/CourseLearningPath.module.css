@@ -1878,10 +1878,30 @@
 
 .topicResourceMetaActions {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: flex-end;
   gap: 10px;
   flex-shrink: 0;
   margin-top: 2px;
+}
+
+.topicResourceHoverActions {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.topicResource:hover .topicResourceHoverActions,
+.topicResource:focus-within .topicResourceHoverActions {
+  display: inline-flex;
+}
+
+@media (hover: none) {
+  .topicResourceHoverActions {
+    display: inline-flex;
+  }
 }
 
 .topicResourceActionsDivider {
@@ -1900,12 +1920,64 @@
   padding: 0;
   color: #9ca3af;
   cursor: pointer;
+  transition: color 0.15s ease;
 }
 
 .topicResourceEditBtn:hover,
 .topicResourceEditBtn:focus-visible {
   color: #25272b;
   outline: none;
+}
+
+.topicResourceEditBtn:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.topicResourceActionOn {
+  color: #25272b;
+}
+
+.topicResourceVote {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.topicResourceVoteBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #9ca3af;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.15s ease;
+}
+
+.topicResourceVoteBtn:hover:not(:disabled),
+.topicResourceVoteBtn:focus-visible {
+  color: #25272b;
+  outline: none;
+}
+
+.topicResourceVoteBtn:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.topicResourceVoteCount {
+  font-size: 10px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  color: inherit;
 }
 
 .topicResourceEditing {
@@ -1956,21 +2028,6 @@ a.topicResourceTitle:focus-visible {
   color: #6b7280;
 }
 
-.topicResourcePassage,
-.topicResourceWhy {
-  display: none;
-}
-
-.topicResource:hover .topicResourcePassage,
-.topicResource:hover .topicResourceWhy,
-.topicResource:focus-within .topicResourcePassage,
-.topicResource:focus-within .topicResourceWhy {
+.topicResourcePassageOpen {
   display: block;
-}
-
-@media (hover: none) {
-  .topicResourcePassage,
-  .topicResourceWhy {
-    display: block;
-  }
 }

@@ -54,6 +54,7 @@ export default function LearningPathPage({ slug }: LearningPathPageProps) {
             '--home-main-max': '1324px',
             '--home-content-max': '1000px',
             '--home-footer-side': 'max(28px, 15.28vw)',
+            '--nav-dropdown-bg': '#ffffff',
             minHeight: '100vh',
             background: '#fff',
             display: 'flex',

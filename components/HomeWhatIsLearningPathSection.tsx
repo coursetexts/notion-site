@@ -24,10 +24,9 @@ export function HomeWhatIsLearningPathSection() {
             progress in one place.
           </p>
           <p className={styles.body}>
-            A community of <AutodidactTerm>autodidacts</AutodidactTerm> - Anyone
-            can publish a learning path to help others learn what they have
+            Anyone can publish a learning path to help others learn what they have
             already. The community curates and votes on resources to build the
-            best possible learning experience.
+            best possible learning experience. A community of <AutodidactTerm>autodidacts</AutodidactTerm> 
           </p>
         </div>
 

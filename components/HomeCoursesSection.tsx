@@ -98,7 +98,9 @@ function HomeCourseCardItem({
                 )}
               </span>
             )}
-            <span className={styles.courseMetaText}>{course.meta}</span>
+            {course.meta.trim() ? (
+              <span className={styles.courseMetaText}>{course.meta}</span>
+            ) : null}
           </div>
 
           <h3

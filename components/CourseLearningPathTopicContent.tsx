@@ -22,6 +22,7 @@ interface TopicContentProps {
   onUpdateTopicResource?: (
     input: CourseLearningPathTopicResourceInput & { resourceId: string }
   ) => Promise<boolean>
+  pathId?: string
   pathSlug?: string
   pathTitle?: string
 }
@@ -34,6 +35,7 @@ export function CourseLearningPathTopicContent({
   onSignIn,
   onAddTopicResource,
   onUpdateTopicResource,
+  pathId,
   pathSlug,
   pathTitle
 }: TopicContentProps) {
@@ -77,6 +79,7 @@ export function CourseLearningPathTopicContent({
         dbBacked={dbBacked}
         signedIn={signedIn}
         onSignIn={onSignIn}
+        pathId={pathId}
         pathSlug={pathSlug}
         pathTitle={pathTitle}
         onAdd={onAddTopicResource}

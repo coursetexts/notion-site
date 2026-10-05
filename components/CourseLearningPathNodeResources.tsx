@@ -7,7 +7,18 @@ import {
   type CourseLearningPathTopicResource,
   type CourseLearningPathTopicResourceKind
 } from '@/lib/course-learning-path-types'
-import { learningPathHref } from '@/lib/learning-path-bookmark-link'
+import {
+  learningPathHref,
+  learningPathResourceBookmarkUrl,
+  normalizeUserLinkUrl
+} from '@/lib/learning-path-bookmark-link'
+import {
+  type LearningPathResourceVoteSummary,
+  getLearningPathResourceVoteSummaries,
+  learningPathResourceVoteKey,
+  setLearningPathResourceVote
+} from '@/lib/learning-path-resource-votes-db'
+import { addLink, deleteLink, getMyLinks } from '@/lib/user-links'
 
 import styles from './CourseLearningPath.module.css'
 import { FormSelect } from './FormSelect'
@@ -20,6 +31,13 @@ const EMPTY_DRAFT = {
   passage: '',
   why: '',
   sequence: ''
+}
+
+const UUID_RE =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
+
+function isPathUuid(id: string | null | undefined): id is string {
+  return Boolean(id && UUID_RE.test(id))
 }
 
 function resourceHelpedText(passage?: string, why?: string) {
@@ -54,6 +72,70 @@ function ResourceEditPencilIcon() {
   )
 }
 
+function ResourceInfoIcon() {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='13'
+      height='13'
+      viewBox='0 0 14 14'
+      fill='none'
+      aria-hidden
+    >
+      <circle
+        cx='7'
+        cy='7'
+        r='5.4'
+        stroke='currentColor'
+        strokeWidth='1.2'
+      />
+      <path
+        d='M7 6.2v3.2'
+        stroke='currentColor'
+        strokeWidth='1.2'
+        strokeLinecap='round'
+      />
+      <circle cx='7' cy='4.4' r='0.7' fill='currentColor' />
+    </svg>
+  )
+}
+
+function ResourceUpvoteIcon() {
+  return (
+    <svg width='11' height='11' viewBox='0 0 16 16' fill='none' aria-hidden>
+      <path
+        d='M2.5374 10.1938C2.57565 10.2847 2.63998 10.3624 2.72229 10.4169C2.80459 10.4714 2.90119 10.5003 2.9999 10.5H12.9999C13.0986 10.5003 13.1952 10.4714 13.2775 10.4169C13.3598 10.3624 13.4242 10.2847 13.4624 10.1938C13.4984 10.1014 13.5076 10.0007 13.4888 9.90339C13.47 9.80606 13.424 9.71604 13.3561 9.64375L8.35615 4.64375C8.26058 4.55134 8.13284 4.49969 7.9999 4.49969C7.86696 4.49969 7.73922 4.55134 7.64365 4.64375L2.64365 9.64375C2.57583 9.71604 2.52985 9.80606 2.51105 9.90339C2.49225 10.0007 2.50138 10.1014 2.5374 10.1938Z'
+        fill='currentColor'
+      />
+    </svg>
+  )
+}
+
+function ResourceDownvoteIcon() {
+  return (
+    <svg width='11' height='11' viewBox='0 0 16 16' fill='none' aria-hidden>
+      <path
+        d='M13.4626 5.80625C13.4243 5.71525 13.36 5.63761 13.2777 5.58311C13.1954 5.52861 13.0988 5.49969 13.0001 5.5H3.0001C2.90139 5.49969 2.80479 5.52861 2.72249 5.58311C2.64018 5.63761 2.57585 5.71525 2.5376 5.80625C2.50158 5.89861 2.49244 5.99927 2.51124 6.09661C2.53004 6.19394 2.57602 6.28396 2.64385 6.35625L7.64385 11.3563C7.73942 11.4487 7.86716 11.5003 8.0001 11.5003C8.13304 11.5003 8.26078 11.4487 8.35635 11.3563L13.3563 6.35625C13.4242 6.28396 13.4702 6.19394 13.489 6.09661C13.5078 5.99927 13.4986 5.89861 13.4626 5.80625Z'
+        fill='currentColor'
+      />
+    </svg>
+  )
+}
+
+function BookmarkIcon({ filled }: { filled: boolean }) {
+  return (
+    <svg width='13' height='13' viewBox='0 0 14 16' fill='none' aria-hidden>
+      <path
+        d='M2.75 2.25h8.5v10.85L7 9.35l-4.25 3.75V2.25z'
+        fill={filled ? 'currentColor' : 'none'}
+        stroke='currentColor'
+        strokeWidth='1.2'
+        strokeLinejoin='round'
+      />
+    </svg>
+  )
+}
+
 export type CourseLearningPathTopicResourceInput = {
   nodeId: string
   kind: CourseLearningPathTopicResourceKind
@@ -79,8 +161,11 @@ interface CourseLearningPathNodeResourcesProps {
   dbBacked?: boolean
   signedIn?: boolean
   onSignIn?: () => void
+  /** learning_paths.id when votes can persist. */
+  pathId?: string
   pathSlug?: string
   pathTitle?: string
+  canEditResource?: (resource: CourseLearningPathTopicResource) => boolean
   onAdd?: (input: CourseLearningPathTopicResourceInput) => Promise<boolean>
   onUpdate?: (
     input: CourseLearningPathTopicResourceInput & { resourceId: string }
@@ -98,8 +183,10 @@ export function CourseLearningPathNodeResources({
   dbBacked = false,
   signedIn = false,
   onSignIn,
+  pathId,
   pathSlug,
   pathTitle,
+  canEditResource,
   onAdd,
   onUpdate
 }: CourseLearningPathNodeResourcesProps) {
@@ -108,6 +195,23 @@ export function CourseLearningPathNodeResources({
   const [draft, setDraft] = React.useState({ ...EMPTY_DRAFT, kind: defaultKind })
   const [formError, setFormError] = React.useState<string | null>(null)
   const [submitting, setSubmitting] = React.useState(false)
+  const [openHelpIds, setOpenHelpIds] = React.useState<Record<string, boolean>>(
+    {}
+  )
+  const [resourceVotes, setResourceVotes] = React.useState<
+    Record<string, LearningPathResourceVoteSummary>
+  >({})
+  const [votingResourceId, setVotingResourceId] = React.useState<string | null>(
+    null
+  )
+  const [savedLinkByUrl, setSavedLinkByUrl] = React.useState<
+    Record<string, string>
+  >({})
+  const [bookmarkingResourceId, setBookmarkingResourceId] = React.useState<
+    string | null
+  >(null)
+
+  const canVote = isPathUuid(pathId)
 
   function blankDraft() {
     return { ...EMPTY_DRAFT, kind: defaultKind }
@@ -119,6 +223,126 @@ export function CourseLearningPathNodeResources({
     ? items.find((item) => item.id === editingId)
     : undefined
 
+  React.useEffect(() => {
+    if (!canVote || !pathId) {
+      setResourceVotes({})
+      return
+    }
+    let cancelled = false
+    void getLearningPathResourceVoteSummaries(pathId).then((next) => {
+      if (!cancelled) setResourceVotes(next)
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [canVote, pathId, signedIn])
+
+  React.useEffect(() => {
+    if (!signedIn) {
+      setSavedLinkByUrl({})
+      return
+    }
+    let cancelled = false
+    void getMyLinks().then((links) => {
+      if (cancelled) return
+      const byUrl: Record<string, string> = {}
+      for (const link of links) {
+        byUrl[normalizeUserLinkUrl(link.url)] = link.id
+      }
+      setSavedLinkByUrl(byUrl)
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [signedIn, pathSlug])
+
+  async function setResourceVote(
+    resourceId: string,
+    value: 1 | -1 | null
+  ) {
+    if (!signedIn) {
+      onSignIn?.()
+      return
+    }
+    if (!canVote || !pathId || votingResourceId) return
+    const key = learningPathResourceVoteKey(nodeId, resourceId)
+    const current = resourceVotes[key] ?? { score: 0, userVote: null }
+    const previous = current.userVote
+    let score = current.score
+    if (previous === 1) score -= 1
+    if (previous === -1) score += 1
+    if (value === 1) score += 1
+    if (value === -1) score -= 1
+    setVotingResourceId(resourceId)
+    setResourceVotes((prev) => ({
+      ...prev,
+      [key]: { score, userVote: value }
+    }))
+    try {
+      const nextScore = await setLearningPathResourceVote(
+        pathId,
+        nodeId,
+        resourceId,
+        value
+      )
+      if (nextScore == null) {
+        setResourceVotes((prev) => ({ ...prev, [key]: current }))
+        return
+      }
+      setResourceVotes((prev) => ({
+        ...prev,
+        [key]: { score: nextScore, userVote: value }
+      }))
+    } finally {
+      setVotingResourceId(null)
+    }
+  }
+
+  async function toggleResourceBookmark(
+    resource: CourseLearningPathTopicResource
+  ) {
+    if (!signedIn) {
+      onSignIn?.()
+      return
+    }
+    if (!pathSlug || bookmarkingResourceId) return
+    const url = learningPathResourceBookmarkUrl({
+      slug: pathSlug,
+      nodeId,
+      resourceId: resource.id,
+      href: resource.url,
+      origin: window.location.origin
+    })
+    const key = normalizeUserLinkUrl(url)
+    const existingId = savedLinkByUrl[key]
+    setBookmarkingResourceId(resource.id)
+    try {
+      if (existingId) {
+        const ok = await deleteLink(existingId)
+        if (!ok) {
+          window.alert('Could not remove this bookmark.')
+          return
+        }
+        setSavedLinkByUrl((prev) => {
+          const next = { ...prev }
+          delete next[key]
+          return next
+        })
+        return
+      }
+      const row = await addLink(url, { title: resource.title })
+      if (!row) {
+        window.alert('Could not bookmark this resource. Try signing in again.')
+        return
+      }
+      setSavedLinkByUrl((prev) => ({
+        ...prev,
+        [normalizeUserLinkUrl(row.url)]: row.id
+      }))
+    } finally {
+      setBookmarkingResourceId(null)
+    }
+  }
   React.useEffect(() => {
     setAdding(false)
     setEditingId(null)
@@ -166,6 +390,7 @@ export function CourseLearningPathNodeResources({
   resetFormRef.current = resetForm
 
   function openEdit(resource: CourseLearningPathTopicResource) {
+    if (canEditResource && !canEditResource(resource)) return
     if (!signedIn) {
       onSignIn?.()
       return
@@ -318,6 +543,32 @@ export function CourseLearningPathNodeResources({
                   resource.passage,
                   resource.why
                 )
+                const helpKey = `${nodeId}:${resource.id}`
+                const helpOpen = Boolean(openHelpIds[helpKey])
+                const vote =
+                  resourceVotes[
+                    learningPathResourceVoteKey(nodeId, resource.id)
+                  ]
+                const voteScore = vote?.score ?? 0
+                const userVote = vote?.userVote ?? null
+                const bookmarkUrl = pathSlug
+                  ? learningPathResourceBookmarkUrl({
+                      slug: pathSlug,
+                      nodeId,
+                      resourceId: resource.id,
+                      href: resource.url,
+                      origin:
+                        typeof window !== 'undefined'
+                          ? window.location.origin
+                          : ''
+                    })
+                  : ''
+                const bookmarkSaved = Boolean(
+                  bookmarkUrl &&
+                    savedLinkByUrl[normalizeUserLinkUrl(bookmarkUrl)]
+                )
+                const editable =
+                  !canEditResource || canEditResource(resource)
                 const title = resource.url ? (
                   <a
                     className={styles.topicResourceTitle}
@@ -350,39 +601,173 @@ export function CourseLearningPathNodeResources({
                             {resource.kind}
                           </p>
                           {title}
-                          {helpedText ? (
-                            <p className={styles.topicResourcePassage}>
+                          {helpedText && helpOpen ? (
+                            <p
+                              className={`${styles.topicResourcePassage} ${styles.topicResourcePassageOpen}`}
+                            >
                               The part that helped and why: {helpedText}
                             </p>
                           ) : null}
                         </div>
                       </div>
                       <div className={styles.topicResourceMetaActions}>
-                        {pathSlug ? (
-                          <ReportButton
-                            target={{
-                              type: 'resource',
-                              id: pathResourceReportId({
-                                slug: pathSlug,
-                                nodeId,
-                                resourceId: resource.id
-                              }),
-                              url: learningPathHref(pathSlug),
-                              title: pathTitle
-                                ? `${resource.title} — ${pathTitle}`
-                                : resource.title,
-                              snippet: helpedText
-                            }}
-                          />
+                        <div className={styles.topicResourceHoverActions}>
+                          {editable ? (
+                            <button
+                              type='button'
+                              className={styles.topicResourceEditBtn}
+                              onClick={() => openEdit(resource)}
+                              aria-label='Edit'
+                              title='Edit resource'
+                            >
+                              <ResourceEditPencilIcon />
+                            </button>
+                          ) : null}
+                          {pathSlug ? (
+                            <ReportButton
+                              target={{
+                                type: 'resource',
+                                id: pathResourceReportId({
+                                  slug: pathSlug,
+                                  nodeId,
+                                  resourceId: resource.id
+                                }),
+                                url: learningPathHref(pathSlug),
+                                title: pathTitle
+                                  ? `${resource.title} — ${pathTitle}`
+                                  : resource.title,
+                                snippet: helpedText
+                              }}
+                            />
+                          ) : null}
+                          {pathSlug ? (
+                            <button
+                              type='button'
+                              className={styles.topicResourceEditBtn}
+                              onClick={() =>
+                                void toggleResourceBookmark(resource)
+                              }
+                              disabled={bookmarkingResourceId === resource.id}
+                              aria-pressed={bookmarkSaved}
+                              aria-label={
+                                bookmarkSaved
+                                  ? 'Remove bookmark'
+                                  : signedIn
+                                  ? 'Bookmark this resource'
+                                  : 'Sign in to bookmark this resource'
+                              }
+                              title={
+                                bookmarkSaved
+                                  ? 'Remove bookmark'
+                                  : signedIn
+                                  ? 'Save to your bookmarked links'
+                                  : 'Sign in to bookmark'
+                              }
+                            >
+                              <BookmarkIcon filled={bookmarkSaved} />
+                            </button>
+                          ) : null}
+                          {helpedText ? (
+                            <button
+                              type='button'
+                              className={`${styles.topicResourceEditBtn}${
+                                helpOpen
+                                  ? ` ${styles.topicResourceActionOn}`
+                                  : ''
+                              }`}
+                              aria-expanded={helpOpen}
+                              aria-label={
+                                helpOpen
+                                  ? 'Hide what helped and why'
+                                  : 'What part helped and why'
+                              }
+                              title='What part helped and why'
+                              onClick={() =>
+                                setOpenHelpIds((prev) => ({
+                                  ...prev,
+                                  [helpKey]: !prev[helpKey]
+                                }))
+                              }
+                            >
+                              <ResourceInfoIcon />
+                            </button>
+                          ) : null}
+                        </div>
+                        {canVote ? (
+                          <div className={styles.topicResourceVote}>
+                            <button
+                              type='button'
+                              className={`${styles.topicResourceVoteBtn}${
+                                userVote === 1
+                                  ? ` ${styles.topicResourceActionOn}`
+                                  : ''
+                              }`}
+                              onClick={() =>
+                                void setResourceVote(
+                                  resource.id,
+                                  userVote === 1 ? null : 1
+                                )
+                              }
+                              disabled={votingResourceId === resource.id}
+                              aria-pressed={userVote === 1}
+                              aria-label={
+                                userVote === 1
+                                  ? 'Remove upvote'
+                                  : signedIn
+                                  ? 'Upvote this resource'
+                                  : 'Sign in to upvote this resource'
+                              }
+                              title={
+                                userVote === 1
+                                  ? 'Remove upvote'
+                                  : signedIn
+                                  ? 'Upvote — does not change list order'
+                                  : 'Sign in to upvote'
+                              }
+                            >
+                              <ResourceUpvoteIcon />
+                            </button>
+                            <span
+                              className={styles.topicResourceVoteCount}
+                              aria-live='polite'
+                              aria-atomic='true'
+                            >
+                              {voteScore}
+                            </span>
+                            <button
+                              type='button'
+                              className={`${styles.topicResourceVoteBtn}${
+                                userVote === -1
+                                  ? ` ${styles.topicResourceActionOn}`
+                                  : ''
+                              }`}
+                              onClick={() =>
+                                void setResourceVote(
+                                  resource.id,
+                                  userVote === -1 ? null : -1
+                                )
+                              }
+                              disabled={votingResourceId === resource.id}
+                              aria-pressed={userVote === -1}
+                              aria-label={
+                                userVote === -1
+                                  ? 'Remove downvote'
+                                  : signedIn
+                                  ? 'Downvote this resource'
+                                  : 'Sign in to downvote this resource'
+                              }
+                              title={
+                                userVote === -1
+                                  ? 'Remove downvote'
+                                  : signedIn
+                                  ? 'Downvote — does not change list order'
+                                  : 'Sign in to downvote'
+                              }
+                            >
+                              <ResourceDownvoteIcon />
+                            </button>
+                          </div>
                         ) : null}
-                        <button
-                          type='button'
-                          className={styles.topicResourceEditBtn}
-                          onClick={() => openEdit(resource)}
-                          aria-label='Edit'
-                        >
-                          <ResourceEditPencilIcon />
-                        </button>
                       </div>
                     </div>
                   </li>

@@ -440,9 +440,17 @@ export function HomeHeader({
   const expandRectRef = React.useRef<DOMRect | null>(null)
   const closeBtnRef = React.useRef<HTMLButtonElement>(null)
 
+  const lightNavSurface =
+    router.pathname === '/paths/learning-path/[slug]' ||
+    router.pathname === '/paths/profile' ||
+    router.pathname === '/paths/profile/[userId]' ||
+    router.pathname === '/profile' ||
+    router.pathname === '/profile/[userId]'
+
   const cssVars = {
     '--home-side': sidePadding,
     '--home-main-max': maxWidth,
+    ...(lightNavSurface ? { '--nav-dropdown-bg': '#ffffff' } : null),
     ...style
   } as React.CSSProperties
 

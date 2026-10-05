@@ -55,6 +55,7 @@ export function CourseLearningPathSyllabusOverview({
         dbBacked={dbBacked}
         signedIn={signedIn}
         onSignIn={onSignIn}
+        pathId={course.id}
         pathSlug={course.slug}
         pathTitle={course.title}
         onAdd={onAddTopicResource}

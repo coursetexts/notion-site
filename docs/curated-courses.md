@@ -80,7 +80,7 @@ flowchart TB
   Nav["Left panel"]
   Over["Overview"]
   Tree["Topic / subtopic / concept tree"]
-  Res["Resources"]
+  Res["General Resources"]
   TB["Core Textbooks"]
   Web["Websites and Open Resources"]
   YT["Video Channels"]
@@ -95,9 +95,9 @@ flowchart TB
   Nav --> Learned
 ```
 
-- **Overview** — same tab as community paths (`?node=syllabus:overview`; `mental-map` and `overview` canonicalize here). Course title, then Resources (`data.mentalMapNodeId` holds map-only clips), then **Recommended Path** topic list. No type badges and no **Why is this on the learning path** (the course blurb stays in the hero). A 1px hairline sits under this row (none above it). Searching for “overview”, “general approach”, “mental map”, or “recommended syllabus” still finds **Overview**. **Commit & Remind Me** sits on the bottom step bar next to **Start learning path** (first topic, or the first Resources sub-tab when there are no topics yet; `learning-path:{slug}`).
+- **Overview** — same tab as community paths (`?node=syllabus:overview`; `mental-map` and `overview` canonicalize here). Course title, then **Introductory Resources** (`data.mentalMapNodeId` holds map-only clips), then **Recommended Path** topic list. No type badges and no **Why is this on the learning path** (the course blurb stays in the hero). A 1px hairline sits under this row (none above it). Searching for “overview”, “general approach”, “mental map”, or “recommended syllabus” still finds **Overview**. **Commit & Remind Me** sits on the bottom step bar next to **Start learning path** (first topic, or the first General Resources section when there are no topics yet; `learning-path:{slug}`).
 - **Topic tree** — accordion topics with a vertical line for nested lectures. A light-blue stroke check appears on the right when a topic or lecture is explored. Loads that node’s sequenced resources from `learning_paths.data`. **Why is this on the learning path:** is inline under the title. **Resources** start open.
-- **Resources** — from `data.resources` (or degrees JSON fallback).
+- **General Resources** — left-nav tab under Overview (`?node=resources`). One numbered list per section (**Core Textbooks**, **Websites and Open Resources**, **Video Channels**). Degrees-page curriculum rows (`data.resources` or undergraduate/graduate JSON fallback) are **migrated at render time** into the same topic-resource card shape as the rest of the path: stable `curated:{kind}:{index}:{slug}` ids, section order preserved, `description` (and non-URL publisher text) → passage (“The part that helped and why”). Learner-added cards from `data.generalResourceTopicResources` follow the curated list. Cards support vote / bookmark / report / info toggle like other path resources; curated rows are not editable. Helpers live in `lib/course-learning-path-resources.ts` (`courseCurriculumResourcesToTopicResources`, `mergeGeneralResourceTopicLists`).
 - **What you learned** — appears only after every syllabus node is explored.
 - **Ratings** — marking a topic explored asks how long it took and a % for how enjoyable learning that module was using the given resources; finishing the course asks the same for the whole course.
 
@@ -111,6 +111,10 @@ See [`data/curated-courses/README.md`](../data/curated-courses/README.md).
 {slug}.json
   slug, title, description
   resources[]     kind: textbook | website | youtube
+                  (General Resources: migrated at render into topic-resource
+                  cards; description → passage)
+  generalResourceTopicResources?  learner-added General Resources cards
+                  keyed by textbook | website | youtube
   topics[]        type: topic → subtopic → concept
     videos[]      ordered clips (seeded into videos, then node_resources)
 ```

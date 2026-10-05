@@ -4,17 +4,16 @@ import styles from './CourseLearningPath.module.css'
 import {
   COURSE_LEARNING_PATH_GENERAL_RESOURCES_LABEL,
   COURSE_LEARNING_PATH_RESOURCE_SECTIONS,
+  courseCurriculumResourcesToTopicResources,
+  isCuratedGeneralResourceId,
+  mergeGeneralResourceTopicLists,
   resourcesForSection
 } from '@/lib/course-learning-path-resources'
 import type {
   CourseLearningPathTopicResource,
   CourseLearningPathTopicResourceKind
 } from '@/lib/course-learning-path-types'
-import {
-  isResourceUrl,
-  type CourseResource,
-  type CourseResourceKind
-} from '@/lib/undergraduate-degrees'
+import type { CourseResource, CourseResourceKind } from '@/lib/undergraduate-degrees'
 
 import {
   CourseLearningPathNodeResources,
@@ -28,6 +27,7 @@ interface CourseLearningPathResourcesProps {
   >
   courseTitle: string
   courseSlug: string
+  pathId?: string
   dbBacked?: boolean
   signedIn?: boolean
   onSignIn?: () => void
@@ -52,6 +52,7 @@ export function CourseLearningPathResources({
   addedByKind,
   courseTitle,
   courseSlug,
+  pathId,
   dbBacked = false,
   signedIn = false,
   onSignIn,
@@ -70,8 +71,14 @@ export function CourseLearningPathResources({
       </header>
 
       {COURSE_LEARNING_PATH_RESOURCE_SECTIONS.map((section) => {
-        const items = resourcesForSection(resources, section.kind)
+        const curated = courseCurriculumResourcesToTopicResources(
+          resourcesForSection(resources, section.kind),
+          section.kind
+        )
         const added = addedByKind?.[section.kind] ?? []
+        const items = mergeGeneralResourceTopicLists(curated, added)
+        const curatedCount = curated.length
+
         return (
           <section
             key={section.id}
@@ -83,78 +90,59 @@ export function CourseLearningPathResources({
                 {section.label}
               </h2>
             </div>
-            {items.length > 0 ? (
-              <ul className={styles.courseResourcesList}>
-                {items.map((resource, index) => (
-                  <ResourceCard
-                    key={`${section.kind}-${index}-${resource.title}`}
-                    resource={resource}
-                  />
-                ))}
-              </ul>
-            ) : null}
             <CourseLearningPathNodeResources
               nodeId={section.id}
-              items={added}
+              items={items}
               headingId={`${section.id}-resources-heading`}
               hideHeading
-              quietEmpty={items.length > 0}
+              quietEmpty={false}
               defaultKind={defaultKindForSection(section.kind)}
               dbBacked={dbBacked}
               signedIn={signedIn}
               onSignIn={onSignIn}
+              pathId={pathId}
               pathSlug={courseSlug}
               pathTitle={courseTitle}
-              onAdd={onAddTopicResource}
-              onUpdate={onUpdateTopicResource}
+              canEditResource={(resource) =>
+                !isCuratedGeneralResourceId(resource.id)
+              }
+              onAdd={
+                onAddTopicResource
+                  ? async (input) => {
+                      const placement = input.suggestedPlacement
+                      const adjusted =
+                        placement == null
+                          ? undefined
+                          : Math.max(1, placement - curatedCount)
+                      return onAddTopicResource({
+                        ...input,
+                        suggestedPlacement: adjusted
+                      })
+                    }
+                  : undefined
+              }
+              onUpdate={
+                onUpdateTopicResource
+                  ? async (input) => {
+                      if (isCuratedGeneralResourceId(input.resourceId)) {
+                        return false
+                      }
+                      const placement = input.suggestedPlacement
+                      const adjusted =
+                        placement == null
+                          ? undefined
+                          : Math.max(1, placement - curatedCount)
+                      return onUpdateTopicResource({
+                        ...input,
+                        suggestedPlacement: adjusted
+                      })
+                    }
+                  : undefined
+              }
             />
           </section>
         )
       })}
     </article>
-  )
-}
-
-function ResourceCard({ resource }: { resource: CourseResource }) {
-  const isLink = isResourceUrl(resource.linkOrSite)
-
-  return (
-    <li className={styles.courseResourceCard}>
-      <p className={styles.courseResourceTitle}>
-        {isLink ? (
-          <a
-            href={resource.linkOrSite}
-            target='_blank'
-            rel='noreferrer'
-            className={styles.courseResourceLink}
-          >
-            {resource.title}
-          </a>
-        ) : (
-          resource.title
-        )}
-      </p>
-      {resource.linkOrSite ? (
-        <p className={styles.courseResourceMeta}>
-          {isLink ? (
-            <a
-              href={resource.linkOrSite}
-              target='_blank'
-              rel='noreferrer'
-              className={styles.courseResourceSiteLink}
-            >
-              {resource.linkOrSite}
-            </a>
-          ) : (
-            <span>{resource.linkOrSite}</span>
-          )}
-        </p>
-      ) : null}
-      {resource.description ? (
-        <p className={styles.courseResourceDescription}>
-          {resource.description}
-        </p>
-      ) : null}
-    </li>
   )
 }

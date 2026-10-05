@@ -142,7 +142,7 @@ button.middleItem {
   min-width: 168px;
   padding: 8px 0;
   border: 1px solid var(--outline, #e6e6e6);
-  background: #f8f7f4;
+  background: var(--nav-dropdown-bg, #f8f7f4);
   opacity: 0;
   transform: translateY(-6px);
   transition: opacity 220ms cubic-bezier(0.22, 1, 0.36, 1),
