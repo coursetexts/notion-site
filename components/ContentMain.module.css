@@ -17,7 +17,14 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 0.5rem;
-  padding: 1rem 3rem;
+  /* Match HomeHeader right edge: max(home-side, (100vw - home-main-max) / 2). */
+  padding: 1rem
+    max(
+      3rem,
+      var(--home-side, 58px),
+      calc((100vw - var(--home-main-max, 1324px)) / 2)
+    )
+    1rem 3rem;
   border-bottom: 1px solid #e5e1d3;
   background-color: #fff;
   flex-shrink: 0;

@@ -25,7 +25,13 @@
 
 .contentFooter {
   flex-shrink: 0;
-  padding: 12px 3rem 20px;
+  padding: 12px
+    max(
+      3rem,
+      var(--home-side, 58px),
+      calc((100vw - var(--home-main-max, 1324px)) / 2)
+    )
+    20px 3rem;
   border-top: 1px solid #e5e1d3;
   background: #fff;
   box-sizing: border-box;

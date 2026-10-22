@@ -30,6 +30,7 @@ import {
   isCourseLearningPathResourceSelection,
   isMentalMapVideoNodeId
 } from '@/lib/course-learning-path-resources'
+import { formatCourseLearningPathExportContext } from '@/lib/course-learning-path-export-context'
 import {
   DEFAULT_COURSE_LEARNING_PATH_SLUG,
   fluidMechanicsSeedCourse
@@ -934,6 +935,12 @@ export function CourseLearningPath({
               />
             }
             onActivityPosted={() => setActivityRefreshNonce((n) => n + 1)}
+            onExportContext={() =>
+              formatCourseLearningPathExportContext({
+                course,
+                selectedId
+              })
+            }
             footer={
               showingKnowledge ||
               showingResources ||

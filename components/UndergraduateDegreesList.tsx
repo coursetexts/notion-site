@@ -648,10 +648,7 @@ export function UndergraduateDegreesList({
                 description={activeGroup.section.description}
                 degrees={activeGroup.degrees}
                 queryActive={queryActive}
-                hideResources={
-                  level === 'undergraduate' &&
-                  activeGroup.section.id === 'stem'
-                }
+                hideResources={level === 'undergraduate'}
               />
             </div>
           </div>
@@ -662,6 +659,7 @@ export function UndergraduateDegreesList({
                 key={degree.id}
                 degree={degree}
                 queryActive={queryActive}
+                hideResources={level === 'undergraduate'}
               />
             ))}
           </div>
