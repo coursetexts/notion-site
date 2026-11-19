@@ -31,6 +31,9 @@ Quick orientation:
 - The preview-site password gate is `middleware.ts` plus `lib/session.ts`,
   `lib/session-config.ts`, `pages/signin.tsx`, `pages/api/login.ts` and
   `pages/api/logout.ts`; it is active only when `PASSWORD_PROTECT=true`.
+  To share a preview page without making someone sign in, append
+  `?password=<PREVIEW_PASSWORD>` to its URL; the middleware sets the session
+  cookie and redirects to the same URL without the parameter.
 - Everything coursetexts-specific about how a page looks is in
   `components/NotionPage.tsx` and `styles/notion.css`.
 
