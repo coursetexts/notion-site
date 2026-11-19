@@ -65,6 +65,10 @@ The preview site is password-protected; production is not.
   rather than serving an unprotected preview.
 - `pages/signin.tsx`, `pages/api/login.ts` and `pages/api/logout.ts` are the login flow;
   the password comes from `PREVIEW_PASSWORD`.
+- Share links: a request carrying `?password=` is redirected to the same URL without it.
+  If the value equals `PREVIEW_PASSWORD`, that redirect also sets the session cookie
+  (SameSite=Lax so it survives links opened from other sites); otherwise the visitor
+  meets the normal `/signin` redirect. The password still appears once in server logs.
 
 ## Pages
 
