@@ -70,7 +70,7 @@ export const getMastodonHandle = (): string | null => {
   }
 
   // Since Mastodon is decentralized, handles include the instance domain name.
-  // e.g. @example@mastodon.social
+  // e.g. a user handle followed by its instance domain
   const url = new URL(mastodon)
   return `${url.pathname.slice(1)}@${url.hostname}`
 }

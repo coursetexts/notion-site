@@ -1,3 +1,4 @@
+import { contactEmail } from './lib/contact'
 import { siteConfig } from './lib/site-config'
 
 export default siteConfig({
@@ -19,7 +20,7 @@ export default siteConfig({
   // social accounts
   github: 'https://github.com/coursetexts',
   twitter: 'https://x.com/coursetexts',
-  newsletter: 'mailto:coursetexts@mit.edu',
+  newsletter: `mailto:${contactEmail}`,
   donate: 'https://hcb.hackclub.com/donations/start/coursetexts',
   discord: 'https://discord.gg/6xBECjtC55',
 

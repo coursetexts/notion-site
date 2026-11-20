@@ -1,3 +1,4 @@
+import { contactEmail } from '../lib/contact'
 import * as React from 'react';
 import styles from './styles.module.css';
 
@@ -24,7 +25,7 @@ export const UpdateNoticeBanner: React.FC = () => {
       <div>
         <span className={styles.cursive}>🌱 We are always updating Coursetexts. </span>
         These notes are drafts and meant to be more up-to-date than they are polished.
-        If you spot a typo, please let us know at <a target="_blank" rel="noopener noreferrer" href="mailto:coursetexts@mit.edu" >coursetexts@mit.edu</a>!
+        If you spot a typo, please let us know at <a target="_blank" rel="noopener noreferrer" href={`mailto:${contactEmail}`} >{contactEmail}</a>!
       </div>
 
       <button

@@ -1,3 +1,4 @@
+import { contactEmail } from '../lib/contact'
 import Head from 'next/head'
 import React from 'react'
 
@@ -128,7 +129,7 @@ const CourseMaterialsLicense = () => {
               </p>
               <p style={{ marginBottom: '2rem' }} className='notion-text'>
                 To request an AI Training license, contact{' '}
-                <a href='mailto:coursetexts@mit.edu'>coursetexts@mit.edu</a>.
+                <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.
                 Payment is required for every AI Training use.
               </p>
 
