@@ -3,6 +3,8 @@ import { parsePageId } from 'notion-utils'
 
 import * as acl from './acl'
 import { environment, pageUrlAdditions, pageUrlOverrides, site } from './config'
+import { NOTION_PRODUCTION_URL } from './consts'
+import { applyLiveCourseCount, getVisibleCourseCount } from './course-count'
 import { db } from './db'
 import { getSiteMap } from './get-site-map'
 import { getPage } from './notion'
@@ -13,7 +15,9 @@ function getSiteMapRecordMap(
 ): ExtendedRecordMap | undefined {
   const rawId = parsePageId(pageId, { uuid: false }) || pageId
   const uuidId = parsePageId(pageId, { uuid: true }) || rawId
-  const candidateIds = Array.from(new Set([pageId, rawId, uuidId].filter(Boolean)))
+  const candidateIds = Array.from(
+    new Set([pageId, rawId, uuidId].filter(Boolean))
+  )
 
   for (const candidateId of candidateIds) {
     const recordMap = siteMap?.pageMap?.[candidateId]
@@ -34,6 +38,42 @@ function getSiteMapRecordMap(
       })
       return recordMap as ExtendedRecordMap
     }
+  }
+}
+
+async function updateWhyPageCourseCount({
+  pageId,
+  rawPageId,
+  recordMap
+}: {
+  pageId: string
+  rawPageId?: string
+  recordMap: ExtendedRecordMap
+}) {
+  const whyPageId = pageUrlOverrides.why
+  const isWhyPage = rawPageId === 'why' || pageId === whyPageId
+  if (!isWhyPage) return
+
+  try {
+    const homeRecordMap =
+      pageId === site.rootNotionPageId
+        ? recordMap
+        : await getPage(site.rootNotionPageId)
+    const courseCount = getVisibleCourseCount(
+      homeRecordMap,
+      site.rootNotionPageId,
+      site.rootNotionPageId === NOTION_PRODUCTION_URL
+    )
+
+    if (courseCount > 0) {
+      applyLiveCourseCount(recordMap, courseCount)
+    }
+  } catch (err: any) {
+    console.warn('Failed to update live course count', {
+      pageId,
+      rawPageId,
+      message: err?.message
+    })
   }
 }
 
@@ -84,7 +124,8 @@ export async function resolveNotionPage(domain: string, rawPageId?: string) {
       if (pageId) {
         // Reuse the site map's already-fetched record map during SSG to avoid
         // a second burst of Notion API calls for every static page.
-        recordMap = getSiteMapRecordMap(siteMap, pageId) || (await getPage(pageId))
+        recordMap =
+          getSiteMapRecordMap(siteMap, pageId) || (await getPage(pageId))
 
         if (useUriToPageIdCache) {
           try {
@@ -114,6 +155,8 @@ export async function resolveNotionPage(domain: string, rawPageId?: string) {
     const siteMap = await getSiteMap()
     recordMap = getSiteMapRecordMap(siteMap, pageId) || (await getPage(pageId))
   }
+
+  await updateWhyPageCourseCount({ pageId, rawPageId, recordMap })
 
   const props = { site, recordMap, pageId }
   return { ...props, ...(await acl.pageAcl(props)) }
